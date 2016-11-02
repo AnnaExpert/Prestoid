@@ -514,6 +514,7 @@
 				2A1E4F001DCA0A06001F4489 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A1E4F011DCA0A06001F4489 /* Build configuration list for PBXNativeTarget "prestoidTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +523,7 @@
 				2A1E4F031DCA0A06001F4489 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A1E4F041DCA0A06001F4489 /* Build configuration list for PBXNativeTarget "prestoidUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +532,7 @@
 				2A1E4F061DCA0A06001F4489 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
