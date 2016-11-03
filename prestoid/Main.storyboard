@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Camera View Controller-->
+        <!--Camera-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CameraViewController" customModule="prestoid" customModuleProvider="target" sceneMemberID="viewController">
@@ -186,7 +186,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" selectedImage="Shared - Active" systemItem="favorites" id="0nj-Yb-nv4"/>
+                    <tabBarItem key="tabBarItem" title="Camera" image="Camera" selectedImage="CameraFilled" id="0nj-Yb-nv4"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="cameraButton" destination="rUJ-G6-RPv" id="dAV-WS-N1p"/>
@@ -207,9 +207,9 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="319" y="-1043"/>
+            <point key="canvasLocation" x="226" y="-630"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Videos-->
         <scene sceneID="I3B-R1-Qik">
             <objects>
                 <tableViewController id="01h-AG-HQD" sceneMemberID="viewController">
@@ -224,7 +224,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p3f-2B-njh" id="Ngn-eT-AOS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -232,7 +232,7 @@
                                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sYv-Pl-nZE" id="JmA-Cs-bec">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -240,7 +240,7 @@
                                         <rect key="frame" x="0.0" y="88" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JbH-Rv-ngf" id="hag-44-M2c">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -252,11 +252,39 @@
                             <outlet property="delegate" destination="01h-AG-HQD" id="l4s-fh-ZfM"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="sKH-Et-oPy"/>
+                    <tabBarItem key="tabBarItem" title="Videos" image="Play" selectedImage="PlayFilled" id="sKH-Et-oPy"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwH-Xy-VXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="318" y="-275"/>
+            <point key="canvasLocation" x="1830" y="-630"/>
+        </scene>
+        <!--Dropbox-->
+        <scene sceneID="LvN-Oz-1ci">
+            <objects>
+                <viewController id="sze-Gh-2xl" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Age-4Z-vAA"/>
+                        <viewControllerLayoutGuide type="bottom" id="nBf-bB-JBc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="N1F-LA-gjo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dropbox settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERm-Iz-Kdv">
+                                <rect key="frame" x="122" y="323" width="131" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Dropbox" image="Cloud" selectedImage="CloudFilled" id="b7n-5N-Fgl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SEB-tu-Iff" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1006" y="-630"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1cw-Ae-ofX">
@@ -271,17 +299,23 @@
                         <color key="selectedImageTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="01h-AG-HQD" kind="relationship" relationship="viewControllers" id="vEB-dc-uQu"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="LUL-p2-fze"/>
+                        <segue destination="01h-AG-HQD" kind="relationship" relationship="viewControllers" id="vEB-dc-uQu"/>
+                        <segue destination="sze-Gh-2xl" kind="relationship" relationship="viewControllers" id="AYa-Ej-PhZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIS-5d-OBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-656.79999999999995" y="-630.13493253373315"/>
+            <point key="canvasLocation" x="-572" y="-630"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Shared - Active" width="17" height="11"/>
+        <image name="Camera" width="30" height="22"/>
+        <image name="CameraFilled" width="30" height="22"/>
+        <image name="Cloud" width="30" height="19"/>
+        <image name="CloudFilled" width="30" height="19"/>
+        <image name="Play" width="30" height="25"/>
+        <image name="PlayFilled" width="30" height="25"/>
     </resources>
     <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
