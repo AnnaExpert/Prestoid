@@ -243,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEB-tu-Iff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="-630"/>
+            <point key="canvasLocation" x="1718" y="-630"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1cw-Ae-ofX">
@@ -265,7 +265,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIS-5d-OBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-572" y="-630"/>
+            <point key="canvasLocation" x="-548" y="-630"/>
         </scene>
         <!--Videos-->
         <scene sceneID="wzJ-Eo-68R">
@@ -400,7 +400,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQ4-HO-cyO" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1805.5999999999999" y="-630.13493253373315"/>
+            <point key="canvasLocation" x="980" y="-630"/>
         </scene>
     </scenes>
     <resources>

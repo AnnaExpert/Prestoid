@@ -10,10 +10,6 @@ import Foundation
 import AVFoundation
 import UIKit
 
-/*
-	KVO context used to differentiate KVO callbacks for this class versus other
-	classes in its class hierarchy.
- */
 private var playerViewControllerKVOContext = 0
 
 class PlayerViewController: UIViewController {
