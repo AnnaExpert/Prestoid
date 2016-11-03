@@ -258,8 +258,8 @@
                         <color key="selectedImageTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="LUL-p2-fze"/>
                         <segue destination="1Mf-68-H5P" kind="relationship" relationship="viewControllers" id="8CP-Wm-r2B"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="LUL-p2-fze"/>
                         <segue destination="sze-Gh-2xl" kind="relationship" relationship="viewControllers" id="AYa-Ej-PhZ"/>
                     </connections>
                 </tabBarController>
