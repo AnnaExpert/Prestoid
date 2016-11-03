@@ -2,7 +2,7 @@
 //  PhotoCaptureDelegate.swift
 //  prestoid
 //
-//  Created by Alexander Iashchuk on 11/3/16.
+//  Created by Alexander Iashchuk on 11/2/16.
 //  Copyright © 2016 Alexander Iashchuk. All rights reserved.
 //
 
