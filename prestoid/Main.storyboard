@@ -285,9 +285,9 @@
                                     <constraint firstAttribute="width" constant="70" id="6db-kh-Jgu"/>
                                     <constraint firstAttribute="height" constant="30" id="Xzs-Du-ruB"/>
                                 </constraints>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="PlayButton">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="playPauseButtonWasPressed:" destination="1Mf-68-H5P" eventType="touchUpInside" id="gdz-Pb-tUi"/>
@@ -299,9 +299,9 @@
                                     <constraint firstAttribute="height" constant="30" id="8BN-fm-2cb"/>
                                     <constraint firstAttribute="width" constant="70" id="cr4-Ns-g55"/>
                                 </constraints>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="ScanForwardButton">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="fastForwardButtonWasPressed:" destination="1Mf-68-H5P" eventType="touchUpInside" id="Q7H-0I-iBx"/>
@@ -309,7 +309,7 @@
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="acr-DC-3cL">
                                 <rect key="frame" x="214" y="568" width="147" height="31"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fd1-Dw-ww1"/>
                                 </constraints>
@@ -327,9 +327,9 @@
                                     <constraint firstAttribute="width" constant="70" id="Rga-us-7mp"/>
                                     <constraint firstAttribute="height" constant="30" id="x9E-8p-2Ll"/>
                                 </constraints>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="ScanBackwardButton">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="rewindButtonWasPressed:" destination="1Mf-68-H5P" eventType="touchUpInside" id="GPG-LV-ap0"/>
@@ -342,6 +342,7 @@
                                     <constraint firstAttribute="height" constant="20" id="pFE-30-yab"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNp-Yx-xho" userLabel="Duration">
@@ -351,10 +352,11 @@
                                     <constraint firstAttribute="width" constant="50" id="Whu-Oo-9Gi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Rtc-Gr-zLQ" firstAttribute="top" secondItem="v0Z-Sd-AKi" secondAttribute="bottom" constant="80" id="0PU-xB-Mza"/>
                             <constraint firstItem="Rtc-Gr-zLQ" firstAttribute="top" secondItem="MlS-i7-BnK" secondAttribute="bottom" constant="20" id="2no-U2-1Nr"/>
