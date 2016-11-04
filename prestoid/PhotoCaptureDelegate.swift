@@ -40,7 +40,6 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
                 }
             }
         }
-        
         completed(self)
     }
     
@@ -73,7 +72,6 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
             print("Error processing live photo companion movie: \(error)")
             return
         }
-        
         livePhotoCompanionMovieURL = outputFileURL
     }
     
