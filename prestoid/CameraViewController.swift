@@ -15,17 +15,14 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Disable UI. The UI is enabled if and only if the session starts running.
         cameraButton.isEnabled = false
         recordButton.isEnabled = false
         photoButton.isEnabled = false
         livePhotoModeButton.isEnabled = false
         captureModeControl.isEnabled = false
-        
         // Set up the video preview view.
         previewView.session = session
-        
         /*
          Check video authorization status. Video access is required and audio
          access is optional. If audio access is denied, audio is not recorded
