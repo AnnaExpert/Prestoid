@@ -10,8 +10,6 @@
 		2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */; };
 		2A1E4EDC1DCA0A05001F4489 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4EDB1DCA0A05001F4489 /* PreviewView.swift */; };
 		2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */; };
-		2A1E4EEF1DCA0A06001F4489 /* prestoidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4EEE1DCA0A06001F4489 /* prestoidTests.swift */; };
-		2A1E4EFA1DCA0A06001F4489 /* prestoidUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4EF91DCA0A06001F4489 /* prestoidUITests.swift */; };
 		2AB84CB81DCB4F3F00A31061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB84CB71DCB4F3F00A31061 /* Main.storyboard */; };
 		2AB84CBA1DCB4FA900A31061 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB84CB91DCB4FA900A31061 /* CameraViewController.swift */; };
 		2AB84CBC1DCB4FB800A31061 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB84CBB1DCB4FB800A31061 /* PhotoCaptureDelegate.swift */; };
@@ -21,33 +19,14 @@
 		2AC64D171DCBC0E500BD95B7 /* StrangeThingFallsDown.mov in Resources */ = {isa = PBXBuildFile; fileRef = 2AC64D161DCBC0E500BD95B7 /* StrangeThingFallsDown.mov */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2A1E4EEB1DCA0A06001F4489 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A1E4ECE1DCA0A05001F4489 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2A1E4ED51DCA0A05001F4489;
-			remoteInfo = prestoid;
-		};
-		2A1E4EF61DCA0A06001F4489 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A1E4ECE1DCA0A05001F4489 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2A1E4ED51DCA0A05001F4489;
-			remoteInfo = prestoid;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		2A1E4ED61DCA0A05001F4489 /* prestoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = prestoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A1E4EDB1DCA0A05001F4489 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		2A1E4EE31DCA0A05001F4489 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1E4EE51DCA0A05001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A1E4EEA1DCA0A06001F4489 /* prestoidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = prestoidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1E4EEE1DCA0A06001F4489 /* prestoidTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = prestoidTests.swift; sourceTree = "<group>"; };
 		2A1E4EF01DCA0A06001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A1E4EF51DCA0A06001F4489 /* prestoidUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = prestoidUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1E4EF91DCA0A06001F4489 /* prestoidUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = prestoidUITests.swift; sourceTree = "<group>"; };
 		2A1E4EFB1DCA0A06001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AB84CB71DCB4F3F00A31061 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -61,20 +40,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		2A1E4ED31DCA0A05001F4489 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2A1E4EE71DCA0A06001F4489 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2A1E4EF21DCA0A06001F4489 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -98,8 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				2A1E4ED61DCA0A05001F4489 /* prestoid.app */,
-				2A1E4EEA1DCA0A06001F4489 /* prestoidTests.xctest */,
-				2A1E4EF51DCA0A06001F4489 /* prestoidUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,42 +131,6 @@
 			productReference = 2A1E4ED61DCA0A05001F4489 /* prestoid.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2A1E4EE91DCA0A06001F4489 /* prestoidTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2A1E4F011DCA0A06001F4489 /* Build configuration list for PBXNativeTarget "prestoidTests" */;
-			buildPhases = (
-				2A1E4EE61DCA0A06001F4489 /* Sources */,
-				2A1E4EE71DCA0A06001F4489 /* Frameworks */,
-				2A1E4EE81DCA0A06001F4489 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2A1E4EEC1DCA0A06001F4489 /* PBXTargetDependency */,
-			);
-			name = prestoidTests;
-			productName = prestoidTests;
-			productReference = 2A1E4EEA1DCA0A06001F4489 /* prestoidTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		2A1E4EF41DCA0A06001F4489 /* prestoidUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2A1E4F041DCA0A06001F4489 /* Build configuration list for PBXNativeTarget "prestoidUITests" */;
-			buildPhases = (
-				2A1E4EF11DCA0A06001F4489 /* Sources */,
-				2A1E4EF21DCA0A06001F4489 /* Frameworks */,
-				2A1E4EF31DCA0A06001F4489 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2A1E4EF71DCA0A06001F4489 /* PBXTargetDependency */,
-			);
-			name = prestoidUITests;
-			productName = prestoidUITests;
-			productReference = 2A1E4EF51DCA0A06001F4489 /* prestoidUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,18 +145,6 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 3NL9BUS2QV;
 						ProvisioningStyle = Automatic;
-					};
-					2A1E4EE91DCA0A06001F4489 = {
-						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 3NL9BUS2QV;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 2A1E4ED51DCA0A05001F4489;
-					};
-					2A1E4EF41DCA0A06001F4489 = {
-						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 3NL9BUS2QV;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 2A1E4ED51DCA0A05001F4489;
 					};
 				};
 			};
@@ -247,8 +162,6 @@
 			projectRoot = "";
 			targets = (
 				2A1E4ED51DCA0A05001F4489 /* prestoid */,
-				2A1E4EE91DCA0A06001F4489 /* prestoidTests */,
-				2A1E4EF41DCA0A06001F4489 /* prestoidUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -262,20 +175,6 @@
 				2AC64D171DCBC0E500BD95B7 /* StrangeThingFallsDown.mov in Resources */,
 				2AB84CC01DCB551F00A31061 /* Assets.xcassets in Resources */,
 				2AB84CB81DCB4F3F00A31061 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2A1E4EE81DCA0A06001F4489 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2A1E4EF31DCA0A06001F4489 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,36 +194,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A1E4EE61DCA0A06001F4489 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2A1E4EEF1DCA0A06001F4489 /* prestoidTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2A1E4EF11DCA0A06001F4489 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2A1E4EFA1DCA0A06001F4489 /* prestoidUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2A1E4EEC1DCA0A06001F4489 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2A1E4ED51DCA0A05001F4489 /* prestoid */;
-			targetProxy = 2A1E4EEB1DCA0A06001F4489 /* PBXContainerItemProxy */;
-		};
-		2A1E4EF71DCA0A06001F4489 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2A1E4ED51DCA0A05001F4489 /* prestoid */;
-			targetProxy = 2A1E4EF61DCA0A06001F4489 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */ = {
@@ -457,64 +327,6 @@
 			};
 			name = Release;
 		};
-		2A1E4F021DCA0A06001F4489 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 3NL9BUS2QV;
-				INFOPLIST_FILE = prestoidTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iashchuk.prestoidTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/prestoid.app/prestoid";
-			};
-			name = Debug;
-		};
-		2A1E4F031DCA0A06001F4489 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 3NL9BUS2QV;
-				INFOPLIST_FILE = prestoidTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iashchuk.prestoidTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/prestoid.app/prestoid";
-			};
-			name = Release;
-		};
-		2A1E4F051DCA0A06001F4489 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 3NL9BUS2QV;
-				INFOPLIST_FILE = prestoidUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iashchuk.prestoidUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = prestoid;
-			};
-			name = Debug;
-		};
-		2A1E4F061DCA0A06001F4489 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 3NL9BUS2QV;
-				INFOPLIST_FILE = prestoidUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iashchuk.prestoidUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = prestoid;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -532,24 +344,6 @@
 			buildConfigurations = (
 				2A1E4EFF1DCA0A06001F4489 /* Debug */,
 				2A1E4F001DCA0A06001F4489 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2A1E4F011DCA0A06001F4489 /* Build configuration list for PBXNativeTarget "prestoidTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2A1E4F021DCA0A06001F4489 /* Debug */,
-				2A1E4F031DCA0A06001F4489 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2A1E4F041DCA0A06001F4489 /* Build configuration list for PBXNativeTarget "prestoidUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2A1E4F051DCA0A06001F4489 /* Debug */,
-				2A1E4F061DCA0A06001F4489 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
