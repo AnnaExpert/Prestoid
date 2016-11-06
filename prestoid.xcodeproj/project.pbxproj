@@ -25,10 +25,6 @@
 		2A1E4EDB1DCA0A05001F4489 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		2A1E4EE31DCA0A05001F4489 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1E4EE51DCA0A05001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A1E4EEE1DCA0A06001F4489 /* prestoidTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = prestoidTests.swift; sourceTree = "<group>"; };
-		2A1E4EF01DCA0A06001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A1E4EF91DCA0A06001F4489 /* prestoidUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = prestoidUITests.swift; sourceTree = "<group>"; };
-		2A1E4EFB1DCA0A06001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AB84CB71DCB4F3F00A31061 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2AB84CB91DCB4FA900A31061 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2AB84CBB1DCB4FB800A31061 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
@@ -53,8 +49,6 @@
 			isa = PBXGroup;
 			children = (
 				2A1E4ED81DCA0A05001F4489 /* prestoid */,
-				2A1E4EED1DCA0A06001F4489 /* prestoidTests */,
-				2A1E4EF81DCA0A06001F4489 /* prestoidUITests */,
 				2A1E4ED71DCA0A05001F4489 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,24 +77,6 @@
 				2AC64D181DCBC0EB00BD95B7 /* Movie */,
 			);
 			path = prestoid;
-			sourceTree = "<group>";
-		};
-		2A1E4EED1DCA0A06001F4489 /* prestoidTests */ = {
-			isa = PBXGroup;
-			children = (
-				2A1E4EEE1DCA0A06001F4489 /* prestoidTests.swift */,
-				2A1E4EF01DCA0A06001F4489 /* Info.plist */,
-			);
-			path = prestoidTests;
-			sourceTree = "<group>";
-		};
-		2A1E4EF81DCA0A06001F4489 /* prestoidUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2A1E4EF91DCA0A06001F4489 /* prestoidUITests.swift */,
-				2A1E4EFB1DCA0A06001F4489 /* Info.plist */,
-			);
-			path = prestoidUITests;
 			sourceTree = "<group>";
 		};
 		2AC64D181DCBC0EB00BD95B7 /* Movie */ = {
