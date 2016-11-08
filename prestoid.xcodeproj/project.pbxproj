@@ -16,7 +16,6 @@
 		2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */; };
 		2A722A5B1DD1F97B0017E1C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A722A5A1DD1F97B0017E1C2 /* Main.storyboard */; };
 		2AB84CC01DCB551F00A31061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB84CBF1DCB551F00A31061 /* Assets.xcassets */; };
-		2AC64D171DCBC0E500BD95B7 /* StrangeThingFallsDown.mov in Resources */ = {isa = PBXBuildFile; fileRef = 2AC64D161DCBC0E500BD95B7 /* StrangeThingFallsDown.mov */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 		2A1E4EE51DCA0A05001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A722A5A1DD1F97B0017E1C2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2AB84CBF1DCB551F00A31061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2AC64D161DCBC0E500BD95B7 /* StrangeThingFallsDown.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = StrangeThingFallsDown.mov; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,17 +72,8 @@
 				2A0CF5571DD1F42300D0A5C6 /* CaptureViewController.swift */,
 				2A0CF5581DD1F42300D0A5C6 /* FocusIndicatorView.swift */,
 				2A1E4EE51DCA0A05001F4489 /* Info.plist */,
-				2AC64D181DCBC0EB00BD95B7 /* Movie */,
 			);
 			path = prestoid;
-			sourceTree = "<group>";
-		};
-		2AC64D181DCBC0EB00BD95B7 /* Movie */ = {
-			isa = PBXGroup;
-			children = (
-				2AC64D161DCBC0E500BD95B7 /* StrangeThingFallsDown.mov */,
-			);
-			name = Movie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,7 +138,6 @@
 			files = (
 				2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */,
 				2A722A5B1DD1F97B0017E1C2 /* Main.storyboard in Resources */,
-				2AC64D171DCBC0E500BD95B7 /* StrangeThingFallsDown.mov in Resources */,
 				2AB84CC01DCB551F00A31061 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
