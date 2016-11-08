@@ -25,9 +25,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlS-QP-a6e">
-                                <rect key="frame" x="133" y="541" width="108" height="30"/>
+                                <rect key="frame" x="121" y="544" width="132" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Launch Camera"/>
+                                <state key="normal" title="Launch the camera"/>
                                 <connections>
                                     <action selector="handleTakePictureButton:" destination="hAZ-2R-Jdz" eventType="touchUpInside" id="LVa-2N-dLi"/>
                                 </connections>
