@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0CF5511DD1D97300D0A5C6 /* PCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CF5501DD1D97300D0A5C6 /* PCameraViewController.swift */; };
+		2A0CF5541DD1DA7700D0A5C6 /* PCameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CF5531DD1DA7700D0A5C6 /* PCameraPreviewView.swift */; };
 		2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */; };
 		2A1E4EDC1DCA0A05001F4489 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4EDB1DCA0A05001F4489 /* PreviewView.swift */; };
 		2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A0CF5501DD1D97300D0A5C6 /* PCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCameraViewController.swift; sourceTree = "<group>"; };
+		2A0CF5531DD1DA7700D0A5C6 /* PCameraPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCameraPreviewView.swift; sourceTree = "<group>"; };
 		2A1E4ED61DCA0A05001F4489 /* prestoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = prestoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A1E4EDB1DCA0A05001F4489 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
@@ -45,6 +49,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A0CF5521DD1D98600D0A5C6 /* Old code */ = {
+			isa = PBXGroup;
+			children = (
+				2A1E4EDB1DCA0A05001F4489 /* PreviewView.swift */,
+				2AB84CB91DCB4FA900A31061 /* CameraViewController.swift */,
+				2AB84CBB1DCB4FB800A31061 /* PhotoCaptureDelegate.swift */,
+				2AC64D121DCBBEAB00BD95B7 /* PlayerViewController.swift */,
+				2AC64D141DCBBEC600BD95B7 /* PlayerView.swift */,
+			);
+			name = "Old code";
+			sourceTree = "<group>";
+		};
 		2A1E4ECD1DCA0A05001F4489 = {
 			isa = PBXGroup;
 			children = (
@@ -65,12 +81,10 @@
 			isa = PBXGroup;
 			children = (
 				2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */,
-				2A1E4EDB1DCA0A05001F4489 /* PreviewView.swift */,
-				2AB84CB91DCB4FA900A31061 /* CameraViewController.swift */,
-				2AB84CBB1DCB4FB800A31061 /* PhotoCaptureDelegate.swift */,
-				2AC64D121DCBBEAB00BD95B7 /* PlayerViewController.swift */,
-				2AC64D141DCBBEC600BD95B7 /* PlayerView.swift */,
+				2A0CF5501DD1D97300D0A5C6 /* PCameraViewController.swift */,
+				2A0CF5531DD1DA7700D0A5C6 /* PCameraPreviewView.swift */,
 				2AB84CB71DCB4F3F00A31061 /* Main.storyboard */,
+				2A0CF5521DD1D98600D0A5C6 /* Old code */,
 				2AB84CBF1DCB551F00A31061 /* Assets.xcassets */,
 				2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */,
 				2A1E4EE51DCA0A05001F4489 /* Info.plist */,
@@ -162,7 +176,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A1E4EDC1DCA0A05001F4489 /* PreviewView.swift in Sources */,
+				2A0CF5541DD1DA7700D0A5C6 /* PCameraPreviewView.swift in Sources */,
 				2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */,
+				2A0CF5511DD1D97300D0A5C6 /* PCameraViewController.swift in Sources */,
 				2AB84CBC1DCB4FB800A31061 /* PhotoCaptureDelegate.swift in Sources */,
 				2AC64D151DCBBEC600BD95B7 /* PlayerView.swift in Sources */,
 				2AB84CBA1DCB4FA900A31061 /* CameraViewController.swift in Sources */,
