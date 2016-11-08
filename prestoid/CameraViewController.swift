@@ -19,8 +19,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 		// Disable UI. The UI is enabled if and only if the session starts running.
 		cameraButton.isEnabled = false
 		recordButton.isEnabled = false
-//		photoButton.isEnabled = false
-//		livePhotoModeButton.isEnabled = false
 		
 		// Set up the video preview view.
 		previewView.session = session
@@ -310,8 +308,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 	@IBAction private func changeCamera(_ cameraButton: UIButton) {
 		cameraButton.isEnabled = false
 		recordButton.isEnabled = false
-//		photoButton.isEnabled = false
-//		livePhotoModeButton.isEnabled = false
 		
 		sessionQueue.async { [unowned self] in
 			let currentVideoDevice = self.videoDeviceInput.device
@@ -367,15 +363,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 							connection.preferredVideoStabilizationMode = .auto
 						}
 					}
-					
-					/*
-						Set Live Photo capture enabled if it is supported. When changing cameras, the
-						`isLivePhotoCaptureEnabled` property of the AVCapturePhotoOutput gets set to NO when
-						a video device is disconnected from the session. After the new video device is
-						added to the session, re-enable Live Photo capture on the AVCapturePhotoOutput if it is supported.
-					*/
-//					self.photoOutput.isLivePhotoCaptureEnabled = self.photoOutput.isLivePhotoCaptureSupported;
-					
 					self.session.commitConfiguration()
 				}
 				catch {
@@ -386,8 +373,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 			DispatchQueue.main.async { [unowned self] in
 				self.cameraButton.isEnabled = true
 				self.recordButton.isEnabled = self.movieFileOutput != nil
-//				self.photoButton.isEnabled = true
-//				self.livePhotoModeButton.isEnabled = true
 			}
 		}
 	}
@@ -426,127 +411,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 			}
 		}
 	}
-	
-	// MARK: Capturing Photos
-    
-    /*
-
-	private let photoOutput = AVCapturePhotoOutput()
-	
-	private var inProgressPhotoCaptureDelegates = [Int64 : PhotoCaptureDelegate]()
-	
-	@IBOutlet private weak var photoButton: UIButton!
-	
-	@IBAction private func capturePhoto(_ photoButton: UIButton) {
-		/*
-			Retrieve the video preview layer's video orientation on the main queue before
-			entering the session queue. We do this to ensure UI elements are accessed on
-			the main thread and session configuration is done on the session queue.
-		*/
-		let videoPreviewLayerOrientation = previewView.videoPreviewLayer.connection.videoOrientation
-		
-		sessionQueue.async {
-			// Update the photo output's connection to match the video orientation of the video preview layer.
-			if let photoOutputConnection = self.photoOutput.connection(withMediaType: AVMediaTypeVideo) {
-				photoOutputConnection.videoOrientation = videoPreviewLayerOrientation
-			}
-			
-			// Capture a JPEG photo with flash set to auto and high resolution photo enabled.
-			let photoSettings = AVCapturePhotoSettings()
-			photoSettings.flashMode = .auto
-			photoSettings.isHighResolutionPhotoEnabled = true
-			if photoSettings.availablePreviewPhotoPixelFormatTypes.count > 0 {
-				photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String : photoSettings.availablePreviewPhotoPixelFormatTypes.first!]
-			}
-			if self.livePhotoMode == .on && self.photoOutput.isLivePhotoCaptureSupported { // Live Photo capture is not supported in movie mode.
-				let livePhotoMovieFileName = NSUUID().uuidString
-				let livePhotoMovieFilePath = (NSTemporaryDirectory() as NSString).appendingPathComponent((livePhotoMovieFileName as NSString).appendingPathExtension("mov")!)
-				photoSettings.livePhotoMovieFileURL = URL(fileURLWithPath: livePhotoMovieFilePath)
-			}
-			
-			// Use a separate object for the photo capture delegate to isolate each capture life cycle.
-			let photoCaptureDelegate = PhotoCaptureDelegate(with: photoSettings, willCapturePhotoAnimation: {
-					DispatchQueue.main.async { [unowned self] in
-						self.previewView.videoPreviewLayer.opacity = 0
-						UIView.animate(withDuration: 0.25) { [unowned self] in
-							self.previewView.videoPreviewLayer.opacity = 1
-						}
-					}
-				}, capturingLivePhoto: { capturing in
-					/*
-						Because Live Photo captures can overlap, we need to keep track of the
-						number of in progress Live Photo captures to ensure that the
-						Live Photo label stays visible during these captures.
-					*/
-					self.sessionQueue.async { [unowned self] in
-						if capturing {
-							self.inProgressLivePhotoCapturesCount += 1
-						}
-						else {
-							self.inProgressLivePhotoCapturesCount -= 1
-						}
-						
-						let inProgressLivePhotoCapturesCount = self.inProgressLivePhotoCapturesCount
-						DispatchQueue.main.async { [unowned self] in
-							if inProgressLivePhotoCapturesCount > 0 {
-								self.capturingLivePhotoLabel.isHidden = false
-							}
-							else if inProgressLivePhotoCapturesCount == 0 {
-								self.capturingLivePhotoLabel.isHidden = true
-							}
-							else {
-								print("Error: In progress live photo capture count is less than 0");
-							}
-						}
-					}
-				}, completed: { [unowned self] photoCaptureDelegate in
-					// When the capture is complete, remove a reference to the photo capture delegate so it can be deallocated.
-					self.sessionQueue.async { [unowned self] in
-						self.inProgressPhotoCaptureDelegates[photoCaptureDelegate.requestedPhotoSettings.uniqueID] = nil
-					}
-				}
-			)
-			
-			/*
-				The Photo Output keeps a weak reference to the photo capture delegate so
-				we store it in an array to maintain a strong reference to this object
-				until the capture is completed.
-			*/
-			self.inProgressPhotoCaptureDelegates[photoCaptureDelegate.requestedPhotoSettings.uniqueID] = photoCaptureDelegate
-			self.photoOutput.capturePhoto(with: photoSettings, delegate: photoCaptureDelegate)
-		}
-	}
-	
-	private enum LivePhotoMode {
-		case on
-		case off
-	}
-	
-	private var livePhotoMode: LivePhotoMode = .off
-	
-	@IBOutlet private weak var livePhotoModeButton: UIButton!
-	
-	@IBAction private func toggleLivePhotoMode(_ livePhotoModeButton: UIButton) {
-		sessionQueue.async { [unowned self] in
-			self.livePhotoMode = (self.livePhotoMode == .on) ? .off : .on
-			let livePhotoMode = self.livePhotoMode
-			
-			DispatchQueue.main.async { [unowned self] in
-				if livePhotoMode == .on {
-					self.livePhotoModeButton.setTitle(NSLocalizedString("Live Photo Mode: On", comment: "Live photo mode button on title"), for: [])
-				}
-				else {
-					self.livePhotoModeButton.setTitle(NSLocalizedString("Live Photo Mode: Off", comment: "Live photo mode button off title"), for: [])
-				}
-			}
-		}
-	}
-	
-	private var inProgressLivePhotoCapturesCount = 0
-	
-	@IBOutlet var capturingLivePhotoLabel: UILabel!
-    
-    */
 	
 	// MARK: Recording Movies
 	
@@ -707,6 +571,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 			interruptions and show a preview is paused message. See the documentation
 			of AVCaptureSessionWasInterruptedNotification for other interruption reasons.
 		*/
+        
 		NotificationCenter.default.addObserver(self, selector: #selector(sessionWasInterrupted), name: Notification.Name("AVCaptureSessionWasInterruptedNotification"), object: session)
 		NotificationCenter.default.addObserver(self, selector: #selector(sessionInterruptionEnded), name: Notification.Name("AVCaptureSessionInterruptionEndedNotification"), object: session)
 	}

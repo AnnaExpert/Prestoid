@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2A1C5D601DD2107700555DE2 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */; };
 		2A1C5D621DD2107B00555DE2 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */; };
-		2A1C5D641DD2108200555DE2 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1C5D631DD2108200555DE2 /* PhotoCaptureDelegate.swift */; };
 		2A1C5D661DD2108600555DE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1C5D651DD2108600555DE2 /* Main.storyboard */; };
 		2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */; };
 		2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */; };
@@ -19,7 +18,6 @@
 /* Begin PBXFileReference section */
 		2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		2A1C5D631DD2108200555DE2 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
 		2A1C5D651DD2108600555DE2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2A1E4ED61DCA0A05001F4489 /* prestoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = prestoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 				2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */,
 				2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */,
 				2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */,
-				2A1C5D631DD2108200555DE2 /* PhotoCaptureDelegate.swift */,
 				2A1C5D651DD2108600555DE2 /* Main.storyboard */,
 				2AB84CBF1DCB551F00A31061 /* Assets.xcassets */,
 				2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */,
@@ -145,7 +142,6 @@
 			files = (
 				2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */,
 				2A1C5D601DD2107700555DE2 /* PreviewView.swift in Sources */,
-				2A1C5D641DD2108200555DE2 /* PhotoCaptureDelegate.swift in Sources */,
 				2A1C5D621DD2107B00555DE2 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
