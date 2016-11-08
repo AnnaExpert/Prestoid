@@ -6,6 +6,7 @@
 //  Copyright © 2016 Alexander Iashchuk. All rights reserved.
 //
 
+/*
 import AVFoundation
 import Photos
 
@@ -117,3 +118,4 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
 		}
 	}
 }
+*/
