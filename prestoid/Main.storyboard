@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fUL-16-S1A">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hAZ-2R-Jdz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="OCP-Hx-uJn">
+        <scene sceneID="Oj7-20-gzQ">
             <objects>
-                <viewController id="fUL-16-S1A" customClass="ViewController" customModule="prestoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hAZ-2R-Jdz" customClass="ViewController" customModule="prestoid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BJj-mQ-nbH"/>
-                        <viewControllerLayoutGuide type="bottom" id="OGk-NR-1qg"/>
+                        <viewControllerLayoutGuide type="top" id="9R6-MX-nm8"/>
+                        <viewControllerLayoutGuide type="bottom" id="9xv-jl-ddY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kLh-ay-s9S">
+                    <view key="view" contentMode="scaleToFill" id="jIg-dp-Z3G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVr-1H-efR">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jOF-nw-ZNO">
+                                <rect key="frame" x="16" y="77" width="343" height="336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ri-ZB-k9e">
-                                <rect key="frame" x="164" y="557" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlS-QP-a6e">
+                                <rect key="frame" x="133" y="541" width="108" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Launch Camera"/>
                                 <connections>
-                                    <action selector="handleTakePictureButton:" destination="fUL-16-S1A" eventType="touchUpInside" id="Zi0-vj-uhg"/>
+                                    <action selector="handleTakePictureButton:" destination="hAZ-2R-Jdz" eventType="touchUpInside" id="LVa-2N-dLi"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="jVr-1H-efR" id="qxW-aI-0XN"/>
+                        <outlet property="imageView" destination="jOF-nw-ZNO" id="f04-f3-Bv8"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zbh-72-ZCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AL6-vf-xAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1060" y="-1556"/>
+            <point key="canvasLocation" x="-124" y="64.31784107946028"/>
         </scene>
     </scenes>
 </document>
