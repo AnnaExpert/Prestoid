@@ -177,7 +177,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 			We do not create an AVCaptureMovieFileOutput when setting up the session because the
 			AVCaptureMovieFileOutput does not support movie recording with AVCaptureSessionPresetPhoto.
 		*/
-		session.sessionPreset = AVCaptureSessionPresetPhoto
+		session.sessionPreset = AVCaptureSessionPresetHigh
 		
 		// Add video input.
 		do {
@@ -302,66 +302,66 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 		}
 	}
 	
-	private enum CaptureMode: Int {
-		case photo = 0
-		case movie = 1
+    private enum CaptureMode: Int {
+        case movie = 0
+		case photo = 1
 	}
 
 	@IBOutlet private weak var captureModeControl: UISegmentedControl!
 	
 	@IBAction private func toggleCaptureMode(_ captureModeControl: UISegmentedControl) {
-		if captureModeControl.selectedSegmentIndex == CaptureMode.photo.rawValue {
-			recordButton.isEnabled = false
-			
-			sessionQueue.async { [unowned self] in
-				/*
-					Remove the AVCaptureMovieFileOutput from the session because movie recording is
-					not supported with AVCaptureSessionPresetPhoto. Additionally, Live Photo
-					capture is not supported when an AVCaptureMovieFileOutput is connected to the session.
-				*/
-				self.session.beginConfiguration()
-				self.session.removeOutput(self.movieFileOutput)
-				self.session.sessionPreset = AVCaptureSessionPresetPhoto
-				self.session.commitConfiguration()
-				
-				self.movieFileOutput = nil
-				
-				if self.photoOutput.isLivePhotoCaptureSupported {
-					self.photoOutput.isLivePhotoCaptureEnabled = true
-					
-					DispatchQueue.main.async {
-						self.livePhotoModeButton.isEnabled = true
-						self.livePhotoModeButton.isHidden = false
-					}
-				}
-			}
-		}
-		else if captureModeControl.selectedSegmentIndex == CaptureMode.movie.rawValue
-		{
-			livePhotoModeButton.isHidden = true
-			
-			sessionQueue.async { [unowned self] in
- 				let movieFileOutput = AVCaptureMovieFileOutput()
-				
-				if self.session.canAddOutput(movieFileOutput) {
-					self.session.beginConfiguration()
-					self.session.addOutput(movieFileOutput)
-					self.session.sessionPreset = AVCaptureSessionPresetHigh
-					if let connection = movieFileOutput.connection(withMediaType: AVMediaTypeVideo) {
-						if connection.isVideoStabilizationSupported {
-							connection.preferredVideoStabilizationMode = .auto
-						}
-					}
-					self.session.commitConfiguration()
-					
-					self.movieFileOutput = movieFileOutput
-					
-					DispatchQueue.main.async { [unowned self] in
-						self.recordButton.isEnabled = true
-					}
-				}
-			}
-		}
+        if captureModeControl.selectedSegmentIndex == CaptureMode.movie.rawValue
+        {
+            livePhotoModeButton.isHidden = true
+            
+            sessionQueue.async { [unowned self] in
+                let movieFileOutput = AVCaptureMovieFileOutput()
+                
+                if self.session.canAddOutput(movieFileOutput) {
+                    self.session.beginConfiguration()
+                    self.session.addOutput(movieFileOutput)
+                    self.session.sessionPreset = AVCaptureSessionPresetHigh
+                    if let connection = movieFileOutput.connection(withMediaType: AVMediaTypeVideo) {
+                        if connection.isVideoStabilizationSupported {
+                            connection.preferredVideoStabilizationMode = .auto
+                        }
+                    }
+                    self.session.commitConfiguration()
+                    
+                    self.movieFileOutput = movieFileOutput
+                    
+                    DispatchQueue.main.async { [unowned self] in
+                        self.recordButton.isEnabled = true
+                    }
+                }
+            }
+        }
+        else if captureModeControl.selectedSegmentIndex == CaptureMode.photo.rawValue {
+            recordButton.isEnabled = false
+            
+            sessionQueue.async { [unowned self] in
+                /*
+                 Remove the AVCaptureMovieFileOutput from the session because movie recording is
+                 not supported with AVCaptureSessionPresetPhoto. Additionally, Live Photo
+                 capture is not supported when an AVCaptureMovieFileOutput is connected to the session.
+                 */
+                self.session.beginConfiguration()
+                self.session.removeOutput(self.movieFileOutput)
+                self.session.sessionPreset = AVCaptureSessionPresetPhoto
+                self.session.commitConfiguration()
+                
+                self.movieFileOutput = nil
+                
+                if self.photoOutput.isLivePhotoCaptureSupported {
+                    self.photoOutput.isLivePhotoCaptureEnabled = true
+                    
+                    DispatchQueue.main.async {
+                        self.livePhotoModeButton.isEnabled = true
+                        self.livePhotoModeButton.isHidden = false
+                    }
+                }
+            }
+        }
 	}
 	
 	// MARK: Device Configuration
