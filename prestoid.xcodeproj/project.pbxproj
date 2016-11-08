@@ -7,34 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A0CF5511DD1D97300D0A5C6 /* PCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CF5501DD1D97300D0A5C6 /* PCameraViewController.swift */; };
-		2A0CF5541DD1DA7700D0A5C6 /* PCameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CF5531DD1DA7700D0A5C6 /* PCameraPreviewView.swift */; };
+		2A0CF5511DD1D97300D0A5C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CF5501DD1D97300D0A5C6 /* ViewController.swift */; };
+		2A0CF5591DD1F42300D0A5C6 /* CaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CF5551DD1F42300D0A5C6 /* CaptureManager.swift */; };
+		2A0CF55A1DD1F42300D0A5C6 /* CapturePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CF5561DD1F42300D0A5C6 /* CapturePreviewView.swift */; };
+		2A0CF55B1DD1F42300D0A5C6 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CF5571DD1F42300D0A5C6 /* CaptureViewController.swift */; };
+		2A0CF55C1DD1F42300D0A5C6 /* FocusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CF5581DD1F42300D0A5C6 /* FocusIndicatorView.swift */; };
 		2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */; };
-		2A1E4EDC1DCA0A05001F4489 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4EDB1DCA0A05001F4489 /* PreviewView.swift */; };
 		2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */; };
 		2AB84CB81DCB4F3F00A31061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB84CB71DCB4F3F00A31061 /* Main.storyboard */; };
-		2AB84CBA1DCB4FA900A31061 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB84CB91DCB4FA900A31061 /* CameraViewController.swift */; };
-		2AB84CBC1DCB4FB800A31061 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB84CBB1DCB4FB800A31061 /* PhotoCaptureDelegate.swift */; };
 		2AB84CC01DCB551F00A31061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB84CBF1DCB551F00A31061 /* Assets.xcassets */; };
-		2AC64D131DCBBEAB00BD95B7 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC64D121DCBBEAB00BD95B7 /* PlayerViewController.swift */; };
-		2AC64D151DCBBEC600BD95B7 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC64D141DCBBEC600BD95B7 /* PlayerView.swift */; };
 		2AC64D171DCBC0E500BD95B7 /* StrangeThingFallsDown.mov in Resources */ = {isa = PBXBuildFile; fileRef = 2AC64D161DCBC0E500BD95B7 /* StrangeThingFallsDown.mov */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A0CF5501DD1D97300D0A5C6 /* PCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCameraViewController.swift; sourceTree = "<group>"; };
-		2A0CF5531DD1DA7700D0A5C6 /* PCameraPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCameraPreviewView.swift; sourceTree = "<group>"; };
+		2A0CF5501DD1D97300D0A5C6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2A0CF5551DD1F42300D0A5C6 /* CaptureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureManager.swift; sourceTree = "<group>"; };
+		2A0CF5561DD1F42300D0A5C6 /* CapturePreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturePreviewView.swift; sourceTree = "<group>"; };
+		2A0CF5571DD1F42300D0A5C6 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		2A0CF5581DD1F42300D0A5C6 /* FocusIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusIndicatorView.swift; sourceTree = "<group>"; };
 		2A1E4ED61DCA0A05001F4489 /* prestoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = prestoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2A1E4EDB1DCA0A05001F4489 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		2A1E4EE31DCA0A05001F4489 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1E4EE51DCA0A05001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AB84CB71DCB4F3F00A31061 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		2AB84CB91DCB4FA900A31061 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		2AB84CBB1DCB4FB800A31061 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
 		2AB84CBF1DCB551F00A31061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2AC64D121DCBBEAB00BD95B7 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		2AC64D141DCBBEC600BD95B7 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2AC64D161DCBC0E500BD95B7 /* StrangeThingFallsDown.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = StrangeThingFallsDown.mov; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,18 +45,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2A0CF5521DD1D98600D0A5C6 /* Old code */ = {
-			isa = PBXGroup;
-			children = (
-				2A1E4EDB1DCA0A05001F4489 /* PreviewView.swift */,
-				2AB84CB91DCB4FA900A31061 /* CameraViewController.swift */,
-				2AB84CBB1DCB4FB800A31061 /* PhotoCaptureDelegate.swift */,
-				2AC64D121DCBBEAB00BD95B7 /* PlayerViewController.swift */,
-				2AC64D141DCBBEC600BD95B7 /* PlayerView.swift */,
-			);
-			name = "Old code";
-			sourceTree = "<group>";
-		};
 		2A1E4ECD1DCA0A05001F4489 = {
 			isa = PBXGroup;
 			children = (
@@ -81,12 +65,14 @@
 			isa = PBXGroup;
 			children = (
 				2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */,
-				2A0CF5501DD1D97300D0A5C6 /* PCameraViewController.swift */,
-				2A0CF5531DD1DA7700D0A5C6 /* PCameraPreviewView.swift */,
+				2A0CF5501DD1D97300D0A5C6 /* ViewController.swift */,
 				2AB84CB71DCB4F3F00A31061 /* Main.storyboard */,
-				2A0CF5521DD1D98600D0A5C6 /* Old code */,
 				2AB84CBF1DCB551F00A31061 /* Assets.xcassets */,
 				2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */,
+				2A0CF5551DD1F42300D0A5C6 /* CaptureManager.swift */,
+				2A0CF5561DD1F42300D0A5C6 /* CapturePreviewView.swift */,
+				2A0CF5571DD1F42300D0A5C6 /* CaptureViewController.swift */,
+				2A0CF5581DD1F42300D0A5C6 /* FocusIndicatorView.swift */,
 				2A1E4EE51DCA0A05001F4489 /* Info.plist */,
 				2AC64D181DCBC0EB00BD95B7 /* Movie */,
 			);
@@ -175,14 +161,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A1E4EDC1DCA0A05001F4489 /* PreviewView.swift in Sources */,
-				2A0CF5541DD1DA7700D0A5C6 /* PCameraPreviewView.swift in Sources */,
+				2A0CF55A1DD1F42300D0A5C6 /* CapturePreviewView.swift in Sources */,
 				2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */,
-				2A0CF5511DD1D97300D0A5C6 /* PCameraViewController.swift in Sources */,
-				2AB84CBC1DCB4FB800A31061 /* PhotoCaptureDelegate.swift in Sources */,
-				2AC64D151DCBBEC600BD95B7 /* PlayerView.swift in Sources */,
-				2AB84CBA1DCB4FA900A31061 /* CameraViewController.swift in Sources */,
-				2AC64D131DCBBEAB00BD95B7 /* PlayerViewController.swift in Sources */,
+				2A0CF5511DD1D97300D0A5C6 /* ViewController.swift in Sources */,
+				2A0CF55C1DD1F42300D0A5C6 /* FocusIndicatorView.swift in Sources */,
+				2A0CF5591DD1F42300D0A5C6 /* CaptureManager.swift in Sources */,
+				2A0CF55B1DD1F42300D0A5C6 /* CaptureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +224,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -283,7 +267,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -297,7 +281,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3NL9BUS2QV;
 				INFOPLIST_FILE = prestoid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iashchuk.prestoid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -311,7 +295,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3NL9BUS2QV;
 				INFOPLIST_FILE = prestoid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iashchuk.prestoid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
