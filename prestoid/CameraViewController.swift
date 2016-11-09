@@ -11,7 +11,9 @@ import AVFoundation
 import Photos
 
 class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
-	// MARK: View Controller Life Cycle
+    // MARK: View Controller Life Cycle
+    
+    let savedVideosArrayKey = "savedVideosArray"
 	
     override func viewDidLoad() {
 		super.viewDidLoad()
@@ -518,8 +520,25 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 			success = (((error as NSError).userInfo[AVErrorRecordingSuccessfullyFinishedKey] as AnyObject).boolValue)!
 		}
 		
-		if success {
-			// Check authorization status.
+        if success {
+            // Save the movie file to the plist file.
+            do {
+                let video = try NSData(contentsOf: outputFileURL, options: NSData.ReadingOptions())
+//                print("Video converted to data was succesfull")
+                let defaults = UserDefaults.standard
+                var videosArray: [Data] = Array()
+                if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
+                    videosArray = arrayValue as! [Data]
+                }
+                videosArray.append(video as Data)
+                defaults.set(videosArray, forKey: savedVideosArrayKey)
+//                print(videosArray)
+                
+            } catch {
+                print(error)
+            }
+            
+			// Check photo library authorization status.
 			PHPhotoLibrary.requestAuthorization { status in
 				if status == .authorized {
 					// Save the movie file to the photo library and cleanup.
@@ -539,7 +558,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 				else {
 					cleanup()
 				}
-			}
+            }
 		}
 		else {
 			cleanup()
