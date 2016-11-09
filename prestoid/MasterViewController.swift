@@ -12,6 +12,8 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
+    var videosArray: [Data] = Array()
+    let savedVideosArrayKey = "savedVideosArray"
 
 
     override func viewDidLoad() {
@@ -19,6 +21,11 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
 //        self.navigationItem.leftBarButtonItem = self.editButtonItem
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        let defaults = UserDefaults.standard
+        if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
+            videosArray = arrayValue as! [Data]
+        }
 
 //        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
 //        self.navigationItem.rightBarButtonItem = addButton
@@ -65,14 +72,17 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        
+        
+        print(videosArray.count)
+        return videosArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let videos = videosArray[indexPath.row] as Data
+        cell.textLabel!.text = String(indexPath.row)
         return cell
     }
 
