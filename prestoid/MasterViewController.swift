@@ -80,8 +80,7 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        let videos = videosArray[indexPath.row] as Data
+        
         cell.textLabel!.text = String(indexPath.row)
         return cell
     }
