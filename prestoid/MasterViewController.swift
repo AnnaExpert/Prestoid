@@ -13,7 +13,9 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
     var videosArray: [Data] = Array()
+    var thumbnailsArray: [UIImage] = Array()
     let savedVideosArrayKey = "savedVideosArray"
+    let thumbnailsArrayKey = "thumbnailsArray"
 
 
     override func viewDidLoad() {
@@ -25,6 +27,9 @@ class MasterViewController: UITableViewController {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
             videosArray = arrayValue as! [Data]
+        }
+        if let arrayValue = defaults.array(forKey: thumbnailsArrayKey) {
+            thumbnailsArray = arrayValue as! [UIImage]
         }
 
 //        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
@@ -67,7 +72,7 @@ class MasterViewController: UITableViewController {
     // MARK: - Table View
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,7 +86,9 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let stringName = "Video #" + String(indexPath.row + 1) + ": video text..."
+        let cellImage = thumbnailsArray[indexPath.row]
         cell.textLabel!.text = stringName
+        cell.imageView?.image = cellImage
         return cell
     }
 

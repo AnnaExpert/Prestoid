@@ -14,6 +14,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     // MARK: View Controller Life Cycle
     
     let savedVideosArrayKey = "savedVideosArray"
+    let thumbnailsArrayKey = "thumbnailsArray"
 	
     override func viewDidLoad() {
 		super.viewDidLoad()
@@ -525,14 +526,61 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             do {
                 let video = try NSData(contentsOf: outputFileURL, options: NSData.ReadingOptions())
 //                print("Video converted to data was succesfull")
+                
                 let defaults = UserDefaults.standard
                 var videosArray: [Data] = Array()
+                var thumbnailsArray: [UIImage] = Array()
+                
                 if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
                     videosArray = arrayValue as! [Data]
                 }
                 videosArray.append(video as Data)
                 defaults.set(videosArray, forKey: savedVideosArrayKey)
 //                print(videosArray)
+                
+                
+                
+                
+                let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+                
+                print(docsPath)
+                
+                let moviePath = docsPath + "/myVideoFileName" + ".mov"
+                
+                video.write(toFile: moviePath, atomically: false)
+                
+                print(moviePath)
+                
+                let movieURL = URL.init(fileURLWithPath: moviePath)
+                
+                let savedMovie = AVURLAsset(url: movieURL)
+                
+                print(savedMovie)
+                
+                
+                
+                
+                if let arrayValue = defaults.array(forKey: thumbnailsArrayKey) {
+                    thumbnailsArray = arrayValue as! [UIImage]
+                }
+                do {
+                    let asset = AVURLAsset(url: outputFileURL, options: nil)
+                    let imgGenerator = AVAssetImageGenerator(asset: asset)
+                    imgGenerator.appliesPreferredTrackTransform = true
+                    let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+                    let uiImage = UIImage(cgImage: cgImage)
+                    thumbnailsArray.append(uiImage)
+                    defaults.set(thumbnailsArray, forKey: thumbnailsArrayKey)
+//                    let imageView = UIImageView(image: uiImage)
+                    // lay out this image view, or if it already exists, set its image property to uiImage
+//                    if let imageData = UIImagePNGRepresentation(uiImage) {
+//                        thumbnailsArray.append(imageData)
+//                    }
+                    
+                } catch let error as NSError {
+                    print("Error generating thumbnail: \(error)")
+                }
+                
                 
             } catch {
                 print(error)

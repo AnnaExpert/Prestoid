@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RecordedVideo" representedClassName="RecordedVideo" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="videoData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ThumbnailVideo" inverseName="recordedVideo" inverseEntity="ThumbnailVideo" syncable="YES"/>
+    </entity>
+    <entity name="ThumbnailVideo" representedClassName="ThumbnailVideo" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="recordedVideo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecordedVideo" inverseName="thumbnail" inverseEntity="RecordedVideo" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ThumbnailVideo" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="RecordedVideo" positionX="207" positionY="-3" width="128" height="73"/>
+    </elements>
+</model>
