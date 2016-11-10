@@ -1,10 +1,10 @@
-/*
-	Copyright (C) 2016 Apple Inc. All Rights Reserved.
-	See LICENSE.txt for this sample’s licensing information
-	
-	Abstract:
-	Player view backed by an AVPlayerLayer.
-*/
+//
+//  PlayerView.swift
+//  prestoid
+//
+//  Created by Alexander Iashchuk on 11/10/16.
+//  Copyright © 2016 Alexander Iashchuk. All rights reserved.
+//
 
 import UIKit
 import AVFoundation

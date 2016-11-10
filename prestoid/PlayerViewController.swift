@@ -1,10 +1,10 @@
-/*
-	Copyright (C) 2016 Apple Inc. All Rights Reserved.
-	See LICENSE.txt for this sample’s licensing information
-	
-	Abstract:
-	View controller containing a player view and basic playback controls.
-*/
+//
+//  PlayerViewController.swift
+//  prestoid
+//
+//  Created by Alexander Iashchuk on 11/10/16.
+//  Copyright © 2016 Alexander Iashchuk. All rights reserved.
+//
 
 import Foundation
 import AVFoundation
@@ -121,8 +121,21 @@ class PlayerViewController: UIViewController {
         
         playerView.playerLayer.player = player
         
-        let movieURL = Bundle.main.url(forResource: "ElephantSeals", withExtension: "mov")!
+        
+        
+        
+        let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+        let moviePath = docsPath + "/myVideoFileName" + ".mov"
+        let movieURL = URL.init(fileURLWithPath: moviePath)
         asset = AVURLAsset(url: movieURL, options: nil)
+
+        
+//        let movieURL = Bundle.main.url(forResource: "ElephantSeals", withExtension: "mov")!
+//        asset = AVURLAsset(url: movieURL, options: nil)
+
+        
+        
+        
         
         // Make sure we don't have a strong reference cycle by only capturing self as weak.
         let interval = CMTimeMake(1, 1)

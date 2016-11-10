@@ -13,8 +13,8 @@ import Photos
 class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
     // MARK: View Controller Life Cycle
     
+    var videosArray: [String] = Array()
     let savedVideosArrayKey = "savedVideosArray"
-    let thumbnailsArrayKey = "thumbnailsArray"
 	
     override func viewDidLoad() {
 		super.viewDidLoad()
@@ -522,6 +522,39 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         }
         
         if success {
+            
+            
+            do {
+                
+                
+                let defaults = UserDefaults.standard
+                if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
+                    videosArray = arrayValue as! [String]
+                }
+                if videosArray.count != nil {
+                    let newVideoName = String(videosArray.count + 1)
+                    videosArray.append(newVideoName)
+                } else {
+                    videosArray.append(String(1))
+                }
+                defaults.set(videosArray, forKey: savedVideosArrayKey)
+                
+                
+                let video = try NSData(contentsOf: outputFileURL, options: NSData.ReadingOptions())
+                let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+                let moviePath = docsPath + videosArray.last! + ".mov"
+                video.write(toFile: moviePath, atomically: false)
+                
+                
+                
+                
+            } catch {
+                print("Can't convert video to data file")
+            }
+            
+            
+            
+            
             // Check authorization status.
             PHPhotoLibrary.requestAuthorization { status in
                 if status == .authorized {

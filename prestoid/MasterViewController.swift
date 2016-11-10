@@ -9,107 +9,78 @@
 import UIKit
 
 class MasterViewController: UITableViewController {
-
+    
     var detailViewController: PlayerViewController? = nil
-    var objects = [Any]()
-    var videosArray: [Data] = Array()
-    var thumbnailsArray: [UIImage] = Array()
+    var videosArray: [String] = Array()
     let savedVideosArrayKey = "savedVideosArray"
-    let thumbnailsArrayKey = "thumbnailsArray"
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        self.navigationItem.leftBarButtonItem = self.editButtonItem
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
-            videosArray = arrayValue as! [Data]
+            videosArray = arrayValue as! [String]
         }
-        if let arrayValue = defaults.array(forKey: thumbnailsArrayKey) {
-            thumbnailsArray = arrayValue as! [UIImage]
-        }
-
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-//        self.navigationItem.rightBarButtonItem = addButton
-//        if let split = self.splitViewController {
-//            let controllers = split.viewControllers
-//            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
-//        }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-//    func insertNewObject(_ sender: Any) {
-//        objects.insert(NSDate(), at: 0)
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        self.tableView.insertRows(at: [indexPath], with: .automatic)
-//    }
-
+    
     // MARK: - Segues
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                
-//                let object = objects[indexPath.row] as! NSDate
-                
-                let controller = (segue.destination as! UINavigationController).topViewController as! PlayerViewController
-                
-//                controller.detailItem = object
-                
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
-            }
+            let controller = segue.destination as! PlayerViewController
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            controller.navigationItem.leftItemsSupplementBackButton = true
         }
     }
-
+    
     // MARK: - Table View
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         
-//        print(videosArray.count)
+        //        print(videosArray.count)
+        //        return videosArray.count
         return videosArray.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let stringName = "Video #" + String(indexPath.row + 1) + ": video text..."
-        let cellImage = thumbnailsArray[indexPath.row]
         cell.textLabel!.text = stringName
-        cell.imageView?.image = cellImage
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
+            videosArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-
-
+    
+    
 }
 
