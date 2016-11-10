@@ -493,9 +493,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 		
 			Note: Since we use a unique file path for each recording, a new recording will
 			not overwrite a recording currently being saved.
-		*/
-		func cleanup() {
-			let path = outputFileURL.path
+         */
+        func cleanup() {
+            let path = outputFileURL.path
             if FileManager.default.fileExists(atPath: path) {
                 do {
                     try FileManager.default.removeItem(atPath: path)
@@ -504,122 +504,58 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                     print("Could not remove file at url: \(outputFileURL)")
                 }
             }
-			
-			if let currentBackgroundRecordingID = backgroundRecordingID {
-				backgroundRecordingID = UIBackgroundTaskInvalid
-				
-				if currentBackgroundRecordingID != UIBackgroundTaskInvalid {
-					UIApplication.shared.endBackgroundTask(currentBackgroundRecordingID)
-				}
-			}
-		}
-		
-		var success = true
-		
-		if error != nil {
-			print("Movie file finishing error: \(error)")
-			success = (((error as NSError).userInfo[AVErrorRecordingSuccessfullyFinishedKey] as AnyObject).boolValue)!
-		}
-		
-        if success {
-            // Save the movie file to the plist file.
-            do {
-                let video = try NSData(contentsOf: outputFileURL, options: NSData.ReadingOptions())
-//                print("Video converted to data was succesfull")
-                
-                let defaults = UserDefaults.standard
-                var videosArray: [Data] = Array()
-                var thumbnailsArray: [UIImage] = Array()
-                
-                if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
-                    videosArray = arrayValue as! [Data]
-                }
-                videosArray.append(video as Data)
-                defaults.set(videosArray, forKey: savedVideosArrayKey)
-//                print(videosArray)
-                
-                
-                
-                
-                let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-                
-                print(docsPath)
-                
-                let moviePath = docsPath + "/myVideoFileName" + ".mov"
-                
-                video.write(toFile: moviePath, atomically: false)
-                
-                print(moviePath)
-                
-                let movieURL = URL.init(fileURLWithPath: moviePath)
-                
-                let savedMovie = AVURLAsset(url: movieURL)
-                
-                print(savedMovie)
-                
-                
-                
-                
-                if let arrayValue = defaults.array(forKey: thumbnailsArrayKey) {
-                    thumbnailsArray = arrayValue as! [UIImage]
-                }
-                do {
-                    let asset = AVURLAsset(url: outputFileURL, options: nil)
-                    let imgGenerator = AVAssetImageGenerator(asset: asset)
-                    imgGenerator.appliesPreferredTrackTransform = true
-                    let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
-                    let uiImage = UIImage(cgImage: cgImage)
-                    thumbnailsArray.append(uiImage)
-                    defaults.set(thumbnailsArray, forKey: thumbnailsArrayKey)
-//                    let imageView = UIImageView(image: uiImage)
-                    // lay out this image view, or if it already exists, set its image property to uiImage
-//                    if let imageData = UIImagePNGRepresentation(uiImage) {
-//                        thumbnailsArray.append(imageData)
-//                    }
-                    
-                } catch let error as NSError {
-                    print("Error generating thumbnail: \(error)")
-                }
-                
-                
-            } catch {
-                print(error)
-            }
             
-			// Check photo library authorization status.
-			PHPhotoLibrary.requestAuthorization { status in
-				if status == .authorized {
-					// Save the movie file to the photo library and cleanup.
-					PHPhotoLibrary.shared().performChanges({
-							let options = PHAssetResourceCreationOptions()
-							options.shouldMoveFile = true
-							let creationRequest = PHAssetCreationRequest.forAsset()
-							creationRequest.addResource(with: .video, fileURL: outputFileURL, options: options)
-						}, completionHandler: { success, error in
-							if !success {
-								print("Could not save movie to photo library: \(error)")
-							}
-							cleanup()
-						}
-					)
-				}
-				else {
-					cleanup()
-				}
+            if let currentBackgroundRecordingID = backgroundRecordingID {
+                backgroundRecordingID = UIBackgroundTaskInvalid
+                
+                if currentBackgroundRecordingID != UIBackgroundTaskInvalid {
+                    UIApplication.shared.endBackgroundTask(currentBackgroundRecordingID)
+                }
             }
-		}
-		else {
-			cleanup()
-		}
-		
-		// Enable the Camera and Record buttons to let the user switch camera and start another recording.
-		DispatchQueue.main.async { [unowned self] in
-			// Only enable the ability to change camera if the device has more than one camera.
-			self.cameraButton.isEnabled = self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1
-			self.recordButton.isEnabled = true
-			self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
-		}
-	}
+        }
+        
+        var success = true
+        
+        if error != nil {
+            print("Movie file finishing error: \(error)")
+            success = (((error as NSError).userInfo[AVErrorRecordingSuccessfullyFinishedKey] as AnyObject).boolValue)!
+        }
+        
+        if success {
+            // Check authorization status.
+            PHPhotoLibrary.requestAuthorization { status in
+                if status == .authorized {
+                    // Save the movie file to the photo library and cleanup.
+                    PHPhotoLibrary.shared().performChanges({
+                        let options = PHAssetResourceCreationOptions()
+                        options.shouldMoveFile = true
+                        let creationRequest = PHAssetCreationRequest.forAsset()
+                        creationRequest.addResource(with: .video, fileURL: outputFileURL, options: options)
+                    }, completionHandler: { success, error in
+                        if !success {
+                            print("Could not save movie to photo library: \(error)")
+                        }
+                        cleanup()
+                    }
+                    )
+                }
+                else {
+                    cleanup()
+                }
+            }
+        }
+        else {
+            cleanup()
+        }
+        
+        // Enable the Camera and Record buttons to let the user switch camera and start another recording.
+        DispatchQueue.main.async { [unowned self] in
+            // Only enable the ability to change camera if the device has more than one camera.
+            self.cameraButton.isEnabled = self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1
+            self.recordButton.isEnabled = true
+            self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
+        }
+    }
 	
 	// MARK: KVO and Notifications
 	
