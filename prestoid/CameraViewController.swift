@@ -14,7 +14,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     // MARK: View Controller Life Cycle
     
     var videosArray: [String] = Array()
+    var thumbnailsArray: [Data] = Array()
     let savedVideosArrayKey = "savedVideosArray"
+    let thumbnailsArrayKey = "thumbnailsArray"
 	
     override func viewDidLoad() {
 		super.viewDidLoad()
@@ -438,6 +440,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 		*/
 		cameraButton.isEnabled = false
 		recordButton.isEnabled = false
+        self.tabBarController?.tabBar.isHidden = true
 		
 		/*
 			Retrieve the video preview layer's video orientation on the main queue
@@ -527,6 +530,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             do {
                 
                 
+                // Save video inside application.
+                
                 let defaults = UserDefaults.standard
                 if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
                     videosArray = arrayValue as! [String]
@@ -543,6 +548,23 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 video.write(toFile: moviePath, atomically: false)
                 
                 
+                if let arrayValue = defaults.array(forKey: thumbnailsArrayKey) {
+                    thumbnailsArray = arrayValue as! [Data]
+                }
+                do {
+                    let asset = AVURLAsset(url: outputFileURL, options: nil)
+                    let imgGenerator = AVAssetImageGenerator(asset: asset)
+                    imgGenerator.appliesPreferredTrackTransform = true
+                    let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+                    let uiImage = UIImage(cgImage: cgImage)
+                    if let imageData = UIImagePNGRepresentation(uiImage) {
+                        thumbnailsArray.append(imageData)
+                        defaults.set(thumbnailsArray, forKey: thumbnailsArrayKey)
+                    }
+                    
+                } catch let error as NSError {
+                    print("Error generating thumbnail: \(error)")
+                }
                 
                 
             } catch {
@@ -551,6 +573,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             
             
+            // Save video to photo library.
             
             // Check authorization status.
             PHPhotoLibrary.requestAuthorization { status in
@@ -583,6 +606,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             // Only enable the ability to change camera if the device has more than one camera.
             self.cameraButton.isEnabled = self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1
             self.recordButton.isEnabled = true
+            self.tabBarController?.tabBar.isHidden = false
             self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
         }
     }

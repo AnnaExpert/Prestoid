@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MasterViewController: UITableViewController {
     
     var detailViewController: PlayerViewController? = nil
     var videosArray: [String] = Array()
+    var thumbnailsArray: [Data] = Array()
     let savedVideosArrayKey = "savedVideosArray"
+    let thumbnailsArrayKey = "thumbnailsArray"
     
     
     override func viewDidLoad() {
@@ -25,6 +28,9 @@ class MasterViewController: UITableViewController {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
             videosArray = arrayValue as! [String]
+        }
+        if let arrayValue = defaults.array(forKey: thumbnailsArrayKey) {
+            thumbnailsArray = arrayValue as! [Data]
         }
         self.tableView.reloadData()
         super.viewWillAppear(animated)
@@ -57,6 +63,9 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        let thumbnail = UIImage(data:thumbnailsArray[indexPath.row],scale:1.0)
+        cell.imageView?.image = thumbnail
         
         let stringName = videosArray[indexPath.row]
         cell.textLabel!.text = stringName

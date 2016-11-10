@@ -48,125 +48,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="VNi-RN-ayr" kind="relationship" relationship="viewControllers" id="KaZ-bG-SgW"/>
                         <segue destination="buI-n2-72y" kind="relationship" relationship="viewControllers" id="i70-mA-sKq"/>
+                        <segue destination="xOc-vR-kRy" kind="relationship" relationship="viewControllers" id="hzu-gm-yO0"/>
                         <segue destination="cgM-PO-D8y" kind="relationship" relationship="viewControllers" id="dUQ-F9-ocR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWi-VK-SIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2900" y="-136"/>
-        </scene>
-        <!--Camera-->
-        <scene sceneID="i2z-RE-FmG">
-            <objects>
-                <viewController id="VNi-RN-ayr" customClass="CameraViewController" customModule="prestoid" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YzW-yL-0gv"/>
-                        <viewControllerLayoutGuide type="bottom" id="zs6-nP-KTh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GsD-fu-CdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45O-cG-fIL" userLabel="Preview" customClass="PreviewView" customModule="prestoid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="EYD-UM-Bp2" appends="YES" id="T4l-fQ-AIx"/>
-                                </connections>
-                            </view>
-                            <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Unavailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xx2-RS-aiF" userLabel="Camera Unavailable">
-                                <rect key="frame" x="81" y="294.5" width="214" height="29"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbg-9O-mgi" userLabel="Resume">
-                                <rect key="frame" x="102" y="289.5" width="171" height="39"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                <state key="normal" title="Tap to resume">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="resumeInterruptedSession:" destination="VNi-RN-ayr" eventType="touchUpInside" id="zYp-B9-8an"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhL-pU-Zxw" userLabel="Record">
-                                <rect key="frame" x="48" y="550" width="80" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Record">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="toggleMovieRecording:" destination="VNi-RN-ayr" eventType="touchUpInside" id="IGM-7t-K9O"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJl-jz-eNf" userLabel="Camera">
-                                <rect key="frame" x="248" y="550" width="80" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Camera">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="changeCamera:" destination="VNi-RN-ayr" eventType="touchUpInside" id="cNy-jK-H6B"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="45O-cG-fIL" firstAttribute="centerX" secondItem="GsD-fu-CdC" secondAttribute="centerX" id="3tE-Im-45k"/>
-                            <constraint firstItem="fbg-9O-mgi" firstAttribute="centerY" secondItem="GsD-fu-CdC" secondAttribute="centerY" id="5np-HN-36f"/>
-                            <constraint firstItem="45O-cG-fIL" firstAttribute="centerY" secondItem="GsD-fu-CdC" secondAttribute="centerY" id="Jju-fY-rdu"/>
-                            <constraint firstItem="Xx2-RS-aiF" firstAttribute="centerX" secondItem="GsD-fu-CdC" secondAttribute="centerX" id="Kxh-rO-TEG"/>
-                            <constraint firstItem="fbg-9O-mgi" firstAttribute="centerX" secondItem="GsD-fu-CdC" secondAttribute="centerX" id="Vbf-Ic-WH2"/>
-                            <constraint firstItem="Xx2-RS-aiF" firstAttribute="centerY" secondItem="GsD-fu-CdC" secondAttribute="centerY" id="k5d-Hz-x90"/>
-                            <constraint firstItem="45O-cG-fIL" firstAttribute="height" secondItem="GsD-fu-CdC" secondAttribute="height" id="ktE-2Z-lA9"/>
-                            <constraint firstItem="45O-cG-fIL" firstAttribute="width" secondItem="GsD-fu-CdC" secondAttribute="width" id="zqW-Mm-itP"/>
-                        </constraints>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Camera" image="Camera" selectedImage="CameraFilled" id="f5h-tm-1ul"/>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <connections>
-                        <outlet property="cameraButton" destination="eJl-jz-eNf" id="zqS-Bq-9Vf"/>
-                        <outlet property="cameraUnavailableLabel" destination="Xx2-RS-aiF" id="Yy6-Lu-HOf"/>
-                        <outlet property="previewView" destination="45O-cG-fIL" id="WZe-5x-Typ"/>
-                        <outlet property="recordButton" destination="bhL-pU-Zxw" id="0vs-GV-3xv"/>
-                        <outlet property="resumeButton" destination="fbg-9O-mgi" id="wyA-sx-SP9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HnB-Fh-LdK" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="EYD-UM-Bp2">
-                    <connections>
-                        <action selector="focusAndExposeTap:" destination="VNi-RN-ayr" id="gtA-9I-XZ3"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="2900" y="636"/>
         </scene>
         <!--Detail-->
         <scene sceneID="YNB-M1-6QO">
@@ -297,7 +186,7 @@
         <scene sceneID="JOR-ZN-Ij2">
             <objects>
                 <navigationController title="Master" id="cgM-PO-D8y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="XZ7-CK-g0G"/>
+                    <tabBarItem key="tabBarItem" title="Videos" image="Play" selectedImage="PlayFilled" id="XZ7-CK-g0G"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="G5o-c2-0sG">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -314,24 +203,24 @@
         <scene sceneID="4TB-j3-KVz">
             <objects>
                 <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="vRg-Hh-P78" customClass="MasterViewController" customModule="prestoid" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Tfp-u2-zXw">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="22" sectionFooterHeight="22" id="Tfp-u2-zXw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="tjK-UR-2Zy" style="IBUITableViewCellStyleDefault" id="9PF-AH-1EC">
-                                <rect key="frame" x="0.0" y="22" width="375" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="2cN-Ox-bax" style="IBUITableViewCellStyleDefault" id="9PF-AH-1EC">
+                                <rect key="frame" x="0.0" y="22" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9PF-AH-1EC" id="8aY-6d-bAE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tjK-UR-2Zy">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2cN-Ox-bax">
+                                            <rect key="frame" x="15" y="0.0" width="345" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -353,7 +242,118 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bxT-3W-T9M" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4823" y="-136"/>
+            <point key="canvasLocation" x="4821.6000000000004" y="-136.28185907046478"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="LBE-1O-315">
+            <objects>
+                <viewController id="xOc-vR-kRy" customClass="CameraViewController" customModule="prestoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VLV-ed-dLW"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fi1-FI-tKT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FNY-Gf-pHb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K0T-tO-8ri" userLabel="Preview" customClass="PreviewView" customModule="prestoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="MZK-vb-lCS" appends="YES" id="Jfo-mq-R9D"/>
+                                </connections>
+                            </view>
+                            <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Unavailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFa-yU-Lt8" userLabel="Camera Unavailable">
+                                <rect key="frame" x="81" y="294.5" width="214" height="29"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqn-Lp-5lq" userLabel="Resume">
+                                <rect key="frame" x="102" y="289.5" width="171" height="39"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                                <state key="normal" title="Tap to resume">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="resumeInterruptedSession:" destination="xOc-vR-kRy" eventType="touchUpInside" id="J5M-2V-zVi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imf-DN-qMc" userLabel="Record">
+                                <rect key="frame" x="48" y="550" width="80" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Record">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toggleMovieRecording:" destination="xOc-vR-kRy" eventType="touchUpInside" id="tJt-Ih-gQl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fo5-Z7-L58" userLabel="Camera">
+                                <rect key="frame" x="248" y="550" width="80" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Camera">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changeCamera:" destination="xOc-vR-kRy" eventType="touchUpInside" id="48Q-uq-AIp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="K0T-tO-8ri" firstAttribute="width" secondItem="FNY-Gf-pHb" secondAttribute="width" id="XzY-dl-G3v"/>
+                            <constraint firstItem="K0T-tO-8ri" firstAttribute="height" secondItem="FNY-Gf-pHb" secondAttribute="height" id="ZCR-S8-gLG"/>
+                            <constraint firstItem="nqn-Lp-5lq" firstAttribute="centerY" secondItem="FNY-Gf-pHb" secondAttribute="centerY" id="arP-Ai-aOf"/>
+                            <constraint firstItem="nqn-Lp-5lq" firstAttribute="centerX" secondItem="FNY-Gf-pHb" secondAttribute="centerX" id="ikl-Jc-aFB"/>
+                            <constraint firstItem="K0T-tO-8ri" firstAttribute="centerX" secondItem="FNY-Gf-pHb" secondAttribute="centerX" id="isy-jP-9mJ"/>
+                            <constraint firstItem="qFa-yU-Lt8" firstAttribute="centerX" secondItem="FNY-Gf-pHb" secondAttribute="centerX" id="jYm-WT-7bp"/>
+                            <constraint firstItem="qFa-yU-Lt8" firstAttribute="centerY" secondItem="FNY-Gf-pHb" secondAttribute="centerY" id="ojS-ys-xjb"/>
+                            <constraint firstItem="K0T-tO-8ri" firstAttribute="centerY" secondItem="FNY-Gf-pHb" secondAttribute="centerY" id="rUN-ei-I0e"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <tabBarItem key="tabBarItem" title="Camera" image="Camera" selectedImage="CameraFilled" id="Zpr-jw-U4F"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="cameraButton" destination="fo5-Z7-L58" id="LnW-fS-kqk"/>
+                        <outlet property="cameraUnavailableLabel" destination="qFa-yU-Lt8" id="7w3-x4-b9G"/>
+                        <outlet property="previewView" destination="K0T-tO-8ri" id="kkL-UH-Xj8"/>
+                        <outlet property="recordButton" destination="imf-DN-qMc" id="Tah-xh-vL2"/>
+                        <outlet property="resumeButton" destination="nqn-Lp-5lq" id="uwp-3C-bfP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MLw-Cz-Qoa" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="MZK-vb-lCS">
+                    <connections>
+                        <action selector="focusAndExposeTap:" destination="xOc-vR-kRy" id="y0e-W2-1CA"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2900" y="636"/>
         </scene>
     </scenes>
     <resources>
@@ -361,7 +361,9 @@
         <image name="CameraFilled" width="30" height="22"/>
         <image name="Cloud" width="30" height="19"/>
         <image name="CloudFilled" width="30" height="19"/>
+        <image name="Play" width="30" height="25"/>
         <image name="PlayButton" width="21" height="22"/>
+        <image name="PlayFilled" width="30" height="25"/>
         <image name="ScanBackwardButton" width="29" height="16"/>
         <image name="ScanForwardButton" width="29" height="16"/>
     </resources>
