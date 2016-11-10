@@ -575,7 +575,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 print("Error generating thumbnail: \(error)")
             }
             
-            
+            /*
             // Save video to photo library.
             
             // Check authorization status.
@@ -599,6 +599,11 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                     cleanup()
                 }
             }
+            */
+            
+            
+            
+            
         }
         else {
             cleanup()
