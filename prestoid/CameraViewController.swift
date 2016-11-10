@@ -531,12 +531,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
                     videosArray = arrayValue as! [String]
                 }
-                if videosArray.count != nil {
-                    let newVideoName = String(videosArray.count + 1)
-                    videosArray.append(newVideoName)
-                } else {
-                    videosArray.append(String(1))
-                }
+                
+                let newVideoName = "/recorded-video-" + String(videosArray.count)
+                videosArray.append(newVideoName)
                 defaults.set(videosArray, forKey: savedVideosArrayKey)
                 
                 
