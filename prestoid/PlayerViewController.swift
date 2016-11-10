@@ -19,6 +19,8 @@ private var playerViewControllerKVOContext = 0
 class PlayerViewController: UIViewController {
     // MARK: Properties
     
+    var path = String()
+    
     // Attempt load and test these asset keys before playing.
     static let assetKeysRequiredToPlay = [
         "playable",
@@ -125,15 +127,12 @@ class PlayerViewController: UIViewController {
         
         
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-        let moviePath = docsPath + "/myVideoFileName" + ".mov"
+        let moviePath = docsPath + path + ".mov"
+        print(moviePath)
         let movieURL = URL.init(fileURLWithPath: moviePath)
+        print(movieURL)
         asset = AVURLAsset(url: movieURL, options: nil)
 
-        
-//        let movieURL = Bundle.main.url(forResource: "ElephantSeals", withExtension: "mov")!
-//        asset = AVURLAsset(url: movieURL, options: nil)
-
-        
         
         
         

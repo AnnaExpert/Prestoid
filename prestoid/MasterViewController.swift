@@ -21,6 +21,8 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        tableView.delegate = self
+        tableView.dataSource = self
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
@@ -44,10 +46,13 @@ class MasterViewController: UITableViewController {
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            let controller = segue.destination as! PlayerViewController
-            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            controller.navigationItem.leftItemsSupplementBackButton = true
+        if segue.identifier == "ShowDetail" {
+            let destination = segue.destination as! PlayerViewController
+            destination.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            destination.navigationItem.leftItemsSupplementBackButton = true
+            if let pathIndex = tableView.indexPathForSelectedRow?.row {
+            destination.path = videosArray[pathIndex]
+            }
         }
     }
     

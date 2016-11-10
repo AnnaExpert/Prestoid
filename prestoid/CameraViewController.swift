@@ -13,6 +13,7 @@ import Photos
 class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
     // MARK: View Controller Life Cycle
     
+    let defaults = UserDefaults.standard
     var videosArray: [String] = Array()
     var thumbnailsArray: [Data] = Array()
     let savedVideosArrayKey = "savedVideosArray"
@@ -532,12 +533,12 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 
                 // Save video inside application.
                 
-                let defaults = UserDefaults.standard
+                
                 if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
                     videosArray = arrayValue as! [String]
                 }
                 
-                let newVideoName = "/recorded-video-" + String(videosArray.count)
+                let newVideoName = "/video" + String(videosArray.count)
                 videosArray.append(newVideoName)
                 defaults.set(videosArray, forKey: savedVideosArrayKey)
                 
@@ -545,32 +546,34 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 let video = try NSData(contentsOf: outputFileURL, options: NSData.ReadingOptions())
                 let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
                 let moviePath = docsPath + videosArray.last! + ".mov"
+                print(moviePath)
                 video.write(toFile: moviePath, atomically: false)
                 
                 
                 if let arrayValue = defaults.array(forKey: thumbnailsArrayKey) {
                     thumbnailsArray = arrayValue as! [Data]
                 }
-                do {
-                    let asset = AVURLAsset(url: outputFileURL, options: nil)
-                    let imgGenerator = AVAssetImageGenerator(asset: asset)
-                    imgGenerator.appliesPreferredTrackTransform = true
-                    let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
-                    let uiImage = UIImage(cgImage: cgImage)
-                    if let imageData = UIImagePNGRepresentation(uiImage) {
-                        thumbnailsArray.append(imageData)
-                        defaults.set(thumbnailsArray, forKey: thumbnailsArrayKey)
-                    }
-                    
-                } catch let error as NSError {
-                    print("Error generating thumbnail: \(error)")
-                }
-                
+
                 
             } catch {
                 print("Can't convert video to data file")
             }
             
+            
+            do {
+                let asset = AVURLAsset(url: outputFileURL, options: nil)
+                let imgGenerator = AVAssetImageGenerator(asset: asset)
+                imgGenerator.appliesPreferredTrackTransform = true
+                let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+                let uiImage = UIImage(cgImage: cgImage)
+                if let imageData = UIImagePNGRepresentation(uiImage) {
+                    thumbnailsArray.append(imageData)
+                    defaults.set(thumbnailsArray, forKey: thumbnailsArrayKey)
+                }
+                
+            } catch let error as NSError {
+                print("Error generating thumbnail: \(error)")
+            }
             
             
             // Save video to photo library.
