@@ -48,8 +48,6 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
             let destination = segue.destination as! PlayerViewController
-            destination.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            destination.navigationItem.leftItemsSupplementBackButton = true
             if let pathIndex = tableView.indexPathForSelectedRow?.row {
             destination.path = videosArray[pathIndex]
             }
@@ -89,5 +87,12 @@ class MasterViewController: UITableViewController {
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
+    }
+    
+    @IBAction func unwindInMaster(_ segue: UIStoryboardSegue)  {
+        /*
+         Empty. Exists solely so that "unwind in master" segues can
+         find this instance as a destination.
+         */
     }
 }
