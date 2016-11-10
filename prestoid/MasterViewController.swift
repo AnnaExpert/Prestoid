@@ -26,6 +26,7 @@ class MasterViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
         super.viewWillAppear(animated)
     }
     
@@ -57,7 +58,7 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        let stringName = "Video #" + String(indexPath.row + 1) + ": video text..."
+        let stringName = videosArray[indexPath.row]
         cell.textLabel!.text = stringName
         return cell
     }
