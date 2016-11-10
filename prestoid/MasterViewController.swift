@@ -19,13 +19,13 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
             videosArray = arrayValue as! [String]
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
         super.viewWillAppear(animated)
     }
@@ -76,7 +76,4 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-    
-    
 }
-
