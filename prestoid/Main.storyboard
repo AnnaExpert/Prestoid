@@ -108,16 +108,16 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="VNi-RN-ayr" kind="relationship" relationship="viewControllers" id="KaZ-bG-SgW"/>
                         <segue destination="buI-n2-72y" kind="relationship" relationship="viewControllers" id="i70-mA-sKq"/>
                         <segue destination="yxY-hY-hGz" kind="relationship" relationship="viewControllers" id="a60-Y9-2nL"/>
-                        <segue destination="VNi-RN-ayr" kind="relationship" relationship="viewControllers" id="KaZ-bG-SgW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWi-VK-SIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2900" y="-136"/>
         </scene>
-        <!--Item-->
+        <!--Camera-->
         <scene sceneID="i2z-RE-FmG">
             <objects>
                 <viewController id="VNi-RN-ayr" customClass="CameraViewController" customModule="prestoid" customModuleProvider="target" sceneMemberID="viewController">
@@ -209,7 +209,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Item" image="Camera" selectedImage="CameraFilled" id="f5h-tm-1ul"/>
+                    <tabBarItem key="tabBarItem" title="Camera" image="Camera" selectedImage="CameraFilled" id="f5h-tm-1ul"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="cameraButton" destination="eJl-jz-eNf" id="zqS-Bq-9Vf"/>

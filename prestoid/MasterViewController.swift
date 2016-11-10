@@ -10,7 +10,7 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var detailViewController: DetailViewController? = nil
+    var detailViewController: PlayerViewController? = nil
     var objects = [Any]()
     var videosArray: [Data] = Array()
     var thumbnailsArray: [UIImage] = Array()
@@ -60,9 +60,13 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+                
+//                let object = objects[indexPath.row] as! NSDate
+                
+                let controller = (segue.destination as! UINavigationController).topViewController as! PlayerViewController
+                
+//                controller.detailItem = object
+                
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
