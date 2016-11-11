@@ -23,11 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>to take photos and video</string>
+	<string>We need to record videos in this application</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>to record Live Photos and movies</string>
+	<string>We need to record sound in this application</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>to save photos and videos to your Photo Library</string>
+	<string>We need to save videos in the Photos app</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
