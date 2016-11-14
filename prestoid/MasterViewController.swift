@@ -52,7 +52,7 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 250.0;//Choose your custom row height
+        return 251.0;//Choose your custom row height
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -93,8 +93,8 @@ class MasterViewController: UITableViewController {
         let time = String(timePart)
         
         cell.cellImageView.image = thumbnail
-        cell.cellTopTextLabel.text = String("Video captured on \(date) at \(time)")
-        cell.cellBottomTextLabel.text = fileName
+        cell.cellTopTextLabel.text = String("on \(date)")
+        cell.cellBottomTextLabel.text = String("at \(time)")
         return cell
     }
     
@@ -105,8 +105,27 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-//            videosArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            
+            let filename = videosArray[indexPath.row]
+            let path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as NSString).appendingPathComponent((filename as NSString).appendingPathExtension("mov")!)
+            if FileManager.default.fileExists(atPath: path) {
+                do {
+                    try FileManager.default.removeItem(atPath: path)
+                    videosArray.remove(at: indexPath.row)
+                    let defaults = UserDefaults.standard
+                    defaults.set(videosArray, forKey: savedVideosArrayKey)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+                catch {
+                    print("Could not remove file at url: \(URL(fileURLWithPath: path))")
+                }
+            } else {
+                videosArray.remove(at: indexPath.row)
+                let defaults = UserDefaults.standard
+                defaults.set(videosArray, forKey: savedVideosArrayKey)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }

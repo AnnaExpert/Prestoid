@@ -37,6 +37,11 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
+        
+        let cameraViewSize = CGRect(x: 0, y: 0, width: 375, height: 667)
+        previewView.frame = cameraViewSize
+        previewView.updateConstraintsIfNeeded()
+        
 		// Disable UI. The UI is enabled if and only if the session starts running.
 		cameraButton.isEnabled = false
 		recordButton.isEnabled = false
@@ -93,6 +98,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+        
+        let cameraViewSize = CGRect(x: 0, y: 0, width: 375, height: 667)
+        previewView.frame = cameraViewSize
+        previewView.updateConstraintsIfNeeded()
 		
 		sessionQueue.async {
 			switch self.setupResult {
@@ -513,7 +522,15 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 let minute = calendar.component(.minute, from: currentDate)
                 let second = calendar.component(.second, from: currentDate)
                 let nanosecond = calendar.component(.nanosecond, from: currentDate)
-                let filename = "\(year)\(month)\(day)_\(hour)\(minute)_\(second)\(nanosecond)_LAT\(lat)_LON\(lon)"
+                var stringHour = String(hour)
+                if stringHour.characters.count < 2 {
+                    stringHour = String("0\(stringHour)")
+                }
+                var stringMinute = String(minute)
+                if stringMinute.characters.count < 2 {
+                    stringMinute = String("0\(stringMinute)")
+                }
+                let filename = "\(year)\(month)\(day)_\(stringHour)\(stringMinute)_\(second)\(nanosecond)_LAT\(lat)_LON\(lon)"
                 print("Recording file name: " + filename)
                 
                 
