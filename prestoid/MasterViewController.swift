@@ -13,10 +13,7 @@ class MasterViewController: UITableViewController {
     
     var detailViewController: PlayerViewController? = nil
     var videosArray: [String] = Array()
-    var thumbnailsArray: [Data] = Array()
     let savedVideosArrayKey = "savedVideosArray"
-    let thumbnailsArrayKey = "thumbnailsArray"
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +27,6 @@ class MasterViewController: UITableViewController {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
             videosArray = arrayValue as! [String]
-        }
-        if let arrayValue = defaults.array(forKey: thumbnailsArrayKey) {
-            thumbnailsArray = arrayValue as! [Data]
         }
         self.tableView.reloadData()
         super.viewWillAppear(animated)
@@ -56,6 +50,11 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Table View
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 250.0;//Choose your custom row height
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -65,13 +64,37 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)as! CellMasterView
+
+        var thumbnail = UIImage()
+        let fileName = videosArray[indexPath.row]
         
-        let thumbnail = UIImage(data:thumbnailsArray[indexPath.row],scale:1.0)
-        cell.imageView?.image = thumbnail
         
-        let stringName = videosArray[indexPath.row]
-        cell.textLabel!.text = stringName
+        let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+        let moviePath = docsPath + "/" + videosArray[indexPath.row] + ".mov"
+        do {
+            let asset = AVURLAsset(url: URL(fileURLWithPath: moviePath), options: nil)
+            let imgGenerator = AVAssetImageGenerator(asset: asset)
+            imgGenerator.appliesPreferredTrackTransform = true
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+            thumbnail = UIImage(cgImage: cgImage)
+        } catch let error as NSError {
+            print("Error generating thumbnail: \(error)")
+        }
+
+        var datePart = fileName.characters.prefix(8)
+        datePart.insert(".", at: datePart.index(datePart.startIndex, offsetBy: 6))
+        datePart.insert(".", at: datePart.index(datePart.startIndex, offsetBy: 4))
+        let date = String(datePart)
+        
+        var timePart = fileName.characters.dropFirst(9)
+        timePart = timePart.prefix(4)
+        timePart.insert(":", at: timePart.index(timePart.startIndex, offsetBy: 2))
+        let time = String(timePart)
+        
+        cell.cellImageView.image = thumbnail
+        cell.cellTopTextLabel.text = String("Video captured on \(date) at \(time)")
+        cell.cellBottomTextLabel.text = fileName
         return cell
     }
     

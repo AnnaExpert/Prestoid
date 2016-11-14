@@ -10,18 +10,33 @@ import UIKit
 import AVFoundation
 import Photos
 
-class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
+class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationManagerDelegate {
     // MARK: View Controller Life Cycle
     
     let defaults = UserDefaults.standard
     var videosArray: [String] = Array()
-    var thumbnailsArray: [Data] = Array()
     let savedVideosArrayKey = "savedVideosArray"
-    let thumbnailsArrayKey = "thumbnailsArray"
+    let locationManager = CLLocationManager()
 	
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("Found user's location: \(location)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
+    }
+    
     override func viewDidLoad() {
 		super.viewDidLoad()
-		
+        locationManager.delegate = self
+        locationManager.requestLocation()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        
 		// Disable UI. The UI is enabled if and only if the session starts running.
 		cameraButton.isEnabled = false
 		recordButton.isEnabled = false
@@ -177,8 +192,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 		session.beginConfiguration()
 		
         // Here we can modify the quality of recorded video.
-		session.sessionPreset = AVCaptureSessionPresetHigh
-		
+//		session.sessionPreset = AVCaptureSessionPreset1920x1080
+		session.sessionPreset = AVCaptureSessionPresetInputPriority
+        
+        
 		// Add video input.
 		do {
 			var defaultVideoDevice: AVCaptureDevice?
@@ -468,10 +485,52 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 				let movieFileOutputConnection = self.movieFileOutput?.connection(withMediaType: AVMediaTypeVideo)
 				movieFileOutputConnection?.videoOrientation = videoPreviewLayerOrientation
 				
-				// Start recording to a temporary file.
-				let outputFileName = NSUUID().uuidString
-				let outputFilePath = (NSTemporaryDirectory() as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
-				movieFileOutput.startRecording(toOutputFileURL: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
+                
+                
+                
+                // MARK: Adding metadata with location to the movie
+                
+                
+                self.locationManager.requestLocation()
+                let location = self.locationManager.location
+                let metadata = AVMutableMetadataItem()
+                metadata.keySpace = AVMetadataKeySpaceQuickTimeMetadata
+                metadata.key = AVMetadataQuickTimeMetadataKeyLocationISO6709 as NSString
+                metadata.identifier = AVMetadataIdentifierQuickTimeMetadataLocationISO6709
+                let lat = String(format: "%.8f", (location?.coordinate.latitude)!)
+                let lon = String(format: "%.8f", (location?.coordinate.longitude)!)
+                metadata.value = String("LAT_" + lat + "_LON_" + lon) as NSString
+                self.locationManager.stopUpdatingLocation()
+                
+                movieFileOutput.metadata = [metadata]
+                
+                let currentDate = Date()
+                let calendar = Calendar.current
+                let year = calendar.component(.year, from: currentDate)
+                let month = calendar.component(.month, from: currentDate)
+                let day = calendar.component(.day, from: currentDate)
+                let hour = calendar.component(.hour, from: currentDate)
+                let minute = calendar.component(.minute, from: currentDate)
+                let second = calendar.component(.second, from: currentDate)
+                let nanosecond = calendar.component(.nanosecond, from: currentDate)
+                let filename = "\(year)\(month)\(day)_\(hour)\(minute)_\(second)\(nanosecond)_LAT\(lat)_LON\(lon)"
+                print("Recording file name: " + filename)
+                
+                
+//				let outputFileName = NSUUID().uuidString
+                let outputFileName = filename
+                let outputFilePath = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
+                print("outputFilePath - " + outputFilePath)
+                movieFileOutput.startRecording(toOutputFileURL: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
+                
+                if self.defaults.array(forKey: self.savedVideosArrayKey) != nil {
+                    self.videosArray = self.defaults.array(forKey: self.savedVideosArrayKey) as! [String]
+                    
+                    print(self.videosArray)
+                }
+                
+                self.videosArray.append(filename)
+                self.defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
 			}
 			else {
 				movieFileOutput.stopRecording()
@@ -488,15 +547,15 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 	}
 	
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-		/*
-			Note that currentBackgroundRecordingID is used to end the background task
-			associated with this recording. This allows a new recording to be started,
-			associated with a new UIBackgroundTaskIdentifier, once the movie file output's
-			`isRecording` property is back to false — which happens sometime after this method
-			returns.
-		
-			Note: Since we use a unique file path for each recording, a new recording will
-			not overwrite a recording currently being saved.
+        /*
+         Note that currentBackgroundRecordingID is used to end the background task
+         associated with this recording. This allows a new recording to be started,
+         associated with a new UIBackgroundTaskIdentifier, once the movie file output's
+         `isRecording` property is back to false — which happens sometime after this method
+         returns.
+         
+         Note: Since we use a unique file path for each recording, a new recording will
+         not overwrite a recording currently being saved.
          */
         func cleanup() {
             let path = outputFileURL.path
@@ -527,13 +586,13 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         if success {
             
+            print("File procession success")
             
+            /*
             do {
                 
                 
                 // Save video inside application.
-                
-                
                 if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
                     videosArray = arrayValue as! [String]
                 }
@@ -553,7 +612,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 if let arrayValue = defaults.array(forKey: thumbnailsArrayKey) {
                     thumbnailsArray = arrayValue as! [Data]
                 }
-
+                
                 
             } catch {
                 print("Can't convert video to data file")
@@ -574,40 +633,55 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             } catch let error as NSError {
                 print("Error generating thumbnail: \(error)")
             }
-            
-            /*
-            // Save video to photo library.
-            
-            // Check authorization status.
-            PHPhotoLibrary.requestAuthorization { status in
-                if status == .authorized {
-                    // Save the movie file to the photo library and cleanup.
-                    PHPhotoLibrary.shared().performChanges({
-                        let options = PHAssetResourceCreationOptions()
-                        options.shouldMoveFile = true
-                        let creationRequest = PHAssetCreationRequest.forAsset()
-                        creationRequest.addResource(with: .video, fileURL: outputFileURL, options: options)
-                    }, completionHandler: { success, error in
-                        if !success {
-                            print("Could not save movie to photo library: \(error)")
-                        }
-                        cleanup()
-                    }
-                    )
-                }
-                else {
-                    cleanup()
-                }
-            }
             */
             
+            // Save video to documents folder library.
             
+            
+                
+                
+                // Save video inside application.
+            
+            do {
+                let video = try NSData(contentsOf: outputFileURL, options: NSData.ReadingOptions())
+                let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+                let moviePath = docsPath + "/" + videosArray.last! + ".mov"
+                print("MOVIE PATH OF FILE: " + moviePath)
+                video.write(toFile: moviePath, atomically: false)
+            } catch {
+                print("Can't convert video to data file")
+                cleanup()
+            }
+            
+            /*
+            // Save the movie file to the photo library and cleanup.
+            PHPhotoLibrary.shared().performChanges({
+                let options = PHAssetResourceCreationOptions()
+                options.shouldMoveFile = true
+                let creationRequest = PHAssetCreationRequest.forAsset()
+                creationRequest.addResource(with: .video, fileURL: outputFileURL, options: options)
+            }, completionHandler: { success, error in
+                if !success {
+                    print("Could not save movie to photo library: \(error)")
+                }
+                cleanup()
+            }
+            )
+            */
             
             
         }
         else {
             cleanup()
         }
+        
+        
+        
+        
+        
+        
+        
+        
         
         // Enable the Camera and Record buttons to let the user switch camera and start another recording.
         DispatchQueue.main.async { [unowned self] in

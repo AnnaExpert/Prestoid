@@ -124,15 +124,15 @@ class PlayerViewController: UIViewController {
         playerView.playerLayer.player = player
         
         
-        
-        
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-        let moviePath = docsPath + path + ".mov"
-        print(moviePath)
+        let moviePath = docsPath + "/" + path + ".mov"
+        
+        print("PLAYER PATH OF FILE: " + moviePath)
+        
         let movieURL = URL.init(fileURLWithPath: moviePath)
-        print(movieURL)
         asset = AVURLAsset(url: movieURL, options: nil)
-
+        
+        
         
         
         

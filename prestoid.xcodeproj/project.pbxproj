@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2A0AAE4B1DD3511C00B9AC69 /* SavedVideos.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A0AAE4A1DD3511C00B9AC69 /* SavedVideos.plist */; };
 		2A0AAE701DD365D400B9AC69 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AAE6E1DD365D300B9AC69 /* MasterViewController.swift */; };
-		2A0AAE751DD3877D00B9AC69 /* Thumbnails.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A0AAE741DD3877D00B9AC69 /* Thumbnails.plist */; };
 		2A1C5D601DD2107700555DE2 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */; };
 		2A1C5D621DD2107B00555DE2 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */; };
 		2A1C5D661DD2108600555DE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1C5D651DD2108600555DE2 /* Main.storyboard */; };
@@ -17,6 +16,7 @@
 		2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */; };
 		2AB61FA91DD87FB000C54CB8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2AB61FA81DD87FB000C54CB8 /* Settings.bundle */; };
 		2AB84CC01DCB551F00A31061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB84CBF1DCB551F00A31061 /* Assets.xcassets */; };
+		2AC9F1911DD8FBF900A49535 /* CellMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */; };
 		2AF0F6AB1DD4B53E00E22B44 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */; };
 		2AF0F6AC1DD4B53E00E22B44 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */; };
 /* End PBXBuildFile section */
@@ -24,7 +24,6 @@
 /* Begin PBXFileReference section */
 		2A0AAE4A1DD3511C00B9AC69 /* SavedVideos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SavedVideos.plist; sourceTree = "<group>"; };
 		2A0AAE6E1DD365D300B9AC69 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		2A0AAE741DD3877D00B9AC69 /* Thumbnails.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Thumbnails.plist; sourceTree = "<group>"; };
 		2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2A1C5D651DD2108600555DE2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -34,6 +33,7 @@
 		2A1E4EE51DCA0A05001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AB61FA81DD87FB000C54CB8 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2AB84CBF1DCB551F00A31061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellMasterView.swift; sourceTree = "<group>"; };
 		2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,13 +73,13 @@
 				2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */,
 				2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */,
 				2A0AAE6E1DD365D300B9AC69 /* MasterViewController.swift */,
+				2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */,
 				2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */,
 				2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */,
 				2A1C5D651DD2108600555DE2 /* Main.storyboard */,
 				2AB84CBF1DCB551F00A31061 /* Assets.xcassets */,
 				2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */,
 				2A0AAE4A1DD3511C00B9AC69 /* SavedVideos.plist */,
-				2A0AAE741DD3877D00B9AC69 /* Thumbnails.plist */,
 				2A1E4EE51DCA0A05001F4489 /* Info.plist */,
 			);
 			path = prestoid;
@@ -150,7 +150,6 @@
 				2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */,
 				2AB84CC01DCB551F00A31061 /* Assets.xcassets in Resources */,
 				2AB61FA91DD87FB000C54CB8 /* Settings.bundle in Resources */,
-				2A0AAE751DD3877D00B9AC69 /* Thumbnails.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +163,7 @@
 				2A0AAE701DD365D400B9AC69 /* MasterViewController.swift in Sources */,
 				2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */,
 				2A1C5D601DD2107700555DE2 /* PreviewView.swift in Sources */,
+				2AC9F1911DD8FBF900A49535 /* CellMasterView.swift in Sources */,
 				2AF0F6AC1DD4B53E00E22B44 /* PlayerView.swift in Sources */,
 				2A1C5D621DD2107B00555DE2 /* CameraViewController.swift in Sources */,
 				2AF0F6AB1DD4B53E00E22B44 /* PlayerViewController.swift in Sources */,

@@ -19,11 +19,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>12</string>
+	<string>13</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>We need to record videos in this application</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need to add geolocation to recordings in this application</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We need to record sound in this application</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -45,9 +47,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
