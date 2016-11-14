@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -215,7 +216,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="251"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" tableViewCell="s3T-mE-HDd" id="GhJ-4g-GWD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KMI-Tp-8kl">
@@ -303,33 +304,13 @@
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="K0T-tO-8ri" userLabel="Preview" customClass="PreviewView" customModule="prestoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imf-DN-qMc" userLabel="Record">
-                                        <rect key="frame" x="32" y="556" width="100" height="30"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fo5-Z7-L58" userLabel="Camera">
+                                        <rect key="frame" x="301" y="547" width="66" height="66"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="V4n-BZ-t2A"/>
+                                            <constraint firstAttribute="width" secondItem="fo5-Z7-L58" secondAttribute="height" multiplier="1:1" id="mN7-Sw-xzh"/>
                                         </constraints>
-                                        <state key="normal" title="Record" image="CameraShoot">
-                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="toggleMovieRecording:" destination="xOc-vR-kRy" eventType="touchUpInside" id="tJt-Ih-gQl"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fo5-Z7-L58" userLabel="Camera">
-                                        <rect key="frame" x="250" y="556" width="100" height="30"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="mBh-Rk-Sn6"/>
-                                        </constraints>
-                                        <state key="normal" title="Camera" image="CameraSwitch">
+                                        <state key="normal" image="SwitchCameraButton">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -340,14 +321,30 @@
                                             <action selector="changeCamera:" destination="xOc-vR-kRy" eventType="touchUpInside" id="48Q-uq-AIp"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imf-DN-qMc" userLabel="Record">
+                                        <rect key="frame" x="154" y="547" width="66" height="66"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="imf-DN-qMc" secondAttribute="height" multiplier="1:1" id="u6h-sU-fND"/>
+                                        </constraints>
+                                        <state key="normal" image="RecordCameraButton"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="toggleMovieRecording:" destination="xOc-vR-kRy" eventType="touchUpInside" id="tJt-Ih-gQl"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="fo5-Z7-L58" secondAttribute="trailing" constant="25" id="cfT-wG-2Wf"/>
-                                    <constraint firstItem="fo5-Z7-L58" firstAttribute="baseline" secondItem="imf-DN-qMc" secondAttribute="baseline" id="hKc-q5-WOG"/>
-                                    <constraint firstItem="imf-DN-qMc" firstAttribute="top" secondItem="K0T-tO-8ri" secondAttribute="top" constant="556" id="kFe-LM-Rdd"/>
-                                    <constraint firstItem="imf-DN-qMc" firstAttribute="leading" secondItem="K0T-tO-8ri" secondAttribute="leading" constant="32" id="xbT-bQ-lEC"/>
+                                    <constraint firstItem="fo5-Z7-L58" firstAttribute="bottom" secondItem="imf-DN-qMc" secondAttribute="bottom" id="8G2-hc-SFC"/>
+                                    <constraint firstItem="imf-DN-qMc" firstAttribute="centerX" secondItem="K0T-tO-8ri" secondAttribute="centerX" id="Hqs-mg-9HS"/>
+                                    <constraint firstAttribute="trailing" secondItem="fo5-Z7-L58" secondAttribute="trailing" constant="8" id="WKs-jh-7Dr"/>
+                                    <constraint firstAttribute="bottom" secondItem="imf-DN-qMc" secondAttribute="bottom" constant="54" id="itr-Wn-d2J"/>
+                                    <constraint firstItem="fo5-Z7-L58" firstAttribute="top" secondItem="imf-DN-qMc" secondAttribute="top" id="ypI-ZW-aGJ"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="MZK-vb-lCS" appends="YES" id="Jfo-mq-R9D"/>
@@ -380,14 +377,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="nqn-Lp-5lq" firstAttribute="centerX" secondItem="FNY-Gf-pHb" secondAttribute="centerX" id="2Z3-KJ-rbC"/>
-                            <constraint firstAttribute="bottom" secondItem="K0T-tO-8ri" secondAttribute="bottom" constant="-49" id="3mY-EA-nYn"/>
-                            <constraint firstAttribute="trailing" secondItem="K0T-tO-8ri" secondAttribute="trailing" id="DfC-Cr-lGf"/>
-                            <constraint firstItem="nqn-Lp-5lq" firstAttribute="centerY" secondItem="FNY-Gf-pHb" secondAttribute="centerY" id="KTY-6L-dJE"/>
-                            <constraint firstItem="K0T-tO-8ri" firstAttribute="leading" secondItem="FNY-Gf-pHb" secondAttribute="leading" id="Rt2-ZT-wYD"/>
-                            <constraint firstItem="qFa-yU-Lt8" firstAttribute="centerY" secondItem="FNY-Gf-pHb" secondAttribute="centerY" id="Wsg-hV-mFq"/>
-                            <constraint firstItem="K0T-tO-8ri" firstAttribute="top" secondItem="FNY-Gf-pHb" secondAttribute="top" id="il2-HC-x7q"/>
-                            <constraint firstItem="qFa-yU-Lt8" firstAttribute="centerX" secondItem="FNY-Gf-pHb" secondAttribute="centerX" id="jAr-KV-ufu"/>
+                            <constraint firstItem="K0T-tO-8ri" firstAttribute="top" secondItem="FNY-Gf-pHb" secondAttribute="top" id="Agg-Fh-ra3"/>
+                            <constraint firstItem="qFa-yU-Lt8" firstAttribute="centerX" secondItem="FNY-Gf-pHb" secondAttribute="centerX" id="Ec0-bn-rWT"/>
+                            <constraint firstAttribute="trailing" secondItem="K0T-tO-8ri" secondAttribute="trailing" id="Ejb-FC-Tt6"/>
+                            <constraint firstItem="nqn-Lp-5lq" firstAttribute="centerY" secondItem="FNY-Gf-pHb" secondAttribute="centerY" id="I66-eI-ewJ"/>
+                            <constraint firstItem="nqn-Lp-5lq" firstAttribute="centerX" secondItem="FNY-Gf-pHb" secondAttribute="centerX" id="dlw-DV-LdW"/>
+                            <constraint firstAttribute="bottom" secondItem="K0T-tO-8ri" secondAttribute="bottom" constant="-49" id="k2v-Sk-FwI"/>
+                            <constraint firstItem="qFa-yU-Lt8" firstAttribute="centerY" secondItem="FNY-Gf-pHb" secondAttribute="centerY" id="sMx-P9-N3x"/>
+                            <constraint firstItem="K0T-tO-8ri" firstAttribute="leading" secondItem="FNY-Gf-pHb" secondAttribute="leading" id="u0C-0x-8KE"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -413,15 +410,15 @@
     <resources>
         <image name="Camera" width="30" height="22"/>
         <image name="CameraFilled" width="30" height="22"/>
-        <image name="CameraShoot" width="30" height="30"/>
-        <image name="CameraSwitch" width="30" height="30"/>
         <image name="Cloud" width="30" height="19"/>
         <image name="CloudFilled" width="30" height="19"/>
         <image name="Play" width="30" height="25"/>
         <image name="PlayButton" width="21" height="22"/>
         <image name="PlayFilled" width="30" height="25"/>
+        <image name="RecordCameraButton" width="66" height="66"/>
         <image name="ScanBackwardButton" width="29" height="16"/>
         <image name="ScanForwardButton" width="29" height="16"/>
+        <image name="SwitchCameraButton" width="34" height="26"/>
     </resources>
     <color key="tintColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

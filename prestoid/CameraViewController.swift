@@ -559,7 +559,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 		// Enable the Record button to let the user stop the recording.
 		DispatchQueue.main.async { [unowned self] in
 			self.recordButton.isEnabled = true
-			self.recordButton.setTitle(NSLocalizedString("Stop", comment: "Recording button stop title"), for: [])
+            self.recordButton.imageView?.image = UIImage(named: "StopCameraButton")
+//			self.recordButton.setTitle(NSLocalizedString("Stop", comment: "Recording button stop title"), for: [])
 		}
 	}
 	
@@ -706,7 +707,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             self.cameraButton.isEnabled = self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1
             self.recordButton.isEnabled = true
             self.tabBarController?.tabBar.isHidden = false
-            self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
+            self.recordButton.imageView?.image = UIImage(named: "RecordCameraButton")
+//            self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
         }
     }
 	
