@@ -103,33 +103,41 @@ class MasterViewController: UITableViewController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
+            // Swipe to delete cell
             
-            let filename = videosArray[indexPath.row]
+            let filename = self.videosArray[indexPath.row]
             let path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as NSString).appendingPathComponent((filename as NSString).appendingPathExtension("mov")!)
             if FileManager.default.fileExists(atPath: path) {
                 do {
                     try FileManager.default.removeItem(atPath: path)
-                    videosArray.remove(at: indexPath.row)
+                    self.videosArray.remove(at: indexPath.row)
                     let defaults = UserDefaults.standard
-                    defaults.set(videosArray, forKey: savedVideosArrayKey)
+                    defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }
                 catch {
                     print("Could not remove file at url: \(URL(fileURLWithPath: path))")
                 }
             } else {
-                videosArray.remove(at: indexPath.row)
+                self.videosArray.remove(at: indexPath.row)
                 let defaults = UserDefaults.standard
-                defaults.set(videosArray, forKey: savedVideosArrayKey)
+                defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
-    }
+        
+        let metadata = UITableViewRowAction(style: .normal, title: "Metadata") { (action, indexPath) in
+            // share item at indexPath
+            print("metadata info requested")
+        }
+        
+        metadata.backgroundColor = UIColor.brown
+        
+        return [delete, metadata]
+     }
     
     @IBAction func unwindInMaster(_ segue: UIStoryboardSegue)  {
         /*

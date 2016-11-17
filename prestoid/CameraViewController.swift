@@ -141,6 +141,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 				self.session.stopRunning()
 				self.isSessionRunning = self.session.isRunning
 				self.removeObservers()
+                self.locationManager.stopUpdatingLocation()
 			}
 		}
 		
@@ -513,7 +514,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 let lat = String(format: "%.8f", (location?.coordinate.latitude)!)
                 let lon = String(format: "%.8f", (location?.coordinate.longitude)!)
                 metadata.value = String("LAT_" + lat + "_LON_" + lon) as NSString
-                self.locationManager.stopUpdatingLocation()
                 
                 movieFileOutput.metadata = [metadata]
                 
