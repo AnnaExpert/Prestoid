@@ -17,7 +17,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     var videosArray: [String] = Array()
     let savedVideosArrayKey = "savedVideosArray"
     let locationManager = CLLocationManager()
-	
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
@@ -143,10 +142,16 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 				self.removeObservers()
                 self.locationManager.stopUpdatingLocation()
 			}
-		}
-		
-		super.viewWillDisappear(animated)
+        }
+        super.viewWillDisappear(animated)
 	}
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+    }
+    
+    func canRotate() {}
 	
     override var shouldAutorotate: Bool {
 		// Disable autorotation of the interface when recording is in progress.
@@ -159,6 +164,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
 		return .all
 	}
+    
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
+    }
 	
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		super.viewWillTransition(to: size, with: coordinator)
