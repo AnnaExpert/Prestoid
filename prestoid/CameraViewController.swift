@@ -465,7 +465,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 			the Record button until recording starts or finishes.
 		
 			See the AVCaptureFileOutputRecordingDelegate methods.
-		*/
+         */
+        
 		cameraButton.isEnabled = false
         cameraButton.isHidden = true
 		recordButton.isEnabled = false
@@ -480,6 +481,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 		
 		sessionQueue.async { [unowned self] in
 			if !movieFileOutput.isRecording {
+                AudioServicesPlaySystemSound(1117)
 				if UIDevice.current.isMultitaskingSupported {
 					/*
 						Setup background task.
@@ -714,6 +716,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             self.recordButton.isEnabled = true
             self.tabBarController?.tabBar.isHidden = false
             self.recordButton.imageView?.image = UIImage(named: "RecordCameraButton")
+            AudioServicesPlaySystemSound(1118)
 //            self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
         }
     }
