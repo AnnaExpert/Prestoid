@@ -20,7 +20,7 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         tableView.delegate = self
         tableView.dataSource = self
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +52,7 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 251.0;//Choose your custom row height
+        return 151.0;//Choose your custom row height
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
