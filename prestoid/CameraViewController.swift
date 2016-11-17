@@ -404,6 +404,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 			
 			DispatchQueue.main.async { [unowned self] in
 				self.cameraButton.isEnabled = true
+                self.cameraButton.isHidden = false
 				self.recordButton.isEnabled = self.movieFileOutput != nil
 			}
 		}
@@ -466,6 +467,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 			See the AVCaptureFileOutputRecordingDelegate methods.
 		*/
 		cameraButton.isEnabled = false
+        cameraButton.isHidden = true
 		recordButton.isEnabled = false
         self.tabBarController?.tabBar.isHidden = true
 		
@@ -558,7 +560,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 	func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
 		// Enable the Record button to let the user stop the recording.
 		DispatchQueue.main.async { [unowned self] in
-			self.recordButton.isEnabled = true
+            self.recordButton.isEnabled = true
+            self.cameraButton.isHidden = true
             self.recordButton.imageView?.image = UIImage(named: "StopCameraButton")
 //			self.recordButton.setTitle(NSLocalizedString("Stop", comment: "Recording button stop title"), for: [])
 		}
@@ -705,6 +708,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         DispatchQueue.main.async { [unowned self] in
             // Only enable the ability to change camera if the device has more than one camera.
             self.cameraButton.isEnabled = self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1
+            
+            self.cameraButton.isHidden = false
+//            self.cameraButton.isHidden = !(self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1)
             self.recordButton.isEnabled = true
             self.tabBarController?.tabBar.isHidden = false
             self.recordButton.imageView?.image = UIImage(named: "RecordCameraButton")
