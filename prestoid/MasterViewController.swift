@@ -15,6 +15,12 @@ class MasterViewController: UITableViewController {
     var videosArray: [String] = Array()
     let savedVideosArrayKey = "savedVideosArray"
     
+//    struct CellInformationContent {
+//        var cellDict = [Int: Bool]()
+//    }
+    
+    var cellInformationContent = [Int: Bool]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -72,7 +78,7 @@ class MasterViewController: UITableViewController {
         
         
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-        let moviePath = docsPath + "/" + videosArray[indexPath.row] + ".mov"
+        let moviePath = docsPath + "/" + fileName + ".mov"
         do {
             let asset = AVURLAsset(url: URL(fileURLWithPath: moviePath), options: nil)
             let imgGenerator = AVAssetImageGenerator(asset: asset)
@@ -82,7 +88,8 @@ class MasterViewController: UITableViewController {
         } catch let error as NSError {
             print("Error generating thumbnail: \(error)")
         }
-
+        
+        /*
         var datePart = fileName.characters.prefix(8)
         datePart.insert(".", at: datePart.index(datePart.startIndex, offsetBy: 6))
         datePart.insert(".", at: datePart.index(datePart.startIndex, offsetBy: 4))
@@ -92,10 +99,29 @@ class MasterViewController: UITableViewController {
         timePart = timePart.prefix(4)
         timePart.insert(":", at: timePart.index(timePart.startIndex, offsetBy: 2))
         let time = String(timePart)
+        */
+        
+        let movieURL = URL.init(fileURLWithPath: moviePath)
+        let asset = AVURLAsset(url: movieURL, options: nil)
+        var metadata = AVMetadataItem()
+        metadata = asset.metadata[0]
+        let locationArray = String(describing: metadata.value!).components(separatedBy: "_")
+        let duration = Int(asset.duration.seconds)
+        let creationDate = asset.creationDate!.value as! Date
+        let creation = creationDate.toString()
+        let latitude = locationArray[1]
+        let longitude = locationArray[3]
         
         cell.cellImageView.image = thumbnail
-        cell.cellTopTextLabel.text = String("on \(date)")
-        cell.cellBottomTextLabel.text = String("at \(time)")
+        cell.cellDateTextLabel.text = String("Video recorded: \(creation)")
+        cell.cellDurationTextLabel.text = String("Video duration: \(duration) seconds")
+        cell.cellTopTextLabel.text = String("Latitude: \(latitude)")
+        cell.cellBottomTextLabel.text = String("Longitude: \(longitude)")
+        
+        if (cellInformationContent[indexPath.row] != nil) {
+            cell.cellInformationView.isHidden = cellInformationContent[indexPath.row]!
+        }
+        
         return cell
     }
     
@@ -130,12 +156,42 @@ class MasterViewController: UITableViewController {
             }
         }
         
-        let metadata = UITableViewRowAction(style: .normal, title: "Metadata") { (action, indexPath) in
-            // share item at indexPath
-            print("metadata info requested")
+        let metadata = UITableViewRowAction(style: .normal, title: "File info") { (action, indexPath) in
+            
+            // Swipe to show metadata
+            
+//            let filename = self.videosArray[indexPath.row]
+//            let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+//            let moviePath = docsPath + "/" + filename + ".mov"
+//            let movieURL = URL.init(fileURLWithPath: moviePath)
+//            let asset = AVURLAsset(url: movieURL, options: nil)
+//            var metadata = AVMetadataItem()
+//            metadata = asset.metadata[0]
+//            let locationArray = String(describing: metadata.value!).components(separatedBy: "_")
+//            let duration = Int(asset.duration.seconds)
+//            let creation = asset.creationDate!.value as! Date
+//            let latitude = locationArray[1]
+//            let longitude = locationArray[3]
+            
+//            self.presentViewController(shareMenu, animated: true, completion: nil)
+            
+            
+//            print(duration)
+//            print(creation.description(with: Locale.current as Locale))
+//            print(latitude)
+//            print(longitude)
+            
+            if (self.cellInformationContent[indexPath.row] != nil) {
+                self.cellInformationContent[indexPath.row] = !self.cellInformationContent[indexPath.row]!
+            } else {
+                self.cellInformationContent[indexPath.row] = false
+            }
+            
+            tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.right)
+            tableView.setEditing(false, animated: true)
         }
         
-        metadata.backgroundColor = UIColor.brown
+        metadata.backgroundColor = UIColor.orange
         
         return [delete, metadata]
      }
@@ -145,5 +201,18 @@ class MasterViewController: UITableViewController {
          Empty. Exists solely so that "unwind in master" segues can
          find this instance as a destination.
          */
+    }
+}
+
+extension Date {
+    func toString() -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .medium
+        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MMMM dd yyyy"
+        return dateFormatter.string(from: self)
     }
 }

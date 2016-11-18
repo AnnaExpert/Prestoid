@@ -19,9 +19,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     let locationManager = CLLocationManager()
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            print("Found user's location: \(location)")
-        }
+//        if let location = locations.first {
+//            print("Found user's location: \(location)")
+//        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -544,19 +544,19 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                     stringMinute = String("0\(stringMinute)")
                 }
                 let filename = "\(year)\(month)\(day)_\(stringHour)\(stringMinute)_\(second)\(nanosecond)_LAT\(lat)_LON\(lon)"
-                print("Recording file name: " + filename)
+//                print("Recording file name: " + filename)
                 
                 
 //				let outputFileName = NSUUID().uuidString
                 let outputFileName = filename
                 let outputFilePath = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
-                print("outputFilePath - " + outputFilePath)
+//                print("outputFilePath - " + outputFilePath)
                 movieFileOutput.startRecording(toOutputFileURL: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
                 
                 if self.defaults.array(forKey: self.savedVideosArrayKey) != nil {
                     self.videosArray = self.defaults.array(forKey: self.savedVideosArrayKey) as! [String]
                     
-                    print(self.videosArray)
+//                    print(self.videosArray)
                 }
                 
                 self.videosArray.append(filename)
@@ -678,7 +678,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 let video = try NSData(contentsOf: outputFileURL, options: NSData.ReadingOptions())
                 let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
                 let moviePath = docsPath + "/" + videosArray.last! + ".mov"
-                print("MOVIE PATH OF FILE: " + moviePath)
+//                print("MOVIE PATH OF FILE: " + moviePath)
                 video.write(toFile: moviePath, atomically: false)
             } catch {
                 print("Can't convert video to data file")
