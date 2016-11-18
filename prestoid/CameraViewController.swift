@@ -527,9 +527,13 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         cameraButton.isHidden = true
 		recordButton.isEnabled = false
         self.tabBarController?.tabBar.isHidden = true
-        
-        timerLabel.isHidden = !timerLabel.isHidden
-        startTimer()
+        if timerLabel.isHidden {
+            startTimer()
+            timerLabel.isHidden = !timerLabel.isHidden
+        } else {
+            stopTimer()
+            timerLabel.isHidden = !timerLabel.isHidden
+        }
 		
 		/*
 			Retrieve the video preview layer's video orientation on the main queue

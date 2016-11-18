@@ -152,6 +152,9 @@ class MasterViewController: UITableViewController {
                 self.videosArray.remove(at: indexPath.row)
                 let defaults = UserDefaults.standard
                 defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
+                if (self.cellInformationContent[indexPath.row] != nil) {
+                    self.cellInformationContent.removeValue(forKey: indexPath.row)
+                }
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
