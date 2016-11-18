@@ -14,7 +14,7 @@
         <!--Settings-->
         <scene sceneID="4Wx-NB-EQA">
             <objects>
-                <viewController title="Settings" id="buI-n2-72y" sceneMemberID="viewController">
+                <viewController title="Settings" id="buI-n2-72y" customClass="DropboxViewController" customModule="prestoid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j48-7X-w2S"/>
                         <viewControllerLayoutGuide type="bottom" id="eX8-l2-E2z"/>
@@ -23,13 +23,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SimpleView for Dropbox Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hP6-7Z-CAK">
-                                <rect key="frame" x="62" y="323" width="251" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lz2-ax-nmg">
+                                <rect key="frame" x="82" y="318" width="211" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Login to your Dropbox account"/>
+                                <connections>
+                                    <action selector="setUpDropbox:" destination="buI-n2-72y" eventType="touchUpInside" id="FYX-yR-VEY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrg-VV-tOc">
+                                <rect key="frame" x="164" y="136" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="testButtonTwo:" destination="buI-n2-72y" eventType="touchUpInside" id="dh4-TC-wcC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOi-Mg-dXN">
+                                <rect key="frame" x="247" y="136" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="testButtonThree:" destination="buI-n2-72y" eventType="touchUpInside" id="o6Y-aW-xrh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqE-vZ-sgt">
+                                <rect key="frame" x="82" y="136" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="testButtonOne:" destination="buI-n2-72y" eventType="touchUpInside" id="8CW-WW-DK5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

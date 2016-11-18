@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyDropbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -15,7 +16,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        DropboxClientsManager.setupWithAppKey("ioz8ygaeh7x3mfb")
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        if let authResult = DropboxClientsManager.handleRedirectURL(url) {
+            switch authResult {
+            case .success(let token):
+                print("Success! User is logged into Dropbox with token: \(token)")
+            case .cancel:
+                print("User canceld OAuth flow.")
+            case .error(let error, let description):
+                print("Error \(error): \(description)")
+            }
+        }
+        return false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
