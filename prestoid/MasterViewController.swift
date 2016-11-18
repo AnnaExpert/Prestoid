@@ -120,6 +120,11 @@ class MasterViewController: UITableViewController {
         
         if (cellInformationContent[indexPath.row] != nil) {
             cell.cellInformationView.isHidden = cellInformationContent[indexPath.row]!
+            cell.cellDateTextLabel.isHidden = cellInformationContent[indexPath.row]!
+            cell.cellDurationTextLabel.isHidden = cellInformationContent[indexPath.row]!
+            cell.cellTopTextLabel.isHidden = cellInformationContent[indexPath.row]!
+            cell.cellBottomTextLabel.isHidden = cellInformationContent[indexPath.row]!
+
         }
         
         return cell
@@ -143,6 +148,9 @@ class MasterViewController: UITableViewController {
                     self.videosArray.remove(at: indexPath.row)
                     let defaults = UserDefaults.standard
                     defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
+                    if (self.cellInformationContent[indexPath.row] != nil) {
+                        self.cellInformationContent.removeValue(forKey: indexPath.row)
+                    }
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }
                 catch {
@@ -152,9 +160,6 @@ class MasterViewController: UITableViewController {
                 self.videosArray.remove(at: indexPath.row)
                 let defaults = UserDefaults.standard
                 defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
-                if (self.cellInformationContent[indexPath.row] != nil) {
-                    self.cellInformationContent.removeValue(forKey: indexPath.row)
-                }
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
@@ -195,6 +200,8 @@ class MasterViewController: UITableViewController {
         }
         
         metadata.backgroundColor = UIColor.orange
+        print("self.cellInformationContent")
+        print(self.cellInformationContent)
         
         return [delete, metadata]
      }

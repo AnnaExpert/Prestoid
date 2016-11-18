@@ -23,46 +23,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lz2-ax-nmg">
-                                <rect key="frame" x="82" y="318" width="211" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login to your Dropbox account"/>
-                                <connections>
-                                    <action selector="setUpDropbox:" destination="buI-n2-72y" eventType="touchUpInside" id="FYX-yR-VEY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrg-VV-tOc">
-                                <rect key="frame" x="164" y="136" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="testButtonTwo:" destination="buI-n2-72y" eventType="touchUpInside" id="dh4-TC-wcC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOi-Mg-dXN">
-                                <rect key="frame" x="247" y="136" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="testButtonThree:" destination="buI-n2-72y" eventType="touchUpInside" id="o6Y-aW-xrh"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqE-vZ-sgt">
-                                <rect key="frame" x="82" y="136" width="46" height="30"/>
+                                <rect key="frame" x="119" y="352" width="136" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" title="Connect"/>
                                 <connections>
-                                    <action selector="testButtonOne:" destination="buI-n2-72y" eventType="touchUpInside" id="8CW-WW-DK5"/>
+                                    <action selector="connectDropboxAccount:" destination="buI-n2-72y" eventType="touchUpInside" id="D1v-fs-FZU"/>
                                 </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please connect your Dropbox for cloud sync" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFO-BN-k6J">
+                                <rect key="frame" x="16" y="323" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Dropbox" translatesAutoresizingMaskIntoConstraints="NO" id="nor-Oh-L6w">
+                                <rect key="frame" x="67" y="28" width="240" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NQ8-fg-FxN">
+                                <rect key="frame" x="16" y="111" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dropbox account is linked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERJ-6h-zMd">
+                                <rect key="frame" x="16" y="40" width="343" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hd-vi-qP6">
+                                <rect key="frame" x="144" y="132" width="215" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9h-a5-2ab">
+                                <rect key="frame" x="144" y="186" width="215" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wjq-uY-E3f">
+                                <rect key="frame" x="97" y="352" width="180" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" title="Disconnect"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Dropbox" image="Cloud" selectedImage="CloudFilled" id="gbF-Su-YDB"/>
+                    <connections>
+                        <outlet property="accountPhotoImageView" destination="NQ8-fg-FxN" id="ZfU-qT-GN5"/>
+                        <outlet property="authorizeYourAccountTextLabel" destination="FFO-BN-k6J" id="voH-Eq-z32"/>
+                        <outlet property="connectDropboxAccountButton" destination="HqE-vZ-sgt" id="z9R-yg-lg4"/>
+                        <outlet property="disconnectDropboxAccountButton" destination="Wjq-uY-E3f" id="J1K-30-B6g"/>
+                        <outlet property="dropboxAccountAuthorizedLabel" destination="ERJ-6h-zMd" id="fiv-wu-bgj"/>
+                        <outlet property="dropboxLogoImageView" destination="nor-Oh-L6w" id="XP8-GT-7KG"/>
+                        <outlet property="userEmailTextLabel" destination="m9h-a5-2ab" id="V9F-iA-rAP"/>
+                        <outlet property="userNameTextLabel" destination="4Hd-vi-qP6" id="hu0-cw-GJ7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTM-3w-N2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3443" y="636"/>
+            <point key="canvasLocation" x="3442.4000000000001" y="635.53223388305855"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Xsd-Uu-TCx">
@@ -74,9 +103,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="buI-n2-72y" kind="relationship" relationship="viewControllers" id="i70-mA-sKq"/>
                         <segue destination="xOc-vR-kRy" kind="relationship" relationship="viewControllers" id="hzu-gm-yO0"/>
                         <segue destination="cgM-PO-D8y" kind="relationship" relationship="viewControllers" id="dUQ-F9-ocR"/>
-                        <segue destination="buI-n2-72y" kind="relationship" relationship="viewControllers" id="i70-mA-sKq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWi-VK-SIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -240,66 +269,66 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="151"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" tableViewCell="s3T-mE-HDd" id="GhJ-4g-GWD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="151"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KMI-Tp-8kl">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                         </imageView>
-                                        <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlE-Xy-iv1">
+                                        <view hidden="YES" alpha="0.66000000000000003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlE-Xy-iv1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video captured:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="q5S-Ve-bFm">
-                                                    <rect key="frame" x="8" y="8" width="359" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Vtx-LG-Wk6">
-                                                    <rect key="frame" x="8" y="84" width="359" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="zOT-74-lpL">
-                                                    <rect key="frame" x="8" y="121" width="359" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video duration: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Opj-N0-agz">
-                                                    <rect key="frame" x="8" y="45" width="359" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="Opj-N0-agz" firstAttribute="leading" secondItem="Vtx-LG-Wk6" secondAttribute="leading" id="2Vz-Dt-WSe"/>
-                                                <constraint firstItem="q5S-Ve-bFm" firstAttribute="trailing" secondItem="tlE-Xy-iv1" secondAttribute="trailingMargin" id="6ep-Ph-x6v"/>
-                                                <constraint firstItem="Vtx-LG-Wk6" firstAttribute="trailing" secondItem="zOT-74-lpL" secondAttribute="trailing" id="EJ1-Li-Iwl"/>
-                                                <constraint firstItem="Opj-N0-agz" firstAttribute="trailing" secondItem="Vtx-LG-Wk6" secondAttribute="trailing" id="Mn3-aD-eT1"/>
-                                                <constraint firstItem="q5S-Ve-bFm" firstAttribute="leading" secondItem="tlE-Xy-iv1" secondAttribute="leadingMargin" id="Rve-yA-u2V"/>
-                                                <constraint firstItem="Vtx-LG-Wk6" firstAttribute="leading" secondItem="zOT-74-lpL" secondAttribute="leading" id="UxX-Xt-hjX"/>
-                                                <constraint firstItem="zOT-74-lpL" firstAttribute="bottom" secondItem="tlE-Xy-iv1" secondAttribute="bottomMargin" id="VHq-RZ-REY"/>
-                                                <constraint firstItem="q5S-Ve-bFm" firstAttribute="trailing" secondItem="Opj-N0-agz" secondAttribute="trailing" id="ajt-wu-wu8"/>
-                                                <constraint firstItem="Opj-N0-agz" firstAttribute="top" secondItem="q5S-Ve-bFm" secondAttribute="bottom" constant="16" id="bTa-SD-VKJ"/>
-                                                <constraint firstItem="zOT-74-lpL" firstAttribute="top" secondItem="Vtx-LG-Wk6" secondAttribute="bottom" constant="16" id="eYJ-Vm-gvz"/>
-                                                <constraint firstItem="q5S-Ve-bFm" firstAttribute="top" secondItem="tlE-Xy-iv1" secondAttribute="topMargin" id="jV5-hK-0nG"/>
-                                                <constraint firstItem="q5S-Ve-bFm" firstAttribute="leading" secondItem="Opj-N0-agz" secondAttribute="leading" id="sff-5U-8NS"/>
-                                            </constraints>
                                         </view>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video duration: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Opj-N0-agz">
+                                            <rect key="frame" x="8" y="45" width="359" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video captured:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="q5S-Ve-bFm">
+                                            <rect key="frame" x="8" y="8" width="359" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="zOT-74-lpL">
+                                            <rect key="frame" x="8" y="119" width="359" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Vtx-LG-Wk6">
+                                            <rect key="frame" x="8" y="82" width="359" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="tlE-Xy-iv1" firstAttribute="top" secondItem="GhJ-4g-GWD" secondAttribute="top" id="6N9-rX-OqG"/>
-                                        <constraint firstItem="KMI-Tp-8kl" firstAttribute="top" secondItem="tlE-Xy-iv1" secondAttribute="top" id="Abb-tG-WVM"/>
-                                        <constraint firstAttribute="trailing" secondItem="KMI-Tp-8kl" secondAttribute="trailing" id="Gz4-wH-Xf5"/>
-                                        <constraint firstItem="tlE-Xy-iv1" firstAttribute="leading" secondItem="KMI-Tp-8kl" secondAttribute="leading" id="Qvt-s2-e5a"/>
-                                        <constraint firstItem="KMI-Tp-8kl" firstAttribute="trailing" secondItem="tlE-Xy-iv1" secondAttribute="trailing" id="e3I-7Q-MsN"/>
-                                        <constraint firstItem="tlE-Xy-iv1" firstAttribute="bottom" secondItem="KMI-Tp-8kl" secondAttribute="bottom" id="fJS-Sz-KVc"/>
-                                        <constraint firstItem="KMI-Tp-8kl" firstAttribute="leading" secondItem="GhJ-4g-GWD" secondAttribute="leading" id="sEM-Md-aEa"/>
-                                        <constraint firstAttribute="bottom" secondItem="tlE-Xy-iv1" secondAttribute="bottom" id="uWK-M6-TEC"/>
+                                        <constraint firstItem="KMI-Tp-8kl" firstAttribute="leading" secondItem="tlE-Xy-iv1" secondAttribute="leading" id="2Ha-KW-a3g"/>
+                                        <constraint firstItem="Vtx-LG-Wk6" firstAttribute="top" secondItem="Opj-N0-agz" secondAttribute="bottom" constant="16" id="2R5-aj-uJJ"/>
+                                        <constraint firstItem="q5S-Ve-bFm" firstAttribute="trailing" secondItem="Opj-N0-agz" secondAttribute="trailing" id="3Xn-io-dzg"/>
+                                        <constraint firstItem="Opj-N0-agz" firstAttribute="top" secondItem="q5S-Ve-bFm" secondAttribute="bottom" constant="16" id="3o8-3T-wGx"/>
+                                        <constraint firstItem="q5S-Ve-bFm" firstAttribute="leading" secondItem="GhJ-4g-GWD" secondAttribute="leadingMargin" id="4Ws-l1-aot"/>
+                                        <constraint firstAttribute="bottom" secondItem="KMI-Tp-8kl" secondAttribute="bottom" id="5E3-2S-1yL"/>
+                                        <constraint firstItem="Vtx-LG-Wk6" firstAttribute="trailing" secondItem="zOT-74-lpL" secondAttribute="trailing" id="96P-C9-vlb"/>
+                                        <constraint firstItem="q5S-Ve-bFm" firstAttribute="leading" secondItem="Opj-N0-agz" secondAttribute="leading" id="CDC-Kd-VME"/>
+                                        <constraint firstAttribute="trailing" secondItem="KMI-Tp-8kl" secondAttribute="trailing" id="E1H-dY-xNS"/>
+                                        <constraint firstItem="Opj-N0-agz" firstAttribute="leading" secondItem="Vtx-LG-Wk6" secondAttribute="leading" id="Kf6-j9-yn0"/>
+                                        <constraint firstItem="KMI-Tp-8kl" firstAttribute="top" secondItem="tlE-Xy-iv1" secondAttribute="top" id="Ogz-Ae-cfZ"/>
+                                        <constraint firstItem="tlE-Xy-iv1" firstAttribute="leading" secondItem="GhJ-4g-GWD" secondAttribute="leading" id="UG4-kT-yPD"/>
+                                        <constraint firstItem="tlE-Xy-iv1" firstAttribute="bottom" secondItem="KMI-Tp-8kl" secondAttribute="bottom" id="Ujj-Wj-iay"/>
+                                        <constraint firstItem="tlE-Xy-iv1" firstAttribute="trailing" secondItem="KMI-Tp-8kl" secondAttribute="trailing" id="X6i-Kw-VS2"/>
+                                        <constraint firstItem="Vtx-LG-Wk6" firstAttribute="leading" secondItem="zOT-74-lpL" secondAttribute="leading" id="YQ4-Me-OP2"/>
+                                        <constraint firstItem="tlE-Xy-iv1" firstAttribute="centerX" secondItem="q5S-Ve-bFm" secondAttribute="centerX" id="YXY-sq-9Qa"/>
+                                        <constraint firstItem="tlE-Xy-iv1" firstAttribute="top" secondItem="GhJ-4g-GWD" secondAttribute="top" id="fcl-Mn-cR5"/>
+                                        <constraint firstItem="Opj-N0-agz" firstAttribute="trailing" secondItem="Vtx-LG-Wk6" secondAttribute="trailing" id="gmw-ri-KTh"/>
+                                        <constraint firstItem="zOT-74-lpL" firstAttribute="top" secondItem="Vtx-LG-Wk6" secondAttribute="bottom" constant="16" id="kqG-Ml-UGa"/>
+                                        <constraint firstItem="q5S-Ve-bFm" firstAttribute="top" secondItem="GhJ-4g-GWD" secondAttribute="topMargin" id="zu4-nv-fIe"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -455,6 +484,7 @@
         <image name="CameraFilled" width="30" height="22"/>
         <image name="Cloud" width="30" height="19"/>
         <image name="CloudFilled" width="30" height="19"/>
+        <image name="Dropbox" width="120" height="120"/>
         <image name="Play" width="30" height="25"/>
         <image name="PlayButton" width="21" height="22"/>
         <image name="PlayFilled" width="30" height="25"/>

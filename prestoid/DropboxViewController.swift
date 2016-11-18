@@ -11,9 +11,22 @@ import AVFoundation
 import SwiftyDropbox
 
 class DropboxViewController: UIViewController {
+    @IBOutlet weak var dropboxLogoImageView: UIImageView!
+    @IBOutlet weak var authorizeYourAccountTextLabel: UILabel!
+    @IBOutlet weak var connectDropboxAccountButton: UIButton!
+    
+    @IBOutlet weak var disconnectDropboxAccountButton: UIButton!
+    @IBOutlet weak var dropboxAccountAuthorizedLabel: UILabel!
+    @IBOutlet weak var accountPhotoImageView: UIImageView!
+    @IBOutlet weak var userNameTextLabel: UILabel!
+    @IBOutlet weak var userEmailTextLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        if let user = DropboxClientsManager.authorizedClient {
+//            checkAllFiles()
+//        }
+        
         
 //        if let client = DropboxClientsManager.authorizedClient {
 //            client.files.createFolder(path: "/test/path/in/Dropbox/account").response { response, error in
@@ -37,12 +50,53 @@ class DropboxViewController: UIViewController {
         super.viewDidAppear(animated)
     }
     
-    @IBAction func setUpDropbox(_ sender: Any) {
+    override func viewWillAppear(_ animated: Bool) {
+        if checkAuthorization() {
+            print("USER AUTHORIZED")
+            dropboxLogoImageView.isHidden = true
+            authorizeYourAccountTextLabel.isHidden = true
+            connectDropboxAccountButton.isHidden = true
+            
+            var userEmail = String()
+            var userName = String()
+            var userImageUrl = String()
+            
+            let currentAccountRequest = DropboxClientsManager.authorizedClient!.users.getCurrentAccount()
+                .response { response, error in
+                    if let response = response {
+                        userEmail = response.email
+                        userName = response.name.displayName
+                        if let userImage = response.profilePhotoUrl {
+                            userImageUrl = userImage
+                        }
+                    } else if let error = error {
+                        print(error)
+                    }
+            }
+            
+            
+            
+        } else {
+            print("NEED AUTHORIZATION")
+            dropboxLogoImageView.isHidden = false
+            authorizeYourAccountTextLabel.isHidden = false
+            connectDropboxAccountButton.isHidden = false
+        }
+    }
+    
+    @IBAction func connectDropboxAccount(_ sender: Any) {
+        
+        // Link account via iOS application
         linkDropboxViaApp()
+        
+        // Link account via browser
 //        linkDropboxViaBrowser()
+        
+    }
+    
+    @IBAction func setUpDropbox(_ sender: Any) {
     }
     @IBAction func testButtonOne(_ sender: Any) {
-        rpcStyleRequest()
     }
     @IBAction func testButtonTwo(_ sender: Any) {
         uploadStyleRequest()
@@ -63,6 +117,14 @@ class DropboxViewController: UIViewController {
     */
     
     // Mark: Dropbox integration
+    
+    func checkAuthorization() -> Bool {
+        if let client = DropboxClientsManager.authorizedClient {
+            return true
+        } else {
+            return false
+        }
+    }
     
     func linkDropboxViaApp() {
         DropboxClientsManager.authorizeFromController(UIApplication.shared,
@@ -103,9 +165,16 @@ class DropboxViewController: UIViewController {
     
     // Mark: RPC-style request
     
+    func checkAllFiles() {
+        if let client = DropboxClientsManager.authorizedClient {
+            
+        }
+    }
+    
     func rpcStyleRequest() {
         if let client = DropboxClientsManager.authorizedClient {
-        client.files.createFolder(path: "/videos").response { response, error in
+        client.files.createFolder(path: "/")
+            .response { response, error in
             if let response = response {
                 print(response)
             } else if let error = error {
@@ -121,7 +190,7 @@ class DropboxViewController: UIViewController {
         if let client = DropboxClientsManager.authorizedClient {
         let fileData = "testing data example".data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
-        let request = client.files.upload(path: "/videos/file.txt", input: fileData)
+        let request = client.files.upload(path: "/file.txt", input: fileData)
             .response { response, error in
                 if let response = response {
                     print(response)
@@ -170,7 +239,7 @@ class DropboxViewController: UIViewController {
         // Download to Data
         
         if let client = DropboxClientsManager.authorizedClient {
-        client.files.download(path: "/videos/file")
+        client.files.download(path: "/file")
             .response { response, error in
                 if let response = response {
                     let responseMetadata = response.0
