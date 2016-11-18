@@ -181,7 +181,53 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 			videoPreviewLayerConnection.videoOrientation = newVideoOrientation
 		}
 	}
-
+    
+    // Mark: Timer
+    
+    @IBOutlet weak var timerLabel: UILabel!
+    
+    var startTime = TimeInterval()
+    
+    var timer:Timer = Timer()
+    
+    func startTimer() {
+        if (!timer.isValid) {
+            let aSelector : Selector = #selector(CameraViewController.updateTime)
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
+            startTime = NSDate.timeIntervalSinceReferenceDate
+        }
+    }
+    
+    func stopTimer() {
+        timer.invalidate()
+    }
+    
+    func updateTime() {
+        let currentTime = NSDate.timeIntervalSinceReferenceDate
+        
+        //Find the difference between current time and start time.
+        var elapsedTime: TimeInterval = currentTime - startTime
+        
+        //calculate the minutes in elapsed time.
+        let minutes = UInt8(elapsedTime / 60.0)
+        elapsedTime -= (TimeInterval(minutes) * 60)
+        
+        //calculate the seconds in elapsed time.
+        let seconds = UInt8(elapsedTime)
+        elapsedTime -= TimeInterval(seconds)
+        
+        //find out the fraction of milliseconds to be displayed.
+//        let fraction = UInt8(elapsedTime * 100)
+        
+        //add the leading zero for minutes, seconds and millseconds and store them as string constants
+        
+        let strMinutes = String(format: "%02d", minutes)
+        let strSeconds = String(format: "%02d", seconds)
+        
+        //concatenate minuets, seconds and milliseconds as assign it to the UILabel
+        timerLabel.text = "\(strMinutes):\(strSeconds)"
+    }
+    
 	// MARK: Session Management
 	
 	private enum SessionSetupResult {
@@ -481,6 +527,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         cameraButton.isHidden = true
 		recordButton.isEnabled = false
         self.tabBarController?.tabBar.isHidden = true
+        
+        timerLabel.isHidden = !timerLabel.isHidden
+        startTimer()
 		
 		/*
 			Retrieve the video preview layer's video orientation on the main queue
