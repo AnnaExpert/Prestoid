@@ -20,6 +20,7 @@ class DropboxViewController: UIViewController {
     @IBOutlet weak var accountPhotoImageView: UIImageView!
     @IBOutlet weak var userNameTextLabel: UILabel!
     @IBOutlet weak var userEmailTextLabel: UILabel!
+    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,8 @@ class DropboxViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadingActivityIndicator.isHidden = false
+        loadingActivityIndicator.startAnimating()
         if checkAuthorization() {
             print("USER AUTHORIZED")
             dropboxLogoImageView.isHidden = true
@@ -59,25 +62,45 @@ class DropboxViewController: UIViewController {
             
             var userEmail = String()
             var userName = String()
-            var userImageUrl = String()
+            var userImage = UIImage()
             
             let currentAccountRequest = DropboxClientsManager.authorizedClient!.users.getCurrentAccount()
                 .response { response, error in
                     if let response = response {
                         userEmail = response.email
                         userName = response.name.displayName
-                        if let userImage = response.profilePhotoUrl {
-                            userImageUrl = userImage
+                        if let userImageUrl = response.profilePhotoUrl {
+                            if let url = URL(string: userImageUrl) {
+                                if let data = NSData(contentsOf: url) {
+                                    userImage = UIImage(data: data as Data)!
+                                }
+                            }
+                        } else {
+                            userImage = UIImage(named: "Dropbox")!
                         }
+                        self.accountPhotoImageView.image = userImage
+                        self.userNameTextLabel.text = userName
+                        self.userEmailTextLabel.text = userEmail
+                        self.accountPhotoImageView.isHidden = false
+                        self.userNameTextLabel.isHidden = false
+                        self.userEmailTextLabel.isHidden = false
+                        self.loadingActivityIndicator.isHidden = false
+                        self.disconnectDropboxAccountButton.isHidden = false
+                        self.dropboxAccountAuthorizedLabel.isHidden = false
+                        self.loadingActivityIndicator.stopAnimating()
                     } else if let error = error {
                         print(error)
                     }
             }
-            
-            
-            
         } else {
             print("NEED AUTHORIZATION")
+            
+            
+            accountPhotoImageView.isHidden = true
+            userNameTextLabel.isHidden = true
+            userEmailTextLabel.isHidden = true
+            
+            
             dropboxLogoImageView.isHidden = false
             authorizeYourAccountTextLabel.isHidden = false
             connectDropboxAccountButton.isHidden = false
