@@ -733,10 +733,20 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 let moviePath = docsPath + "/" + videosArray.last! + ".mov"
 //                print("MOVIE PATH OF FILE: " + moviePath)
                 video.write(toFile: moviePath, atomically: false)
+                
+                
+                
+                
             } catch {
                 print("Can't convert video to data file")
                 cleanup()
             }
+            
+            
+            // Save video to dropbox.
+            
+            let saver = DropboxViewController()
+            saver.uploadLastVideoFile()
             
             /*
             // Save the movie file to the photo library and cleanup.

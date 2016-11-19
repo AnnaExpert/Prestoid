@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import SwiftyDropbox
 
-class DropboxViewController: UIViewController, UIViewControllerTransitioningDelegate {
+public class DropboxViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     var videosArray: [String] = Array()
     let savedVideosArrayKey = "savedVideosArray"
@@ -27,7 +27,7 @@ class DropboxViewController: UIViewController, UIViewControllerTransitioningDele
     @IBOutlet weak var userEmailTextLabel: UILabel!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
-    class DropboxUser {
+    public class DropboxUser {
         var authorized = false
         var name = "Dropbox User"
         var email = "email@dropbox.com"
@@ -35,7 +35,7 @@ class DropboxViewController: UIViewController, UIViewControllerTransitioningDele
     }
     
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         
@@ -58,19 +58,18 @@ class DropboxViewController: UIViewController, UIViewControllerTransitioningDele
         // Do any additional setup after loading the view.
     }
     @IBAction func testButton(_ sender: Any) {
-        uploadVideoFile()
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
             videosArray = arrayValue as! [String]
@@ -216,9 +215,13 @@ class DropboxViewController: UIViewController, UIViewControllerTransitioningDele
     
     // Mark: Upload-style request
     
-    func uploadVideoFile() {
+    public func uploadLastVideoFile() {
+        let defaults = UserDefaults.standard
+        if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
+            videosArray = arrayValue as! [String]
+        }
         if let client = DropboxClientsManager.authorizedClient {
-            let path = videosArray[1]
+            let path = videosArray.last!
             let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
             let videoFileDataPath = docsPath + "/" + path + ".mov"
             let videoFileURL = URL.init(fileURLWithPath: videoFileDataPath)
