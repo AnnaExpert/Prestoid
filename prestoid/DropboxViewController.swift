@@ -57,6 +57,9 @@ class DropboxViewController: UIViewController, UIViewControllerTransitioningDele
 
         // Do any additional setup after loading the view.
     }
+    @IBAction func testButton(_ sender: Any) {
+        uploadVideoFile()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -222,7 +225,7 @@ class DropboxViewController: UIViewController, UIViewControllerTransitioningDele
             do {
                 let videoFileData = try Data(contentsOf: videoFileURL)
                 let fileData = videoFileData
-                let request = client.files.upload(path: "/file.txt", input: fileData)
+                let request = client.files.upload(path: "/\(path).mov", input: fileData)
                     .response { response, error in
                         if let response = response {
                             print(response)
