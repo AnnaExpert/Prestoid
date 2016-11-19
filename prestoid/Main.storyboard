@@ -73,6 +73,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="Disconnect"/>
+                                <connections>
+                                    <action selector="disconnectDropboxAccount:" destination="buI-n2-72y" eventType="touchUpInside" id="8LQ-wr-qts"/>
+                                </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="W9k-2p-EA9">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
@@ -81,6 +84,9 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" identifier="SettingsView">
+                            <bool key="isElement" value="NO"/>
+                        </accessibility>
                     </view>
                     <tabBarItem key="tabBarItem" title="Dropbox" image="Cloud" selectedImage="CloudFilled" id="gbF-Su-YDB"/>
                     <connections>
@@ -109,9 +115,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="buI-n2-72y" kind="relationship" relationship="viewControllers" id="i70-mA-sKq"/>
                         <segue destination="xOc-vR-kRy" kind="relationship" relationship="viewControllers" id="hzu-gm-yO0"/>
                         <segue destination="cgM-PO-D8y" kind="relationship" relationship="viewControllers" id="dUQ-F9-ocR"/>
+                        <segue destination="buI-n2-72y" kind="relationship" relationship="viewControllers" id="i70-mA-sKq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWi-VK-SIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -275,7 +281,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="151"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" tableViewCell="s3T-mE-HDd" id="GhJ-4g-GWD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="151"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KMI-Tp-8kl">

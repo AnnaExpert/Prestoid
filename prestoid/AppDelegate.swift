@@ -25,12 +25,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             switch authResult {
             case .success(let token):
                 print("Success! User is logged into Dropbox with token: \(token)")
+                let user = DropboxViewController.DropboxUser()
+                user.authorized = true
+                return true
             case .cancel:
                 print("User canceld OAuth flow.")
+                let user = DropboxViewController.DropboxUser()
+                user.authorized = false
+                return false
             case .error(let error, let description):
                 print("Error \(error): \(description)")
+                let user = DropboxViewController.DropboxUser()
+                user.authorized = false
+                return false
             }
         }
+        let user = DropboxViewController.DropboxUser()
+        user.authorized = false
         return false
     }
 

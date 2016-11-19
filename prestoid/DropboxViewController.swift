@@ -10,7 +10,12 @@ import UIKit
 import AVFoundation
 import SwiftyDropbox
 
-class DropboxViewController: UIViewController {
+class DropboxViewController: UIViewController, UIViewControllerTransitioningDelegate {
+    
+    var videosArray: [String] = Array()
+    let savedVideosArrayKey = "savedVideosArray"
+    let user = DropboxUser()
+    
     @IBOutlet weak var dropboxLogoImageView: UIImageView!
     @IBOutlet weak var authorizeYourAccountTextLabel: UILabel!
     @IBOutlet weak var connectDropboxAccountButton: UIButton!
@@ -22,8 +27,19 @@ class DropboxViewController: UIViewController {
     @IBOutlet weak var userEmailTextLabel: UILabel!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
+    class DropboxUser {
+        var authorized = false
+        var name = "Dropbox User"
+        var email = "email@dropbox.com"
+        var avatar = UIImage(named: "Dropbox")!
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
 //        if let user = DropboxClientsManager.authorizedClient {
 //            checkAllFiles()
 //        }
@@ -52,39 +68,68 @@ class DropboxViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadingActivityIndicator.isHidden = false
-        loadingActivityIndicator.startAnimating()
-        if checkAuthorization() {
-            print("USER AUTHORIZED")
+        let defaults = UserDefaults.standard
+        if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
+            videosArray = arrayValue as! [String]
+        }
+        user.authorized = checkAuthorization()
+        super.viewWillAppear(animated)
+        
+    }
+    
+    @IBAction func connectDropboxAccount(_ sender: Any) {
+        // Link account via iOS application
+        linkDropboxViaApp()
+    }
+    
+    @IBAction func disconnectDropboxAccount(_ sender: Any) {
+        DropboxClientsManager.unlinkClients()
+        loadingActivityIndicator.stopAnimating()
+        accountPhotoImageView.isHidden = true
+        userNameTextLabel.isHidden = true
+        userEmailTextLabel.isHidden = true
+        disconnectDropboxAccountButton.isHidden = true
+        dropboxAccountAuthorizedLabel.isHidden = true
+        dropboxLogoImageView.isHidden = false
+        authorizeYourAccountTextLabel.isHidden = false
+        connectDropboxAccountButton.isHidden = false
+        let user = DropboxUser()
+        user.authorized = false
+    }
+    
+    // Mark: Dropbox integration
+    
+    func checkAuthorization() -> Bool {
+        if DropboxClientsManager.authorizedClient != nil {
+            loadingActivityIndicator.isHidden = false
+            loadingActivityIndicator.startAnimating()
             dropboxLogoImageView.isHidden = true
             authorizeYourAccountTextLabel.isHidden = true
             connectDropboxAccountButton.isHidden = true
             
-            var userEmail = String()
-            var userName = String()
-            var userImage = UIImage()
-            
-            let currentAccountRequest = DropboxClientsManager.authorizedClient!.users.getCurrentAccount()
+            _ = DropboxClientsManager.authorizedClient!.users.getCurrentAccount()
                 .response { response, error in
                     if let response = response {
-                        userEmail = response.email
-                        userName = response.name.displayName
+                        let user = DropboxUser()
+                        user.email = response.email
+                        user.name = response.name.displayName
                         if let userImageUrl = response.profilePhotoUrl {
                             if let url = URL(string: userImageUrl) {
                                 if let data = NSData(contentsOf: url) {
-                                    userImage = UIImage(data: data as Data)!
+                                    user.avatar = UIImage(data: data as Data)!
                                 }
                             }
                         } else {
-                            userImage = UIImage(named: "Dropbox")!
+                            user.avatar = UIImage(named: "Dropbox")!
                         }
-                        self.accountPhotoImageView.image = userImage
-                        self.userNameTextLabel.text = userName
-                        self.userEmailTextLabel.text = userEmail
+                        self.accountPhotoImageView.layer.cornerRadius = self.accountPhotoImageView.frame.width/4.0
+                        self.accountPhotoImageView.clipsToBounds = true
+                        self.accountPhotoImageView.image = user.avatar
+                        self.userNameTextLabel.text = user.name
+                        self.userEmailTextLabel.text = user.email
                         self.accountPhotoImageView.isHidden = false
                         self.userNameTextLabel.isHidden = false
                         self.userEmailTextLabel.isHidden = false
-                        self.loadingActivityIndicator.isHidden = false
                         self.disconnectDropboxAccountButton.isHidden = false
                         self.dropboxAccountAuthorizedLabel.isHidden = false
                         self.loadingActivityIndicator.stopAnimating()
@@ -92,68 +137,26 @@ class DropboxViewController: UIViewController {
                         print(error)
                     }
             }
+            return true
         } else {
-            print("NEED AUTHORIZATION")
-            
-            
+            loadingActivityIndicator.stopAnimating()
             accountPhotoImageView.isHidden = true
             userNameTextLabel.isHidden = true
             userEmailTextLabel.isHidden = true
-            
+            disconnectDropboxAccountButton.isHidden = true
+            dropboxAccountAuthorizedLabel.isHidden = true
             
             dropboxLogoImageView.isHidden = false
             authorizeYourAccountTextLabel.isHidden = false
             connectDropboxAccountButton.isHidden = false
-        }
-    }
-    
-    @IBAction func connectDropboxAccount(_ sender: Any) {
-        
-        // Link account via iOS application
-        linkDropboxViaApp()
-        
-        // Link account via browser
-//        linkDropboxViaBrowser()
-        
-    }
-    
-    @IBAction func setUpDropbox(_ sender: Any) {
-    }
-    @IBAction func testButtonOne(_ sender: Any) {
-    }
-    @IBAction func testButtonTwo(_ sender: Any) {
-        uploadStyleRequest()
-    }
-    @IBAction func testButtonThree(_ sender: Any) {
-        downloadStyleRequest()
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    // Mark: Dropbox integration
-    
-    func checkAuthorization() -> Bool {
-        if let client = DropboxClientsManager.authorizedClient {
-            return true
-        } else {
             return false
         }
     }
     
-    func linkDropboxViaApp() {
+    func linkDropboxViaApp(completion: ((Bool) -> Swift.Void)? = nil) {
         DropboxClientsManager.authorizeFromController(UIApplication.shared,
                                                       controller: self,
                                                       openURL: { (url: URL) -> Void in
-//                                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
                                                         if #available(iOS 10.0, *) {
                                                             UIApplication.shared.open(url, options: [:], completionHandler: nil)
                                                         } else {
@@ -163,28 +166,29 @@ class DropboxViewController: UIViewController {
     }
     
     func linkDropboxViaBrowser() {
-        DropboxClientsManager.authorizeFromController(UIApplication.shared, controller: self, openURL: {(url: URL) -> Void in
-            if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.openURL(url)
-            }
+        DropboxClientsManager.authorizeFromController(UIApplication.shared,
+                                                      controller: self,
+                                                      openURL: {(url: URL) -> Void in
+                                                        if #available(iOS 10.0, *) {
+                                                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                                        } else {
+                                                            UIApplication.shared.openURL(url)
+                                                        }
         }, browserAuth: true)
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        if let authResult = DropboxClientsManager.handleRedirectURL(url) {
-            switch authResult {
-            case .success:
-                print("Success! User is logged into Dropbox.")
-            case .cancel:
-                print("Authorization flow was manually canceled by user!")
-            case .error(_, let description):
-                print("Error: \(description)")
-            }
-        }
-        return true
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     // Mark: RPC-style request
     
@@ -209,26 +213,35 @@ class DropboxViewController: UIViewController {
     
     // Mark: Upload-style request
     
-    func uploadStyleRequest() {
+    func uploadVideoFile() {
         if let client = DropboxClientsManager.authorizedClient {
-        let fileData = "testing data example".data(using: String.Encoding.utf8, allowLossyConversion: false)!
-        
-        let request = client.files.upload(path: "/file.txt", input: fileData)
-            .response { response, error in
-                if let response = response {
-                    print(response)
-                } else if let error = error {
-                    print(error)
+            let path = videosArray[1]
+            let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+            let videoFileDataPath = docsPath + "/" + path + ".mov"
+            let videoFileURL = URL.init(fileURLWithPath: videoFileDataPath)
+            do {
+                let videoFileData = try Data(contentsOf: videoFileURL)
+                let fileData = videoFileData
+                let request = client.files.upload(path: "/file.txt", input: fileData)
+                    .response { response, error in
+                        if let response = response {
+                            print(response)
+                        } else if let error = error {
+                            print(error)
+                        }
+                    }
+                    .progress { progressData in
+                        print(progressData)
                 }
+                
+                // in case you want to cancel the request
+                //        if someConditionIsSatisfied {
+                //            request.cancel()
+                //        }
+            } catch {
+                print("Can't load data file fro iPhone memory")
             }
-            .progress { progressData in
-                print(progressData)
-        }
-        
-        // in case you want to cancel the request
-//        if someConditionIsSatisfied {
-//            request.cancel()
-//        }
+            
         }
     }
     
