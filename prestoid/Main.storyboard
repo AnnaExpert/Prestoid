@@ -83,9 +83,9 @@
                                 <color key="color" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMw-xP-8Hn">
-                                <rect key="frame" x="164" y="485" width="46" height="30"/>
+                                <rect key="frame" x="127" y="485" width="121" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Refresh all videos"/>
                                 <connections>
                                     <action selector="testButton:" destination="buI-n2-72y" eventType="touchUpInside" id="gVq-HV-s2O"/>
                                 </connections>
@@ -289,7 +289,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="151"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" tableViewCell="s3T-mE-HDd" id="GhJ-4g-GWD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KMI-Tp-8kl">

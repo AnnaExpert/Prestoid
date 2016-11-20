@@ -101,16 +101,33 @@ class MasterViewController: UITableViewController {
         let time = String(timePart)
         */
         
+        var creation = ""
+        var duration = 0
+        var latitude = ""
+        var longitude = ""
+        
         let movieURL = URL.init(fileURLWithPath: moviePath)
         let asset = AVURLAsset(url: movieURL, options: nil)
         var metadata = AVMetadataItem()
-        metadata = asset.metadata[0]
-        let locationArray = String(describing: metadata.value!).components(separatedBy: "_")
-        let duration = Int(asset.duration.seconds)
-        let creationDate = asset.creationDate!.value as! Date
-        let creation = creationDate.toString()
-        let latitude = locationArray[1]
-        let longitude = locationArray[3]
+        if !asset.metadata.isEmpty {
+            metadata = asset.metadata[0]
+            let locationArray = String(describing: metadata.value!).components(separatedBy: "_")
+            duration = Int(asset.duration.seconds)
+            let creationDate = asset.creationDate!.value as! Date
+            creation = creationDate.toString()
+            latitude = locationArray[1]
+            longitude = locationArray[3]
+        } else {
+            let dataArray = String(describing: fileName).components(separatedBy: "_")
+            let stringLat = dataArray[3]
+            let stringLon = dataArray[4]
+            
+            latitude = stringLat
+            longitude = stringLon
+            duration = Int(asset.duration.seconds)
+            let creationDate = asset.creationDate!.value as! Date
+            creation = creationDate.toString()
+        }
         
         cell.cellImageView.image = thumbnail
         cell.cellDateTextLabel.text = String("Video recorded: \(creation)")
@@ -124,7 +141,13 @@ class MasterViewController: UITableViewController {
             cell.cellDurationTextLabel.isHidden = cellInformationContent[indexPath.row]!
             cell.cellTopTextLabel.isHidden = cellInformationContent[indexPath.row]!
             cell.cellBottomTextLabel.isHidden = cellInformationContent[indexPath.row]!
-
+        } else {
+            cellInformationContent[indexPath.row] = true
+            cell.cellInformationView.isHidden = cellInformationContent[indexPath.row]!
+            cell.cellDateTextLabel.isHidden = cellInformationContent[indexPath.row]!
+            cell.cellDurationTextLabel.isHidden = cellInformationContent[indexPath.row]!
+            cell.cellTopTextLabel.isHidden = cellInformationContent[indexPath.row]!
+            cell.cellBottomTextLabel.isHidden = cellInformationContent[indexPath.row]!
         }
         
         return cell

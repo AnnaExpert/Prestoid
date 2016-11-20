@@ -58,6 +58,8 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         // Do any additional setup after loading the view.
     }
     @IBAction func testButton(_ sender: Any) {
+        downloadAllFiles()
+        
     }
 
     override public func didReceiveMemoryWarning() {
@@ -194,26 +196,102 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     // Mark: RPC-style request
     
-    func checkAllFiles() {
-        if let client = DropboxClientsManager.authorizedClient {
-            
-        }
-    }
+    
     
     func rpcStyleRequest() {
         if let client = DropboxClientsManager.authorizedClient {
-        client.files.createFolder(path: "/")
-            .response { response, error in
-            if let response = response {
-                print(response)
-            } else if let error = error {
-                print(error)
+            client.files.createFolder(path: "")
+                .response { response, error in
+                    if let response = response {
+                        print(response)
+                    } else if let error = error {
+                        print(error)
+                    }
             }
-        }
         }
     }
     
-    // Mark: Upload-style request
+    // Mark: Download all new files
+    
+    public func downloadAllFiles() {
+        if let client = DropboxClientsManager.authorizedClient {
+            client.files.listFolder(path: "")
+                .response { response, error in
+                    let defaults = UserDefaults.standard
+                    if let arrayValue = defaults.array(forKey: self.savedVideosArrayKey) {
+                        self.videosArray = arrayValue as! [String]
+                    }
+                    if let response = response?.entries {
+                        for item in response {
+                            let dropboxName = item.name
+                            let dropboxPath = item.pathDisplay!
+                            var localName = ""
+                            var match = false
+                            for name in self.videosArray {
+                                let filename = "\(name).mov"
+                                localName = name
+                                if (filename == dropboxName) {
+                                    print("Have this file")
+                                    match = true
+                                }
+                            }
+                            if !match {
+                                let dataFile = self.downloadFile(fromPath: dropboxPath) as NSData
+                                let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+                                let filePath = docsPath + "/" + dropboxName
+                                //                print("MOVIE PATH OF FILE: " + moviePath)
+                                dataFile.write(toFile: filePath, atomically: false)
+                                self.videosArray.append(localName)
+                                defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
+                            }
+                        }
+                    } else if let error = error {
+                        print(error)
+                    }
+            }
+        }
+    }
+    
+    // Mark: Download File to Data
+    
+    public func downloadFile(fromPath: String) -> Data {
+        var result = Data()
+        if let client = DropboxClientsManager.authorizedClient {
+            client.files.download(path: fromPath)
+                .response { response, error in
+                    if let response = response {
+                        let responseMetadata = response.0
+                        print(responseMetadata)
+                        let fileContents = response.1
+                        print(fileContents)
+                        result = fileContents
+                    } else if let error = error {
+                        print(error)
+                    }
+                }
+                .progress { progressData in
+                    print(progressData)
+            }
+        }
+        return result
+    }
+    
+    // Mark: List folder
+    
+    public func checkAllFiles() {
+        if let client = DropboxClientsManager.authorizedClient {
+            client.files.listFolder(path: "")
+                .response { response, error in
+                    if let result = response?.entries {
+                        print(result)
+                    } else if let error = error {
+                        print(error)
+                    }
+            }
+        }
+    }
+    
+    // Mark: Upload files
     
     public func uploadLastVideoFile() {
         let defaults = UserDefaults.standard
@@ -228,7 +306,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             do {
                 let videoFileData = try Data(contentsOf: videoFileURL)
                 let fileData = videoFileData
-                let request = client.files.upload(path: "/\(path).mov", input: fileData)
+                _ = client.files.upload(path: "/\(path).mov", input: fileData)
                     .response { response, error in
                         if let response = response {
                             print(response)
@@ -256,38 +334,18 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     func downloadStyleRequest() {
         
         // Download to URL
-//        let fileManager = FileManager.default
-//        let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//        let destURL = directoryURL.appendingPathComponent("file.txt")
-//        let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
-//            return destURL
-//        }
-//        
-//        if let client = DropboxClientsManager.authorizedClient {
-//        client.files.download(path: "/videos/file.txt", overwrite: true, destination: destination)
-//            .response { response, error in
-//                if let response = response {
-//                    print(response)
-//                } else if let error = error {
-//                    print(error)
-//                }
-//            }
-//            .progress { progressData in
-//                print(progressData)
-//        }
-//        }
-        
-        
-        // Download to Data
+        let fileManager = FileManager.default
+        let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let destURL = directoryURL.appendingPathComponent("file.txt")
+        let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
+            return destURL
+        }
         
         if let client = DropboxClientsManager.authorizedClient {
-        client.files.download(path: "/file")
+        client.files.download(path: "/videos/file.txt", overwrite: true, destination: destination)
             .response { response, error in
                 if let response = response {
-                    let responseMetadata = response.0
-                    print(responseMetadata)
-                    let fileContents = response.1
-                    print(fileContents)
+                    print(response)
                 } else if let error = error {
                     print(error)
                 }
@@ -296,5 +354,10 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 print(progressData)
         }
         }
+        
+        
+        // Download to Data
+        
+        
     }
 }
