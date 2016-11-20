@@ -174,6 +174,8 @@ class MasterViewController: UITableViewController {
                     if (self.cellInformationContent[indexPath.row] != nil) {
                         self.cellInformationContent.removeValue(forKey: indexPath.row)
                     }
+                    let dropbox = DropboxViewController()
+                    dropbox.deleteFile(name: filename)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }
                 catch {
