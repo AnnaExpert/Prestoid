@@ -23,68 +23,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqE-vZ-sgt">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqE-vZ-sgt">
                                 <rect key="frame" x="119" y="352" width="136" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="Connect"/>
                                 <connections>
                                     <action selector="connectDropboxAccount:" destination="buI-n2-72y" eventType="touchUpInside" id="D1v-fs-FZU"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please connect your Dropbox for cloud sync" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFO-BN-k6J">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please connect your Dropbox for cloud sync" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFO-BN-k6J">
                                 <rect key="frame" x="16" y="323" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Dropbox" translatesAutoresizingMaskIntoConstraints="NO" id="nor-Oh-L6w">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dropbox" translatesAutoresizingMaskIntoConstraints="NO" id="nor-Oh-L6w">
                                 <rect key="frame" x="67" y="28" width="240" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NQ8-fg-FxN">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NQ8-fg-FxN">
                                 <rect key="frame" x="16" y="111" width="120" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="NdM-V7-1No"/>
+                                </constraints>
                             </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dropbox account is linked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERJ-6h-zMd">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dropbox account is linked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERJ-6h-zMd">
                                 <rect key="frame" x="16" y="40" width="343" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hd-vi-qP6">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hd-vi-qP6">
                                 <rect key="frame" x="144" y="132" width="215" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9h-a5-2ab">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9h-a5-2ab">
                                 <rect key="frame" x="144" y="186" width="215" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wjq-uY-E3f">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wjq-uY-E3f">
                                 <rect key="frame" x="97" y="352" width="180" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="Disconnect"/>
                                 <connections>
                                     <action selector="disconnectDropboxAccount:" destination="buI-n2-72y" eventType="touchUpInside" id="8LQ-wr-qts"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="W9k-2p-EA9">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="W9k-2p-EA9">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMw-xP-8Hn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMw-xP-8Hn">
                                 <rect key="frame" x="127" y="485" width="121" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Refresh all videos"/>
                                 <connections>
                                     <action selector="testButton:" destination="buI-n2-72y" eventType="touchUpInside" id="gVq-HV-s2O"/>
@@ -95,6 +88,35 @@
                         <accessibility key="accessibilityConfiguration" identifier="SettingsView">
                             <bool key="isElement" value="NO"/>
                         </accessibility>
+                        <constraints>
+                            <constraint firstItem="W9k-2p-EA9" firstAttribute="centerX" secondItem="FFO-BN-k6J" secondAttribute="centerX" id="37o-be-RU2"/>
+                            <constraint firstItem="FFO-BN-k6J" firstAttribute="centerY" secondItem="W9k-2p-EA9" secondAttribute="centerY" id="51P-OC-OEW"/>
+                            <constraint firstItem="HqE-vZ-sgt" firstAttribute="centerX" secondItem="Wjq-uY-E3f" secondAttribute="centerX" id="6MB-Kn-5n9"/>
+                            <constraint firstItem="nor-Oh-L6w" firstAttribute="top" secondItem="j48-7X-w2S" secondAttribute="bottom" constant="8" symbolic="YES" id="7Ww-XX-Zdm"/>
+                            <constraint firstItem="m9h-a5-2ab" firstAttribute="top" secondItem="4Hd-vi-qP6" secondAttribute="bottom" constant="30" id="7bd-xk-rBi"/>
+                            <constraint firstItem="ERJ-6h-zMd" firstAttribute="top" secondItem="j48-7X-w2S" secondAttribute="bottom" constant="20" id="8AL-YG-41q"/>
+                            <constraint firstItem="4Hd-vi-qP6" firstAttribute="top" secondItem="ERJ-6h-zMd" secondAttribute="bottom" constant="68" id="B3C-GA-l3c"/>
+                            <constraint firstItem="NQ8-fg-FxN" firstAttribute="leading" secondItem="FFO-BN-k6J" secondAttribute="leading" id="EV5-av-VC5"/>
+                            <constraint firstItem="nor-Oh-L6w" firstAttribute="centerX" secondItem="ERJ-6h-zMd" secondAttribute="centerX" id="EXF-rj-FxB"/>
+                            <constraint firstItem="NQ8-fg-FxN" firstAttribute="top" secondItem="ERJ-6h-zMd" secondAttribute="bottom" constant="47" id="FqU-cb-8wi"/>
+                            <constraint firstItem="Wjq-uY-E3f" firstAttribute="centerX" secondItem="cMw-xP-8Hn" secondAttribute="centerX" id="HbP-zw-A5i"/>
+                            <constraint firstItem="4Hd-vi-qP6" firstAttribute="leading" secondItem="m9h-a5-2ab" secondAttribute="leading" id="QOo-3j-hq1"/>
+                            <constraint firstItem="FFO-BN-k6J" firstAttribute="top" secondItem="NQ8-fg-FxN" secondAttribute="bottom" constant="92" id="Shb-QN-wG1"/>
+                            <constraint firstItem="ERJ-6h-zMd" firstAttribute="trailing" secondItem="Gr4-Q2-mPU" secondAttribute="trailingMargin" id="UZG-jB-x7k"/>
+                            <constraint firstItem="ERJ-6h-zMd" firstAttribute="leading" secondItem="Gr4-Q2-mPU" secondAttribute="leadingMargin" id="Vwt-VJ-mVu"/>
+                            <constraint firstItem="cMw-xP-8Hn" firstAttribute="top" secondItem="Wjq-uY-E3f" secondAttribute="bottom" constant="78" id="XES-5B-Yks"/>
+                            <constraint firstItem="W9k-2p-EA9" firstAttribute="top" secondItem="nor-Oh-L6w" secondAttribute="bottom" constant="47" id="cJF-ez-9CX"/>
+                            <constraint firstItem="nor-Oh-L6w" firstAttribute="leading" secondItem="Gr4-Q2-mPU" secondAttribute="leadingMargin" constant="51" id="fgX-s7-A9W"/>
+                            <constraint firstItem="Wjq-uY-E3f" firstAttribute="baseline" secondItem="HqE-vZ-sgt" secondAttribute="baseline" id="g8D-U3-1MX"/>
+                            <constraint firstItem="FFO-BN-k6J" firstAttribute="centerX" secondItem="HqE-vZ-sgt" secondAttribute="centerX" id="jOP-so-CJ7"/>
+                            <constraint firstItem="m9h-a5-2ab" firstAttribute="trailing" secondItem="FFO-BN-k6J" secondAttribute="trailing" id="mOB-kP-Ags"/>
+                            <constraint firstItem="ERJ-6h-zMd" firstAttribute="trailing" secondItem="4Hd-vi-qP6" secondAttribute="trailing" id="pbc-zN-3HR"/>
+                            <constraint firstItem="4Hd-vi-qP6" firstAttribute="trailing" secondItem="m9h-a5-2ab" secondAttribute="trailing" id="q23-nR-m7x"/>
+                            <constraint firstItem="4Hd-vi-qP6" firstAttribute="leading" secondItem="NQ8-fg-FxN" secondAttribute="trailing" constant="8" symbolic="YES" id="qhM-Mo-2zk"/>
+                            <constraint firstItem="FFO-BN-k6J" firstAttribute="centerY" secondItem="Gr4-Q2-mPU" secondAttribute="centerY" id="t3y-DX-gra"/>
+                            <constraint firstItem="HqE-vZ-sgt" firstAttribute="top" secondItem="FFO-BN-k6J" secondAttribute="bottom" constant="8" symbolic="YES" id="tWA-Ih-8yb"/>
+                            <constraint firstItem="ERJ-6h-zMd" firstAttribute="leading" secondItem="NQ8-fg-FxN" secondAttribute="leading" id="u52-Vx-Sfu"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Dropbox" image="Cloud" selectedImage="CloudFilled" id="gbF-Su-YDB"/>
                     <connections>
@@ -442,14 +464,14 @@
                                 </connections>
                             </view>
                             <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Unavailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFa-yU-Lt8" userLabel="Camera Unavailable">
-                                <rect key="frame" x="81" y="295" width="214" height="29"/>
+                                <rect key="frame" x="81" y="294.5" width="214" height="29"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqn-Lp-5lq" userLabel="Resume">
-                                <rect key="frame" x="102" y="290" width="171" height="39"/>
+                                <rect key="frame" x="102" y="289.5" width="171" height="39"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>

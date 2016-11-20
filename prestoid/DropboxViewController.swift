@@ -226,6 +226,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                             let dropboxName = item.name
                             let dropboxPath = item.pathDisplay!
                             var localName = ""
+                            print(localName)
                             var match = false
                             for name in self.videosArray {
                                 let filename = "\(name).mov"
@@ -261,7 +262,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 .response { response, error in
                     if let response = response {
                         let responseMetadata = response.0
-//                        print(responseMetadata)
+                        print(responseMetadata)
                         let fileContents = response.1
                         result = fileContents as NSData
 //                        print(result)

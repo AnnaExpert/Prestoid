@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        DropboxClientsManager.setupWithAppKey("ioz8ygaeh7x3mfb")
+//        DropboxClientsManager.setupWithAppKey("ioz8ygaeh7x3mfb")
+        DropboxClientsManager.setupWithAppKey("8ijtllupubn89oi")
         return true
     }
     
