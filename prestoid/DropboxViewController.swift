@@ -230,6 +230,10 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                             for name in self.videosArray {
                                 let filename = "\(name).mov"
                                 localName = name
+//                                print(filename)
+//                                print(dropboxName)
+//                                let isEqual = (filename == dropboxName)
+//                                print(isEqual)
                                 if (filename == dropboxName) {
                                     print("Have this file")
                                     match = true
@@ -251,7 +255,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     public func downloadFile(fromPath: String, localName: String) {
         var result = NSData()
         let nameArray = String(describing: localName).components(separatedBy: ".")
-        let fileName = nameArray[0]
+        let fileName = nameArray[0] + "." + nameArray[1] + "." + nameArray[2]
         if let client = DropboxClientsManager.authorizedClient {
             client.files.download(path: fromPath)
                 .response { response, error in
@@ -277,6 +281,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         if let arrayValue = defaults.array(forKey: self.savedVideosArrayKey) {
             self.videosArray = arrayValue as! [String]
         }
+        print(self.videosArray)
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
         let filePath = docsPath + "/" + localName + ".mov"
         print(filePath)
