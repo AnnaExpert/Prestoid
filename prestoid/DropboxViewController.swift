@@ -236,13 +236,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                                 }
                             }
                             if !match {
-                                let dataFile = self.downloadFile(fromPath: dropboxPath) as NSData
-                                let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-                                let filePath = docsPath + "/" + dropboxName
-                                //                print("MOVIE PATH OF FILE: " + moviePath)
-                                dataFile.write(toFile: filePath, atomically: false)
-                                self.videosArray.append(localName)
-                                defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
+                                self.downloadFile(fromPath: dropboxPath, localName: dropboxName)
                             }
                         }
                     } else if let error = error {
@@ -254,26 +248,41 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     // Mark: Download File to Data
     
-    public func downloadFile(fromPath: String) -> Data {
-        var result = Data()
+    public func downloadFile(fromPath: String, localName: String) {
+        var result = NSData()
+        let nameArray = String(describing: localName).components(separatedBy: ".")
+        let fileName = nameArray[0]
         if let client = DropboxClientsManager.authorizedClient {
             client.files.download(path: fromPath)
                 .response { response, error in
                     if let response = response {
                         let responseMetadata = response.0
-                        print(responseMetadata)
+//                        print(responseMetadata)
                         let fileContents = response.1
-                        print(fileContents)
-                        result = fileContents
+                        result = fileContents as NSData
+//                        print(result)
+                        self.saveFile(fileContents: result, localName: fileName)
                     } else if let error = error {
                         print(error)
                     }
                 }
                 .progress { progressData in
-                    print(progressData)
+//                    print(progressData)
             }
         }
-        return result
+    }
+    
+    func saveFile(fileContents: NSData, localName: String) {
+        let defaults = UserDefaults.standard
+        if let arrayValue = defaults.array(forKey: self.savedVideosArrayKey) {
+            self.videosArray = arrayValue as! [String]
+        }
+        let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+        let filePath = docsPath + "/" + localName + ".mov"
+        print(filePath)
+        fileContents.write(toFile: filePath, atomically: false)
+        self.videosArray.append(localName)
+        defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
     }
     
     // Mark: List folder
