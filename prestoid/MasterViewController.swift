@@ -195,32 +195,6 @@ class MasterViewController: UITableViewController {
             
             // Swipe to show metadata
             
-            //            let filename = self.videosArray[indexPath.row]
-            //            let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-            //            let moviePath = docsPath + "/" + filename + ".mov"
-            //            let movieURL = URL.init(fileURLWithPath: moviePath)
-            //            let asset = AVURLAsset(url: movieURL, options: nil)
-            //            var metadata = AVMetadataItem()
-            //            metadata = asset.metadata[0]
-            //            let locationArray = String(describing: metadata.value!).components(separatedBy: "_")
-            //            let duration = Int(asset.duration.seconds)
-            //            let creation = asset.creationDate!.value as! Date
-            //            let latitude = locationArray[1]
-            //            let longitude = locationArray[3]
-            
-            //            self.presentViewController(shareMenu, animated: true, completion: nil)
-            
-            
-            //            print(duration)
-            //            print(creation.description(with: Locale.current as Locale))
-            //            print(latitude)
-            //            print(longitude)
-            //            if (self.cellInformationContent[indexPath.row] != nil) {
-            //                self.cellInformationContent[indexPath.row] = !self.cellInformationContent[indexPath.row]!
-            //            } else {
-            //                self.cellInformationContent[indexPath.row] = false
-            //            }
-            
             if (self.cellInformationContent[indexPath.row] != nil) {
                 self.cellInformationContent[indexPath.row] = !self.cellInformationContent[indexPath.row]!
             } else {
@@ -252,9 +226,6 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
-        
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = "MMMM dd yyyy"
         return dateFormatter.string(from: self)
     }
 }
