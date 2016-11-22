@@ -86,6 +86,17 @@
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="Grw-VY-OZN">
                                 <rect key="frame" x="16" y="523" width="343" height="2"/>
                             </progressView>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NWR-bn-IQa">
+                                <rect key="frame" x="155" y="573" width="204" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uploading files - " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lea-UE-J3g">
+                                <rect key="frame" x="16" y="563" width="131" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="SettingsView">
@@ -135,6 +146,8 @@
                         <outlet property="loadingActivityIndicator" destination="W9k-2p-EA9" id="DtO-tG-zsA"/>
                         <outlet property="refreshButton" destination="cMw-xP-8Hn" id="tgi-6g-tsk"/>
                         <outlet property="refreshProgressView" destination="Grw-VY-OZN" id="Wha-8b-FBH"/>
+                        <outlet property="uploadingLabel" destination="lea-UE-J3g" id="W2I-rz-rfa"/>
+                        <outlet property="uploadingProgress" destination="NWR-bn-IQa" id="DXn-D5-Clj"/>
                         <outlet property="userEmailTextLabel" destination="m9h-a5-2ab" id="V9F-iA-rAP"/>
                         <outlet property="userNameTextLabel" destination="4Hd-vi-qP6" id="hu0-cw-GJ7"/>
                     </connections>

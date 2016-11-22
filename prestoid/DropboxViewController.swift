@@ -27,6 +27,8 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     @IBOutlet weak var userEmailTextLabel: UILabel!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var uploadingProgress: UIProgressView!
+    @IBOutlet weak var uploadingLabel: UILabel!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var refreshProgressView: UIProgressView!
     
@@ -325,14 +327,18 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     // Mark: Upload files
     
-    public func uploadLastVideoFile() {
+//    public func uploadTheFile(filePath: String) {
+//        uploadVideoFile(filePath: filePath)
+//    }
+    
+    public func uploadVideoFile(filePath: String) {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
             videosArray = arrayValue as! [String]
         }
         if let client = DropboxClientsManager.authorizedClient {
             //            self.rpcStyleRequest()
-            let path = videosArray.last!
+            let path = filePath
             let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
             let videoFileDataPath = docsPath + "/" + path + ".mov"
             let videoFileURL = URL.init(fileURLWithPath: videoFileDataPath)
@@ -343,11 +349,17 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                     .response { response, error in
                         if let response = response {
                             print(response)
+//                            self.uploadingLabel.isHidden = true
+//                            self.uploadingProgress.isHidden = true
                         } else if let error = error {
+                            self.uploadVideoFile(filePath: filePath)
                             print(error)
                         }
                     }
                     .progress { progressData in
+//                        self.uploadingLabel.isHidden = false
+//                        self.uploadingProgress.isHidden = false
+//                        self.uploadingProgress.progress = Float(progressData.fractionCompleted)
                         print(progressData)
                 }
                 
@@ -356,7 +368,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 //            request.cancel()
                 //        }
             } catch {
-                print("Can't load data file fro iPhone memory")
+                print("Can't load data file from iPhone memory")
             }
             
         }

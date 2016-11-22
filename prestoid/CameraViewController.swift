@@ -746,7 +746,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             // Mark: Save video to dropbox.
             
             let saver = DropboxViewController()
-            saver.uploadLastVideoFile()
+            saver.uploadVideoFile(filePath: videosArray.last!)
             
             /*
              // Save the movie file to the photo library and cleanup.
