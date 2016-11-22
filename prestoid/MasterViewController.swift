@@ -15,21 +15,21 @@ class MasterViewController: UITableViewController {
     var videosArray: [String] = Array()
     let savedVideosArrayKey = "savedVideosArray"
     
-//    struct CellInformationContent {
-//        var cellDict = [Int: Bool]()
-//    }
+    //    struct CellInformationContent {
+    //        var cellDict = [Int: Bool]()
+    //    }
     
     var cellInformationContent = [Int: Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        //        UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
         tableView.delegate = self
         tableView.dataSource = self
-//        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
@@ -50,7 +50,7 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "ShowDetail" {
             let destination = segue.destination as! PlayerViewController
             if let pathIndex = tableView.indexPathForSelectedRow?.row {
-            destination.path = videosArray[pathIndex]
+                destination.path = videosArray[pathIndex]
             }
         }
     }
@@ -72,7 +72,7 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)as! CellMasterView
-
+        
         var thumbnail = UIImage()
         let fileName = videosArray[indexPath.row]
         
@@ -90,16 +90,16 @@ class MasterViewController: UITableViewController {
         }
         
         /*
-        var datePart = fileName.characters.prefix(8)
-        datePart.insert(".", at: datePart.index(datePart.startIndex, offsetBy: 6))
-        datePart.insert(".", at: datePart.index(datePart.startIndex, offsetBy: 4))
-        let date = String(datePart)
-        
-        var timePart = fileName.characters.dropFirst(9)
-        timePart = timePart.prefix(4)
-        timePart.insert(":", at: timePart.index(timePart.startIndex, offsetBy: 2))
-        let time = String(timePart)
-        */
+         var datePart = fileName.characters.prefix(8)
+         datePart.insert(".", at: datePart.index(datePart.startIndex, offsetBy: 6))
+         datePart.insert(".", at: datePart.index(datePart.startIndex, offsetBy: 4))
+         let date = String(datePart)
+         
+         var timePart = fileName.characters.dropFirst(9)
+         timePart = timePart.prefix(4)
+         timePart.insert(":", at: timePart.index(timePart.startIndex, offsetBy: 2))
+         let time = String(timePart)
+         */
         
         var creation = ""
         var duration = 0
@@ -158,6 +158,8 @@ class MasterViewController: UITableViewController {
         return true
     }
     
+    // MARK: Swipe to edit
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
@@ -193,26 +195,31 @@ class MasterViewController: UITableViewController {
             
             // Swipe to show metadata
             
-//            let filename = self.videosArray[indexPath.row]
-//            let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-//            let moviePath = docsPath + "/" + filename + ".mov"
-//            let movieURL = URL.init(fileURLWithPath: moviePath)
-//            let asset = AVURLAsset(url: movieURL, options: nil)
-//            var metadata = AVMetadataItem()
-//            metadata = asset.metadata[0]
-//            let locationArray = String(describing: metadata.value!).components(separatedBy: "_")
-//            let duration = Int(asset.duration.seconds)
-//            let creation = asset.creationDate!.value as! Date
-//            let latitude = locationArray[1]
-//            let longitude = locationArray[3]
+            //            let filename = self.videosArray[indexPath.row]
+            //            let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+            //            let moviePath = docsPath + "/" + filename + ".mov"
+            //            let movieURL = URL.init(fileURLWithPath: moviePath)
+            //            let asset = AVURLAsset(url: movieURL, options: nil)
+            //            var metadata = AVMetadataItem()
+            //            metadata = asset.metadata[0]
+            //            let locationArray = String(describing: metadata.value!).components(separatedBy: "_")
+            //            let duration = Int(asset.duration.seconds)
+            //            let creation = asset.creationDate!.value as! Date
+            //            let latitude = locationArray[1]
+            //            let longitude = locationArray[3]
             
-//            self.presentViewController(shareMenu, animated: true, completion: nil)
+            //            self.presentViewController(shareMenu, animated: true, completion: nil)
             
             
-//            print(duration)
-//            print(creation.description(with: Locale.current as Locale))
-//            print(latitude)
-//            print(longitude)
+            //            print(duration)
+            //            print(creation.description(with: Locale.current as Locale))
+            //            print(latitude)
+            //            print(longitude)
+            //            if (self.cellInformationContent[indexPath.row] != nil) {
+            //                self.cellInformationContent[indexPath.row] = !self.cellInformationContent[indexPath.row]!
+            //            } else {
+            //                self.cellInformationContent[indexPath.row] = false
+            //            }
             
             if (self.cellInformationContent[indexPath.row] != nil) {
                 self.cellInformationContent[indexPath.row] = !self.cellInformationContent[indexPath.row]!
@@ -229,7 +236,7 @@ class MasterViewController: UITableViewController {
         print(self.cellInformationContent)
         
         return [delete, metadata]
-     }
+    }
     
     @IBAction func unwindInMaster(_ segue: UIStoryboardSegue)  {
         /*
@@ -246,8 +253,8 @@ extension Date {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MMMM dd yyyy"
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.dateFormat = "MMMM dd yyyy"
         return dateFormatter.string(from: self)
     }
 }

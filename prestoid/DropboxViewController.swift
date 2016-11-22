@@ -27,6 +27,8 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     @IBOutlet weak var userEmailTextLabel: UILabel!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var refreshProgressView: UIProgressView!
+    
     public class DropboxUser {
         var authorized = false
         var name = "Dropbox User"
@@ -40,28 +42,28 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         
         
         
-//        if let user = DropboxClientsManager.authorizedClient {
-//            checkAllFiles()
-//        }
+        //        if let user = DropboxClientsManager.authorizedClient {
+        //            checkAllFiles()
+        //        }
         
         
-//        if let client = DropboxClientsManager.authorizedClient {
-//            client.files.createFolder(path: "/test/path/in/Dropbox/account").response { response, error in
-//                if let response = response {
-//                    print(response)
-//                } else if let error = error {
-//                    print(error)
-//                }
-//            }
-//        }
-
+        //        if let client = DropboxClientsManager.authorizedClient {
+        //            client.files.createFolder(path: "/test/path/in/Dropbox/account").response { response, error in
+        //                if let response = response {
+        //                    print(response)
+        //                } else if let error = error {
+        //                    print(error)
+        //                }
+        //            }
+        //        }
+        
         // Do any additional setup after loading the view.
     }
     @IBAction func testButton(_ sender: Any) {
         downloadAllFiles()
         
     }
-
+    
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -200,7 +202,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     func rpcStyleRequest() {
         if let client = DropboxClientsManager.authorizedClient {
-            client.files.createFolder(path: "")
+            client.files.createFolder(path: "/PrestoidMedia")
                 .response { response, error in
                     if let response = response {
                         print(response)
@@ -215,7 +217,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     public func downloadAllFiles() {
         if let client = DropboxClientsManager.authorizedClient {
-            client.files.listFolder(path: "")
+            client.files.listFolder(path: "/PrestoidMedia")
                 .response { response, error in
                     let defaults = UserDefaults.standard
                     if let arrayValue = defaults.array(forKey: self.savedVideosArrayKey) {
@@ -231,10 +233,10 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                             for name in self.videosArray {
                                 let filename = "\(name).mov"
                                 localName = name
-//                                print(filename)
-//                                print(dropboxName)
-//                                let isEqual = (filename == dropboxName)
-//                                print(isEqual)
+                                //                                print(filename)
+                                //                                print(dropboxName)
+                                //                                let isEqual = (filename == dropboxName)
+                                //                                print(isEqual)
                                 if (filename == dropboxName) {
                                     print("Have this file")
                                     match = true
@@ -265,14 +267,16 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         print(responseMetadata)
                         let fileContents = response.1
                         result = fileContents as NSData
-//                        print(result)
+                        //                        print(result)
                         self.saveFile(fileContents: result, localName: fileName)
+                        self.refreshProgressView.isHidden = true
                     } else if let error = error {
                         print(error)
                     }
                 }
                 .progress { progressData in
-//                    print(progressData)
+                    self.refreshProgressView.isHidden = false
+                    self.refreshProgressView.progress = Float(progressData.fractionCompleted)
             }
         }
     }
@@ -321,6 +325,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             videosArray = arrayValue as! [String]
         }
         if let client = DropboxClientsManager.authorizedClient {
+            //            self.rpcStyleRequest()
             let path = videosArray.last!
             let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
             let videoFileDataPath = docsPath + "/" + path + ".mov"
@@ -328,7 +333,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             do {
                 let videoFileData = try Data(contentsOf: videoFileURL)
                 let fileData = videoFileData
-                _ = client.files.upload(path: "/\(path).mov", input: fileData)
+                _ = client.files.upload(path: "/PrestoidMedia/\(path).mov", input: fileData)
                     .response { response, error in
                         if let response = response {
                             print(response)
@@ -353,33 +358,33 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     // Mark: Download-style request
     
-    func downloadStyleRequest() {
-        
-        // Download to URL
-        let fileManager = FileManager.default
-        let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let destURL = directoryURL.appendingPathComponent("file.txt")
-        let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
-            return destURL
-        }
-        
-        if let client = DropboxClientsManager.authorizedClient {
-        client.files.download(path: "/videos/file.txt", overwrite: true, destination: destination)
-            .response { response, error in
-                if let response = response {
-                    print(response)
-                } else if let error = error {
-                    print(error)
-                }
-            }
-            .progress { progressData in
-                print(progressData)
-        }
-        }
-        
-        
-        // Download to Data
-        
-        
-    }
+    //    func downloadStyleRequest() {
+    //
+    //        // Download to URL
+    //        let fileManager = FileManager.default
+    //        let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    //        let destURL = directoryURL.appendingPathComponent("file.txt")
+    //        let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
+    //            return destURL
+    //        }
+    //
+    //        if let client = DropboxClientsManager.authorizedClient {
+    //        client.files.download(path: "/videos/file.txt", overwrite: true, destination: destination)
+    //            .response { response, error in
+    //                if let response = response {
+    //                    print(response)
+    //                } else if let error = error {
+    //                    print(error)
+    //                }
+    //            }
+    //            .progress { progressData in
+    //                print(progressData)
+    //        }
+    //        }
+    //        
+    //        
+    //        // Download to Data
+    //        
+    //        
+    //    }
 }
