@@ -77,8 +77,8 @@
                                 <color key="color" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMw-xP-8Hn">
-                                <rect key="frame" x="127" y="485" width="121" height="30"/>
-                                <state key="normal" title="Refresh all videos"/>
+                                <rect key="frame" x="89" y="485" width="198" height="30"/>
+                                <state key="normal" title="Sync all videos with Dropbox"/>
                                 <connections>
                                     <action selector="testButton:" destination="buI-n2-72y" eventType="touchUpInside" id="gVq-HV-s2O"/>
                                 </connections>
@@ -133,6 +133,7 @@
                         <outlet property="dropboxAccountAuthorizedLabel" destination="ERJ-6h-zMd" id="fiv-wu-bgj"/>
                         <outlet property="dropboxLogoImageView" destination="nor-Oh-L6w" id="XP8-GT-7KG"/>
                         <outlet property="loadingActivityIndicator" destination="W9k-2p-EA9" id="DtO-tG-zsA"/>
+                        <outlet property="refreshButton" destination="cMw-xP-8Hn" id="tgi-6g-tsk"/>
                         <outlet property="refreshProgressView" destination="Grw-VY-OZN" id="Wha-8b-FBH"/>
                         <outlet property="userEmailTextLabel" destination="m9h-a5-2ab" id="V9F-iA-rAP"/>
                         <outlet property="userNameTextLabel" destination="4Hd-vi-qP6" id="hu0-cw-GJ7"/>

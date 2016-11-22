@@ -27,6 +27,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     @IBOutlet weak var userEmailTextLabel: UILabel!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var refreshProgressView: UIProgressView!
     
     public class DropboxUser {
@@ -270,12 +271,17 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         //                        print(result)
                         self.saveFile(fileContents: result, localName: fileName)
                         self.refreshProgressView.isHidden = true
+                        self.refreshButton.isEnabled = true
                     } else if let error = error {
                         print(error)
+                        self.downloadAllFiles()
+                        self.refreshProgressView.isHidden = true
+                        self.refreshButton.isEnabled = true
                     }
                 }
                 .progress { progressData in
                     self.refreshProgressView.isHidden = false
+                    self.refreshButton.isEnabled = false
                     self.refreshProgressView.progress = Float(progressData.fractionCompleted)
             }
         }
@@ -296,7 +302,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     }
     
     public func deleteFile(name: String) {
-        let filePath = "/" + name + ".mov"
+        let filePath = "/PrestoidMedia/" + name + ".mov"
         if let client = DropboxClientsManager.authorizedClient {
             client.files.delete(path: filePath)
         }
@@ -355,36 +361,4 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             
         }
     }
-    
-    // Mark: Download-style request
-    
-    //    func downloadStyleRequest() {
-    //
-    //        // Download to URL
-    //        let fileManager = FileManager.default
-    //        let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    //        let destURL = directoryURL.appendingPathComponent("file.txt")
-    //        let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
-    //            return destURL
-    //        }
-    //
-    //        if let client = DropboxClientsManager.authorizedClient {
-    //        client.files.download(path: "/videos/file.txt", overwrite: true, destination: destination)
-    //            .response { response, error in
-    //                if let response = response {
-    //                    print(response)
-    //                } else if let error = error {
-    //                    print(error)
-    //                }
-    //            }
-    //            .progress { progressData in
-    //                print(progressData)
-    //        }
-    //        }
-    //        
-    //        
-    //        // Download to Data
-    //        
-    //        
-    //    }
 }
