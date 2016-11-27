@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 
 class PreviewView: UIView {
+    
 	var videoPreviewLayer: AVCaptureVideoPreviewLayer {
 		return layer as! AVCaptureVideoPreviewLayer
 	}
@@ -22,10 +23,9 @@ class PreviewView: UIView {
 			videoPreviewLayer.session = newValue
 		}
 	}
-	
-	// MARK: UIView
-	
+    
     override class var layerClass: AnyClass {
 		return AVCaptureVideoPreviewLayer.self
 	}
+    
 }

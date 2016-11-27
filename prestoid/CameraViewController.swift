@@ -971,4 +971,5 @@ extension AVCaptureDeviceDiscoverySession {
         
         return uniqueDevicePositions.count
     }
+    
 }

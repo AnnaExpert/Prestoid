@@ -213,12 +213,11 @@ class MasterViewController: UITableViewController {
     }
     
     @IBAction func unwindInMaster(_ segue: UIStoryboardSegue)  {
-        /*
-         Empty. Exists solely so that "unwind in master" segues can
-         find this instance as a destination.
-         */
     }
+    
 }
+
+// MARK: Date formatter extension
 
 extension Date {
     func toString() -> String {
@@ -228,4 +227,5 @@ extension Date {
         dateFormatter.timeStyle = .medium
         return dateFormatter.string(from: self)
     }
+    
 }

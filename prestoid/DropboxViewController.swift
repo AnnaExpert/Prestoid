@@ -39,7 +39,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         var avatar = UIImage(named: "Dropbox")!
     }
     
-    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -373,4 +372,5 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             
         }
     }
+    
 }
