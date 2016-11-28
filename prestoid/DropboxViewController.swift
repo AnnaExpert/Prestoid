@@ -41,34 +41,14 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        //        if let user = DropboxClientsManager.authorizedClient {
-        //            checkAllFiles()
-        //        }
-        
-        
-        //        if let client = DropboxClientsManager.authorizedClient {
-        //            client.files.createFolder(path: "/test/path/in/Dropbox/account").response { response, error in
-        //                if let response = response {
-        //                    print(response)
-        //                } else if let error = error {
-        //                    print(error)
-        //                }
-        //            }
-        //        }
-        
-        // Do any additional setup after loading the view.
     }
+    
     @IBAction func testButton(_ sender: Any) {
         downloadAllFiles()
-        
     }
     
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override public func viewDidAppear(_ animated: Bool) {
@@ -82,13 +62,15 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         }
         user.authorized = checkAuthorization()
         super.viewWillAppear(animated)
-        
     }
     
+    // Link Dropbox account via iOS application
+    
     @IBAction func connectDropboxAccount(_ sender: Any) {
-        // Link account via iOS application
         linkDropboxViaApp()
     }
+    
+    // Unlink Dropbox account from current session
     
     @IBAction func disconnectDropboxAccount(_ sender: Any) {
         DropboxClientsManager.unlinkClients()
@@ -183,36 +165,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                                                             UIApplication.shared.openURL(url)
                                                         }
         }, browserAuth: true)
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // Mark: RPC-style request
-    
-    
-    
-    func rpcStyleRequest() {
-        if let client = DropboxClientsManager.authorizedClient {
-            client.files.createFolder(path: "/PrestoidMedia")
-                .response { response, error in
-                    if let response = response {
-                        print(response)
-                    } else if let error = error {
-                        print(error)
-                    }
-            }
-        }
     }
     
     // Mark: Download all new files
@@ -326,10 +278,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     // Mark: Upload files
     
-//    public func uploadTheFile(filePath: String) {
-//        uploadVideoFile(filePath: filePath)
-//    }
-    
     public func uploadVideoFile(filePath: String) {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
@@ -369,7 +317,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             } catch {
                 print("Can't load data file from iPhone memory")
             }
-            
         }
     }
     

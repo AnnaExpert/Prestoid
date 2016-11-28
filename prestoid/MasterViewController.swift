@@ -15,19 +15,12 @@ class MasterViewController: UITableViewController {
     var videosArray: [String] = Array()
     let savedVideosArrayKey = "savedVideosArray"
     
-    //    struct CellInformationContent {
-    //        var cellDict = [Int: Bool]()
-    //    }
-    
     var cellInformationContent = [Int: Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //        UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
         tableView.delegate = self
         tableView.dataSource = self
-        //        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +34,6 @@ class MasterViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Segues
@@ -59,7 +51,7 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 151.0;//Choose your custom row height
+        return 151.0;
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -88,18 +80,6 @@ class MasterViewController: UITableViewController {
         } catch let error as NSError {
             print("Error generating thumbnail: \(error)")
         }
-        
-        /*
-         var datePart = fileName.characters.prefix(8)
-         datePart.insert(".", at: datePart.index(datePart.startIndex, offsetBy: 6))
-         datePart.insert(".", at: datePart.index(datePart.startIndex, offsetBy: 4))
-         let date = String(datePart)
-         
-         var timePart = fileName.characters.dropFirst(9)
-         timePart = timePart.prefix(4)
-         timePart.insert(":", at: timePart.index(timePart.startIndex, offsetBy: 2))
-         let time = String(timePart)
-         */
         
         var creation = ""
         var duration = 0
