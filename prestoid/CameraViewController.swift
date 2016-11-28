@@ -257,7 +257,12 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         session.beginConfiguration()
         
         // Here we can modify the quality of recorded video.
-        //		session.sessionPreset = AVCaptureSessionPreset1920x1080
+        
+        /*
+        This setting will decrease twice the size of video file
+        session.sessionPreset = AVCaptureSessionPreset1280x720
+        */
+        
         session.sessionPreset = AVCaptureSessionPresetInputPriority
         
         
