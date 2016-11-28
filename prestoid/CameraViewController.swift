@@ -495,7 +495,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                     device.unlockForConfiguration()
                 }
                 catch {
-                    print("Could not lock device for configuration: \(error)")
+                    print("Could not lock device for the configuration: \(error)")
                 }
             }
         }
@@ -738,7 +738,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 
                 
             } catch {
-                print("Can't convert video to data file")
+                print("Can't convert video data to data file")
                 cleanup()
             }
             
@@ -884,7 +884,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
          running. Also note that it is not always possible to resume, see `resumeInterruptedSession(_:)`.
          */
         if let userInfoValue = notification.userInfo?[AVCaptureSessionInterruptionReasonKey] as AnyObject?, let reasonIntegerValue = userInfoValue.integerValue, let reason = AVCaptureSessionInterruptionReason(rawValue: reasonIntegerValue) {
-            print("Capture session was interrupted with reason \(reason)")
+            print("Capture session was interrupted with the reason \(reason)")
             
             var showResumeButton = false
             

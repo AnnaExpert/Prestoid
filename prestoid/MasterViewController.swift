@@ -163,7 +163,7 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
-            // Swipe to delete cell
+            // Swipe to delete cell and video in it
             
             let filename = self.videosArray[indexPath.row]
             let path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as NSString).appendingPathComponent((filename as NSString).appendingPathExtension("mov")!)
@@ -191,9 +191,18 @@ class MasterViewController: UITableViewController {
             }
         }
         
-        let metadata = UITableViewRowAction(style: .normal, title: "File info") { (action, indexPath) in
+        let text = UITableViewRowAction(style: .normal, title: "Text") { (action, indexPath) in
             
-            // Swipe to show metadata
+            // Swipe to show recognized text from speech
+            
+            
+            tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.right)
+            tableView.setEditing(false, animated: true)
+        }
+        
+        let metadata = UITableViewRowAction(style: .normal, title: "Info") { (action, indexPath) in
+            
+            // Swipe to show metadata of the video file
             
             if (self.cellInformationContent[indexPath.row] != nil) {
                 self.cellInformationContent[indexPath.row] = !self.cellInformationContent[indexPath.row]!
@@ -205,11 +214,13 @@ class MasterViewController: UITableViewController {
             tableView.setEditing(false, animated: true)
         }
         
+        text.backgroundColor = UIColor.blue
         metadata.backgroundColor = UIColor.orange
+        
         print("self.cellInformationContent")
         print(self.cellInformationContent)
         
-        return [delete, metadata]
+        return [delete, text, metadata]
     }
     
     @IBAction func unwindInMaster(_ segue: UIStoryboardSegue)  {
