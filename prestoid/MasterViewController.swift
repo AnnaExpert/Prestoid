@@ -180,7 +180,7 @@ class MasterViewController: UITableViewController {
             tableView.setEditing(false, animated: true)
         }
         
-        let metadata = UITableViewRowAction(style: .normal, title: "Info") { (action, indexPath) in
+        let metadata = UITableViewRowAction(style: .normal, title: "File info") { (action, indexPath) in
             
             // Swipe to show metadata of the video file
             
@@ -200,7 +200,7 @@ class MasterViewController: UITableViewController {
         print("self.cellInformationContent")
         print(self.cellInformationContent)
         
-        return [delete, text, metadata]
+        return [delete, metadata, text]
     }
     
     @IBAction func unwindInMaster(_ segue: UIStoryboardSegue)  {
