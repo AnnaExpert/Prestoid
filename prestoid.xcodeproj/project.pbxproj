@@ -14,6 +14,7 @@
 		2A1C5D661DD2108600555DE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1C5D651DD2108600555DE2 /* Main.storyboard */; };
 		2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */; };
 		2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */; };
+		2A7B4D341DEC46EC002DF8A0 /* SpeechToTextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B4D331DEC46EC002DF8A0 /* SpeechToTextRecognizer.swift */; };
 		2AB61FA91DD87FB000C54CB8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2AB61FA81DD87FB000C54CB8 /* Settings.bundle */; };
 		2AB84CC01DCB551F00A31061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB84CBF1DCB551F00A31061 /* Assets.xcassets */; };
 		2AC9F1911DD8FBF900A49535 /* CellMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */; };
@@ -36,6 +37,7 @@
 		2A1E4EE31DCA0A05001F4489 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1E4EE51DCA0A05001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A65F5C31DDF4DD900AE28AC /* prestoid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = prestoid.entitlements; sourceTree = "<group>"; };
+		2A7B4D331DEC46EC002DF8A0 /* SpeechToTextRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechToTextRecognizer.swift; sourceTree = "<group>"; };
 		2AB61FA81DD87FB000C54CB8 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2AB84CBF1DCB551F00A31061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellMasterView.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */,
 				2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */,
 				2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */,
+				2A7B4D331DEC46EC002DF8A0 /* SpeechToTextRecognizer.swift */,
 				2A0AAE6E1DD365D300B9AC69 /* MasterViewController.swift */,
 				2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */,
 				2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */,
@@ -252,6 +255,7 @@
 				2AC9F1911DD8FBF900A49535 /* CellMasterView.swift in Sources */,
 				2AF0F6AC1DD4B53E00E22B44 /* PlayerView.swift in Sources */,
 				2A1C5D621DD2107B00555DE2 /* CameraViewController.swift in Sources */,
+				2A7B4D341DEC46EC002DF8A0 /* SpeechToTextRecognizer.swift in Sources */,
 				2AF0F6AB1DD4B53E00E22B44 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

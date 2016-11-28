@@ -25,7 +25,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Failed to find user's location: \(error.localizedDescription)")
+        print("Failed to find current user's location: \(error.localizedDescription)")
     }
     
     override func viewDidLoad() {
