@@ -35,15 +35,15 @@ class SpeechToTextRecognizer: NSObject, SFSpeechRecognizerDelegate {
         }
         
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        
+ 
         guard let inputNode = audioEngine.inputNode else {
             fatalError("Audio engine has no input node")
         }
-        
+ 
         guard let recognitionRequest = recognitionRequest else {
             fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
         }
-        
+ 
         recognitionRequest.shouldReportPartialResults = true
         
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
