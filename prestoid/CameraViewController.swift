@@ -239,15 +239,18 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     // MARK: Start speech recognition
     
+    var recognizedText: String?
+    
     func startRecordingSpeech() {
         if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
-            microphoneButton.isEnabled = false
-            microphoneButton.setTitle("Почати", for: .normal)
+//            microphoneButton.isEnabled = false
+            print("Finished speech recognition")
+            print("Recognized text: \(recognizedText)")
         } else {
             startRecording()
-            microphoneButton.setTitle("Завершити", for: .normal)
+            print("Started speech recognition")
         }
     }
     
@@ -285,7 +288,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             if result != nil {
                 
-                self.textView.text = result?.bestTranscription.formattedString
+                self.recognizedText = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
             }
             
@@ -296,7 +299,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
                 
-                self.microphoneButton.isEnabled = true
+//                self.microphoneButton.isEnabled = true
             }
         })
         
@@ -312,14 +315,16 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         } catch {
             print("audioEngine couldn't start because of an error.")
         }
-        textView.text = "Починай казати, а я буду все ретельно записувати!"
+//        textView.text = "Починай казати, а я буду все ретельно записувати!"
     }
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
-            microphoneButton.isEnabled = true
+//            microphoneButton.isEnabled = true
+            print("microphoneButton.isEnabled = true")
         } else {
-            microphoneButton.isEnabled = false
+//            microphoneButton.isEnabled = false
+            print("microphoneButton.isEnabled = false")
         }
     }
     
@@ -680,6 +685,11 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     @IBOutlet private weak var resumeButton: UIButton!
     
     @IBAction private func toggleMovieRecording(_ recordButton: UIButton) {
+        
+        // MARK: Start/Stop speech recognition
+        
+        startRecordingSpeech()
+        
         guard let movieFileOutput = self.movieFileOutput else {
             return
         }
