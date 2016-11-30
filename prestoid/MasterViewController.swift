@@ -160,7 +160,7 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
-            // Swipe to delete cell and video in it
+            // MARK: Swipe to delete cell and video in it
             
             let filename = self.videosArray[indexPath.row]
             let path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as NSString).appendingPathComponent((filename as NSString).appendingPathExtension("mov")!)
@@ -197,7 +197,7 @@ class MasterViewController: UITableViewController {
         
         let text = UITableViewRowAction(style: .normal, title: "Text") { (action, indexPath) in
             
-            // Swipe to show recognized text from speech
+            // MARK: Swipe to show recognized text from speech
             
             if (self.cellTextContent[indexPath.row] != nil) {
                 self.cellTextContent[indexPath.row] = !self.cellTextContent[indexPath.row]!
@@ -211,7 +211,7 @@ class MasterViewController: UITableViewController {
         
         let metadata = UITableViewRowAction(style: .normal, title: "File info") { (action, indexPath) in
             
-            // Swipe to show metadata of the video file
+            // MARK: Swipe to show metadata of the video file
             
             if (self.cellInformationContent[indexPath.row] != nil) {
                 self.cellInformationContent[indexPath.row] = !self.cellInformationContent[indexPath.row]!

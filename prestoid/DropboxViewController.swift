@@ -254,10 +254,16 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
     }
     
+    // MARK: Delete files from Dropbox
+    
     public func deleteFile(name: String) {
-        let filePath = "/PrestoidMedia/" + name + ".mov"
+        let videoFilePath = "/PrestoidMedia/" + name + ".mov"
         if let client = DropboxClientsManager.authorizedClient {
-            client.files.delete(path: filePath)
+            client.files.delete(path: videoFilePath)
+        }
+        let textFilePath = "/PrestoidMedia/" + name + ".txt"
+        if let client = DropboxClientsManager.authorizedClient {
+            client.files.delete(path: textFilePath)
         }
     }
     
