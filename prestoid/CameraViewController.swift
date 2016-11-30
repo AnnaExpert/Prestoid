@@ -237,7 +237,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         }
     }
     
-    // MARK: Start speech recognition
+    // MARK: Speech recognition function
     
     var recognizedText: String?
     
@@ -245,7 +245,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
-//            microphoneButton.isEnabled = false
             print("Finished speech recognition")
             print("Recognized text: \(recognizedText)")
         } else {
@@ -298,8 +297,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                
-//                self.microphoneButton.isEnabled = true
             }
         })
         
@@ -315,15 +312,12 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         } catch {
             print("audioEngine couldn't start because of an error.")
         }
-//        textView.text = "Починай казати, а я буду все ретельно записувати!"
     }
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
-//            microphoneButton.isEnabled = true
             print("microphoneButton.isEnabled = true")
         } else {
-//            microphoneButton.isEnabled = false
             print("microphoneButton.isEnabled = false")
         }
     }
