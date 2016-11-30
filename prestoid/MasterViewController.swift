@@ -14,6 +14,8 @@ class MasterViewController: UITableViewController {
     var detailViewController: PlayerViewController? = nil
     var videosArray: [String] = Array()
     let savedVideosArrayKey = "savedVideosArray"
+    var speechArray: [String] = Array()
+    let savedSpeechArrayKey = "savedSpeechArray"
     
     var cellInformationContent = [Int: Bool]()
     
@@ -27,6 +29,9 @@ class MasterViewController: UITableViewController {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
             videosArray = arrayValue as! [String]
+        }
+        if let arrayValue = defaults.array(forKey: savedSpeechArrayKey) {
+            speechArray = arrayValue as! [String]
         }
         self.tableView.reloadData()
         super.viewWillAppear(animated)

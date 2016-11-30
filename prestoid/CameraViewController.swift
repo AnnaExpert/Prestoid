@@ -25,8 +25,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
-//    var speechDict: Dictionary = Dictionary()
-    let savedVideosDictKey = "savedSpeechDict"
+    var speechArray: [String] = Array()
+    let savedSpeechArrayKey = "savedSpeechArray"
     
     // Change the speech recognition language here
     
@@ -241,7 +241,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     // MARK: Speech recognition function
     
-    var recognizedText: String?
+    var recognizedText = ""
     
     func startRecordingSpeech() {
         if audioEngine.isRunning {
@@ -249,6 +249,16 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             recognitionRequest?.endAudio()
             print("Finished speech recognition")
             print("Recognized text: \(recognizedText)")
+            
+            if self.defaults.array(forKey: self.savedSpeechArrayKey) != nil {
+                self.speechArray = self.defaults.array(forKey: self.savedSpeechArrayKey) as! [String]
+                
+                //                    print(self.videosArray)
+            }
+            
+            self.speechArray.append(recognizedText)
+            self.defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
+            
         } else {
             startRecording()
             print("Started speech recognition")
@@ -288,11 +298,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             var isFinal = false
             
             if result != nil {
-                
-                self.recognizedText = result?.bestTranscription.formattedString
+                self.recognizedText = (result?.bestTranscription.formattedString)!
                 isFinal = (result?.isFinal)!
             }
-            
             if error != nil || isFinal {
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
