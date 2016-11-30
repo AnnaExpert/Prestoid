@@ -72,7 +72,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         linkDropboxViaApp()
     }
     
-    // Unlink Dropbox account from current session
+    // MARK: Unlink Dropbox account from current session
     
     @IBAction func disconnectDropboxAccount(_ sender: Any) {
         DropboxClientsManager.unlinkClients()
@@ -89,7 +89,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         user.authorized = false
     }
     
-    // Mark: Dropbox integration
+    // MARK: Dropbox integration
     
     func checkAuthorization() -> Bool {
         if DropboxClientsManager.authorizedClient != nil {
@@ -169,7 +169,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         }, browserAuth: true)
     }
     
-    // Mark: Download all new files
+    // MARK: Download all new files
     
     public func downloadAllFiles() {
         if let client = DropboxClientsManager.authorizedClient {
@@ -200,9 +200,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                             }
                             if !match {
                                 self.downloadFile(fromPath: dropboxPath, localName: dropboxName)
-                                let dropboxPathArray = String(describing: dropboxPath).components(separatedBy: ".")
-                                let dropboxTextPath = dropboxPathArray[0] + "." + dropboxPathArray[1] + "." + dropboxPathArray[2] + ".txt"
-                                self.downloadTextFile(fromPath: dropboxTextPath, localName: dropboxName)
                             }
                         }
                     } else if let error = error {
@@ -212,7 +209,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         }
     }
     
-    // Mark: Download video files to data
+    // MARK: Download video file to data
     
     public func downloadFile(fromPath: String, localName: String) {
         var result = NSData()
@@ -223,7 +220,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 .response { response, error in
                     if let response = response {
                         let responseMetadata = response.0
-                        print(responseMetadata)
+                        print("Response Metadata: \(responseMetadata)")
                         let fileContents = response.1
                         result = fileContents as NSData
                         //                        print(result)
@@ -252,19 +249,20 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         if let arrayValue = defaults.array(forKey: self.savedVideosArrayKey) {
             self.videosArray = arrayValue as! [String]
         }
-        print(self.videosArray)
+        print("VideosArray: \(self.videosArray)")
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
         let filePath = docsPath + "/" + localName + ".mov"
-        print(filePath)
+        print("FilePath: \(filePath)")
         fileContents.write(toFile: filePath, atomically: false)
         self.videosArray.append(localName)
         defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
     }
     
-    // Mark: Download text files to data
+    // MARK: Download text file to data
     
     public func downloadTextFile(fromPath: String, localName: String) {
-        
+        print("FromPath: \(fromPath)")
+        print("LocalName: \(localName)")
     }
     
     // MARK: Save text file inside the application
@@ -273,7 +271,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         
     }
     
-    // MARK: Delete files from Dropbox
+    // MARK: Delete video and text file
     
     public func deleteFile(name: String) {
         let videoFilePath = "/PrestoidMedia/" + name + ".mov"
@@ -283,21 +281,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         let textFilePath = "/PrestoidMedia/" + name + ".txt"
         if let client = DropboxClientsManager.authorizedClient {
             client.files.delete(path: textFilePath)
-        }
-    }
-    
-    // Mark: List folder
-    
-    public func checkAllFiles() {
-        if let client = DropboxClientsManager.authorizedClient {
-            client.files.listFolder(path: "")
-                .response { response, error in
-                    if let result = response?.entries {
-                        print(result)
-                    } else if let error = error {
-                        print(error)
-                    }
-            }
         }
     }
     
@@ -369,6 +352,21 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             //        if someConditionIsSatisfied {
             //            request.cancel()
             //        }
+        }
+    }
+    
+    // Mark: List folder
+    
+    public func checkAllFiles() {
+        if let client = DropboxClientsManager.authorizedClient {
+            client.files.listFolder(path: "")
+                .response { response, error in
+                    if let result = response?.entries {
+                        print(result)
+                    } else if let error = error {
+                        print(error)
+                    }
+            }
         }
     }
     
