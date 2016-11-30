@@ -18,6 +18,7 @@ class MasterViewController: UITableViewController {
     let savedSpeechArrayKey = "savedSpeechArray"
     
     var cellInformationContent = [Int: Bool]()
+    var cellTextContent = [Int: Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,7 @@ class MasterViewController: UITableViewController {
         
         var thumbnail = UIImage()
         let fileName = videosArray[indexPath.row]
+        let recognizedText = speechArray[indexPath.row]
         
         
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
@@ -119,6 +121,7 @@ class MasterViewController: UITableViewController {
         cell.cellDurationTextLabel.text = String("Video duration: \(duration) seconds")
         cell.cellTopTextLabel.text = String("Latitude: \(latitude)")
         cell.cellBottomTextLabel.text = String("Longitude: \(longitude)")
+        cell.cellSpeechTextView.text = recognizedText
         
         if (cellInformationContent[indexPath.row] != nil) {
             cell.cellInformationView.isHidden = cellInformationContent[indexPath.row]!
@@ -133,6 +136,15 @@ class MasterViewController: UITableViewController {
             cell.cellDurationTextLabel.isHidden = cellInformationContent[indexPath.row]!
             cell.cellTopTextLabel.isHidden = cellInformationContent[indexPath.row]!
             cell.cellBottomTextLabel.isHidden = cellInformationContent[indexPath.row]!
+        }
+        
+        if (cellTextContent[indexPath.row] != nil) {
+            cell.cellTextView.isHidden = cellTextContent[indexPath.row]!
+            cell.cellSpeechTextView.isHidden = cellTextContent[indexPath.row]!
+        } else {
+            cellTextContent[indexPath.row] = true
+            cell.cellTextView.isHidden = cellTextContent[indexPath.row]!
+            cell.cellSpeechTextView.isHidden = cellTextContent[indexPath.row]!
         }
         
         return cell
@@ -156,10 +168,15 @@ class MasterViewController: UITableViewController {
                 do {
                     try FileManager.default.removeItem(atPath: path)
                     self.videosArray.remove(at: indexPath.row)
+                    self.speechArray.remove(at: indexPath.row)
                     let defaults = UserDefaults.standard
                     defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
                     if (self.cellInformationContent[indexPath.row] != nil) {
                         self.cellInformationContent.removeValue(forKey: indexPath.row)
+                    }
+                    defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
+                    if (self.cellTextContent[indexPath.row] != nil) {
+                        self.cellTextContent.removeValue(forKey: indexPath.row)
                     }
                     let dropbox = DropboxViewController()
                     dropbox.deleteFile(name: filename)
@@ -170,8 +187,10 @@ class MasterViewController: UITableViewController {
                 }
             } else {
                 self.videosArray.remove(at: indexPath.row)
+                self.speechArray.remove(at: indexPath.row)
                 let defaults = UserDefaults.standard
                 defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
+                defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
@@ -180,7 +199,12 @@ class MasterViewController: UITableViewController {
             
             // Swipe to show recognized text from speech
             
-            
+            if (self.cellTextContent[indexPath.row] != nil) {
+                self.cellTextContent[indexPath.row] = !self.cellTextContent[indexPath.row]!
+            } else {
+                self.cellTextContent[indexPath.row] = false
+            }
+            self.cellInformationContent[indexPath.row] = true
             tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.right)
             tableView.setEditing(false, animated: true)
         }
@@ -194,7 +218,7 @@ class MasterViewController: UITableViewController {
             } else {
                 self.cellInformationContent[indexPath.row] = false
             }
-            
+            self.cellTextContent[indexPath.row] = true
             tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.right)
             tableView.setEditing(false, animated: true)
         }
@@ -204,6 +228,8 @@ class MasterViewController: UITableViewController {
         
         print("self.cellInformationContent")
         print(self.cellInformationContent)
+        print("self.cellTextContent")
+        print(self.cellTextContent)
         
         return [delete, metadata, text]
     }
