@@ -11,6 +11,7 @@ import AVFoundation
 import Photos
 
 class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationManagerDelegate {
+    
     // MARK: View Controller Life Cycle
     
     let defaults = UserDefaults.standard
@@ -19,6 +20,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     let locationManager = CLLocationManager()
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         //        if let location = locations.first {
         //            print("Found user's location: \(location)")
         //        }
@@ -42,10 +44,12 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         previewView.updateConstraintsIfNeeded()
         
         // Disable UI. The UI is enabled if and only if the session starts running.
+        
         cameraButton.isEnabled = false
         recordButton.isEnabled = false
         
         // Set up the video preview view.
+        
         previewView.session = session
         
         /*
@@ -53,12 +57,16 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
          access is optional. If audio access is denied, audio is not recorded
          during movie recording.
          */
+        
         switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
         case .authorized:
+            
             // The user has previously granted access to the camera.
+            
             break
             
         case .notDetermined:
+            
             /*
              The user has not yet been presented with the option to grant
              video access. We suspend the session queue to delay session
@@ -67,6 +75,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
              Note that audio access will be implicitly requested when we
              create an AVCaptureDeviceInput for audio during session setup.
              */
+            
             sessionQueue.suspend()
             AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { [unowned self] granted in
                 if !granted {
@@ -90,6 +99,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
          take a long time. We dispatch session setup to the sessionQueue so
          that the main queue isn't blocked, which keeps the UI responsive.
          */
+        
         sessionQueue.async { [unowned self] in
             self.configureSession()
         }
@@ -105,7 +115,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         sessionQueue.async {
             switch self.setupResult {
             case .success:
+                
                 // Only setup observers and start the session running if setup succeeded.
+                
                 self.addObservers()
                 self.session.startRunning()
                 self.isSessionRunning = self.session.isRunning
@@ -154,7 +166,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     func canRotate() {}
     
     override var shouldAutorotate: Bool {
+        
         // Disable autorotation of the interface when recording is in progress.
+        
         if let movieFileOutput = movieFileOutput {
             return !movieFileOutput.isRecording
         }
@@ -206,18 +220,22 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         let currentTime = NSDate.timeIntervalSinceReferenceDate
         
         //Find the difference between current time and start time.
+        
         var elapsedTime: TimeInterval = currentTime - startTime
         
         //calculate the minutes in elapsed time.
+        
         let minutes = UInt8(elapsedTime / 60.0)
         elapsedTime -= (TimeInterval(minutes) * 60)
         
         //calculate the seconds in elapsed time.
+        
         let seconds = UInt8(elapsedTime)
         elapsedTime -= TimeInterval(seconds)
         
         //find out the fraction of milliseconds to be displayed.
-        //        let fraction = UInt8(elapsedTime * 100)
+        
+        // let fraction = UInt8(elapsedTime * 100)
         
         //add the leading zero for minutes, seconds and millseconds and store them as string constants
         
@@ -225,6 +243,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         let strSeconds = String(format: "%02d", seconds)
         
         //concatenate minuets, seconds and milliseconds as assign it to the UILabel
+        
         timerLabel.text = "\(strMinutes):\(strSeconds)"
     }
     
@@ -249,6 +268,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     @IBOutlet private weak var previewView: PreviewView!
     
     // Call this on the session queue.
+    
     private func configureSession() {
         if setupResult != .success {
             return
@@ -256,6 +276,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         session.beginConfiguration()
         
+        // MARK: Set the recording quality
         // Here we can modify the quality of recorded video.
         
         /*
@@ -266,20 +287,26 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         session.sessionPreset = AVCaptureSessionPresetInputPriority
         
         
-        // Add video input.
+        //MARK: Add video input.
+        
         do {
             var defaultVideoDevice: AVCaptureDevice?
             
             // Choose the back dual camera if available, otherwise default to a wide angle camera.
+            
             if let dualCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInDuoCamera, mediaType: AVMediaTypeVideo, position: .back) {
                 defaultVideoDevice = dualCameraDevice
             }
             else if let backCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .back) {
+                
                 // If the back dual camera is not available, default to the back wide angle camera.
+                
                 defaultVideoDevice = backCameraDevice
             }
             else if let frontCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front) {
+                
                 // In some cases where users break their phones, the back wide angle camera is not available. In this case, we should default to the front wide angle camera.
+                
                 defaultVideoDevice = frontCameraDevice
             }
             
@@ -290,6 +317,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 self.videoDeviceInput = videoDeviceInput
                 
                 DispatchQueue.main.async {
+                    
                     /*
                      Why are we dispatching this to the main queue?
                      Because AVCaptureVideoPreviewLayer is the backing layer for PreviewView and UIView
@@ -300,6 +328,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                      Use the status bar orientation as the initial video orientation. Subsequent orientation changes are
                      handled by CameraViewController.viewWillTransition(to:with:).
                      */
+                    
                     let statusBarOrientation = UIApplication.shared.statusBarOrientation
                     var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
                     if statusBarOrientation != .unknown {
@@ -325,7 +354,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             return
         }
         
-        // Add audio input.
+        // MARK: Add audio input.
+        
         do {
             let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio)
             let audioDeviceInput = try AVCaptureDeviceInput(device: audioDevice)
@@ -341,7 +371,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             print("Could not create audio device input: \(error)")
         }
         
-        // Add video output.
+        // MARK: Add video output.
         
         let movieFileOutput = AVCaptureMovieFileOutput()
         
@@ -364,6 +394,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     @IBAction private func resumeInterruptedSession(_ resumeButton: UIButton)
     {
         sessionQueue.async { [unowned self] in
+            
             /*
              The session might fail to start running, e.g., if a phone or FaceTime call is still
              using audio or video. A failure to start the session running will be communicated via
@@ -371,6 +402,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
              running, we only try to restart the session running in the session runtime error handler
              if we aren't trying to resume the session running.
              */
+            
             self.session.startRunning()
             self.isSessionRunning = self.session.isRunning
             if !self.session.isRunning {
@@ -423,6 +455,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             var newVideoDevice: AVCaptureDevice? = nil
             
             // First, look for a device with both the preferred position and device type. Otherwise, look for a device with only the preferred position.
+            
             if let device = devices.filter({ $0.position == preferredPosition && $0.deviceType == preferredDeviceType }).first {
                 newVideoDevice = device
             }
@@ -437,6 +470,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                     self.session.beginConfiguration()
                     
                     // Remove the existing device input first, since using the front and back camera simultaneously is not supported.
+                    
                     self.session.removeInput(self.videoDeviceInput)
                     
                     if self.session.canAddInput(videoDeviceInput) {
@@ -486,6 +520,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                      Setting (focus/exposure)PointOfInterest alone does not initiate a (focus/exposure) operation.
                      Call set(Focus/Exposure)Mode() to apply the new point of interest.
                      */
+                    
                     if device.isFocusPointOfInterestSupported && device.isFocusModeSupported(focusMode) {
                         device.focusPointOfInterest = devicePoint
                         device.focusMode = focusMode
@@ -524,7 +559,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         /*
          Disable the Camera button until recording finishes, and disable
          the Record button until recording starts or finishes.
-         
          See the AVCaptureFileOutputRecordingDelegate methods.
          */
         
@@ -545,12 +579,14 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
          before entering the session queue. We do this to ensure UI elements are
          accessed on the main thread and session configuration is done on the session queue.
          */
+        
         let videoPreviewLayerOrientation = previewView.videoPreviewLayer.connection.videoOrientation
         
         sessionQueue.async { [unowned self] in
             if !movieFileOutput.isRecording {
                 AudioServicesPlaySystemSound(1117)
                 if UIDevice.current.isMultitaskingSupported {
+                    
                     /*
                      Setup background task.
                      This is needed because the `capture(_:, didFinishRecordingToOutputFileAt:, fromConnections:, error:)`
@@ -559,18 +595,16 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                      To conclude this background execution, endBackgroundTask(_:) is called in
                      `capture(_:, didFinishRecordingToOutputFileAt:, fromConnections:, error:)` after the recorded file has been saved.
                      */
+                    
                     self.backgroundRecordingID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
                 }
                 
                 // Update the orientation on the movie file output video connection before starting recording.
+                
                 let movieFileOutputConnection = self.movieFileOutput?.connection(withMediaType: AVMediaTypeVideo)
                 movieFileOutputConnection?.videoOrientation = videoPreviewLayerOrientation
                 
-                
-                
-                
                 // MARK: Adding metadata with location to the movie
-                
                 
                 self.locationManager.requestLocation()
                 let location = self.locationManager.location
@@ -602,13 +636,15 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                     stringMinute = String("0\(stringMinute)")
                 }
                 let filename = "\(year)\(month)\(day)_\(stringHour)\(stringMinute)_\(second)\(nanosecond)_LAT\(lat)_LON\(lon)"
-                //                print("Recording file name: " + filename)
                 
+                // print("Recording file name: " + filename)
+                // let outputFileName = NSUUID().uuidString
                 
-                //				let outputFileName = NSUUID().uuidString
                 let outputFileName = filename
                 let outputFilePath = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
-                //                print("outputFilePath - " + outputFilePath)
+                
+                // print("outputFilePath - " + outputFilePath)
+                
                 movieFileOutput.startRecording(toOutputFileURL: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
                 
                 if self.defaults.array(forKey: self.savedVideosArrayKey) != nil {
@@ -627,16 +663,21 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
+        
         // Enable the Record button to let the user stop the recording.
+        
         DispatchQueue.main.async { [unowned self] in
             self.recordButton.isEnabled = true
             self.cameraButton.isHidden = true
             self.recordButton.imageView?.image = UIImage(named: "StopCameraButton")
-            //			self.recordButton.setTitle(NSLocalizedString("Stop", comment: "Recording button stop title"), for: [])
+            
+            //self.recordButton.setTitle(NSLocalizedString("Stop", comment: "Recording button stop title"), for: [])
+            
         }
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
+        
         /*
          Note that currentBackgroundRecordingID is used to end the background task
          associated with this recording. This allows a new recording to be started,
@@ -647,6 +688,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
          Note: Since we use a unique file path for each recording, a new recording will
          not overwrite a recording currently being saved.
          */
+        
         func cleanup() {
             let path = outputFileURL.path
             if FileManager.default.fileExists(atPath: path) {
@@ -730,7 +772,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             
             
-            // Save video inside application.
+            // MARK: Save video inside application.
             
             do {
                 let video = try NSData(contentsOf: outputFileURL, options: NSData.ReadingOptions())
@@ -748,7 +790,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
             
             
-            // Mark: Save video to dropbox.
+            // MARK: Save video to dropbox.
             
             let saver = DropboxViewController()
             saver.uploadVideoFile(filePath: videosArray.last!)
@@ -784,17 +826,23 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         
         // Enable the Camera and Record buttons to let the user switch camera and start another recording.
+        
         DispatchQueue.main.async { [unowned self] in
+            
             // Only enable the ability to change camera if the device has more than one camera.
+            
             self.cameraButton.isEnabled = self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1
             
             self.cameraButton.isHidden = false
-            //            self.cameraButton.isHidden = !(self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1)
+            
+            //self.cameraButton.isHidden = !(self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1)
+            
             self.recordButton.isEnabled = true
             self.tabBarController?.tabBar.isHidden = false
             self.recordButton.imageView?.image = UIImage(named: "RecordCameraButton")
             AudioServicesPlaySystemSound(1118)
-            //            self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
+            
+            //self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
         }
     }
     
@@ -833,7 +881,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             guard let isSessionRunning = newValue?.boolValue else { return }
             
             DispatchQueue.main.async { [unowned self] in
+                
                 // Only enable the ability to change camera if the device has more than one camera.
+                
                 self.cameraButton.isEnabled = isSessionRunning && self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1
                 self.recordButton.isEnabled = isSessionRunning && self.movieFileOutput != nil
             }
@@ -861,6 +911,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
          reset and the last start running succeeded. Otherwise, enable the user
          to try to resume the session running.
          */
+        
         if error.code == .mediaServicesWereReset {
             sessionQueue.async { [unowned self] in
                 if self.isSessionRunning {
@@ -880,6 +931,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     func sessionWasInterrupted(notification: NSNotification) {
+        
         /*
          In some scenarios we want to enable the user to resume the session running.
          For example, if music playback is initiated via control center while
@@ -888,6 +940,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
          music playback in control center will not automatically resume the session
          running. Also note that it is not always possible to resume, see `resumeInterruptedSession(_:)`.
          */
+        
         if let userInfoValue = notification.userInfo?[AVCaptureSessionInterruptionReasonKey] as AnyObject?, let reasonIntegerValue = userInfoValue.integerValue, let reason = AVCaptureSessionInterruptionReason(rawValue: reasonIntegerValue) {
             print("Capture session was interrupted with the reason \(reason)")
             
@@ -897,7 +950,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 showResumeButton = true
             }
             else if reason == AVCaptureSessionInterruptionReason.videoDeviceNotAvailableWithMultipleForegroundApps {
+                
                 // Simply fade-in a label to inform the user that the camera is unavailable.
+                
                 cameraUnavailableLabel.alpha = 0
                 cameraUnavailableLabel.isHidden = false
                 UIView.animate(withDuration: 0.25) { [unowned self] in
@@ -906,7 +961,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
             
             if showResumeButton {
+                
                 // Simply fade-in a button to enable the user to try to resume the session running.
+                
                 resumeButton.alpha = 0
                 resumeButton.isHidden = false
                 UIView.animate(withDuration: 0.25) { [unowned self] in
