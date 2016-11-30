@@ -69,6 +69,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
          during movie recording.
          */
         
+        // MARK: Request video recording authorization
+        
         switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
         case .authorized:
             
