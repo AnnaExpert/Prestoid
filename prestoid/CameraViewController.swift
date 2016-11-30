@@ -692,7 +692,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         // MARK: Start/Stop speech recognition
         
-//        startRecordingSpeech()
+        startRecordingSpeech()
         
         guard let movieFileOutput = self.movieFileOutput else {
             return
@@ -727,8 +727,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         sessionQueue.async { [unowned self] in
             if !movieFileOutput.isRecording {
                 AudioServicesPlaySystemSound(1117)
-                
-                self.startRecordingSpeech()
                 
                 if UIDevice.current.isMultitaskingSupported {
                     
