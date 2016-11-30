@@ -14,6 +14,8 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     var videosArray: [String] = Array()
     let savedVideosArrayKey = "savedVideosArray"
+    var speechArray: [String] = Array()
+    let savedSpeechArrayKey = "savedSpeechArray"
     let user = DropboxUser()
     
     @IBOutlet weak var dropboxLogoImageView: UIImageView!
@@ -282,12 +284,15 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         }
     }
     
-    // Mark: Upload files
+    // Mark: Upload video and text file
     
     public func uploadVideoFile(filePath: String) {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
             videosArray = arrayValue as! [String]
+        }
+        if let arrayValue = defaults.array(forKey: savedSpeechArrayKey) {
+            speechArray = arrayValue as! [String]
         }
         if let client = DropboxClientsManager.authorizedClient {
             //            self.rpcStyleRequest()
