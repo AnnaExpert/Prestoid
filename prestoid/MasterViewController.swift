@@ -195,7 +195,7 @@ class MasterViewController: UITableViewController {
             }
         }
         
-        let text = UITableViewRowAction(style: .normal, title: "Text") { (action, indexPath) in
+        let text = UITableViewRowAction(style: .normal, title: "Speech") { (action, indexPath) in
             
             // MARK: Swipe to show recognized text from speech
             
