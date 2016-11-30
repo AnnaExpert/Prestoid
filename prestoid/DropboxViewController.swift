@@ -307,17 +307,17 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                     .response { response, error in
                         if let response = response {
                             print(response)
-//                            self.uploadingLabel.isHidden = true
-//                            self.uploadingProgress.isHidden = true
+                            //                            self.uploadingLabel.isHidden = true
+                            //                            self.uploadingProgress.isHidden = true
                         } else if let error = error {
                             self.uploadVideoFile(filePath: filePath)
                             print(error)
                         }
                     }
                     .progress { progressData in
-//                        self.uploadingLabel.isHidden = false
-//                        self.uploadingProgress.isHidden = false
-//                        self.uploadingProgress.progress = Float(progressData.fractionCompleted)
+                        //                        self.uploadingLabel.isHidden = false
+                        //                        self.uploadingProgress.isHidden = false
+                        //                        self.uploadingProgress.progress = Float(progressData.fractionCompleted)
                         print(progressData)
                 }
                 
@@ -328,6 +328,30 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             } catch {
                 print("Can't load data file from iPhone memory")
             }
+            let textFileData = speechArray.last!.data(using: .utf8)
+            let fileData = textFileData!
+            _ = client.files.upload(path: "/PrestoidMedia/\(path).txt", input: fileData)
+                .response { response, error in
+                    if let response = response {
+                        print(response)
+                        //                            self.uploadingLabel.isHidden = true
+                        //                            self.uploadingProgress.isHidden = true
+                    } else if let error = error {
+                        self.uploadVideoFile(filePath: filePath)
+                        print(error)
+                    }
+                }
+                .progress { progressData in
+                    //                        self.uploadingLabel.isHidden = false
+                    //                        self.uploadingProgress.isHidden = false
+                    //                        self.uploadingProgress.progress = Float(progressData.fractionCompleted)
+                    print(progressData)
+            }
+            
+            // in case you want to cancel the request
+            //        if someConditionIsSatisfied {
+            //            request.cancel()
+            //        }
         }
     }
     
