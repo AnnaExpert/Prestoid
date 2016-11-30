@@ -25,6 +25,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
+//    var speechDict: Dictionary = Dictionary()
+    let savedVideosDictKey = "savedSpeechDict"
     
     // Change the speech recognition language here
     
