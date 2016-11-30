@@ -277,7 +277,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         print("Response Metadata: \(responseMetadata)")
                         let fileContents = response.1
                         
-                        // MARK: Save text file to application
+                        // MARK: Save text file inside the application
                         
                         let result = String(data: fileContents, encoding: .utf8) ?? ""
                         print(result)
@@ -288,7 +288,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         self.speechArray.append(result)
                         defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
                         print("VideosArray: \(self.speechArray)")
-                        
                         self.refreshProgressView.isHidden = true
                         self.refreshButton.isEnabled = true
                     } else if let error = error {
@@ -305,12 +304,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             }
         }
     }
-    
-    // MARK: Save text file inside the application
-    
-//    func saveTextFile(fileContents: NSData, localName: String) {
-//        
-//    }
     
     // MARK: Delete video and text file
     
