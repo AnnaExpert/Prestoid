@@ -190,6 +190,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         sessionQueue.async { [unowned self] in
             if self.setupResult == .success {
                 self.session.stopRunning()
@@ -198,7 +199,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 self.locationManager.stopUpdatingLocation()
             }
         }
-        super.viewWillDisappear(animated)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
