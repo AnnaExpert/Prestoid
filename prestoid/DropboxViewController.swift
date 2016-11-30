@@ -200,6 +200,9 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                             }
                             if !match {
                                 self.downloadFile(fromPath: dropboxPath, localName: dropboxName)
+                                let dropboxPathArray = String(describing: dropboxPath).components(separatedBy: ".")
+                                let dropboxTextPath = dropboxPathArray[0] + "." + dropboxPathArray[1] + "." + dropboxPathArray[2] + ".txt"
+                                self.downloadTextFile(fromPath: dropboxTextPath, localName: dropboxName)
                             }
                         }
                     } else if let error = error {
@@ -209,7 +212,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         }
     }
     
-    // Mark: Download File to Data
+    // Mark: Download video files to data
     
     public func downloadFile(fromPath: String, localName: String) {
         var result = NSData()
@@ -242,6 +245,8 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         }
     }
     
+    // MARK: Save video file inside the application
+    
     func saveFile(fileContents: NSData, localName: String) {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: self.savedVideosArrayKey) {
@@ -254,6 +259,18 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         fileContents.write(toFile: filePath, atomically: false)
         self.videosArray.append(localName)
         defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
+    }
+    
+    // Mark: Download text files to data
+    
+    public func downloadTextFile(fromPath: String, localName: String) {
+        
+    }
+    
+    // MARK: Save text file inside the application
+    
+    func saveTextFile(fileContents: NSData, localName: String) {
+        
     }
     
     // MARK: Delete files from Dropbox
