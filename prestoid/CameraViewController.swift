@@ -9,15 +9,26 @@
 import UIKit
 import AVFoundation
 import Photos
+import Speech
 
-class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationManagerDelegate {
+class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationManagerDelegate, SFSpeechRecognizerDelegate {
     
-    // MARK: View Controller Life Cycle
+    // MARK: Constants and variables declaration
     
     let defaults = UserDefaults.standard
     var videosArray: [String] = Array()
     let savedVideosArrayKey = "savedVideosArray"
     let locationManager = CLLocationManager()
+    
+    // MARK: Speech recognition settings
+    
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+    private let audioEngine = AVAudioEngine()
+    
+    // Change the speech recognition language here
+    
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en"))
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -102,6 +113,34 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         sessionQueue.async { [unowned self] in
             self.configureSession()
+        }
+        
+        // MARK: Request speech recognition authorization
+        
+        SFSpeechRecognizer.requestAuthorization { (authStatus) in
+            
+            switch authStatus {
+            case .authorized:
+                print("User granted access to speech recognition")
+//                isButtonEnabled = true
+                
+            case .denied:
+//                isButtonEnabled = false
+                print("User denied access to speech recognition")
+                
+            case .restricted:
+//                isButtonEnabled = false
+                print("Speech recognition restricted on this device")
+                
+            case .notDetermined:
+//                isButtonEnabled = false
+                print("Speech recognition not yet authorized")
+            }
+            
+//            OperationQueue.main.addOperation() {
+//                self.microphoneButton.isEnabled = isButtonEnabled
+//            }
+            
         }
     }
     
@@ -277,9 +316,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         session.beginConfiguration()
         
         // MARK: Set the recording quality
-        // Here we can modify the quality of recorded video.
         
         /*
+        Here we can modify the quality of recorded video.
+        
         This setting will decrease twice the size of video file
         session.sessionPreset = AVCaptureSessionPreset1280x720
         */
