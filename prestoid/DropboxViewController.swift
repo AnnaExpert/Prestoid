@@ -173,7 +173,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     public func downloadAllFiles() {
         if let client = DropboxClientsManager.authorizedClient {
-            client.files.listFolder(path: "/PrestoidMedia")
+            client.files.listFolder(path: "/PrestoidMedia/Video")
                 .response { response, error in
                     let defaults = UserDefaults.standard
                     if let arrayValue = defaults.array(forKey: self.savedVideosArrayKey) {
@@ -200,6 +200,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                             }
                             if !match {
                                 self.downloadFile(fromPath: dropboxPath, localName: dropboxName)
+                                self.downloadTextFile(fromPath: dropboxName)
                             }
                         }
                     } else if let error = error {
@@ -212,6 +213,8 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     // MARK: Download video file to data
     
     public func downloadFile(fromPath: String, localName: String) {
+        print("FromPath: \(fromPath)")
+        print("LocalName: \(localName)")
         var result = NSData()
         let nameArray = String(describing: localName).components(separatedBy: ".")
         let fileName = nameArray[0] + "." + nameArray[1] + "." + nameArray[2]
@@ -249,36 +252,74 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         if let arrayValue = defaults.array(forKey: self.savedVideosArrayKey) {
             self.videosArray = arrayValue as! [String]
         }
-        print("VideosArray: \(self.videosArray)")
+//        print("VideosArray: \(self.videosArray)")
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
         let filePath = docsPath + "/" + localName + ".mov"
-        print("FilePath: \(filePath)")
+//        print("FilePath: \(filePath)")
         fileContents.write(toFile: filePath, atomically: false)
         self.videosArray.append(localName)
         defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
+        print("VideosArray: \(self.videosArray)")
     }
     
     // MARK: Download text file to data
     
-    public func downloadTextFile(fromPath: String, localName: String) {
+    public func downloadTextFile(fromPath: String) {
+        let pathArray = String(describing: fromPath).components(separatedBy: ".")
+        let dropboxPath = "/PrestoidMedia/Text/" + pathArray[0] + "." + pathArray[1] + "." + pathArray[2] + "." + "txt"
         print("FromPath: \(fromPath)")
-        print("LocalName: \(localName)")
+        print("DropboxPath: \(dropboxPath)")
+        if let client = DropboxClientsManager.authorizedClient {
+            client.files.download(path: dropboxPath)
+                .response { response, error in
+                    if let response = response {
+                        let responseMetadata = response.0
+                        print("Response Metadata: \(responseMetadata)")
+                        let fileContents = response.1
+                        
+                        // MARK: Save text file to application
+                        
+                        let result = String(data: fileContents, encoding: .utf8) ?? ""
+                        print(result)
+                        let defaults = UserDefaults.standard
+                        if let arrayValue = defaults.array(forKey: self.savedSpeechArrayKey) {
+                            self.speechArray = arrayValue as! [String]
+                        }
+                        self.speechArray.append(result)
+                        defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
+                        print("VideosArray: \(self.speechArray)")
+                        
+                        self.refreshProgressView.isHidden = true
+                        self.refreshButton.isEnabled = true
+                    } else if let error = error {
+                        print(error)
+                        self.downloadAllFiles()
+                        self.refreshProgressView.isHidden = true
+                        self.refreshButton.isEnabled = true
+                    }
+                }
+                .progress { progressData in
+                    self.refreshProgressView.isHidden = false
+                    self.refreshButton.isEnabled = false
+                    self.refreshProgressView.progress = Float(progressData.fractionCompleted)
+            }
+        }
     }
     
     // MARK: Save text file inside the application
     
-    func saveTextFile(fileContents: NSData, localName: String) {
-        
-    }
+//    func saveTextFile(fileContents: NSData, localName: String) {
+//        
+//    }
     
     // MARK: Delete video and text file
     
     public func deleteFile(name: String) {
-        let videoFilePath = "/PrestoidMedia/" + name + ".mov"
+        let videoFilePath = "/PrestoidMedia/Video/" + name + ".mov"
         if let client = DropboxClientsManager.authorizedClient {
             client.files.delete(path: videoFilePath)
         }
-        let textFilePath = "/PrestoidMedia/" + name + ".txt"
+        let textFilePath = "/PrestoidMedia/Text/" + name + ".txt"
         if let client = DropboxClientsManager.authorizedClient {
             client.files.delete(path: textFilePath)
         }
@@ -303,7 +344,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             do {
                 let videoFileData = try Data(contentsOf: videoFileURL)
                 let fileData = videoFileData
-                _ = client.files.upload(path: "/PrestoidMedia/\(path).mov", input: fileData)
+                _ = client.files.upload(path: "/PrestoidMedia/Video/\(path).mov", input: fileData)
                     .response { response, error in
                         if let response = response {
                             print(response)
@@ -330,7 +371,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             }
             let textFileData = speechArray.last!.data(using: .utf8)
             let fileData = textFileData!
-            _ = client.files.upload(path: "/PrestoidMedia/\(path).txt", input: fileData)
+            _ = client.files.upload(path: "/PrestoidMedia/Text/\(path).txt", input: fileData)
                 .response { response, error in
                     if let response = response {
                         print(response)
