@@ -311,8 +311,16 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                print("Could be: \(result?.bestTranscription.formattedString)")
-                self.recognizedText = "Ooops..."
+                guard let recognizedResult = result?.bestTranscription.formattedString else {
+                    print("Did not recognize anything till now...")
+                    self.startRecordingSpeech()
+                    return
+                }
+                self.recognizedText = self.recognizedText + "\n" + recognizedResult
+                print("Recognized result (part): \(recognizedResult)")
+                self.startRecordingSpeech()
+//                self.recognizedText = "Ooops..."
+                
             }
         })
         
