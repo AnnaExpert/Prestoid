@@ -250,8 +250,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     func stopRecordingSpeech() {
 //        if audioEngine.isRunning {
-            self.audioEngine.stop()
+            audioEngine.stop()
             recognitionRequest?.endAudio()
+            audioEngine.reset()
             print("Finished speech recognition")
             print("Recognized text: \(recognizedText)")
             
@@ -802,12 +803,18 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
             else {
                 movieFileOutput.stopRecording()
-                AudioServicesPlaySystemSound(1118)
+//                AudioServicesPlaySystemSound(1118)
             }
         }
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
+        
+        // MARK: Start speech recognition after a delay
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) ) {
+            self.startRecordingSpeech()
+//        }
         
         // Enable the Record button to let the user stop the recording.
         
@@ -817,9 +824,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             self.recordButton.imageView?.image = UIImage(named: "StopCameraButton")
             
             //self.recordButton.setTitle(NSLocalizedString("Stop", comment: "Recording button stop title"), for: [])
-            
-            
-            
+        
         }
     }
     
@@ -914,9 +919,13 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
              }
              */
             
-            // Save video to documents folder library.
             
             
+            // MARK: Stop speech recognition
+            
+            self.stopRecordingSpeech()
+            
+            AudioServicesPlaySystemSound(1118)
             
             
             // MARK: Save video inside application.
@@ -937,7 +946,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 print("Can't convert video data to data file")
                 cleanup()
             }
-            
             
             // MARK: Save video to dropbox.
             
