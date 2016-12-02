@@ -78,6 +78,7 @@ class MasterViewController: UITableViewController {
         
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
         let moviePath = docsPath + "/" + fileName + ".mov"
+        print("MasterViewController movie path: \(moviePath)")
         do {
             let asset = AVURLAsset(url: URL(fileURLWithPath: moviePath), options: nil)
             let imgGenerator = AVAssetImageGenerator(asset: asset)
@@ -86,6 +87,7 @@ class MasterViewController: UITableViewController {
             thumbnail = UIImage(cgImage: cgImage)
         } catch let error as NSError {
             print("Error generating thumbnail: \(error)")
+            thumbnail = UIImage(named: "PlayFilled")!
         }
         
         var creation = ""

@@ -30,7 +30,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     // Change the speech recognition language here
     
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en"))
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en"))
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -241,12 +241,20 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     // MARK: Speech recognition function
     
-    var recognizedText = ""
+    var recognizedText = "Ooops... We are sotty, but Siri could not recognize the speech. It can happen because of not using English language, bad internet connection or too long recording time..."
     
     func startRecordingSpeech() {
-        if audioEngine.isRunning {
-            audioEngine.stop()
+        startRecording()
+        print("Started speech recognition")
+    }
+    
+    func stopRecordingSpeech() {
+//        if audioEngine.isRunning {
+            self.audioEngine.stop()
             recognitionRequest?.endAudio()
+        
+        AudioServicesPlaySystemSound(1118)
+        
             print("Finished speech recognition")
             print("Recognized text: \(recognizedText)")
             
@@ -259,10 +267,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             self.speechArray.append(recognizedText)
             self.defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
             
-        } else {
-            startRecording()
-            print("Started speech recognition")
-        }
+//        } else {
+//            print("Speech recognition was not started before")
+//        }
     }
     
     func startRecording() {
@@ -307,6 +314,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
+                self.recognizedText = "Ooops... We are sotty, but Siri could not recognize the speech. It can happen because of not using English language, bad internet connection or too long recording time..."
             }
         })
         
@@ -326,9 +334,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
-            print("microphoneButton.isEnabled = true")
+            print("Speech recognizer is enabled")
         } else {
-            print("microphoneButton.isEnabled = false")
+            print("Speech recognizer is disabled")
         }
     }
     
@@ -690,10 +698,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     @IBAction private func toggleMovieRecording(_ recordButton: UIButton) {
         
-        // MARK: Start/Stop speech recognition
-        
-        startRecordingSpeech()
-        
         guard let movieFileOutput = self.movieFileOutput else {
             return
         }
@@ -709,11 +713,22 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         recordButton.isEnabled = false
         self.tabBarController?.tabBar.isHidden = true
         if timerLabel.isHidden {
+            AudioServicesPlaySystemSound(1117)
             startTimer()
             timerLabel.isHidden = !timerLabel.isHidden
+            
+            // MARK: Start speech recognition after a delay
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) ) {
+                self.startRecordingSpeech()
+            }
         } else {
             stopTimer()
             timerLabel.isHidden = !timerLabel.isHidden
+            
+            // MARK: Stop speech recognition
+            
+            stopRecordingSpeech()
         }
         
         /*
@@ -726,7 +741,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         sessionQueue.async { [unowned self] in
             if !movieFileOutput.isRecording {
-                AudioServicesPlaySystemSound(1117)
+//                AudioServicesPlaySystemSound(1117)
                 
                 if UIDevice.current.isMultitaskingSupported {
                     
@@ -801,6 +816,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
             else {
                 movieFileOutput.stopRecording()
+//                AudioServicesPlaySystemSound(1118)
             }
         }
     }
@@ -919,8 +935,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             do {
                 let video = try NSData(contentsOf: outputFileURL, options: NSData.ReadingOptions())
+                let fileName = videosArray.last!
                 let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-                let moviePath = docsPath + "/" + videosArray.last! + ".mov"
+                let moviePath = docsPath + "/" + fileName + ".mov"
+                print("CameraViewController movie path: \(moviePath)")
                 //                print("MOVIE PATH OF FILE: " + moviePath)
                 video.write(toFile: moviePath, atomically: false)
                 
@@ -983,7 +1001,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             self.recordButton.isEnabled = true
             self.tabBarController?.tabBar.isHidden = false
             self.recordButton.imageView?.image = UIImage(named: "RecordCameraButton")
-            AudioServicesPlaySystemSound(1118)
             
             //self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
         }
