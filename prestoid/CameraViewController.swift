@@ -252,7 +252,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 //        if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
-            audioEngine.reset()
             print("Finished speech recognition")
             print("Recognized text: \(recognizedText)")
             
@@ -277,14 +276,14 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             recognitionTask = nil
         }
         
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(AVAudioSessionCategoryRecord)
-            try audioSession.setMode(AVAudioSessionModeMeasurement)
-            try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
-        } catch {
-            print("audioSession properties weren't set because of an error.")
-        }
+//        let audioSession = AVAudioSession.sharedInstance()
+//        do {
+//            try audioSession.setCategory(AVAudioSessionCategoryRecord)
+//            try audioSession.setMode(AVAudioSessionModeMeasurement)
+//            try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
+//        } catch {
+//            print("audioSession properties weren't set because of an error.")
+//        }
         
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         
@@ -728,6 +727,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         sessionQueue.async { [unowned self] in
             if !movieFileOutput.isRecording {
+                
+                //MARK: Play "Record started" sound
+                
                 AudioServicesPlaySystemSound(1117)
                 
                 if UIDevice.current.isMultitaskingSupported {
@@ -810,11 +812,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
         
-        // MARK: Start speech recognition after a delay
+        // MARK: Start speech recognition
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) ) {
             self.startRecordingSpeech()
-//        }
         
         // Enable the Record button to let the user stop the recording.
         
@@ -822,7 +822,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             self.recordButton.isEnabled = true
             self.cameraButton.isHidden = true
             self.recordButton.imageView?.image = UIImage(named: "StopCameraButton")
-            
             //self.recordButton.setTitle(NSLocalizedString("Stop", comment: "Recording button stop title"), for: [])
         
         }
@@ -851,10 +850,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                     print("Could not remove file at url: \(outputFileURL)")
                 }
             }
-            
             if let currentBackgroundRecordingID = backgroundRecordingID {
                 backgroundRecordingID = UIBackgroundTaskInvalid
-                
                 if currentBackgroundRecordingID != UIBackgroundTaskInvalid {
                     UIApplication.shared.endBackgroundTask(currentBackgroundRecordingID)
                 }
@@ -867,66 +864,19 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             print("Movie file finishing error: \(error)")
             success = (((error as NSError).userInfo[AVErrorRecordingSuccessfullyFinishedKey] as AnyObject).boolValue)!
         }
-        
         if success {
             
+            // MARK: File procession success
+            
             print("File procession success")
-            
-            /*
-             do {
-             
-             
-             // Save video inside application.
-             if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
-             videosArray = arrayValue as! [String]
-             }
-             
-             let newVideoName = "/video" + String(videosArray.count)
-             videosArray.append(newVideoName)
-             defaults.set(videosArray, forKey: savedVideosArrayKey)
-             
-             
-             let video = try NSData(contentsOf: outputFileURL, options: NSData.ReadingOptions())
-             let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-             let moviePath = docsPath + videosArray.last! + ".mov"
-             print(moviePath)
-             video.write(toFile: moviePath, atomically: false)
-             
-             
-             if let arrayValue = defaults.array(forKey: thumbnailsArrayKey) {
-             thumbnailsArray = arrayValue as! [Data]
-             }
-             
-             
-             } catch {
-             print("Can't convert video to data file")
-             }
-             
-             
-             do {
-             let asset = AVURLAsset(url: outputFileURL, options: nil)
-             let imgGenerator = AVAssetImageGenerator(asset: asset)
-             imgGenerator.appliesPreferredTrackTransform = true
-             let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
-             let uiImage = UIImage(cgImage: cgImage)
-             if let imageData = UIImagePNGRepresentation(uiImage) {
-             thumbnailsArray.append(imageData)
-             defaults.set(thumbnailsArray, forKey: thumbnailsArrayKey)
-             }
-             
-             } catch let error as NSError {
-             print("Error generating thumbnail: \(error)")
-             }
-             */
-            
-            
             
             // MARK: Stop speech recognition
             
             self.stopRecordingSpeech()
             
-            AudioServicesPlaySystemSound(1118)
+            //MARK: Play "Record finished" sound
             
+            AudioServicesPlaySystemSound(1118)
             
             // MARK: Save video inside application.
             
@@ -936,12 +886,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
                 let moviePath = docsPath + "/" + fileName + ".mov"
                 print("CameraViewController movie path: \(moviePath)")
-                //                print("MOVIE PATH OF FILE: " + moviePath)
                 video.write(toFile: moviePath, atomically: false)
-                
-                
-                
-                
             } catch {
                 print("Can't convert video data to data file")
                 cleanup()
@@ -954,6 +899,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             /*
              // Save the movie file to the photo library and cleanup.
+             
              PHPhotoLibrary.shared().performChanges({
              let options = PHAssetResourceCreationOptions()
              options.shouldMoveFile = true
@@ -968,19 +914,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
              )
              */
             
-            
         }
         else {
             cleanup()
         }
-        
-        
-        
-        
-        
-        
-        
-        
         
         // Enable the Camera and Record buttons to let the user switch camera and start another recording.
         
@@ -989,15 +926,11 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             // Only enable the ability to change camera if the device has more than one camera.
             
             self.cameraButton.isEnabled = self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1
-            
             self.cameraButton.isHidden = false
-            
             //self.cameraButton.isHidden = !(self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1)
-            
             self.recordButton.isEnabled = true
             self.tabBarController?.tabBar.isHidden = false
             self.recordButton.imageView?.image = UIImage(named: "RecordCameraButton")
-            
             //self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
         }
     }
