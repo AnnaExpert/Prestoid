@@ -241,7 +241,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     // MARK: Speech recognition function
     
-    var recognizedText = "Ooops... We are sotty, but Siri could not recognize the speech. It can happen because of not using English language, bad internet connection or too long recording time..."
+    var recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language, bad internet connection or too long recording time..."
     
     func startRecordingSpeech() {
         startRecording()
@@ -311,7 +311,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                self.recognizedText = "Ooops... We are sotty, but Siri could not recognize the speech. It can happen because of not using English language, bad internet connection or too long recording time..."
+                self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language, bad internet connection or too long recording time..."
             }
         })
         
@@ -334,6 +334,14 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             print("Speech recognizer is enabled")
         } else {
             print("Speech recognizer is disabled")
+        }
+    }
+    
+    func speechRecognitionTask(task: SFSpeechRecognitionTask, didFinishSuccessfully successfully: Bool) { //wether succesfully= true or not
+        if successfully {
+            print("+++++++++TRUE+++++++++")
+        } else {
+            print("---------FALSE---------")
         }
     }
     
