@@ -337,14 +337,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         }
     }
     
-    func speechRecognitionTask(task: SFSpeechRecognitionTask, didFinishSuccessfully successfully: Bool) { //wether succesfully= true or not
-        if successfully {
-            print("+++++++++TRUE+++++++++")
-        } else {
-            print("---------FALSE---------")
-        }
-    }
-    
     // Mark: Timer
     
     @IBOutlet weak var timerLabel: UILabel!
@@ -1131,4 +1123,20 @@ extension AVCaptureDeviceDiscoverySession {
         return uniqueDevicePositions.count
     }
     
+}
+
+extension UIViewController: SFSpeechRecognitionTaskDelegate {
+    
+    public func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishSuccessfully successfully: Bool) {
+        if successfully {
+            print("+++++++++TRUE+++++++++")
+        } else {
+            print("---------FALSE---------")
+        }
+    }
+    
+    public func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishRecognition recognitionResult: SFSpeechRecognitionResult) {
+//        console.text = console.text + "\n" + recognitionResult.bestTranscription.formattedString
+        print("!!!SpeechRecognitionTask: \(recognitionResult.bestTranscription.formattedString)")
+    }
 }
