@@ -311,7 +311,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language, bad internet connection or too long recording time..."
+                print("Could be: \(result?.bestTranscription.formattedString)")
+                self.recognizedText = "Ooops..."
             }
         })
         
@@ -1125,9 +1126,9 @@ extension AVCaptureDeviceDiscoverySession {
     
 }
 
-extension UIViewController: SFSpeechRecognitionTaskDelegate {
+extension SFSpeechRecognitionTaskDelegate {
     
-    public func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishSuccessfully successfully: Bool) {
+    func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishSuccessfully successfully: Bool) {
         if successfully {
             print("+++++++++TRUE+++++++++")
         } else {
@@ -1135,7 +1136,7 @@ extension UIViewController: SFSpeechRecognitionTaskDelegate {
         }
     }
     
-    public func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishRecognition recognitionResult: SFSpeechRecognitionResult) {
+    func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishRecognition recognitionResult: SFSpeechRecognitionResult) {
 //        console.text = console.text + "\n" + recognitionResult.bestTranscription.formattedString
         print("!!!SpeechRecognitionTask: \(recognitionResult.bestTranscription.formattedString)")
     }
