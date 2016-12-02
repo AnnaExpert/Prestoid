@@ -252,9 +252,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
 //        if audioEngine.isRunning {
             self.audioEngine.stop()
             recognitionRequest?.endAudio()
-        
-        AudioServicesPlaySystemSound(1118)
-        
             print("Finished speech recognition")
             print("Recognized text: \(recognizedText)")
             
@@ -713,22 +710,11 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         recordButton.isEnabled = false
         self.tabBarController?.tabBar.isHidden = true
         if timerLabel.isHidden {
-            AudioServicesPlaySystemSound(1117)
             startTimer()
             timerLabel.isHidden = !timerLabel.isHidden
-            
-            // MARK: Start speech recognition after a delay
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) ) {
-                self.startRecordingSpeech()
-            }
         } else {
             stopTimer()
             timerLabel.isHidden = !timerLabel.isHidden
-            
-            // MARK: Stop speech recognition
-            
-            stopRecordingSpeech()
         }
         
         /*
@@ -741,7 +727,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         sessionQueue.async { [unowned self] in
             if !movieFileOutput.isRecording {
-//                AudioServicesPlaySystemSound(1117)
+                AudioServicesPlaySystemSound(1117)
                 
                 if UIDevice.current.isMultitaskingSupported {
                     
@@ -816,7 +802,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
             else {
                 movieFileOutput.stopRecording()
-//                AudioServicesPlaySystemSound(1118)
+                AudioServicesPlaySystemSound(1118)
             }
         }
     }
@@ -831,6 +817,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             self.recordButton.imageView?.image = UIImage(named: "StopCameraButton")
             
             //self.recordButton.setTitle(NSLocalizedString("Stop", comment: "Recording button stop title"), for: [])
+            
+            
             
         }
     }
