@@ -255,6 +255,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             recognitionRequest?.endAudio()
         if !self.recognizedPartText.isEmpty {
             recognizedText = recognizedPartText
+            recognizedPartText = ""
         }
             print("Finished speech recognition")
             print("Recognized text: \(recognizedText)")
@@ -307,6 +308,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
             if isFinal {
 //                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
 //                recognitionRequest.endAudio()
                 if !self.recognizedPartText.isEmpty {
                     self.recognizedText = self.recognizedPartText
@@ -315,7 +317,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
             if error != nil {
                 self.audioEngine.stop()
-                recognitionRequest.endAudio()
                 inputNode.removeTap(onBus: 0)
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
@@ -328,6 +329,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 } else {
                     self.recognizedPartText = self.recognizedPartText + "\n" + recognizedResult
                 }
+                recognitionRequest.endAudio()
                 self.startRecordingSpeech()
             }
         })
