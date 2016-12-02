@@ -391,17 +391,17 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     
     // Mark: List folder
     
-    public func checkAllFiles() {
-        if let client = DropboxClientsManager.authorizedClient {
-            client.files.listFolder(path: "")
-                .response { response, error in
-                    if let result = response?.entries {
-                        print(result)
-                    } else if let error = error {
-                        print(error)
-                    }
-            }
-        }
-    }
+//    public func checkAllFiles() {
+//        if let client = DropboxClientsManager.authorizedClient {
+//            client.files.listFolder(path: "")
+//                .response { response, error in
+//                    if let result = response?.entries {
+//                        print(result)
+//                    } else if let error = error {
+//                        print(error)
+//                    }
+//            }
+//        }
+//    }
     
 }

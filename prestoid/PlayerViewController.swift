@@ -303,14 +303,12 @@ class PlayerViewController: UIViewController {
             durationLabel.text = createTimeString(time: Float(newDurationSeconds))
         }
         else if keyPath == #keyPath(PlayerViewController.player.rate) {
+            
             // Update `playPauseButton` image.
             
             let newRate = (change?[NSKeyValueChangeKey.newKey] as! NSNumber).doubleValue
-            
             let buttonImageName = newRate == 1.0 ? "PauseButton" : "PlayButton"
-            
             let buttonImage = UIImage(named: buttonImageName)
-            
             playPauseButton.setImage(buttonImage, for: UIControlState())
         }
         else if keyPath == #keyPath(PlayerViewController.player.currentItem.status) {
@@ -320,15 +318,14 @@ class PlayerViewController: UIViewController {
              Handle `NSNull` value for `NSKeyValueChangeNewKey`, i.e. when
              `player.currentItem` is nil.
              */
-            let newStatus: AVPlayerItemStatus
             
+            let newStatus: AVPlayerItemStatus
             if let newStatusAsNumber = change?[NSKeyValueChangeKey.newKey] as? NSNumber {
                 newStatus = AVPlayerItemStatus(rawValue: newStatusAsNumber.intValue)!
             }
             else {
                 newStatus = .unknown
             }
-            
             if newStatus == .failed {
                 handleErrorWithMessage(player.currentItem?.error?.localizedDescription, error:player.currentItem?.error)
             }
@@ -341,7 +338,6 @@ class PlayerViewController: UIViewController {
             "duration":     [#keyPath(PlayerViewController.player.currentItem.duration)],
             "rate":         [#keyPath(PlayerViewController.player.rate)]
         ]
-        
         return affectedKeyPathsMappingByKey[key] ?? super.keyPathsForValuesAffectingValue(forKey: key)
     }
     
@@ -349,18 +345,12 @@ class PlayerViewController: UIViewController {
     
     func handleErrorWithMessage(_ message: String?, error: Error? = nil) {
         NSLog("Error occured with message: \(message), error: \(error).")
-        
         let alertTitle = NSLocalizedString("alert.error.title", comment: "Alert title for errors")
         let defaultAlertMessage = NSLocalizedString("error.default.description", comment: "Default error message when no NSError provided")
-        
         let alert = UIAlertController(title: alertTitle, message: message == nil ? defaultAlertMessage : message, preferredStyle: UIAlertControllerStyle.alert)
-        
         let alertActionTitle = NSLocalizedString("alert.error.actions.OK", comment: "OK on error alert")
-        
         let alertAction = UIAlertAction(title: alertActionTitle, style: .default, handler: nil)
-        
         alert.addAction(alertAction)
-        
         present(alert, animated: true, completion: nil)
     }
     
@@ -369,7 +359,6 @@ class PlayerViewController: UIViewController {
     func createTimeString(time: Float) -> String {
         let components = NSDateComponents()
         components.second = Int(max(0.0, time))
-        
         return timeRemainingFormatter.string(from: components as DateComponents)!
     }
 }
