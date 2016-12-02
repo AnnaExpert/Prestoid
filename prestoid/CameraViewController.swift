@@ -306,17 +306,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 self.recognizedPartText = (result?.bestTranscription.formattedString)!
                 isFinal = (result?.isFinal)!
             }
-            if isFinal {
-//                self.audioEngine.stop()
-                inputNode.removeTap(onBus: 0)
-//                recognitionRequest.endAudio()
-                if !self.recognizedPartText.isEmpty {
-                    self.recognizedText = self.recognizedPartText
-                    self.recognizedPartText = ""
-                }
-            }
             if error != nil {
-                self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
@@ -329,8 +319,18 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 } else {
                     self.recognizedPartText = self.recognizedPartText + "\n" + recognizedResult
                 }
+                self.audioEngine.stop()
                 recognitionRequest.endAudio()
                 self.startRecordingSpeech()
+            }
+            if isFinal {
+                //                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                //                recognitionRequest.endAudio()
+                if !self.recognizedPartText.isEmpty {
+                    self.recognizedText = self.recognizedPartText
+                    self.recognizedPartText = ""
+                }
             }
         })
         
