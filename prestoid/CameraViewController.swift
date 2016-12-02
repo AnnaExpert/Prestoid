@@ -243,15 +243,19 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     var recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language, bad internet connection or too long recording time..."
     
+    var recognizedPartText = ""
+    
     func startRecordingSpeech() {
         startRecording()
         print("Started speech recognition")
     }
     
     func stopRecordingSpeech() {
-//        if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
+        if !self.recognizedPartText.isEmpty {
+            self.recognizedText = self.recognizedPartText
+        }
             print("Finished speech recognition")
             print("Recognized text: \(recognizedText)")
             
@@ -263,10 +267,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             self.speechArray.append(recognizedText)
             self.defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
-            
-//        } else {
-//            print("Speech recognition was not started before")
-//        }
     }
     
     func startRecording() {
@@ -302,6 +302,11 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             var isFinal = false
             
             if result != nil {
+                if self.recognizedPartText.isEmpty {
+                    self.recognizedPartText = (result?.bestTranscription.formattedString)!
+                } else {
+                    self.recognizedPartText = self.recognizedPartText + "\n" + (result?.bestTranscription.formattedString)!
+                }
                 self.recognizedText = (result?.bestTranscription.formattedString)!
                 isFinal = (result?.isFinal)!
             }
@@ -316,10 +321,12 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                     self.startRecordingSpeech()
                     return
                 }
-                self.recognizedText = self.recognizedText + "\n" + recognizedResult
-                print("Recognized result (part): \(recognizedResult)")
+                if self.recognizedPartText.isEmpty {
+                    self.recognizedPartText = recognizedResult
+                } else {
+                    self.recognizedPartText = self.recognizedPartText + "\n" + recognizedResult
+                }
                 self.startRecordingSpeech()
-//                self.recognizedText = "Ooops..."
                 
             }
         })
