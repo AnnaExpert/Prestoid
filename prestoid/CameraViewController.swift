@@ -318,6 +318,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 self.recognitionTask = nil
                 guard let recognizedResult = result?.bestTranscription.formattedString else {
                     print("Did not recognize anything till now...")
+                    self.audioEngine.stop()
+                    recognitionRequest.endAudio()
                     self.startRecordingSpeech()
                     return
                 }
@@ -326,6 +328,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 } else {
                     self.recognizedPartText = self.recognizedPartText + "\n" + recognizedResult
                 }
+                self.audioEngine.stop()
+                recognitionRequest.endAudio()
                 self.startRecordingSpeech()
                 
             }
