@@ -258,13 +258,14 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             audioEngine.stop()
             recognitionRequest?.endAudio()
         if !self.recognizedTextArray.isEmpty {
-            self.recognizedText = ""
+            self.recognizedText = self.recognizedTextArray[0]
             for item in self.recognizedTextArray {
-                self.recognizedText = self.recognizedText + " !!! " + item
+                if self.recognizedText != item {
+                    self.recognizedText = self.recognizedText + "\n" + item
+                }
             }
-            
-//            recognizedText = recognizedPartText
-//            recognizedPartText = ""
+        } else {
+            self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language or have very poor internet connection..."
         }
             print("Finished speech recognition")
             print("Recognized text: \(self.recognizedText)")
@@ -282,6 +283,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     func startRecording() {
         self.count += 1
         print("COUNT: \(self.count)")
+        if self.count > 0 {
+            self.recognizedTextArray.append("")
+        }
+        print(self.recognizedTextArray)
         
         if recognitionTask != nil {
             recognitionTask?.cancel()
@@ -316,7 +321,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             if result != nil {
                 self.recognizedPartText = (result?.bestTranscription.formattedString)!
                 self.recognizedTextArray[self.count] = (result?.bestTranscription.formattedString)!
-                print("Recognized part of text -> \(self.recognizedPartText)")
+                print("Recognized part of text -> \(self.recognizedTextArray[self.count])")
                 isFinal = (result?.isFinal)!
 //                if isFinal {
 //                    self.recognizedTextArray.append(self.recognizedPartText)
@@ -335,6 +340,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             if error != nil || isFinal {
                 print("Recognition ERROR: \(error)")
+                print("Recognition ISFINAL: \(isFinal)")
+                
                 inputNode.removeTap(onBus: 0)
 //                guard let recognizedResult = result?.bestTranscription.formattedString else {
 //                    print("Did not recognize anything till now...")
@@ -345,16 +352,18 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                     self.recognitionRequest = nil
                     self.recognitionTask = nil
                     recognitionRequest.endAudio()
-                    self.startRecordingSpeech()
+                    print("Program started speech recognition")
+                    self.startRecording()
                 }
-                print("ADD TO ARRAY: \(self.recognizedPartText)")
-                self.recognizedTextArray.append(self.recognizedPartText)
+//                print("ADD TO ARRAY: \(self.recognizedPartText)")
+//                self.recognizedTextArray.append(self.recognizedPartText)
                 self.audioEngine.stop()
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
                 recognitionRequest.endAudio()
-                if !isFinal {
-                    self.startRecordingSpeech()
+                if isFinal {
+                    print("Program started speech recognition")
+                    self.startRecording()
                 }
             }
 //            if isFinal {
