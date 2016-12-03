@@ -245,8 +245,11 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     var recognizedPartText = ""
     var recognizedTextArray = [String]()
+    var count = -1
     
     func startRecordingSpeech() {
+        self.count = -1
+        self.recognizedTextArray = [""]
         startRecording()
         print("Started speech recognition")
     }
@@ -277,6 +280,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     func startRecording() {
+        self.count += 1
+        print("COUNT: \(self.count)")
         
         if recognitionTask != nil {
             recognitionTask?.cancel()
@@ -310,8 +315,12 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             if result != nil {
                 self.recognizedPartText = (result?.bestTranscription.formattedString)!
-                print("result != nil | recognizedPartText = \(self.recognizedPartText)")
+                self.recognizedTextArray[self.count] = (result?.bestTranscription.formattedString)!
+                print("Recognized part of text -> \(self.recognizedPartText)")
                 isFinal = (result?.isFinal)!
+//                if isFinal {
+//                    self.recognizedTextArray.append(self.recognizedPartText)
+//                }
             }
             
 //            if error != nil || isFinal {
