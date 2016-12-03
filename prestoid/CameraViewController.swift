@@ -244,6 +244,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     var recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language or very poor internet connection..."
     
     var recognizedPartText = ""
+    var recognizedTextArray = [String]()
     
     func startRecordingSpeech() {
         startRecording()
@@ -253,12 +254,17 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     func stopRecordingSpeech() {
             audioEngine.stop()
             recognitionRequest?.endAudio()
-        if !self.recognizedPartText.isEmpty {
-            recognizedText = recognizedPartText
-            recognizedPartText = ""
+        if !self.recognizedTextArray.isEmpty {
+            self.recognizedText = ""
+            for item in self.recognizedTextArray {
+                self.recognizedText = self.recognizedText + " !!! " + item
+            }
+            
+//            recognizedText = recognizedPartText
+//            recognizedPartText = ""
         }
             print("Finished speech recognition")
-            print("Recognized text: \(recognizedText)")
+            print("Recognized text: \(self.recognizedText)")
             
             if self.defaults.array(forKey: self.savedSpeechArrayKey) != nil {
                 self.speechArray = self.defaults.array(forKey: self.savedSpeechArrayKey) as! [String]
@@ -304,34 +310,53 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             if result != nil {
                 self.recognizedPartText = (result?.bestTranscription.formattedString)!
+                print("result != nil | recognizedPartText = \(self.recognizedPartText)")
                 isFinal = (result?.isFinal)!
             }
-            if error != nil {
+            
+//            if error != nil || isFinal {
+//                self.recognizedTextArray.append((result?.bestTranscription.formattedString)!)
+//                print("TEXT ARRAY: \(self.recognizedTextArray)")
+//                self.audioEngine.stop()
+//                inputNode.removeTap(onBus: 0)
+//                
+//                self.recognitionRequest = nil
+//                self.recognitionTask = nil
+//            }
+            
+            if error != nil || isFinal {
+                print("Recognition ERROR: \(error)")
                 inputNode.removeTap(onBus: 0)
+//                guard let recognizedResult = result?.bestTranscription.formattedString else {
+//                    print("Did not recognize anything till now...")
+//                    return
+//                }
+                if self.recognizedPartText.isEmpty {
+                    self.audioEngine.stop()
+                    self.recognitionRequest = nil
+                    self.recognitionTask = nil
+                    recognitionRequest.endAudio()
+                    self.startRecordingSpeech()
+                }
+                print("ADD TO ARRAY: \(self.recognizedPartText)")
+                self.recognizedTextArray.append(self.recognizedPartText)
+                self.audioEngine.stop()
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                guard let recognizedResult = result?.bestTranscription.formattedString else {
-                    print("Did not recognize anything till now...")
-                    return
-                }
-                if self.recognizedPartText.isEmpty {
-                    self.recognizedPartText = recognizedResult
-                } else {
-                    self.recognizedPartText = self.recognizedPartText + "\n" + recognizedResult
-                }
-                self.audioEngine.stop()
                 recognitionRequest.endAudio()
-                self.startRecordingSpeech()
-            }
-            if isFinal {
-                //                self.audioEngine.stop()
-                inputNode.removeTap(onBus: 0)
-                //                recognitionRequest.endAudio()
-                if !self.recognizedPartText.isEmpty {
-                    self.recognizedText = self.recognizedPartText
-                    self.recognizedPartText = ""
+                if !isFinal {
+                    self.startRecordingSpeech()
                 }
             }
+//            if isFinal {
+//                //                self.audioEngine.stop()
+//                inputNode.removeTap(onBus: 0)
+//                //                recognitionRequest.endAudio()
+//                if !self.recognizedPartText.isEmpty {
+//                    self.recognizedText = self.recognizedPartText
+//                    self.recognizedPartText = ""
+//                }
+//            }
         })
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)

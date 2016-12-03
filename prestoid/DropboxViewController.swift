@@ -213,8 +213,8 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     // MARK: Download video file to data
     
     public func downloadFile(fromPath: String, localName: String) {
-        print("FromPath: \(fromPath)")
-        print("LocalName: \(localName)")
+//        print("FromPath: \(fromPath)")
+//        print("LocalName: \(localName)")
         var result = NSData()
         let nameArray = String(describing: localName).components(separatedBy: ".")
         let fileName = nameArray[0] + "." + nameArray[1] + "." + nameArray[2]
@@ -259,7 +259,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         fileContents.write(toFile: filePath, atomically: false)
         self.videosArray.append(localName)
         defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
-        print("VideosArray: \(self.videosArray)")
+//        print("VideosArray: \(self.videosArray)")
     }
     
     // MARK: Download text file to data
@@ -267,8 +267,8 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     public func downloadTextFile(fromPath: String) {
         let pathArray = String(describing: fromPath).components(separatedBy: ".")
         let dropboxPath = "/PrestoidMedia/Text/" + pathArray[0] + "." + pathArray[1] + "." + pathArray[2] + "." + "txt"
-        print("FromPath: \(fromPath)")
-        print("DropboxPath: \(dropboxPath)")
+//        print("FromPath: \(fromPath)")
+//        print("DropboxPath: \(dropboxPath)")
         if let client = DropboxClientsManager.authorizedClient {
             client.files.download(path: dropboxPath)
                 .response { response, error in
@@ -280,14 +280,14 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         // MARK: Save text file inside the application
                         
                         let result = String(data: fileContents, encoding: .utf8) ?? ""
-                        print(result)
+//                        print(result)
                         let defaults = UserDefaults.standard
                         if let arrayValue = defaults.array(forKey: self.savedSpeechArrayKey) {
                             self.speechArray = arrayValue as! [String]
                         }
                         self.speechArray.append(result)
                         defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
-                        print("VideosArray: \(self.speechArray)")
+//                        print("VideosArray: \(self.speechArray)")
                         self.refreshProgressView.isHidden = true
                         self.refreshButton.isEnabled = true
                     } else if let error = error {
