@@ -183,16 +183,12 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         for item in response {
                             let dropboxName = item.name
                             let dropboxPath = item.pathDisplay!
-                            var localName = ""
-                            print(localName)
+//                            var localName = ""
+//                            print(localName)
                             var match = false
                             for name in self.videosArray {
                                 let filename = "\(name).mov"
-                                localName = name
-                                //                                print(filename)
-                                //                                print(dropboxName)
-                                //                                let isEqual = (filename == dropboxName)
-                                //                                print(isEqual)
+//                                localName = name
                                 if (filename == dropboxName) {
                                     print("Have this file")
                                     match = true
@@ -213,8 +209,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     // MARK: Download video file to data
     
     public func downloadFile(fromPath: String, localName: String) {
-//        print("FromPath: \(fromPath)")
-//        print("LocalName: \(localName)")
         var result = NSData()
         let nameArray = String(describing: localName).components(separatedBy: ".")
         let fileName = nameArray[0] + "." + nameArray[1] + "." + nameArray[2]
@@ -222,17 +216,22 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             client.files.download(path: fromPath)
                 .response { response, error in
                     if let response = response {
-                        let responseMetadata = response.0
-                        print("Response Metadata: \(responseMetadata)")
+                        
+                        // If you need metadata - replace the next line wit this code
+                        //let responseMetadata = response.0
+                        
+                        _ = response.0
+//                        print("Response Metadata: \(responseMetadata)")
                         let fileContents = response.1
                         result = fileContents as NSData
-                        //                        print(result)
                         self.saveFile(fileContents: result, localName: fileName)
                         self.refreshProgressView.isHidden = true
                         self.refreshButton.isEnabled = true
                     } else if let error = error {
                         print(error)
-                        self.downloadAllFiles()
+//                        self.downloadAllFiles()
+                        self.downloadFile(fromPath: fromPath, localName: localName)
+                        print("Retry the video file download")
                         self.refreshProgressView.isHidden = true
                         self.refreshButton.isEnabled = true
                     }
@@ -252,14 +251,11 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         if let arrayValue = defaults.array(forKey: self.savedVideosArrayKey) {
             self.videosArray = arrayValue as! [String]
         }
-//        print("VideosArray: \(self.videosArray)")
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
         let filePath = docsPath + "/" + localName + ".mov"
-//        print("FilePath: \(filePath)")
         fileContents.write(toFile: filePath, atomically: false)
         self.videosArray.append(localName)
         defaults.set(self.videosArray, forKey: self.savedVideosArrayKey)
-//        print("VideosArray: \(self.videosArray)")
     }
     
     // MARK: Download text file to data
@@ -267,32 +263,37 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     public func downloadTextFile(fromPath: String) {
         let pathArray = String(describing: fromPath).components(separatedBy: ".")
         let dropboxPath = "/PrestoidMedia/Text/" + pathArray[0] + "." + pathArray[1] + "." + pathArray[2] + "." + "txt"
-//        print("FromPath: \(fromPath)")
-//        print("DropboxPath: \(dropboxPath)")
         if let client = DropboxClientsManager.authorizedClient {
             client.files.download(path: dropboxPath)
                 .response { response, error in
                     if let response = response {
-                        let responseMetadata = response.0
-                        print("Response Metadata: \(responseMetadata)")
+                        
+                        // If you need metadata - replace the naxt line wit this code
+                        //let responseMetadata = response.0
+                        
+                        _ = response.0
+//                        print("Response Metadata: \(responseMetadata)")
                         let fileContents = response.1
                         
                         // MARK: Save text file inside the application
                         
-                        let result = String(data: fileContents, encoding: .utf8) ?? ""
-//                        print(result)
+                        
                         let defaults = UserDefaults.standard
-                        if let arrayValue = defaults.array(forKey: self.savedSpeechArrayKey) {
-                            self.speechArray = arrayValue as! [String]
+                        if let result = String(data: fileContents, encoding: .utf8) {
+                            if let arrayValue = defaults.array(forKey: self.savedSpeechArrayKey) {
+                                self.speechArray = arrayValue as! [String]
+                            }
+                            self.speechArray.append(result)
+                            defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
+                            //                        print("VideosArray: \(self.speechArray)")
+                            self.refreshProgressView.isHidden = true
+                            self.refreshButton.isEnabled = true
                         }
-                        self.speechArray.append(result)
-                        defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
-//                        print("VideosArray: \(self.speechArray)")
-                        self.refreshProgressView.isHidden = true
-                        self.refreshButton.isEnabled = true
                     } else if let error = error {
                         print(error)
-                        self.downloadAllFiles()
+//                        self.downloadAllFiles()
+                        self.downloadTextFile(fromPath: fromPath)
+                        print("Retry the text file download")
                         self.refreshProgressView.isHidden = true
                         self.refreshButton.isEnabled = true
                     }
@@ -318,7 +319,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         }
     }
     
-    // Mark: Upload video and text file
+    // MARK: Upload video and text file
     
     public func uploadVideoFile(filePath: String) {
         let defaults = UserDefaults.standard
@@ -329,7 +330,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             speechArray = arrayValue as! [String]
         }
         if let client = DropboxClientsManager.authorizedClient {
-            //            self.rpcStyleRequest()
             let path = filePath
             let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
             let videoFileDataPath = docsPath + "/" + path + ".mov"
@@ -341,17 +341,12 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                     .response { response, error in
                         if let response = response {
                             print(response)
-                            //                            self.uploadingLabel.isHidden = true
-                            //                            self.uploadingProgress.isHidden = true
                         } else if let error = error {
                             self.uploadVideoFile(filePath: filePath)
                             print(error)
                         }
                     }
                     .progress { progressData in
-                        //                        self.uploadingLabel.isHidden = false
-                        //                        self.uploadingProgress.isHidden = false
-                        //                        self.uploadingProgress.progress = Float(progressData.fractionCompleted)
                         print(progressData)
                 }
                 
@@ -359,6 +354,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 //        if someConditionIsSatisfied {
                 //            request.cancel()
                 //        }
+                
             } catch {
                 print("Can't load data file from iPhone memory")
             }
@@ -368,17 +364,12 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 .response { response, error in
                     if let response = response {
                         print(response)
-                        //                            self.uploadingLabel.isHidden = true
-                        //                            self.uploadingProgress.isHidden = true
                     } else if let error = error {
                         self.uploadVideoFile(filePath: filePath)
                         print(error)
                     }
                 }
                 .progress { progressData in
-                    //                        self.uploadingLabel.isHidden = false
-                    //                        self.uploadingProgress.isHidden = false
-                    //                        self.uploadingProgress.progress = Float(progressData.fractionCompleted)
                     print(progressData)
             }
             
@@ -386,10 +377,11 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             //        if someConditionIsSatisfied {
             //            request.cancel()
             //        }
+            
         }
     }
     
-    // Mark: List folder
+    // MARK: List folder
     
 //    public func checkAllFiles() {
 //        if let client = DropboxClientsManager.authorizedClient {

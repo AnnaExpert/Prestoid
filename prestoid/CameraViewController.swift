@@ -30,7 +30,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     // Change the speech recognition language here
     
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en"))
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en"))
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -191,6 +191,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        if audioEngine.isRunning {
+            self.stopRecordingSpeech()
+        }
         sessionQueue.async { [unowned self] in
             if self.setupResult == .success {
                 self.session.stopRunning()
@@ -239,13 +242,14 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         }
     }
     
-    // MARK: Speech recognition function
+    // MARK: Infinite speech recognition helpers.
     
-    var recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language or very poor internet connection..."
-    
-    var recognizedPartText = ""
+    var recognizedText = ""
     var recognizedTextArray = [String]()
     var count = -1
+    var continueSpeechRecognition = true
+    
+    // MARK: Speech recognition function.
     
     func startRecordingSpeech() {
         self.count = -1
@@ -255,8 +259,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     func stopRecordingSpeech() {
-            audioEngine.stop()
-            recognitionRequest?.endAudio()
+        print("Finished speech recognition")
+        self.continueSpeechRecognition = false
+        self.audioEngine.stop()
+        self.recognitionRequest?.endAudio()
         if !self.recognizedTextArray.isEmpty {
             self.recognizedText = self.recognizedTextArray[0]
             for item in self.recognizedTextArray {
@@ -265,28 +271,29 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 }
             }
         } else {
-            self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language or have very poor internet connection..."
+            self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language or your really poor internet connection..."
         }
-            print("Finished speech recognition")
-            print("Recognized text: \(self.recognizedText)")
+        if self.recognizedText == "" {
+            self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language or your really poor internet connection..."
+        }
+            print("Recognized text:\n\(self.recognizedText)")
             
             if self.defaults.array(forKey: self.savedSpeechArrayKey) != nil {
                 self.speechArray = self.defaults.array(forKey: self.savedSpeechArrayKey) as! [String]
-                
-                //                    print(self.videosArray)
             }
             
-            self.speechArray.append(recognizedText)
+            self.speechArray.append(self.recognizedText)
             self.defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
     }
     
     func startRecording() {
+        self.continueSpeechRecognition = true
         self.count += 1
         print("COUNT: \(self.count)")
         if self.count > 0 {
             self.recognizedTextArray.append("")
         }
-        print(self.recognizedTextArray)
+        print("Recognized text array:\n\(self.recognizedTextArray)")
         
         if recognitionTask != nil {
             recognitionTask?.cancel()
@@ -319,62 +326,38 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             var isFinal = false
             
             if result != nil {
-                self.recognizedPartText = (result?.bestTranscription.formattedString)!
                 self.recognizedTextArray[self.count] = (result?.bestTranscription.formattedString)!
                 print("Recognized part of text -> \(self.recognizedTextArray[self.count])")
                 isFinal = (result?.isFinal)!
-//                if isFinal {
-//                    self.recognizedTextArray.append(self.recognizedPartText)
-//                }
             }
-            
-//            if error != nil || isFinal {
-//                self.recognizedTextArray.append((result?.bestTranscription.formattedString)!)
-//                print("TEXT ARRAY: \(self.recognizedTextArray)")
-//                self.audioEngine.stop()
-//                inputNode.removeTap(onBus: 0)
-//                
-//                self.recognitionRequest = nil
-//                self.recognitionTask = nil
-//            }
             
             if error != nil || isFinal {
                 print("Recognition ERROR: \(error)")
                 print("Recognition ISFINAL: \(isFinal)")
-                
-                inputNode.removeTap(onBus: 0)
-//                guard let recognizedResult = result?.bestTranscription.formattedString else {
-//                    print("Did not recognize anything till now...")
-//                    return
-//                }
-                if self.recognizedPartText.isEmpty {
-                    self.audioEngine.stop()
-                    self.recognitionRequest = nil
-                    self.recognitionTask = nil
-                    recognitionRequest.endAudio()
-                    print("Program started speech recognition")
-                    self.startRecording()
-                }
-//                print("ADD TO ARRAY: \(self.recognizedPartText)")
-//                self.recognizedTextArray.append(self.recognizedPartText)
                 self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                recognitionRequest.endAudio()
-                if isFinal {
-                    print("Program started speech recognition")
+                
+                if self.recognizedTextArray[self.count].isEmpty {
+                    if self.count > 0 {
+                        self.recognizedTextArray.remove(at: self.count)
+                    } else {
+                        self.recognizedTextArray[self.count] = ""
+                    }
+                    self.count -= 1
+                    if self.continueSpeechRecognition {
+                        print("Program started speech recognition (TOP)")
+                        self.startRecording()
+                    }
+                    return
+                }
+                if self.continueSpeechRecognition {
+                    print("Program started speech recognition (BOTTOM)")
                     self.startRecording()
                 }
             }
-//            if isFinal {
-//                //                self.audioEngine.stop()
-//                inputNode.removeTap(onBus: 0)
-//                //                recognitionRequest.endAudio()
-//                if !self.recognizedPartText.isEmpty {
-//                    self.recognizedText = self.recognizedPartText
-//                    self.recognizedPartText = ""
-//                }
-//            }
         })
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -483,13 +466,18 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         /*
         Here we can modify the quality of recorded video.
-        
+ 
         This setting will decrease twice the size of video file
-        session.sessionPreset = AVCaptureSessionPreset1280x720
         */
         
-        session.sessionPreset = AVCaptureSessionPresetInputPriority
+        session.sessionPreset = AVCaptureSessionPreset1280x720
+ 
+ 
+        /*
+        This setting will set the biggest possible size of video file
         
+        session.sessionPreset = AVCaptureSessionPresetInputPriority
+        */
         
         //MARK: Add video input.
         

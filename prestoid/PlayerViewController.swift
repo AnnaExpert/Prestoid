@@ -123,6 +123,7 @@ class PlayerViewController: UIViewController {
         
         playerView.playerLayer.player = player
         
+        // MARK: Loading the movie file to player.
         
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
         let moviePath = docsPath + "/" + path + ".mov"
