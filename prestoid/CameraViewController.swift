@@ -267,7 +267,9 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             self.recognizedText = self.recognizedTextArray[0]
             for item in self.recognizedTextArray {
                 if self.recognizedText != item {
-                    self.recognizedText = self.recognizedText + "\n" + item
+                    if item != "" {
+                        self.recognizedText = self.recognizedText + "\n" + item
+                    }
                 }
             }
         } else {
