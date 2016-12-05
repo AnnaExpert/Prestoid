@@ -946,8 +946,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             // MARK: Save video to dropbox.
             
-            let saver = DropboxViewController()
-            saver.uploadVideoFile(filePath: videosArray.last!)
+            DispatchQueue.main.async {
+                let saver = DropboxViewController()
+                saver.uploadVideoFile(filePath: self.videosArray.last!)
+            }
             
             /*
              // Save the movie file to the photo library and cleanup.
@@ -980,10 +982,15 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             self.cameraButton.isEnabled = self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1
             self.cameraButton.isHidden = false
             //self.cameraButton.isHidden = !(self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1)
-            self.recordButton.isEnabled = true
             self.tabBarController?.tabBar.isHidden = false
             self.recordButton.imageView?.image = UIImage(named: "RecordCameraButton")
             //self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
+            
+            // Only enable the ability to record after 1 second
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.recordButton.isEnabled = true
+            }
         }
     }
     

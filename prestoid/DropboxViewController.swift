@@ -343,7 +343,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                             print(response)
                         } else if let error = error {
                             self.uploadVideoFile(filePath: filePath)
-                            print(error)
+                            print("Video file upload error: \(error)")
                         }
                     }
                     .progress { progressData in
@@ -366,7 +366,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         print(response)
                     } else if let error = error {
                         self.uploadVideoFile(filePath: filePath)
-                        print(error)
+                        print("Text file upload error: \(error)")
                     }
                 }
                 .progress { progressData in
