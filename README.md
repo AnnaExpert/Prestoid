@@ -7,20 +7,17 @@
 
 ## Prestoid - Dropbox sync video camera app with speech to text recognition
 1. [Description](#description)
-2. [License](#license)
+2. [Copyright](#copyright)
 3. [Contact](#contact)
 
 ##<a name="description"> Description </a>
 
 ```Prestoid``` - iPhone application that records video and recognizes all the speech in background. All data is saved both on device and in the Dropbox cloud, so can be easily synced on different devices.
 
-##<a name="license"> License </a>
+##<a name="copyright"> Copyright </a>
 
-```Prestoid``` is released under the MIT license. See the ```LICENSE``` file for details.  
 Copyright © 2016 Scott Leatham & Alexander Iashchuk, <a href="https://iashchuk.com">iashchuk.com</a>
 
 ##<a name="contact"> Contact </a>
 
-
-You can read, follow or drop me a line on my personal Twitter account - [@iAlexander13](https://twitter.com/iAlexander13)  
-If you find any issues on the project, you can open a ticket. Pull requests are also welcome!
+You can read, follow or drop me a line on my personal Twitter account - [@iAlexander13](https://twitter.com/iAlexander13)
