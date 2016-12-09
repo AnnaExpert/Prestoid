@@ -41,29 +41,29 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         var avatar = UIImage(named: "Dropbox")!
     }
     
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    @IBAction func testButton(_ sender: Any) {
-        downloadAllFiles()
-    }
-    
-    override public func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override public func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override public func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard
         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
             videosArray = arrayValue as! [String]
         }
         user.authorized = checkAuthorization()
         super.viewWillAppear(animated)
+    }
+    
+    @IBAction func testButton(_ sender: Any) {
+        downloadAllFiles()
     }
     
     // Link Dropbox account via iOS application
@@ -98,7 +98,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             dropboxLogoImageView.isHidden = true
             authorizeYourAccountTextLabel.isHidden = true
             connectDropboxAccountButton.isHidden = true
-            
             _ = DropboxClientsManager.authorizedClient!.users.getCurrentAccount()
                 .response { response, error in
                     if let response = response {
@@ -137,7 +136,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
             userEmailTextLabel.isHidden = true
             disconnectDropboxAccountButton.isHidden = true
             dropboxAccountAuthorizedLabel.isHidden = true
-            
             dropboxLogoImageView.isHidden = false
             authorizeYourAccountTextLabel.isHidden = false
             connectDropboxAccountButton.isHidden = false
@@ -276,7 +274,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         let fileContents = response.1
                         
                         // MARK: Save text file inside the application
-                        
                         
                         let defaults = UserDefaults.standard
                         if let result = String(data: fileContents, encoding: .utf8) {

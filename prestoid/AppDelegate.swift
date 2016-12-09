@@ -15,7 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        DropboxClientsManager.setupWithAppKey("fcknlb5qwqct21g")
+        
+        // Do not forget to insert the Dropbox application API key here, and in the Info.plist file
+        
+        DropboxClientsManager.setupWithAppKey("<!!! DROPBOX API KEY !!!>")
         return true
     }
     

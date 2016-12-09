@@ -55,8 +55,7 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Table View
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 151.0;
     }
     
@@ -70,12 +69,9 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)as! CellMasterView
-        
         var thumbnail = UIImage()
         let fileName = videosArray[indexPath.row]
         let recognizedText = speechArray[indexPath.row]
-        
-        
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
         let moviePath = docsPath + "/" + fileName + ".mov"
         print("MasterViewController movie path: \(moviePath)")
@@ -89,12 +85,10 @@ class MasterViewController: UITableViewController {
             print("Error generating thumbnail: \(error)")
             thumbnail = UIImage(named: "PlayFilled")!
         }
-        
         var creation = ""
         var duration = 0
         var latitude = ""
         var longitude = ""
-        
         let movieURL = URL.init(fileURLWithPath: moviePath)
         let asset = AVURLAsset(url: movieURL, options: nil)
         var metadata = AVMetadataItem()
@@ -110,7 +104,6 @@ class MasterViewController: UITableViewController {
             let dataArray = String(describing: fileName).components(separatedBy: "_")
             let stringLat = dataArray[3]
             let stringLon = dataArray[4]
-            
             latitude = stringLat
             longitude = stringLon
             duration = Int(asset.duration.seconds)
@@ -124,7 +117,6 @@ class MasterViewController: UITableViewController {
         cell.cellTopTextLabel.text = String("Latitude: \(latitude)")
         cell.cellBottomTextLabel.text = String("Longitude: \(longitude)")
         cell.cellSpeechTextView.text = recognizedText
-        
         if (cellInformationContent[indexPath.row] != nil) {
             cell.cellInformationView.isHidden = cellInformationContent[indexPath.row]!
             cell.cellDateTextLabel.isHidden = cellInformationContent[indexPath.row]!
@@ -139,7 +131,6 @@ class MasterViewController: UITableViewController {
             cell.cellTopTextLabel.isHidden = cellInformationContent[indexPath.row]!
             cell.cellBottomTextLabel.isHidden = cellInformationContent[indexPath.row]!
         }
-        
         if (cellTextContent[indexPath.row] != nil) {
             cell.cellTextView.isHidden = cellTextContent[indexPath.row]!
             cell.cellSpeechTextView.isHidden = cellTextContent[indexPath.row]!
@@ -148,7 +139,6 @@ class MasterViewController: UITableViewController {
             cell.cellTextView.isHidden = cellTextContent[indexPath.row]!
             cell.cellSpeechTextView.isHidden = cellTextContent[indexPath.row]!
         }
-        
         return cell
     }
     
@@ -210,7 +200,6 @@ class MasterViewController: UITableViewController {
             tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.right)
             tableView.setEditing(false, animated: true)
         }
-        
         let metadata = UITableViewRowAction(style: .normal, title: "File info") { (action, indexPath) in
             
             // MARK: Swipe to show metadata of the video file
@@ -224,15 +213,12 @@ class MasterViewController: UITableViewController {
             tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.right)
             tableView.setEditing(false, animated: true)
         }
-        
         text.backgroundColor = UIColor.blue
         metadata.backgroundColor = UIColor.orange
-        
         print("self.cellInformationContent")
         print(self.cellInformationContent)
         print("self.cellTextContent")
         print(self.cellTextContent)
-        
         return [delete, metadata, text]
     }
     
@@ -245,11 +231,9 @@ class MasterViewController: UITableViewController {
 
 extension Date {
     func toString() -> String {
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
         return dateFormatter.string(from: self)
     }
-    
 }

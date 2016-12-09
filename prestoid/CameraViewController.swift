@@ -253,6 +253,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     // MARK: Speech recognition function.
     
     func startRecordingSpeech() {
+        self.recognizedTextLabel.text = "…text recognized from speech is displayed here…"
+        self.recognizedTextLabel.isHidden = false
         self.count = -1
         self.recognizedTextArray = [""]
         startRecording()
@@ -261,6 +263,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     func stopRecordingSpeech() {
         print("Finished speech recognition")
+        self.recognizedTextLabel.isHidden = true
         self.continueSpeechRecognition = false
         self.audioEngine.stop()
         self.recognitionRequest?.endAudio()
