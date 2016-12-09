@@ -27,6 +27,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     private let audioEngine = AVAudioEngine()
     var speechArray: [String] = Array()
     let savedSpeechArrayKey = "savedSpeechArray"
+    @IBOutlet weak var recognizedTextLabel: UILabel!
     
     // Change the speech recognition language here
     

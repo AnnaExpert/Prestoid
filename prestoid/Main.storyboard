@@ -525,6 +525,12 @@
                                     <action selector="resumeInterruptedSession:" destination="xOc-vR-kRy" eventType="touchUpInside" id="J5M-2V-zVi"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recognized speech will be displayed here..." textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nk4-dV-1tN">
+                                <rect key="frame" x="16" y="30" width="343" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -534,8 +540,11 @@
                             <constraint firstItem="qFa-yU-Lt8" firstAttribute="baseline" secondItem="nqn-Lp-5lq" secondAttribute="baseline" id="F3p-Bs-1vC"/>
                             <constraint firstAttribute="trailing" secondItem="K0T-tO-8ri" secondAttribute="trailing" id="QXD-8x-Iem"/>
                             <constraint firstItem="K0T-tO-8ri" firstAttribute="leading" secondItem="FNY-Gf-pHb" secondAttribute="leading" id="T4t-Ok-S9a"/>
+                            <constraint firstItem="nk4-dV-1tN" firstAttribute="top" secondItem="VLV-ed-dLW" secondAttribute="bottom" constant="10" id="Y0h-3L-MFR"/>
                             <constraint firstItem="nqn-Lp-5lq" firstAttribute="centerX" secondItem="qFa-yU-Lt8" secondAttribute="centerX" id="kq8-VD-O0e"/>
                             <constraint firstItem="K0T-tO-8ri" firstAttribute="top" secondItem="FNY-Gf-pHb" secondAttribute="top" id="mVm-zM-gUc"/>
+                            <constraint firstItem="nk4-dV-1tN" firstAttribute="trailing" secondItem="FNY-Gf-pHb" secondAttribute="trailingMargin" id="qnE-f5-Oje"/>
+                            <constraint firstItem="nk4-dV-1tN" firstAttribute="leading" secondItem="FNY-Gf-pHb" secondAttribute="leadingMargin" id="vaB-D7-fja"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -544,6 +553,7 @@
                         <outlet property="cameraButton" destination="fo5-Z7-L58" id="LnW-fS-kqk"/>
                         <outlet property="cameraUnavailableLabel" destination="qFa-yU-Lt8" id="7w3-x4-b9G"/>
                         <outlet property="previewView" destination="K0T-tO-8ri" id="kkL-UH-Xj8"/>
+                        <outlet property="recognizedTextLabel" destination="nk4-dV-1tN" id="ypG-SO-nhn"/>
                         <outlet property="recordButton" destination="imf-DN-qMc" id="Tah-xh-vL2"/>
                         <outlet property="resumeButton" destination="nqn-Lp-5lq" id="uwp-3C-bfP"/>
                         <outlet property="timerLabel" destination="Sq3-47-dKa" id="x5L-f4-xQ4"/>
