@@ -331,6 +331,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             if result != nil {
                 self.recognizedTextArray[self.count] = (result?.bestTranscription.formattedString)!
                 print("Recognized part of text -> \(self.recognizedTextArray[self.count])")
+                self.recognizedTextLabel.text = self.recognizedTextArray[self.count]
                 isFinal = (result?.isFinal)!
             }
             
