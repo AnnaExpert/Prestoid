@@ -89,7 +89,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         user.authorized = false
     }
     
-    // MARK: Dropbox integration
+    // MARK: Check the current Dropbox authorization
     
     func checkAuthorization() -> Bool {
         if DropboxClientsManager.authorizedClient != nil {

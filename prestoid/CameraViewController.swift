@@ -1163,6 +1163,7 @@ extension UIDeviceOrientation {
 }
 
 extension UIInterfaceOrientation {
+    
     var videoOrientation: AVCaptureVideoOrientation? {
         switch self {
         case .portrait: return .portrait
@@ -1172,9 +1173,11 @@ extension UIInterfaceOrientation {
         default: return nil
         }
     }
+    
 }
 
 extension AVCaptureDeviceDiscoverySession {
+    
     func uniqueDevicePositionsCount() -> Int {
         var uniqueDevicePositions = [AVCaptureDevicePosition]()
         
@@ -1203,4 +1206,5 @@ extension SFSpeechRecognitionTaskDelegate {
 //        console.text = console.text + "\n" + recognitionResult.bestTranscription.formattedString
         print("!!!SpeechRecognitionTask: \(recognitionResult.bestTranscription.formattedString)")
     }
+    
 }
