@@ -42,7 +42,7 @@ class MasterViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - Segues
+    // MARK: - Segues: Prepare the data before the segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
@@ -53,7 +53,7 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    // MARK: - Table View
+    // MARK: - Table View configuration
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 151.0;
@@ -110,7 +110,6 @@ class MasterViewController: UITableViewController {
             let creationDate = asset.creationDate!.value as! Date
             creation = creationDate.toString()
         }
-        
         cell.cellImageView.image = thumbnail
         cell.cellDateTextLabel.text = String("Video recorded: \(creation)")
         cell.cellDurationTextLabel.text = String("Video duration: \(duration) seconds")
@@ -147,7 +146,7 @@ class MasterViewController: UITableViewController {
         return true
     }
     
-    // MARK: Swipe to edit
+    // MARK: Swipe buttons: Swipe to edit buttons configuration
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
@@ -227,7 +226,7 @@ class MasterViewController: UITableViewController {
     
 }
 
-// MARK: Date formatter extension
+// MARK: Extension: Date formatter extension
 
 extension Date {
     func toString() -> String {
