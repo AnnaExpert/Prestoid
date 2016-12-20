@@ -7,5 +7,8 @@ target 'prestoid' do
 
   # Pods for prestoid
   pod 'SwiftyDropbox'
+  pod 'Firebase/Core'
+  pod 'Firebase/Crash'
+  pod 'Firebase/Database'
 
 end
