@@ -3,7 +3,7 @@
 //  prestoid
 //
 //  Created by Alexander Iashchuk on 11/2/16.
-//  Copyright © 2016 Alexander Iashchuk. All rights reserved.
+//  Copyright © 2016 Alexander Iashchuk (iAlexander), https://iashchuk.com All rights reserved.
 //
 
 import UIKit
