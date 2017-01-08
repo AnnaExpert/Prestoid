@@ -16,8 +16,8 @@
 
 ##<a name="copyright"> Copyright: </a>
 
-Copyright © 2016 Scott Leatham & Alexander Iashchuk, <a href="https://iashchuk.com">iashchuk.com</a>
+Copyright © 2016 Scott Leatham & Alexander Iashchuk, <a href="https://iashchuk.com">iashchuk.com</a>.
 
 ##<a name="contact"> Contact: </a>
 
-You can read, follow or drop me a line on my personal Twitter account - [@iAlexander13](https://twitter.com/iAlexander13)
+You can read, follow or drop me a line on my personal Twitter account - [@iAlexander13](https://twitter.com/iAlexander13).
