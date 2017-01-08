@@ -2,7 +2,7 @@
 //  DropboxViewController.swift
 //  prestoid
 //
-//  Created by Alexander Iashchuk on 11/17/16.
+//  Created by Alexander Iashchuk on 11/27/16.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), https://iashchuk.com All rights reserved.
 //
 

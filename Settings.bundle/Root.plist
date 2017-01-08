@@ -22,7 +22,7 @@
 			<key>Title</key>
 			<string>Build</string>
 			<key>DefaultValue</key>
-			<string>1</string>
+			<string>2</string>
 			<key>Key</key>
 			<string>2</string>
 		</dict>
@@ -34,7 +34,7 @@
 			<key>Key</key>
 			<string>3</string>
 			<key>DefaultValue</key>
-			<string>2016.12.20</string>
+			<string>2017.01.08</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -66,7 +66,7 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>Copyright 2016</string>
+			<string>Copyright © 2016</string>
 			<key>DefaultValue</key>
 			<string>https://iashchuk.com</string>
 			<key>Key</key>
