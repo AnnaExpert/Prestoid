@@ -367,5 +367,4 @@ class PlayerViewController: UIViewController {
         components.second = Int(max(0.0, time))
         return timeRemainingFormatter.string(from: components as DateComponents)!
     }
-    
 }

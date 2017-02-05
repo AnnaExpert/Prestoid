@@ -83,5 +83,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return rootViewController
     }
-    
 }
