@@ -35,6 +35,22 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var refreshProgressView: UIProgressView!
     
+//    @IBOutlet weak var dropboxLogoImageView: UIImageView!
+//    @IBOutlet weak var authorizeYourAccountTextLabel: UILabel!
+//    @IBOutlet weak var connectDropboxAccountButton: UIButton!
+//    
+//    @IBOutlet weak var disconnectDropboxAccountButton: UIButton!
+//    @IBOutlet weak var dropboxAccountAuthorizedLabel: UILabel!
+//    @IBOutlet weak var accountPhotoImageView: UIImageView!
+//    @IBOutlet weak var userNameTextLabel: UILabel!
+//    @IBOutlet weak var userEmailTextLabel: UILabel!
+//    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
+//    
+//    @IBOutlet weak var uploadingProgress: UIProgressView!
+//    @IBOutlet weak var uploadingLabel: UILabel!
+//    @IBOutlet weak var refreshButton: UIButton!
+//    @IBOutlet weak var refreshProgressView: UIProgressView!
+    
     public class DropboxUser {
         var authorized = false
         var name = "Dropbox User"
@@ -90,7 +106,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         user.authorized = false
     }
     
-    // MARK: Check the current Dropbox authorization
+    // MARK: Check the current Dropbox account authorization
     
     func checkAuthorization() -> Bool {
         if DropboxClientsManager.authorizedClient != nil {
@@ -421,3 +437,25 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
 //    }
     
 }
+
+
+//class PreviewView: UIView {
+//    
+//    var videoPreviewLayer: AVCaptureVideoPreviewLayer {
+//        return layer as! AVCaptureVideoPreviewLayer
+//    }
+//    
+//    var session: AVCaptureSession? {
+//        get {
+//            return videoPreviewLayer.session
+//        }
+//        set {
+//            videoPreviewLayer.session = newValue
+//        }
+//    }
+//    
+//    override class var layerClass: AnyClass {
+//        return AVCaptureVideoPreviewLayer.self
+//    }
+//    
+//}
