@@ -420,29 +420,4 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
 //        }
 //    }
     
-    // MARK: Custom progress bar.
-    
-    //    var progressFloat: Float = 0
-    //    var progressTasks = 0
-    //
-    //    func decreaseProgressBar(fractionCompleted: Float) {
-    //        if fractionCompleted == 1 {
-    //            self.progressTasks -= 1
-    //            self.refreshProgressBar()
-    //            return
-    //        }
-    //        self.progressFloat += (fractionCompleted / Float(self.progressTasks))
-    //        self.refreshProgressBar()
-    //    }
-    //
-    //    func increaseProgressBar() {
-    //        self.progressTasks += 1
-    //        self.refreshProgressBar()
-    //    }
-    //
-    //    func refreshProgressBar() {
-    //        self.refreshProgressView.progress = self.progressFloat
-    //    }
-
-    
 }
