@@ -48,10 +48,6 @@
 	<string>We need to save videos in the photos appliaction</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>We need to record every word that you say</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>fetch</string>
-	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
