@@ -1207,4 +1207,5 @@ extension SFSpeechRecognitionTaskDelegate {
 //        console.text = console.text + "\n" + recognitionResult.bestTranscription.formattedString
         print("!!!SpeechRecognitionTask: \(recognitionResult.bestTranscription.formattedString)")
     }
+    
 }
