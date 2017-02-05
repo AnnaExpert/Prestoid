@@ -35,22 +35,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var refreshProgressView: UIProgressView!
     
-//    @IBOutlet weak var dropboxLogoImageView: UIImageView!
-//    @IBOutlet weak var authorizeYourAccountTextLabel: UILabel!
-//    @IBOutlet weak var connectDropboxAccountButton: UIButton!
-//    
-//    @IBOutlet weak var disconnectDropboxAccountButton: UIButton!
-//    @IBOutlet weak var dropboxAccountAuthorizedLabel: UILabel!
-//    @IBOutlet weak var accountPhotoImageView: UIImageView!
-//    @IBOutlet weak var userNameTextLabel: UILabel!
-//    @IBOutlet weak var userEmailTextLabel: UILabel!
-//    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
-//    
-//    @IBOutlet weak var uploadingProgress: UIProgressView!
-//    @IBOutlet weak var uploadingLabel: UILabel!
-//    @IBOutlet weak var refreshButton: UIButton!
-//    @IBOutlet weak var refreshProgressView: UIProgressView!
-    
     public class DropboxUser {
         var authorized = false
         var name = "Dropbox User"
@@ -186,7 +170,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         }, browserAuth: true)
     }
     
-    // MARK: Download all new files
+    // MARK: Download all new files (video and text)
     
     public func downloadAllFiles() {
         if let client = DropboxClientsManager.authorizedClient {
@@ -397,65 +381,65 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         }
     }
     
-    // MARK: Custom progress bar.
+    public func unloadVideoFile(filePath: String) {
+        let defaults = UserDefaults.standard
+        if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
+            videosArray = arrayValue as! [String]
+        }
+        if let arrayValue = defaults.array(forKey: savedSpeechArrayKey) {
+            speechArray = arrayValue as! [String]
+        }
+        if let client = DropboxClientsManager.authorizedClient {
+            let path = filePath
+            let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+            let videoFileDataPath = docsPath + "/" + path + ".mov"
+            let videoFileURL = URL.init(fileURLWithPath: videoFileDataPath)
+            do {
+                let videoFileData = try Data(contentsOf: videoFileURL)
+                let fileData = videoFileData
+                _ = client.files.upload(path: "/PrestoidMedia/Video/\(path).mov", input: fileData)
+                    .response { response, error in
+                        if let response = response {
+                            print(response)
+                        } else if let error = error {
+                            self.uploadVideoFile(filePath: filePath)
+                            print("Video file upload error: \(error)")
+                        }
+                    }
+                    .progress { progressData in
+                        print(progressData)
+                }
+                
+                // in case you want to cancel the request
+                //        if someConditionIsSatisfied {
+                //            request.cancel()
+                //        }
+                
+            } catch {
+                print("Can't load data file from iPhone memory")
+            }
+            let textFileData = speechArray.last!.data(using: .utf8)
+            let fileData = textFileData!
+            _ = client.files.upload(path: "/PrestoidMedia/Text/\(path).txt", input: fileData)
+                .response { response, error in
+                    if let response = response {
+                        print(response)
+                    } else if let error = error {
+                        self.uploadVideoFile(filePath: filePath)
+                        print("Text file upload error: \(error)")
+                    }
+                }
+                .progress { progressData in
+                    print(progressData)
+            }
+            
+            // in case you want to cancel the request
+            //        if someConditionIsSatisfied {
+            //            request.cancel()
+            //        }
+            
+        }
+    }
     
-//    var progressFloat: Float = 0
-//    var progressTasks = 0
-//    
-//    func decreaseProgressBar(fractionCompleted: Float) {
-//        if fractionCompleted == 1 {
-//            self.progressTasks -= 1
-//            self.refreshProgressBar()
-//            return
-//        }
-//        self.progressFloat += (fractionCompleted / Float(self.progressTasks))
-//        self.refreshProgressBar()
-//    }
-//    
-//    func increaseProgressBar() {
-//        self.progressTasks += 1
-//        self.refreshProgressBar()
-//    }
-//    
-//    func refreshProgressBar() {
-//        self.refreshProgressView.progress = self.progressFloat
-//    }
-    
-    // MARK: List folder
-    
-//    public func checkAllFiles() {
-//        if let client = DropboxClientsManager.authorizedClient {
-//            client.files.listFolder(path: "")
-//                .response { response, error in
-//                    if let result = response?.entries {
-//                        print(result)
-//                    } else if let error = error {
-//                        print(error)
-//                    }
-//            }
-//        }
-//    }
     
 }
-
-
-//class PreviewView: UIView {
-//    
-//    var videoPreviewLayer: AVCaptureVideoPreviewLayer {
-//        return layer as! AVCaptureVideoPreviewLayer
-//    }
-//    
-//    var session: AVCaptureSession? {
-//        get {
-//            return videoPreviewLayer.session
-//        }
-//        set {
-//            videoPreviewLayer.session = newValue
-//        }
-//    }
-//    
-//    override class var layerClass: AnyClass {
-//        return AVCaptureVideoPreviewLayer.self
-//    }
-//    
-//}
