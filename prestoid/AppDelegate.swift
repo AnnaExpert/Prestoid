@@ -3,7 +3,7 @@
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
 //
 //  Created by Alexander Iashchuk on 11/2/16.
-//  Copyright © 2016 Alexander Iashchuk (iAlexander), https://iashchuk.com
+//  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
 //  Application owner - Scott Leatham. All rights reserved.
 //
 
@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         // Do not forget to insert the Dropbox application API key here, and in the Info.plist file
         
-        DropboxClientsManager.setupWithAppKey("<!!! DROPBOX API KEY !!!>")
+        DropboxClientsManager.setupWithAppKey("<!!! YOUR DROPBOX APPLICATION API KEY !!!>")
         return true
     }
     

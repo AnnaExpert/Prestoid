@@ -25,12 +25,12 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>db-&lt;!!! DROPBOX API KEY !!!&gt;</string>
+				<string>db-&lt;!!! YOUR DROPBOX APPLICATION API KEY !!!&gt;</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>10</string>
+	<string>11</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>dbapi-8-emm</string>

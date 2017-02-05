@@ -3,7 +3,7 @@
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
 //
 //  Created by Alexander Iashchuk on 11/9/16.
-//  Copyright © 2016 Alexander Iashchuk (iAlexander), https://iashchuk.com
+//  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
 //  Application owner - Scott Leatham. All rights reserved.
 //
 
@@ -147,12 +147,12 @@ class MasterViewController: UITableViewController {
         return true
     }
     
-    // MARK: Swipe buttons: Swipe to edit buttons configuration
+    // MARK: - Swipe buttons: Swipe to edit buttons configuration
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
-            // MARK: Swipe to delete cell and video in it
+            // MARK: Swipe to delete cell (with video and text from iPhone and Dropbox)
             
             let filename = self.videosArray[indexPath.row]
             let path = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as NSString).appendingPathComponent((filename as NSString).appendingPathExtension("mov")!)
@@ -189,7 +189,7 @@ class MasterViewController: UITableViewController {
         
         let text = UITableViewRowAction(style: .normal, title: "Speech") { (action, indexPath) in
             
-            // MARK: Swipe to show recognized text from speech
+            // MARK: Swipe to show the recognized text from speech
             
             if (self.cellTextContent[indexPath.row] != nil) {
                 self.cellTextContent[indexPath.row] = !self.cellTextContent[indexPath.row]!
@@ -227,7 +227,7 @@ class MasterViewController: UITableViewController {
     
 }
 
-// MARK: Extension: Date formatter extension
+// MARK: - Extension: Date formatter extension
 
 extension Date {
     

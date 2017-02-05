@@ -38,7 +38,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     public class DropboxUser {
         var authorized = false
         var name = "Dropbox User"
-        var email = "email@dropbox.com"
+        var email = "youremail@dropbox.com"
         var avatar = UIImage(named: "Dropbox")!
     }
     
@@ -67,7 +67,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         downloadAllFiles()
     }
     
-    // Link Dropbox account via iOS application
+    // MARK: Link Dropbox account via iOS application
     
     @IBAction func connectDropboxAccount(_ sender: Any) {
         linkDropboxViaApp()
@@ -191,7 +191,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                                 let filename = "\(name).mov"
 //                                localName = name
                                 if (filename == dropboxName) {
-                                    print("Have this file")
+                                    print("Already have this file")
                                     match = true
                                 }
                             }
@@ -232,7 +232,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         print(error)
 //                        self.downloadAllFiles()
                         self.downloadFile(fromPath: fromPath, localName: localName)
-                        print("Retry the video file download")
+                        print("Retry please the video file download")
                         self.refreshProgressView.isHidden = true
                         self.refreshButton.isEnabled = true
                     }
@@ -293,7 +293,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         print(error)
 //                        self.downloadAllFiles()
                         self.downloadTextFile(fromPath: fromPath)
-                        print("Retry the text file download")
+                        print("Retry please the text file download")
                         self.refreshProgressView.isHidden = true
                         self.refreshButton.isEnabled = true
                     }
@@ -373,7 +373,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                     print(progressData)
             }
             
-            // in case you want to cancel the request
+            // Use this in case you want to cancel the request
             //        if someConditionIsSatisfied {
             //            request.cancel()
             //        }
