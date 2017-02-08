@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         // MARK: WARNING: Do not forget to insert the Dropbox application API key here, and in the Info.plist file
         
-        DropboxClientsManager.setupWithAppKey("<!!! YOUR DROPBOX APPLICATION API KEY !!!>")
+        DropboxClientsManager.setupWithAppKey("fcknlb5qwqct21g")
         return true
     }
     
