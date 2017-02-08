@@ -25,7 +25,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>db-&lt;!!! YOUR DROPBOX APPLICATION API KEY !!!&gt;</string>
+				<string>db-&lt;! YOUR DROPBOX APPLICATION API KEY !&gt;</string>
 			</array>
 		</dict>
 	</array>
