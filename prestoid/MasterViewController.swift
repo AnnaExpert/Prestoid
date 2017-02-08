@@ -66,10 +66,20 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        
+        print(videosArray.count)
+        
+        
         return videosArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        print(indexPath.row)
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)as! CellMasterView
         var thumbnail = UIImage()
         let fileName = videosArray[indexPath.row]
