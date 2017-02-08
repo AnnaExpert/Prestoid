@@ -87,7 +87,22 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     [fetchRequest setPredicate:predicate];
     // Specify how the fetched objects should be sorted
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
     ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }
     [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
     
     NSError *error = nil;
@@ -437,7 +452,22 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 NSSet *changedObjects = [NSSet setWithObject:value];
                 [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
                 [[self primitiveValueForKey:@"<#relationshipName#>"] removeObject:value];
-                [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+                [self didChangeValueForKey:@"<#relationshipName#>NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+                [fetchRequest setEntity:entity];
+                // Specify criteria for filtering which objects to fetch
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+                [fetchRequest setPredicate:predicate];
+                // Specify how the fetched objects should be sorted
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+                ascending:YES];
+                [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+                
+                NSError *error = nil;
+                NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+                if (fetchedObjects == nil) {
+                    <#Error handling code#>
+                }" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
                 }
                 
                 - (void)add<#CapitalizedRelationshipName#>:(NSSet *)value

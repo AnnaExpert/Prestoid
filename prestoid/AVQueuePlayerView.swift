@@ -18,7 +18,22 @@ guard <#condition#> else {
 }enum <#name#> {
     case <#case#>
 }var <#variable name#>: <#type#> {
-get {
+get {NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        <#Error handling code#>
+    }
     <#statements#>
 }
 set {
@@ -29,7 +44,22 @@ set {
 } @catch (NSException *exception) {
     <#Handle an exception thrown in the @try block#>
 } @finally {
-    <#Code that gets executed whether or not an exception is thrown#>
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        <#Error handling code#>
+    }<#Code that gets executed whether or not an exception is thrown#>
     }- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == <#context#>) {
@@ -44,4 +74,19 @@ set {
         <#statements#>
     }
     return self;
+}NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+[fetchRequest setEntity:entity];
+// Specify criteria for filtering which objects to fetch
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+[fetchRequest setPredicate:predicate];
+// Specify how the fetched objects should be sorted
+NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ascending:YES];
+[fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+
+NSError *error = nil;
+NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+if (fetchedObjects == nil) {
+    <#Error handling code#>
 }
