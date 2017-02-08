@@ -86,12 +86,147 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
     [fetchRequest setPredicate:predicate];
     // Specify how the fetched objects should be sorted
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
-    ascending:YES];NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
     [fetchRequest setEntity:entity];
     // Specify criteria for filtering which objects to fetch
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }
+    // Specify criteria for filtering which objects to fetcNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }h
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }
+    ascending:YES];NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityFoNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }Name:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetchNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }chRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }rName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }ate predicateWithFormat:@"<#format string#>", <#arguments#>];
     [fetchRequest setPredicate:predicate];
     // Specify how the fetched objects should be sorted
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
@@ -458,9 +593,39 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 // Specify criteria for filtering which objects to fetch
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
                 [fetchRequest setPredicate:predicate];
+                // Specify how the fetched objects should be sortedNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+                [fetchRequest setEntity:entity];
+                // Specify criteria for filtering which objects to fetch
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+                [fetchRequest setPredicate:predicate];
                 // Specify how the fetched objects should be sorted
                 NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
                 ascending:YES];
+                [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+                
+                NSError *error = nil;
+                NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+                if (fetchedObjects == nil) {
+                    <#Error handling code#>
+                }
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+                ascending:YES];NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+                [fetchRequest setEntity:entity];
+                // Specify criteria for filtering which objects to fetch
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+                [fetchRequest setPredicate:predicate];
+                // Specify how the fetched objects should be sorted
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+                ascending:YES];
+                [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+                
+                NSError *error = nil;
+                NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+                if (fetchedObjects == nil) {
+                    <#Error handling code#>
+                }
                 [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
                 
                 NSError *error = nil;
@@ -472,7 +637,22 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 
                 - (void)add<#CapitalizedRelationshipName#>:(NSSet *)value
             {
-                [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+                [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+                [fetchRequest setEntity:entity];
+                // Specify criteria for filtering which objects to fetch
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+                [fetchRequest setPredicate:predicate];
+                // Specify how the fetched objects should be sorted
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+                ascending:YES];
+                [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+                
+                NSError *error = nil;
+                NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+                if (fetchedObjects == nil) {
+                    <#Error handling code#>
+                }
                 [[self primitiveValueForKey:@"<#relationshipName#>"] unionSet:value];
                 [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
                 }
@@ -480,7 +660,22 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 <#declarations#>
                 }
                 - (void)remove<#CapitalizedRelationshipName#>:(NSSet *)value
-            {
+            {NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+                [fetchRequest setEntity:entity];
+                // Specify criteria for filtering which objects to fetch
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+                [fetchRequest setPredicate:predicate];
+                // Specify how the fetched objects should be sorted
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+                ascending:YES];
+                [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+                
+                NSError *error = nil;
+                NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+                if (fetchedObjects == nil) {
+                    <#Error handling code#>
+                }
                 [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
                 [[self primitiveValueForKey:@"<#relationshipName#>using namespace <#namespace name#>"] minusSet:value];
                 [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
