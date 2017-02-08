@@ -74,6 +74,38 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         linkDropboxViaApp()
     }
     
+    - (NSString *)debugDescription
+    {
+    return [NSString stringWithFormat:@"<%@: %p> <#additional format string#>", [self class], self, <#additional arguments#>];
+    }if (<#condition#>) {
+    <#statements#>
+    } else {NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+    ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+    <#Error handling code#>
+    }
+    <#statements#>- (void)awakeFromFetch
+    {
+    [super awakeFromFetch];
+    <#code to be executed after the receiver has been fetched#>
+    }
+    }dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<#delayInSeconds#> * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    <#code to be executed after a specified delay#>
+    });do {
+    <#statements#>
+    } while (<#condition#>);
+    
     // MARK: Unlink Dropbox account from current session
     
     @IBAction func disconnectDropboxAccount(_ sender: Any) {
@@ -382,4 +414,53 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         }
     }
     
+}
+- (BOOL)validate<#CapitalizedPropertyName#>:(id *)valueRef error:(NSError **)outError
+{
+    BOOL validationResult = YES;
+    <#Validation code#>
+    return validationResult;
+    }- (<#propertyScalarType#>)<#propertyName#>
+        {
+            [self willAccessValueForKey:@"<#propertyName#>"];
+            <#propertyScalarType#> value = <#propertyName#>;
+            [self didAccessValueForKey:@"<#propertyName#>"];- (void)add<#CapitalizedRelationshipName#>Object:(<#relationship destination class#> *)value
+            {
+                NSSet *changedObjects = [NSSet setWithObject:value];
+                [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+                [[self primitiveValueForKey:@"<#relationshipName#>"] addObject:value];
+                [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+                }
+                
+                - (void)remove<#CapitalizedRelationshipName#>Object:(<#relationship destination class#> *)value
+            {
+                NSSet *changedObjects = [NSSet setWithObject:value];
+                [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+                [[self primitiveValueForKey:@"<#relationshipName#>"] removeObject:value];
+                [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+                }
+                
+                - (void)add<#CapitalizedRelationshipName#>:(NSSet *)value
+            {
+                [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+                [[self primitiveValueForKey:@"<#relationshipName#>"] unionSet:value];
+                [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+                }
+            namespace <#namespace name#> {
+                <#declarations#>
+                }
+                - (void)remove<#CapitalizedRelationshipName#>:(NSSet *)value
+            {
+                [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
+                [[self primitiveValueForKey:@"<#relationshipName#>using namespace <#namespace name#>"] minusSet:value];
+                [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
+            }
+            return value;
+        }
+        
+        - (void)set<#CapitalizedPropertyName#>:(<#propertyScalarType#>)value
+{
+    [self willChangeValueForKey:@"<#propertyName#>"];
+    <#propertyName#> = value;
+    [self didChangeValueForKey:@"<#propertyName#>"];
 }
