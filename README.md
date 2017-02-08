@@ -1,8 +1,8 @@
-[![Language](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat")](#)
-[![Platform](https://img.shields.io/badge/Platform-iOS 10.0-lightgray.svg?style=flat")](#)
-[![Devices](https://img.shields.io/badge/Devices-iPhone-DAA522.svg?style=flat")](#)
-[![Version](https://img.shields.io/badge/App version-1.3 in development-red.svg?style=flat")](#)
-[![AppStore](https://img.shields.io/badge/App Store-No-red.svg?style=flat")](#)
+[![Language](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat")](https://ialexander.me/2gCl2op)
+[![Platform](https://img.shields.io/badge/Platform-iOS 10.0-lightgray.svg?style=flat")](https://ialexander.me/2gCl2op)
+[![Devices](https://img.shields.io/badge/Devices-iPhone-DAA522.svg?style=flat")](https://ialexander.me/2gCl2op)
+[![Version](https://img.shields.io/badge/App version-1.3 in development-red.svg?style=flat")](https://ialexander.me/2gCl2op)
+[![AppStore](https://img.shields.io/badge/App Store-No-red.svg?style=flat")](https://ialexander.me/2gCl2op)
 
 [![Prestoid - Dropbox sync video camera app with speech to text recognition](https://raw.githubusercontent.com/iAlexander/Prestoid/master/Header.jpg)](https://ialexander.me/2gCl2op)
 
@@ -17,7 +17,7 @@
 
 ##<a name="copyright">Copyright:</a>
 
-Copyright © 2016-2017 by Scott Leatham & Alexander Iashchuk, <a href="https://iashchuk.com">iashchuk.com</a>.
+Copyright © 2016 by Scott Leatham & Alexander Iashchuk, <a href="https://iashchuk.com">iashchuk.com</a>.
 
 ##<a name="contact">Contact:</a>
 
