@@ -1,4 +1,4 @@
- [![Language](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat")](#)
+[![Language](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat")](#)
 [![Platform](https://img.shields.io/badge/Platform-iOS 10.0-lightgray.svg?style=flat")](#)
 [![Devices](https://img.shields.io/badge/Devices-iPhone-DAA522.svg?style=flat")](#)
 [![Version](https://img.shields.io/badge/App version-1.3 (in development...)-blue.svg?style=flat")](#)
@@ -16,7 +16,7 @@
 
 ##<a name="copyright">Copyright:</a>
 
-Copyright © 2016 Scott Leatham & Alexander Iashchuk, <a href="https://iashchuk.com">iashchuk.com</a>.
+Copyright © 2016-2017 by Scott Leatham & Alexander Iashchuk, <a href="https://iashchuk.com">iashchuk.com</a>.
 
 ##<a name="contact">Contact:</a>
 
