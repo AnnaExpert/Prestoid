@@ -12,7 +12,7 @@
 			<key>Title</key>
 			<string>Version</string>
 			<key>DefaultValue</key>
-			<string>1.3 (in development)</string>
+			<string>1.3</string>
 			<key>Key</key>
 			<string>1</string>
 		</dict>
@@ -22,7 +22,7 @@
 			<key>Title</key>
 			<string>Build</string>
 			<key>DefaultValue</key>
-			<string>14</string>
+			<string>15</string>
 			<key>Key</key>
 			<string>2</string>
 		</dict>
@@ -66,7 +66,7 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>Copyright © 2016-2017</string>
+			<string>Copyright © 2016</string>
 			<key>DefaultValue</key>
 			<string>https://iashchuk.com</string>
 			<key>Key</key>
