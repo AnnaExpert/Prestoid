@@ -22,4 +22,4 @@ Copyright © 2016 by Scott Leatham & <a href="https://iashchuk.com">Alexander Ia
 
 ##<a name="contact">Contact:</a>
 
-You can read, follow or drop me a line on my personal Twitter account - [@iAlexander13](https://twitter.com/iAlexander13).
+You can read, follow or drop me a line on my personal Twitter account - [@iAlexander13](https://twitter.com/iAlexander13)

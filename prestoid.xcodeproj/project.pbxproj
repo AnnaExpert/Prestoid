@@ -13,6 +13,8 @@
 		2A1C5D661DD2108600555DE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1C5D651DD2108600555DE2 /* Main.storyboard */; };
 		2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */; };
 		2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */; };
+		2A5393231E4FD0E5009677BA /* UploaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5393221E4FD0E5009677BA /* UploaderModel.swift */; };
+		2A5393251E4FD143009677BA /* NewColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5393241E4FD143009677BA /* NewColors.swift */; };
 		2AB61FA91DD87FB000C54CB8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2AB61FA81DD87FB000C54CB8 /* Settings.bundle */; };
 		2AB84CC01DCB551F00A31061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB84CBF1DCB551F00A31061 /* Assets.xcassets */; };
 		2AC9F1911DD8FBF900A49535 /* CellMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */; };
@@ -33,6 +35,8 @@
 		2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A1E4EE31DCA0A05001F4489 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1E4EE51DCA0A05001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A5393221E4FD0E5009677BA /* UploaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploaderModel.swift; sourceTree = "<group>"; };
+		2A5393241E4FD143009677BA /* NewColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewColors.swift; sourceTree = "<group>"; };
 		2AB61FA81DD87FB000C54CB8 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2AB84CBF1DCB551F00A31061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellMasterView.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */,
 				2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */,
 				2AF7F2871DDF482F008F9646 /* DropboxViewController.swift */,
+				2A5393221E4FD0E5009677BA /* UploaderModel.swift */,
+				2A5393241E4FD143009677BA /* NewColors.swift */,
 				2A1C5D651DD2108600555DE2 /* Main.storyboard */,
 				2AB84CBF1DCB551F00A31061 /* Assets.xcassets */,
 				2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */,
@@ -243,6 +249,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A0AAE701DD365D400B9AC69 /* MasterViewController.swift in Sources */,
+				2A5393231E4FD0E5009677BA /* UploaderModel.swift in Sources */,
+				2A5393251E4FD143009677BA /* NewColors.swift in Sources */,
 				2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */,
 				2A1C5D601DD2107700555DE2 /* PreviewView.swift in Sources */,
 				2AF7F2881DDF482F008F9646 /* DropboxViewController.swift in Sources */,
