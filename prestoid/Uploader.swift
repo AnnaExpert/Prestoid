@@ -1,9 +1,11 @@
 //
 //  Uploader.swift
-//  prestoid
+//  Prestoid - Dropbox sync video camera app with speech to text recognition
+//  Application version 1.3, build 20
 //
 //  Created by Alexander Iashchuk on 2/11/17.
-//  Copyright © 2017 Alexander Iashchuk. All rights reserved.
+//  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
+//  Application owner - Scott Leatham. All rights reserved.
 //
 
 import UIKit
@@ -380,6 +382,170 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         return result
     }
+    
+    class <#class name#> {
+        <#instance variables#>
+        <#returnType#>(^<#blockName#>)(<#parameterTypes#>) = ^(<#parameters#>) {typedef <#returnType#>(^<#name#>)(<#arguments#>);
+        <#statements#>
+        };template <<#template parameters#>>namespace <#namespace name#> {
+        <#declarations#>
+        }
+        <#return type#> <#function name#>(<#function parameters#>) {template <<#template parameters#>>
+        class <#class name#> {
+        <#instance variables#>- (void)awakeFromInsertNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+        [fetchRequest setEntity:entity];
+        // Specify criteria for filtering which objects to fetch
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+        [fetchRequest setPredicate:predicate];
+        // Specify how the fetched objects should be sorted
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+        ascending:YES];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObjdo {
+        <#statements#>
+        } while (<#condition#>);ects:sortDescriptor, nil]];
+        - (<#propertyScalarType#>)<#propertyName#>
+        {
+        [self willAccessValueForKey:@"<#propertyName#>"];
+        <#propertyScalarType#> value = <#propertyName#>;- (void)add<#CapitalizedRelationshipName#>Object:(<#relationship destination class#> *)value
+        {NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+        [fetchRequest setEntity:entity];
+        // Specify criteria for filtering which objects to fetch
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+        [fetchRequest setPredicate:predicate];
+        // Specify how the fetched objects should be sorted
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+        ascending:YES];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+        
+        NSError *error = nil;
+        NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+        if (fetchedObjects == nil) {
+        <#Error handling code#>
+        }
+        NSSet *changedObjects = [NSSet setWithObject:value];
+        [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+        [[self primitiveValueForKey:@"<#relationshipName#>"] addObject:value];
+        [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+        }
+        
+        - (void)remove<#CapitalizedRelationshipName#>Object:(<#relationship destination class#> *)value
+        {
+        NSSet *changedObjects = [NSSet setWithObject:value];- (<#propertyObjectType#> *)<#propertyName#>
+        {
+        [self willAccessValueForKey:@"<#propertyName#>"];
+        <#propertyObjectType#> *value = [self primitiveValueForKey:@"<#propertyName#>"];
+        [self didAccessValueForKey:@"<#propertyName#>"];
+        return value;
+        }
+        
+        - (void)set<#CapitalizedPropertyName#>:(<#propertyObjectType#> *)value
+        {
+        [self willChangeValueForKey:@"<#propertyName#>"];
+        [self setPrimitiveValue:value forKey:@"<#propertyName#>"];
+        [self didChangeValueForKey:@"<#propertyName#>"];
+        }
+        [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+        [[self primitiveValueForKey:@"<#relationshipName#>"] removeObject:value];
+        [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+        }
+        
+        - (void)add<#CapitalizedRelationshipName#>:(NSSet *)value
+        {
+        [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+        [[self primitiveValueForKey:@"<#relationshipName#>"] unionSet:value];
+        [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+        }
+        
+        - (void)remove<#CapitalizedRelationshipName#>:(NSSet *)value
+        {
+        [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
+        [[self primitiveValueForKey:@"<#relationshipName#>"] minusSet:value];
+        [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
+        }
+        [self didAccessValueForKey:@"<#propertyName#>"];
+        return value;- (void)add<#CapitalizedRelationshipName#>Object:(<#relationship destination class#> *)value
+        {
+        NSSet *changedObjects = [NSSet setWithObject:value];
+        [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+        [[self primitiveValueForKey:@"<#relationshipName#>"] addObject:value];
+        [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+        }
+        
+        - (void)remove<#CapitalizedRelationshipName#>Object:(<#relationship destination class#> *)value
+        {
+        NSSet *changedObjects = [NSSet setWithObject:value];
+        [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+        [[self primitiveValueForKey:@"<#relationshipName#>"] removeObject:value];
+        [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+        }
+        
+        - (void)add<#CapitalizedRelationshipName#>:(NSSet *)value
+        {
+        [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+        [[self primitiveValueForKey:@"<#relationshipName#>"] unionSet:value];
+        [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+        }
+        
+        - (void)remove<#CapitalizedRelationshipName#>:(NSSet *)value
+        {
+        [self willChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
+        [[self primitiveValueForKey:@"<#relationshipName#>"] minusSet:value];
+        [self didChangeValueForKey:@"<#relationshipName#>" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
+        }
+        }
+        
+        - (void)set<#CapitalizedPropertyName#>:(<#propertyScalarType#>)value- (BOOL)validate<#CapitalizedPropertyName#>:(id *)valueRef error:(NSError **)outError
+        {
+        BOOL validationResult = YES;
+        <#Validation code#>
+        return validationResult;
+        }
+        {
+        [self willChangeValueForKey:@"<#propertyName#>"];
+        <#propertyName#> = value;
+        [self didChangeValueForKey:@"<#propertyName#>"];
+        }
+        NSError *error = nil;
+        NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+        if (fetchedObjects == nil) {
+        <#Error handling code#>
+        }
+        {- (<#propertyObjectType#> *)<#propertyName#>
+        {
+        [self willAccessValueForKey:@"<#propertyName#>"];
+        <#propertyObjectType#> *value = [self primitiveValueForKey:@"<#propertyName#>"];
+        [self didAccessValueForKey:@"<#propertyName#>"];
+        return value;
+        }
+        
+        - (void)set<#CapitalizedPropertyName#>:(<#propertyObjectType#> *)value
+        {
+        [self willChangeValueForKey:@"<#propertyName#>"];
+        [self setPrimitiveValue:value forKey:@"<#propertyName#>"];
+        [self didChangeValueForKey:@"<#propertyName#>"];
+        }
+        [super awakeFromInsert];
+        <#code to be executed when the receiver is first inserted into a managed object context#>
+        }
+        using namespace <#namespace name#>
+        public:try {
+        <#statements#>
+        } catch (<#catch parameter#>) {- (void)awakeFromFetch
+        {
+        [super awakeFromFetch];
+        <#code to be executed after the receiver has been fetched#>
+        }
+        <#statements#>
+        }
+        <#member functions#>
+        };
+        <#statements#>
+        }
+        public:
+        <#member functions#>
+    };
     
     func descriptionOutput (_ region: String, name: String, index: Int) {
         switch index {
