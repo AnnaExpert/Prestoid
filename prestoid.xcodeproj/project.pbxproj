@@ -16,6 +16,7 @@
 		2AB61FA91DD87FB000C54CB8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2AB61FA81DD87FB000C54CB8 /* Settings.bundle */; };
 		2AB84CC01DCB551F00A31061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB84CBF1DCB551F00A31061 /* Assets.xcassets */; };
 		2AC9F1911DD8FBF900A49535 /* CellMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */; };
+		2ACDEA701E4FAB4200F3ED98 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDEA6F1E4FAB4200F3ED98 /* Uploader.swift */; };
 		2AF0F6AB1DD4B53E00E22B44 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */; };
 		2AF0F6AC1DD4B53E00E22B44 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */; };
 		2AF7F2881DDF482F008F9646 /* DropboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF7F2871DDF482F008F9646 /* DropboxViewController.swift */; };
@@ -36,6 +37,7 @@
 		2AB61FA81DD87FB000C54CB8 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2AB84CBF1DCB551F00A31061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellMasterView.swift; sourceTree = "<group>"; };
+		2ACDEA6F1E4FAB4200F3ED98 /* Uploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
 		2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2AF7F2871DDF482F008F9646 /* DropboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */,
+				2ACDEA6F1E4FAB4200F3ED98 /* Uploader.swift */,
 				2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */,
 				2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */,
 				2A0AAE6E1DD365D300B9AC69 /* MasterViewController.swift */,
@@ -245,6 +248,7 @@
 				2A0AAE701DD365D400B9AC69 /* MasterViewController.swift in Sources */,
 				2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */,
 				2A1C5D601DD2107700555DE2 /* PreviewView.swift in Sources */,
+				2ACDEA701E4FAB4200F3ED98 /* Uploader.swift in Sources */,
 				2AF7F2881DDF482F008F9646 /* DropboxViewController.swift in Sources */,
 				2AC9F1911DD8FBF900A49535 /* CellMasterView.swift in Sources */,
 				2AF0F6AC1DD4B53E00E22B44 /* PlayerView.swift in Sources */,
