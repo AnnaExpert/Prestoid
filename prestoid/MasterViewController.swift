@@ -76,7 +76,9 @@ class MasterViewController: UITableViewController {
         let recognizedText = speechArray[indexPath.row]
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
         let moviePath = docsPath + "/" + fileName + ".mov"
-        print("MasterViewController movie path: \(moviePath)")
+        
+        //print("MasterViewController movie path: \(moviePath)")
+        
         do {
             let asset = AVURLAsset(url: URL(fileURLWithPath: moviePath), options: nil)
             let imgGenerator = AVAssetImageGenerator(asset: asset)
