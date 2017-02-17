@@ -37,12 +37,9 @@ class MasterViewController: UITableViewController {
             speechArray = arrayValue as! [String]
         }
         
-        
-        // Sorting the videos and text arrays
+        // Sorting the videos and text arrays in decending order
         videosArray = videosArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
         speechArray = speechArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
-        
-        
         
         self.tableView.reloadData()
         super.viewWillAppear(animated)
