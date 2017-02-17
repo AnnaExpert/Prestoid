@@ -1,7 +1,7 @@
 //
 //  UploaderModel.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 1.3, build 21
+//  Application version 1.3, build 23
 //
 //  Created by Alexander Iashchuk on 2/12/17.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -375,29 +375,554 @@ open class ChartBaseDataSet: NSObject
     {
         return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
     }
-    
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
     open override var debugDescription: String
     {
         var desc = description + ":"
-        
+ 
         for i in 0 ..< self.entryCount
         {
             desc += "\n" + (self.entryForIndex(i)?.description ?? "")
         }
-        
+ 
         return desc
     }
-    
+ 
     // MARK: - NSCopying
-    
+ 
     open func copyWithZone(_ zone: NSZone?) -> AnyObject
     {
         let copy = type(of: self).init()
-        
+ 
         copy.colors = colors
         copy.valueColors = valueColors
         copy.label = label
-        
+ 
         return copy
     }
 }
@@ -1941,6 +2466,426 @@ open class Animator: NSObject
  func animatorStopped(_ animator: Animator)
  }
  
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
  @objc(ChartAnimator)
  open class Animator: NSObject
  {
@@ -2360,7 +3305,322 @@ open class Animator: NSObject
     {
         animate(xAxisDuration: xAxisDuration, easingOption: .easeInOutSine)
     }
-    
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
+ {
+ fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(
+ x xValue: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> Int
+ {
+ fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryIndex(entry e: ChartDataEntry) -> Int
+ {
+ fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntry(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(_ entry: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
     /// Animates the drawing / rendering of the chart the y-axis with the specified animation time.
     /// If `animate(...)` is called, no further calling of `invalidate()` is necessary to refresh the chart.
     /// - parameter yAxisDuration: duration for animating the y axis
