@@ -442,6 +442,796 @@ open class ChartBaseDataSet: NSObject
  {
  fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
  }
+
+ /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
+ open func valueTextColorAt(_ index: Int) -> NSUIColor
+ {
+ var index = index
+ if index < 0
+ {
+ index = 0
+ }
+ return valueColors[index % valueColors.count]
+ }
+ 
+ /// the font for the value-text labels
+ open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)
+ 
+ /// The form to draw for this dataset in the legend.
+ open var form = Legend.Form.default
+ 
+ /// The form size to draw for this dataset in the legend.
+ ///
+ /// Return `NaN` to use the default legend form size.
+ open var formSize: CGFloat = CGFloat.nan
+ 
+ /// The line width for drawing the form of this dataset in the legend
+ ///
+ /// Return `NaN` to use the default legend form line width.
+ open var formLineWidth: CGFloat = CGFloat.nan
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is how much (in pixels) into the dash pattern are we starting from.
+ open var formLineDashPhase: CGFloat = 0.0
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is the actual dash pattern.
+ /// I.e. [2, 3] will paint [--   --   ]
+ /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
+ open var formLineDashLengths: [CGFloat]? = nil
+ 
+ /// Set this to true to draw y-values on the chart
+ open var drawValuesEnabled = true
+ 
+ /// - returns: `true` if y-value drawing is enabled, `false` ifnot
+ open var isDrawValuesEnabled: Bool
+ {
+ return drawValuesEnabled
+ }
+ 
+ /// Set the visibility of this DataSet. If not visible, the DataSet will not be drawn to the chart upon refreshing it.
+ open var visible = true
+ 
+ /// - returns: `true` if this DataSet is visible inside the chart, or `false` ifit is currently hidden.
+ open var isVisible: Bool
+ {
+ return visible
+ }
+ 
+ // MARK: - NSObject
+ 
+ open override var description: String
+ {
+ return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
+ }
+ 
+ 
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+
+ 
+ /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
+ open func valueTextColorAt(_ index: Int) -> NSUIColor
+ {
+ var index = index
+ if index < 0
+ {
+ index = 0
+ }
+ return valueColors[index % valueColors.count]
+ }
+ 
+ /// the font for the value-text labels
+ open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)
+ 
+ /// The form to draw for this dataset in the legend.
+ open var form = Legend.Form.default
+ 
+ /// The form size to draw for this dataset in the legend.
+ ///
+ /// Return `NaN` to use the default legend form size.
+ open var formSize: CGFloat = CGFloat.nan
+ 
+ /// The line width for drawing the form of this dataset in the legend
+ ///
+ /// Return `NaN` to use the default legend form line width.
+ open var formLineWidth: CGFloat = CGFloat.nan
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is how much (in pixels) into the dash pattern are we starting from.
+ open var formLineDashPhase: CGFloat = 0.0
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is the actual dash pattern.
+ /// I.e. [2, 3] will paint [--   --   ]
+ /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
+ open var formLineDashLengths: [CGFloat]? = nil
+ 
+ /// Set this to true to draw y-values on the chart
+ open var drawValuesEnabled = true
+ 
+ /// - returns: `true` if y-value drawing is enabled, `false` ifnot
+ open var isDrawValuesEnabled: Bool
+ {
+ return drawValuesEnabled
+ }
+ 
+ /// Set the visibility of this DataSet. If not visible, the DataSet will not be drawn to the chart upon refreshing it.
+ open var visible = true
+ 
+ /// - returns: `true` if this DataSet is visible inside the chart, or `false` ifit is currently hidden.
+ open var isVisible: Bool
+ {
+ return visible
+ }
+ 
+ // MARK: - NSObject
+ 
+ open override var description: String
+ {
+ return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
+ }
+ 
+ 
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+
+ 
+ /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
+ open func valueTextColorAt(_ index: Int) -> NSUIColor
+ {
+ var index = index
+ if index < 0
+ {
+ index = 0
+ }
+ return valueColors[index % valueColors.count]
+ }
+ 
+ /// the font for the value-text labels
+ open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)
+ 
+ /// The form to draw for this dataset in the legend.
+ open var form = Legend.Form.default
+ 
+ /// The form size to draw for this dataset in the legend.
+ ///
+ /// Return `NaN` to use the default legend form size.
+ open var formSize: CGFloat = CGFloat.nan
+ 
+ /// The line width for drawing the form of this dataset in the legend
+ ///
+ /// Return `NaN` to use the default legend form line width.
+ open var formLineWidth: CGFloat = CGFloat.nan
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is how much (in pixels) into the dash pattern are we starting from.
+ open var formLineDashPhase: CGFloat = 0.0
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is the actual dash pattern.
+ /// I.e. [2, 3] will paint [--   --   ]
+ /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
+ open var formLineDashLengths: [CGFloat]? = nil
+ 
+ /// Set this to true to draw y-values on the chart
+ open var drawValuesEnabled = true
+ 
+ /// - returns: `true` if y-value drawing is enabled, `false` ifnot
+ open var isDrawValuesEnabled: Bool
+ {
+ return drawValuesEnabled
+ }
+ 
+ /// Set the visibility of this DataSet. If not visible, the DataSet will not be drawn to the chart upon refreshing it.
+ open var visible = true
+ 
+ /// - returns: `true` if this DataSet is visible inside the chart, or `false` ifit is currently hidden.
+ open var isVisible: Bool
+ {
+ return visible
+ }
+ 
+ // MARK: - NSObject
+ 
+ open override var description: String
+ {
+ return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
+ }
+ 
+ 
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+
+ 
+ /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
+ open func valueTextColorAt(_ index: Int) -> NSUIColor
+ {
+ var index = index
+ if index < 0
+ {
+ index = 0
+ }
+ return valueColors[index % valueColors.count]
+ }
+ 
+ /// the font for the value-text labels
+ open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)
+ 
+ /// The form to draw for this dataset in the legend.
+ open var form = Legend.Form.default
+ 
+ /// The form size to draw for this dataset in the legend.
+ ///
+ /// Return `NaN` to use the default legend form size.
+ open var formSize: CGFloat = CGFloat.nan
+ 
+ /// The line width for drawing the form of this dataset in the legend
+ ///
+ /// Return `NaN` to use the default legend form line width.
+ open var formLineWidth: CGFloat = CGFloat.nan
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is how much (in pixels) into the dash pattern are we starting from.
+ open var formLineDashPhase: CGFloat = 0.0
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is the actual dash pattern.
+ /// I.e. [2, 3] will paint [--   --   ]
+ /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
+ open var formLineDashLengths: [CGFloat]? = nil
+ 
+ /// Set this to true to draw y-values on the chart
+ open var drawValuesEnabled = true
+ 
+ /// - returns: `true` if y-value drawing is enabled, `false` ifnot
+ open var isDrawValuesEnabled: Bool
+ {
+ return drawValuesEnabled
+ }
+ 
+ /// Set the visibility of this DataSet. If not visible, the DataSet will not be drawn to the chart upon refreshing it.
+ open var visible = true
+ 
+ /// - returns: `true` if this DataSet is visible inside the chart, or `false` ifit is currently hidden.
+ open var isVisible: Bool
+ {
+ return visible
+ }
+ 
+ // MARK: - NSObject
+ 
+ open override var description: String
+ {
+ return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
+ }
+ 
+ 
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+
+ 
+ /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
+ open func valueTextColorAt(_ index: Int) -> NSUIColor
+ {
+ var index = index
+ if index < 0
+ {
+ index = 0
+ }
+ return valueColors[index % valueColors.count]
+ }
+ 
+ /// the font for the value-text labels
+ open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)
+ 
+ /// The form to draw for this dataset in the legend.
+ open var form = Legend.Form.default
+ 
+ /// The form size to draw for this dataset in the legend.
+ ///
+ /// Return `NaN` to use the default legend form size.
+ open var formSize: CGFloat = CGFloat.nan
+ 
+ /// The line width for drawing the form of this dataset in the legend
+ ///
+ /// Return `NaN` to use the default legend form line width.
+ open var formLineWidth: CGFloat = CGFloat.nan
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is how much (in pixels) into the dash pattern are we starting from.
+ open var formLineDashPhase: CGFloat = 0.0
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is the actual dash pattern.
+ /// I.e. [2, 3] will paint [--   --   ]
+ /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
+ open var formLineDashLengths: [CGFloat]? = nil
+ 
+ /// Set this to true to draw y-values on the chart
+ open var drawValuesEnabled = true
+ 
+ /// - returns: `true` if y-value drawing is enabled, `false` ifnot
+ open var isDrawValuesEnabled: Bool
+ {
+ return drawValuesEnabled
+ }
+ 
+ /// Set the visibility of this DataSet. If not visible, the DataSet will not be drawn to the chart upon refreshing it.
+ open var visible = true
+ 
+ /// - returns: `true` if this DataSet is visible inside the chart, or `false` ifit is currently hidden.
+ open var isVisible: Bool
+ {
+ return visible
+ }
+ 
+ // MARK: - NSObject
+ 
+ open override var description: String
+ {
+ return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
+ }
+ 
+ 
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+
+ /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
+ open func valueTextColorAt(_ index: Int) -> NSUIColor
+ {
+ var index = index
+ if index < 0
+ {
+ index = 0
+ }
+ return valueColors[index % valueColors.count]
+ }
+ 
+ /// the font for the value-text labels
+ open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)
+ 
+ /// The form to draw for this dataset in the legend.
+ open var form = Legend.Form.default
+ 
+ /// The form size to draw for this dataset in the legend.
+ ///
+ /// Return `NaN` to use the default legend form size.
+ open var formSize: CGFloat = CGFloat.nan
+ 
+ /// The line width for drawing the form of this dataset in the legend
+ ///
+ /// Return `NaN` to use the default legend form line width.
+ open var formLineWidth: CGFloat = CGFloat.nan
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is how much (in pixels) into the dash pattern are we starting from.
+ open var formLineDashPhase: CGFloat = 0.0
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is the actual dash pattern.
+ /// I.e. [2, 3] will paint [--   --   ]
+ /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
+ open var formLineDashLengths: [CGFloat]? = nil
+ 
+ /// Set this to true to draw y-values on the chart
+ open var drawValuesEnabled = true
+ 
+ /// - returns: `true` if y-value drawing is enabled, `false` ifnot
+ open var isDrawValuesEnabled: Bool
+ {
+ return drawValuesEnabled
+ }
+ 
+ /// Set the visibility of this DataSet. If not visible, the DataSet will not be drawn to the chart upon refreshing it.
+ open var visible = true
+ 
+ /// - returns: `true` if this DataSet is visible inside the chart, or `false` ifit is currently hidden.
+ open var isVisible: Bool
+ {
+ return visible
+ }
+ 
+ // MARK: - NSObject
+ 
+ open override var description: String
+ {
+ return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
+ }
+ 
+ 
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
  
  open func entryForXValue(
  _ x: Double,
