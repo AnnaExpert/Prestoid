@@ -37,7 +37,7 @@ class MasterViewController: UITableViewController {
             
             videosArray = videosArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
             
-            // Saving the sorted array
+            // Saving the sorted videos array
             
             defaults.set(videosArray, forKey: self.savedVideosArrayKey)
         }
@@ -48,7 +48,7 @@ class MasterViewController: UITableViewController {
             
             speechArray = speechArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
             
-            // Saving the sorted array
+            // Saving the sorted speech array
             
             defaults.set(speechArray, forKey: self.savedSpeechArrayKey)
         }
