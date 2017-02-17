@@ -1,7 +1,7 @@
 //
 //  MasterViewController.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 1.3, build 23
+//  Application version 1.3, build 24
 //
 //  Created by Alexander Iashchuk on 11/9/16.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -34,14 +34,22 @@ class MasterViewController: UITableViewController {
             videosArray = arrayValue as! [String]
             
             // Sorting the videos arrayy in decending order
+            
             videosArray = videosArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
+            
+            // Saving the sorted array
+            
             defaults.set(videosArray, forKey: self.savedVideosArrayKey)
         }
         if let arrayValue = defaults.array(forKey: savedSpeechArrayKey) {
             speechArray = arrayValue as! [String]
             
             // Sorting the speech arrayy in decending order
+            
             speechArray = speechArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
+            
+            // Saving the sorted array
+            
             defaults.set(speechArray, forKey: self.savedSpeechArrayKey)
         }
         self.tableView.reloadData()

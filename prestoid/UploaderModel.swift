@@ -1,7 +1,7 @@
 //
 //  UploaderModel.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 1.3, build 23
+//  Application version 1.3, build 24
 //
 //  Created by Alexander Iashchuk on 2/12/17.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -376,58 +376,7 @@ open class ChartBaseDataSet: NSObject
         return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
     }
  
- open func entryForIndex(_ i: Int) -> ChartDataEntry?
- {
- fatalError("entryForIndex is not implemented in ChartBaseDataSet")
- }
  
- open func entryForXValue(
- _ x: Double,
- closestToY y: Double,
- rounding: ChartDataSetRounding) -> ChartDataEntry?
- {
- fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
- }
- 
- open func entryForXValue(
- _ x: Double,
- closestToY y: Double) -> ChartDataEntry?
- {
- fatalError("entryForXValue(x, closestToY) is not implemented in ChartBaseDataSet")
- }
- 
- open func entriesForXValue(_ x: Double) -> [ChartDataEntry]
- {
- fatalError("entriesForXValue is not implemented in ChartBaseDataSet")
- }
- 
- open func entryIndex(
- x xValue: Double,
- closestToY y: Double,
- rounding: ChartDataSetRounding) -> Int
- {
- fatalError("entryIndex(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
- }
- 
- open func entryIndex(entry e: ChartDataEntry) -> Int
- {
- fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
- }
- 
- open func addEntry(_ e: ChartDataEntry) -> Bool
- {
- fatalError("addEntry is not implemented in ChartBaseDataSet")
- }
- 
- open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
- {
- fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
- }
- 
- open func removeEntry(_ entry: ChartDataEntry) -> Bool
- {
- fatalError("removeEntry is not implemented in ChartBaseDataSet")
- }
  
  open func removeEntry(index: Int) -> Bool
  {
