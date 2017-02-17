@@ -480,7 +480,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         */
         
         //session.sessionPreset = AVCaptureSessionPreset1280x720
-        session.sessionPreset = AVCaptureSessionPresetMedium
+        session.sessionPreset = AVCaptureSessionPreset640x480
  
         /*
         This setting will set the biggest possible size of video file
