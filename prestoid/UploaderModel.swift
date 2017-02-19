@@ -1651,7 +1651,22 @@ open class ChartBaseDataSet: NSObject
  
         return desc
     }
+ NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
  
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
     // MARK: - NSCopying
  
     open func copyWithZone(_ zone: NSZone?) -> AnyObject
@@ -1660,7 +1675,22 @@ open class ChartBaseDataSet: NSObject
  
         copy.colors = colors
         copy.valueColors = valueColors
-        copy.label = label
+ copy.label = labelNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  
         return copy
     }
@@ -1687,7 +1717,22 @@ public protocol IBarChartDataSet: IBarLineScatterCandleBubbleChartDataSet
     
     /// the color drawing borders around the bars.
     var barBorderColor: NSUIColor { get set }
-    
+ NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
     /// the alpha value (transparency) that is used for drawing the highlight indicator bar. min = 0.0 (fully transparent), max = 1.0 (fully opaque)
     var highlightAlpha: CGFloat { get set }
     
@@ -1758,7 +1803,22 @@ public protocol IBarLineScatterCandleBubbleChartDataSet: IChartDataSet
  fatalError("yMax is not implemented in ChartBaseDataSet")
  }
  
- open var xMin: Double
+ open var xMin: DoubleNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  {
  fatalError("xMin is not implemented in ChartBaseDataSet")
  }
@@ -1772,7 +1832,22 @@ public protocol IBarLineScatterCandleBubbleChartDataSet: IChartDataSet
  {
  fatalError("entryCount is not implemented in ChartBaseDataSet")
  }
+ NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
  
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  open func entryForIndex(_ i: Int) -> ChartDataEntry?
  {
  fatalError("entryForIndex is not implemented in ChartBaseDataSet")
@@ -1853,7 +1928,22 @@ public protocol IBarLineScatterCandleBubbleChartDataSet: IChartDataSet
  return removeEntry(entry)
  }
  }
- return false
+ return falseNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  }
  
  open func removeLast() -> Bool
@@ -1902,7 +1992,22 @@ public protocol IBarLineScatterCandleBubbleChartDataSet: IChartDataSet
  {
  index = 0
  }
- return colors[index % colors.count]
+ return colors[index % colors.count]NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  }
  
  /// Resets all colors of this DataSet and recreates the colors array.
@@ -1934,7 +2039,22 @@ public protocol IBarLineScatterCandleBubbleChartDataSet: IChartDataSet
  {
  setColor(color.withAlphaComponent(alpha))
  }
+ NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
  
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  /// Sets colors with a specific alpha value.
  /// - parameter colors: the colors to set
  /// - parameter alpha: alpha to apply to the set `colors`
