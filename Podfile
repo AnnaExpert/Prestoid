@@ -2,7 +2,6 @@
 # Copyright © 2016 by Scott Leatham & Alexander Iashchuk, https://iashchuk.com
 
 platform :ios, '10.0'
-
 target 'prestoid' do
   
   use_frameworks!
