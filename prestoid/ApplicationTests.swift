@@ -1,7 +1,7 @@
 //
 //  ApplicationTests.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 1.4, build 1
+//  Application version 1.4, build 3
 //
 //  Created by Alexander Iashchuk on 2/12/17.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -649,7 +649,11 @@ open class ChartBaseDataSet: NSObject
  fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
  }
 
- 
+ - (void)awakeFromInsert
+ {
+ [super awakeFromInsert];
+ <#code to be executed when the receiver is first inserted into a managed object context#>
+ }
  /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
  open func valueTextColorAt(_ index: Int) -> NSUIColor
  {
@@ -663,12 +667,40 @@ open class ChartBaseDataSet: NSObject
  
  /// the font for the value-text labels
  open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)
+ NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
  
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  /// The form to draw for this dataset in the legend.
  open var form = Legend.Form.default
  
  /// The form size to draw for this dataset in the legend.
- ///
+ ///- (<#propertyObjectType#> *)<#propertyName#>
+ {
+ [self willAccessValueForKey:@"<#propertyName#>"];
+ <#propertyObjectType#> *value = [self primitiveValueForKey:@"<#propertyName#>"];
+ [self didAccessValueForKey:@"<#propertyName#>"];
+ return value;
+ }
+ 
+ - (void)set<#CapitalizedPropertyName#>:(<#propertyObjectType#> *)value
+ {
+ [self willChangeValueForKey:@"<#propertyName#>"];
+ [self setPrimitiveValue:value forKey:@"<#propertyName#>"];
+ [self didChangeValueForKey:@"<#propertyName#>"];
+ }
  /// Return `NaN` to use the default legend form size.
  open var formSize: CGFloat = CGFloat.nan
  
