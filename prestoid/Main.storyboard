@@ -77,8 +77,8 @@
                                 <color key="color" red="0.16078431369999999" green="0.50196078430000002" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMw-xP-8Hn">
-                                <rect key="frame" x="50" y="485" width="276" height="30"/>
-                                <state key="normal" title="Sync all videos with your Dropbox folder"/>
+                                <rect key="frame" x="48.5" y="485" width="279" height="30"/>
+                                <state key="normal" title="Download all videos from Dropbox folder"/>
                                 <connections>
                                     <action selector="testButton:" destination="buI-n2-72y" eventType="touchUpInside" id="gVq-HV-s2O"/>
                                 </connections>

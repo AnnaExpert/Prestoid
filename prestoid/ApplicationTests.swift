@@ -8,7 +8,7 @@
 //  Application owner - Scott Leatham. All rights reserved.
 //
 
-/*
+
 import Foundation
 import CoreGraphics
 
@@ -527,7 +527,20 @@ open class ChartBaseDataSet: NSObject
  
  /// The line width for drawing the form of this dataset in the legend
  ///
- /// Return `NaN` to use the default legend form line width.
+ /// Return `NaN` to use the default legend form line width.- (<#propertyObjectType#> *)<#propertyName#>
+ {
+ [self willAccessValueForKey:@"<#propertyName#>"];
+ <#propertyObjectType#> *value = [self primitiveValueForKey:@"<#propertyName#>"];
+ [self didAccessValueForKey:@"<#propertyName#>"];
+ return value;
+ }
+ 
+ - (void)set<#CapitalizedPropertyName#>:(<#propertyObjectType#> *)value
+ {
+ [self willChangeValueForKey:@"<#propertyName#>"];
+ [self setPrimitiveValue:value forKey:@"<#propertyName#>"];
+ [self didChangeValueForKey:@"<#propertyName#>"];
+ }
  open var formLineWidth: CGFloat = CGFloat.nan
  
  /// Line dash configuration for legend shapes that consist of lines.
@@ -539,7 +552,20 @@ open class ChartBaseDataSet: NSObject
  ///
  /// This is the actual dash pattern.
  /// I.e. [2, 3] will paint [--   --   ]
- /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
+ /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]- (<#propertyObjectType#> *)<#propertyName#>
+ {
+ [self willAccessValueForKey:@"<#propertyName#>"];
+ <#propertyObjectType#> *value = [self primitiveValueForKey:@"<#propertyName#>"];
+ [self didAccessValueForKey:@"<#propertyName#>"];
+ return value;
+ }
+ 
+ - (void)set<#CapitalizedPropertyName#>:(<#propertyObjectType#> *)value
+ {
+ [self willChangeValueForKey:@"<#propertyName#>"];
+ [self setPrimitiveValue:value forKey:@"<#propertyName#>"];
+ [self didChangeValueForKey:@"<#propertyName#>"];
+ }
  open var formLineDashLengths: [CGFloat]? = nil
  
  /// Set this to true to draw y-values on the chart
@@ -548,7 +574,22 @@ open class ChartBaseDataSet: NSObject
  /// - returns: `true` if y-value drawing is enabled, `false` ifnot
  open var isDrawValuesEnabled: Bool
  {
- return drawValuesEnabled
+ return drawValuesEnabledNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  }
  
  /// Set the visibility of this DataSet. If not visible, the DataSet will not be drawn to the chart upon refreshing it.
@@ -566,13 +607,41 @@ open class ChartBaseDataSet: NSObject
  {
  return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
  }
+ NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
  
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  
  
  open func removeEntry(index: Int) -> Bool
  {
  if let entry = entryForIndex(index)
+ {- (<#propertyObjectType#> *)<#propertyName#>
  {
+ [self willAccessValueForKey:@"<#propertyName#>"];
+ <#propertyObjectType#> *value = [self primitiveValueForKey:@"<#propertyName#>"];
+ [self didAccessValueForKey:@"<#propertyName#>"];
+ return value;
+ }
+ 
+ - (void)set<#CapitalizedPropertyName#>:(<#propertyObjectType#> *)value
+ {
+ [self willChangeValueForKey:@"<#propertyName#>"];
+ [self setPrimitiveValue:value forKey:@"<#propertyName#>"];
+ [self didChangeValueForKey:@"<#propertyName#>"];
+ }
  return removeEntry(entry)
  }
  return false
@@ -586,7 +655,11 @@ open class ChartBaseDataSet: NSObject
  }
  return false
  }
- 
+ - (void)awakeFromInsert
+ {
+ [super awakeFromInsert];
+ <#code to be executed when the receiver is first inserted into a managed object context#>
+ }
  open func removeFirst() -> Bool
  {
  if entryCount > 0
@@ -627,7 +700,22 @@ open class ChartBaseDataSet: NSObject
  }
  
  open func contains(_ e: ChartDataEntry) -> Bool
- {
+ {NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  fatalError("removeEntry is not implemented in ChartBaseDataSet")
  }
  
@@ -649,7 +737,22 @@ open class ChartBaseDataSet: NSObject
  fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
  }
 
- - (void)awakeFromInsert
+ - (void)awakeFromInsertNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  {
  [super awakeFromInsert];
  <#code to be executed when the receiver is first inserted into a managed object context#>
@@ -1234,14 +1337,44 @@ open class ChartBaseDataSet: NSObject
  {
  if entryCount > 0
  {
- if let entry = entryForIndex(entryCount - 1)
+ if let entry = entryForIndex(entryCount - 1)NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  {
  return removeEntry(entry)
  }
  }
  return false
  }
+ NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
  
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  open func contains(_ e: ChartDataEntry) -> Bool
  {
  fatalError("removeEntry is not implemented in ChartBaseDataSet")
@@ -1255,6 +1388,21 @@ open class ChartBaseDataSet: NSObject
  open func entryForIndex(_ i: Int) -> ChartDataEntry?
  {
  fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
  }
  
  open func entryForXValue(
@@ -1534,6 +1682,21 @@ open class ChartBaseDataSet: NSObject
  open func addEntryOrdered(_ e: ChartDataEntry) -> Bool
  {
  fatalError("addEntryOrdered is not implemented in ChartBaseDataSet")
+ }NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
  }
  
  open func removeEntry(_ entry: ChartDataEntry) -> Bool
@@ -1543,7 +1706,22 @@ open class ChartBaseDataSet: NSObject
  
  open func removeEntry(index: Int) -> Bool
  {
- if let entry = entryForIndex(index)
+ if let entry = entryForIndex(index)NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  {
  return removeEntry(entry)
  }
@@ -1557,6 +1735,21 @@ open class ChartBaseDataSet: NSObject
  return removeEntry(entry)
  }
  return false
+ }NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
  }
  
  open func removeFirst() -> Bool
@@ -1566,6 +1759,21 @@ open class ChartBaseDataSet: NSObject
  if let entry = entryForIndex(0)
  {
  return removeEntry(entry)
+ }NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
  }
  }
  return false
@@ -1582,7 +1790,22 @@ open class ChartBaseDataSet: NSObject
  }
  return false
  }
+ NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
  
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  open func contains(_ e: ChartDataEntry) -> Bool
  {
  fatalError("removeEntry is not implemented in ChartBaseDataSet")
@@ -1606,7 +1829,22 @@ open class ChartBaseDataSet: NSObject
  fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
  }
  
- open func entryForXValue(
+ open func entryForXValue(NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  _ x: Double,
  closestToY y: Double) -> ChartDataEntry?
  {
@@ -1629,6 +1867,21 @@ open class ChartBaseDataSet: NSObject
  open func entryIndex(entry e: ChartDataEntry) -> Int
  {
  fatalError("entryIndex(entry) is not implemented in ChartBaseDataSet")
+ }NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
  }
  
  open func addEntry(_ e: ChartDataEntry) -> Bool
@@ -1642,7 +1895,22 @@ open class ChartBaseDataSet: NSObject
  }
  
  open func removeEntry(_ entry: ChartDataEntry) -> Bool
- {
+ {NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  fatalError("removeEntry is not implemented in ChartBaseDataSet")
  }
  
@@ -5223,4 +5491,4 @@ open class Animator: NSObject
         animate(yAxisDuration: yAxisDuration, easingOption: .easeInOutSine)
     }
 }
-*/
+

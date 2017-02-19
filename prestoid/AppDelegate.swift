@@ -1,7 +1,7 @@
 //
 //  AppDelegate.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 1.4, build 2
+//  Application version 1.4, build 3
 //
 //  Created by Alexander Iashchuk on 11/2/16.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
