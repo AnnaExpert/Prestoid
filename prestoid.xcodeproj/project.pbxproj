@@ -58,8 +58,8 @@
 			isa = PBXGroup;
 			children = (
 				2A1E4ED81DCA0A05001F4489 /* prestoid */,
-				2A1E4ED71DCA0A05001F4489 /* Products */,
 				2AB61FA81DD87FB000C54CB8 /* Settings.bundle */,
+				2A1E4ED71DCA0A05001F4489 /* Products */,
 				C4122C89F04C6AE3D2E92E2E /* Pods */,
 				937DC84E5154A4DE2185B914 /* Frameworks */,
 			);
