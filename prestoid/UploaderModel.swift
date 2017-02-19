@@ -1,7 +1,7 @@
 //
 //  UploaderModel.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 1.3, build 24
+//  Application version 1.4, build 1
 //
 //  Created by Alexander Iashchuk on 2/12/17.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -296,7 +296,22 @@ open class ChartBaseDataSet: NSObject
         return _valueFormatter == nil
     }
     
-    /// Sets/get a single color for value text.
+ /// Sets/get a single color for value text.NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
     /// Setting the color clears the colors array and adds a single color.
     /// Getting will return the first color in the array.
     open var valueTextColor: NSUIColor
@@ -314,7 +329,22 @@ open class ChartBaseDataSet: NSObject
     
     /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
     open func valueTextColorAt(_ index: Int) -> NSUIColor
-    {
+ {NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
         var index = index
         if index < 0
         {
@@ -378,7 +408,22 @@ open class ChartBaseDataSet: NSObject
  
  
  
- open func removeEntry(index: Int) -> Bool
+ open func removeEntry(index: Int) -> BoolNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  {
  if let entry = entryForIndex(index)
  {
@@ -448,7 +493,22 @@ open class ChartBaseDataSet: NSObject
  {
  var index = index
  if index < 0
- {
+ {NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  index = 0
  }
  return valueColors[index % valueColors.count]
@@ -486,6 +546,168 @@ open class ChartBaseDataSet: NSObject
  open var drawValuesEnabled = true
  
  /// - returns: `true` if y-value drawing is enabled, `false` ifnot
+ open var isDrawValuesEnabled: Bool
+ {
+ return drawValuesEnabled
+ }
+ 
+ /// Set the visibility of this DataSet. If not visible, the DataSet will not be drawn to the chart upon refreshing it.
+ open var visible = true
+ 
+ /// - returns: `true` if this DataSet is visible inside the chart, or `false` ifit is currently hidden.
+ open var isVisible: Bool
+ {
+ return visible
+ }
+ 
+ // MARK: - NSObject
+ 
+ open override var description: String
+ {
+ return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
+ }
+ 
+ 
+ 
+ open func removeEntry(index: Int) -> Bool
+ {
+ if let entry = entryForIndex(index)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeEntry(x: Double) -> Bool
+ {
+ if let entry = entryForXValue(x, closestToY: Double.nan)
+ {
+ return removeEntry(entry)
+ }
+ return false
+ }
+ 
+ open func removeFirst() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(0)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
+ 
+ open func removeLast() -> Bool
+ {
+ if entryCount > 0
+ {
+ if let entry = entryForIndex(entryCount - 1)
+ {
+ return removeEntry(entry)
+ }
+ }
+ return false
+ }
+ 
+ open func contains(_ e: ChartDataEntry) -> Bool
+ {
+ fatalError("removeEntry is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func clear()
+ {
+ fatalError("clear is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForIndex(_ i: Int) -> ChartDataEntry?
+ {
+ fatalError("entryForIndex is not implemented in ChartBaseDataSet")
+ }
+ 
+ open func entryForXValue(
+ _ x: Double,
+ closestToY y: Double,
+ rounding: ChartDataSetRounding) -> ChartDataEntry?
+ {
+ fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
+ }
+
+ 
+ /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
+ open func valueTextColorAt(_ index: Int) -> NSUIColor
+ {
+ var index = index
+ if index < 0
+ {
+ index = 0
+ }
+ return valueColors[index % valueColors.count]
+ }
+ 
+ /// the font for the value-text labels
+ open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)
+ 
+ /// The form to draw for this dataset in the legend.
+ open var form = Legend.Form.default
+ 
+ /// The form size to draw for this dataset in the legend.
+ ///
+ /// Return `NaN` to use the default legend form size.
+ open var formSize: CGFloat = CGFloat.nan
+ 
+ /// The line width for drawing the form of this dataset in the legend
+ ///
+ /// Return `NaN` to use the default legend form line width.
+ open var formLineWidth: CGFloat = CGFloat.nan
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is how much (in pixels) into the dash pattern are we starting from.
+ open var formLineDashPhase: CGFloat = 0.0
+ 
+ /// Line dash configuration for legend shapes that consist of lines.
+ ///
+ /// This is the actual dash pattern.
+ /// I.e. [2, 3] will paint [--   --   ]
+ /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
+ open var formLineDashLengths: [CGFloat]? = nil
+ 
+ /// Set this to true to draw y-values on the chart
+ open var drawValuesEnabled = true
+ 
+ /// - returns: `true` if y-value drawing is enabled, `false` ifnotNSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  open var isDrawValuesEnabled: Bool
  {
  return drawValuesEnabled
@@ -575,7 +797,20 @@ open class ChartBaseDataSet: NSObject
  }
 
  
- /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
+ /// - returns: The color at the specified index that is used for drawing the val- (<#propertyObjectType#> *)<#propertyName#>
+ {
+ [self willAccessValueForKey:@"<#propertyName#>"];
+ <#propertyObjectType#> *value = [self primitiveValueForKey:@"<#propertyName#>"];
+ [self didAccessValueForKey:@"<#propertyName#>"];
+ return value;
+ }
+ 
+ - (void)set<#CapitalizedPropertyName#>:(<#propertyObjectType#> *)value
+ {
+ [self willChangeValueForKey:@"<#propertyName#>"];
+ [self setPrimitiveValue:value forKey:@"<#propertyName#>"];
+ [self didChangeValueForKey:@"<#propertyName#>"];
+ }ues inside the chart. Uses modulus internally.
  open func valueTextColorAt(_ index: Int) -> NSUIColor
  {
  var index = index
@@ -587,7 +822,22 @@ open class ChartBaseDataSet: NSObject
  }
  
  /// the font for the value-text labels
- open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)
+ open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+ NSEntityDescription *entity = [NSEntityDescription entityForName:@"<#Entity name#>" inManagedObjectContext:<#context#>];
+ [fetchRequest setEntity:entity];
+ // Specify criteria for filtering which objects to fetch
+ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+ [fetchRequest setPredicate:predicate];
+ // Specify how the fetched objects should be sorted
+ NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+ ascending:YES];
+ [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+ 
+ NSError *error = nil;
+ NSArray *fetchedObjects = [<#context#> executeFetchRequest:fetchRequest error:&error];
+ if (fetchedObjects == nil) {
+ <#Error handling code#>
+ }
  
  /// The form to draw for this dataset in the legend.
  open var form = Legend.Form.default
@@ -599,139 +849,20 @@ open class ChartBaseDataSet: NSObject
  
  /// The line width for drawing the form of this dataset in the legend
  ///
- /// Return `NaN` to use the default legend form line width.
- open var formLineWidth: CGFloat = CGFloat.nan
- 
- /// Line dash configuration for legend shapes that consist of lines.
- ///
- /// This is how much (in pixels) into the dash pattern are we starting from.
- open var formLineDashPhase: CGFloat = 0.0
- 
- /// Line dash configuration for legend shapes that consist of lines.
- ///
- /// This is the actual dash pattern.
- /// I.e. [2, 3] will paint [--   --   ]
- /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
- open var formLineDashLengths: [CGFloat]? = nil
- 
- /// Set this to true to draw y-values on the chart
- open var drawValuesEnabled = true
- 
- /// - returns: `true` if y-value drawing is enabled, `false` ifnot
- open var isDrawValuesEnabled: Bool
+ /// Return `NaN` to use the default legend form line width- (<#propertyScalarType#>)<#propertyName#>
  {
- return drawValuesEnabled
+ [self willAccessValueForKey:@"<#propertyName#>"];
+ <#propertyScalarType#> value = <#propertyName#>;
+ [self didAccessValueForKey:@"<#propertyName#>"];
+ return value;
  }
  
- /// Set the visibility of this DataSet. If not visible, the DataSet will not be drawn to the chart upon refreshing it.
- open var visible = true
- 
- /// - returns: `true` if this DataSet is visible inside the chart, or `false` ifit is currently hidden.
- open var isVisible: Bool
+ - (void)set<#CapitalizedPropertyName#>:(<#propertyScalarType#>)value
  {
- return visible
- }
- 
- // MARK: - NSObject
- 
- open override var description: String
- {
- return String(format: "%@, label: %@, %i entries", arguments: [NSStringFromClass(type(of: self)), self.label ?? "", self.entryCount])
- }
- 
- 
- 
- open func removeEntry(index: Int) -> Bool
- {
- if let entry = entryForIndex(index)
- {
- return removeEntry(entry)
- }
- return false
- }
- 
- open func removeEntry(x: Double) -> Bool
- {
- if let entry = entryForXValue(x, closestToY: Double.nan)
- {
- return removeEntry(entry)
- }
- return false
- }
- 
- open func removeFirst() -> Bool
- {
- if entryCount > 0
- {
- if let entry = entryForIndex(0)
- {
- return removeEntry(entry)
- }
- }
- return false
- }
- 
- open func removeLast() -> Bool
- {
- if entryCount > 0
- {
- if let entry = entryForIndex(entryCount - 1)
- {
- return removeEntry(entry)
- }
- }
- return false
- }
- 
- open func contains(_ e: ChartDataEntry) -> Bool
- {
- fatalError("removeEntry is not implemented in ChartBaseDataSet")
- }
- 
- open func clear()
- {
- fatalError("clear is not implemented in ChartBaseDataSet")
- }
- 
- open func entryForIndex(_ i: Int) -> ChartDataEntry?
- {
- fatalError("entryForIndex is not implemented in ChartBaseDataSet")
- }
- 
- open func entryForXValue(
- _ x: Double,
- closestToY y: Double,
- rounding: ChartDataSetRounding) -> ChartDataEntry?
- {
- fatalError("entryForXValue(x, closestToY, rounding) is not implemented in ChartBaseDataSet")
- }
-
- 
- /// - returns: The color at the specified index that is used for drawing the values inside the chart. Uses modulus internally.
- open func valueTextColorAt(_ index: Int) -> NSUIColor
- {
- var index = index
- if index < 0
- {
- index = 0
- }
- return valueColors[index % valueColors.count]
- }
- 
- /// the font for the value-text labels
- open var valueFont: NSUIFont = NSUIFont.systemFont(ofSize: 7.0)
- 
- /// The form to draw for this dataset in the legend.
- open var form = Legend.Form.default
- 
- /// The form size to draw for this dataset in the legend.
- ///
- /// Return `NaN` to use the default legend form size.
- open var formSize: CGFloat = CGFloat.nan
- 
- /// The line width for drawing the form of this dataset in the legend
- ///
- /// Return `NaN` to use the default legend form line width.
+ [self willChangeValueForKey:@"<#propertyName#>"];
+ <#propertyName#> = value;
+ [self didChangeValueForKey:@"<#propertyName#>"];
+ }.
  open var formLineWidth: CGFloat = CGFloat.nan
  
  /// Line dash configuration for legend shapes that consist of lines.
