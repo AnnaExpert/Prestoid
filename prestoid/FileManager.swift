@@ -1,17 +1,9 @@
 //
 //  FileManager.swift
-//  prestoid
-//
-//  Created by Alexander Iashchuk on 2/23/17.
-//  Copyright © 2017 Alexander Iashchuk. All rights reserved.
-//
-
-//
-//  CameraViewController.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
 //  Application version 1.3, build 23, 2017.02.22
 //
-//  Created by Alexander Iashchuk on 11/8/16.
+//  Created by Alexander Iashchuk on 2/23/17.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
 //  Application owner - Scott Leatham. All rights reserved.
 //
@@ -167,6 +159,77 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         previewView.frame = cameraViewSize
         previewView.updateConstraintsIfNeeded()
         
+        guard let inputNode = audioEngine.inputNode else {
+            fatalError("Audio engine has no input node")
+        }
+        
+        guard let recognitionRequest = recognitionRequest else {
+            fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
+        }
+        
+        recognitionRequest.shouldReportPartialResults = true
+        
+        recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
+            
+            var isFinal = false
+            
+            if result != nil {
+                self.recognizedTextArray[self.count] = (result?.bestTranscription.formattedString)!
+                print("Recognized part of text -> \(self.recognizedTextArray[self.count])")
+                self.recognizedTextLabel.text = self.recognizedTextArray[self.count]
+                isFinal = (result?.isFinal)!
+            }
+            
+            if error != nil || isFinal {
+                print("Recognition ERROR: \(error)")
+                print("Recognition ISFINAL: \(isFinal)")
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                
+                self.recognitionRequest = nil
+                self.recognitionTask = nil
+                
+                if self.recognizedTextArray[self.count].isEmpty {
+                    if self.count > 0 {
+                        self.recognizedTextArray.remove(at: self.count)
+                    } else {
+                        self.recognizedTextArray[self.count] = ""
+                    }
+                    self.count -= 1
+                    if self.continueSpeechRecognition {
+                        print("Program started speech recognition (TOP)")
+                        self.startRecording()
+                    }
+                    return
+                }
+                if self.continueSpeechRecognition {
+                    print("Program started speech recognition (BOTTOM)")
+                    self.startRecording()
+                }
+            }
+        })
+        
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        audioEngine.prepare()
+        
+        do {
+            try audioEngine.start()
+        } catch {
+            print("audioEngine couldn't start because of an error.")
+        }
+    }
+    
+    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        if available {
+            print("Speech recognizer is enabled")
+        } else {
+            print("Speech recognizer is disabled")
+        }
+    }
         sessionQueue.async {
             switch self.setupResult {
             case .success:
@@ -1201,6 +1264,64 @@ extension UIInterfaceOrientation {
     }
     
 }
+func sessionInterruptionEnded(notification: NSNotification) {
+    print("Capture session interruption ended")
+    
+    if !resumeButton.isHidden {
+        UIView.animate(withDuration: 0.25,
+                       animations: { [unowned self] in
+                        self.resumeButton.alpha = 0
+            }, completion: { [unowned self] finished in
+                self.resumeButton.isHidden = true
+            }
+        )
+    }
+    if !cameraUnavailableLabel.isHidden {
+        UIView.animate(withDuration: 0.25,
+                       animations: { [unowned self] in
+                        self.cameraUnavailableLabel.alpha = 0
+            }, completion: { [unowned self] finished in
+                self.cameraUnavailableLabel.isHidden = true
+            }
+        )       NotificationCenter.default.addObserver(self, selector: #selector(sessionWasInterrupted), name: Notification.Name("AVCaptureSessionWasInterruptedNotification"), object: session)
+        NotificationCenter.default.addObserver(self, selector: #selector(sessionInterruptionEnded), name: Notification.Name("AVCaptureSessionInterruptionEndedNotification"), object: session)
+    }
+    
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self)
+        
+        session.removeObserver(self, forKeyPath: "running", context: &sessionRunningObserveContext)
+    }
+    
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if context == &sessionRunningObserveContext {
+            let newValue = change?[.newKey] as AnyObject?
+            guard let isSessionRunning = newValue?.boolValue else { return }
+            
+            DispatchQueue.main.async { [unowned self] in
+
+    }
+        }
+        func cleanup() {
+            let path = outputFileURL.path
+            if FileManager.default.fileExists(atPath: path) {
+                do {
+                    try FileManager.default.removeItem(atPath: path)
+                }
+                catch {
+                    print("Could not remove file at url: \(outputFileURL)")
+                }
+            }
+            if let currentBackgroundRecordingID = backgroundRecordingID {
+                backgroundRecordingID = UIBackgroundTaskInvalid
+                if currentBackgroundRecordingID != UIBackgroundTaskInvalid {
+                    UIApplication.shared.endBackgroundTask(currentBackgroundRecordingID)
+                }
+            }
+        }
+}
+
 
 extension AVCaptureDeviceDiscoverySession {
     
