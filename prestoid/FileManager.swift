@@ -603,37 +603,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
              The session might fail to start running, e.g., if a phone or FaceTime call is still
              using audio or video. A failure to start the session running will be communicated via
              a session runtime error notification. To avoid repeatedly failing to start the session
-             running, we only try to restart the session running in the session runtime error handler
-             if we aren't trying to resume the session running.
-             */
-            
-            self.session.startRunning()
-            self.isSessionRunning = self.session.isRunning
-            if !self.session.isRunning {
-                DispatchQueue.main.async { [unowned self] in
-                    let message = NSLocalizedString("Unable to resume", comment: "Alert message when unable to resume the session running")
-                    let alertController = UIAlertController(title: "AVCam", message: message, preferredStyle: .alert)
-                    let cancelAction = UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"), style: .cancel, handler: nil)
-                    alertController.addAction(cancelAction)
-                    self.present(alertController, animated: true, completion: nil)
-                }
-            }
-            else {
-                DispatchQueue.main.async { [unowned self] in
-                    self.resumeButton.isHidden = true
-                }
-            }
-        }
-    }
-    
-                preferredPosition = .back
-                preferredDeviceType = .builtInDuoCamera
-                
-            case .back:
-                preferredPosition = .front
-                preferredDeviceType = .builtInWideAngleCamera
-            }
-            
+             running, we only try to re
             let devices = self.videoDeviceDiscoverySession.devices!
             var newVideoDevice: AVCaptureDevice? = nil
             
@@ -798,52 +768,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 let location = self.locationManager.location
                 let metadata = AVMutableMetadataItem()
                 metadata.keySpace = AVMetadataKeySpaceQuickTimeMetadata
-                metadata.key = AVMetadataQuickTimeMetadataKeyLocationISO6709 as NSString
-                metadata.identifier = AVMetadataIdentifierQuickTimeMetadataLocationISO6709
-                let lat = String(format: "%.8f", (location?.coordinate.latitude)!)
-                let lon = String(format: "%.8f", (location?.coordinate.longitude)!)
-                metadata.value = String("LAT_" + lat + "_LON_" + lon) as NSString
-                
-                movieFileOutput.metadata = [metadata]
-                
-                let currentDate = Date()
-                let calendar = Calendar.current
-                let year = calendar.component(.year, from: currentDate)
-                let month = calendar.component(.month, from: currentDate)
-                let day = calendar.component(.day, from: currentDate)
-                let hour = calendar.component(.hour, from: currentDate)
-                let minute = calendar.component(.minute, from: currentDate)
-                let second = calendar.component(.second, from: currentDate)
-                let nanosecond = calendar.component(.nanosecond, from: currentDate)
-                
-                // Normalizing the month, day, hour and minute strings
-                var stringMonth = String(month)
-                if stringMonth.characters.count < 2 {
-                    stringMonth = String("0\(stringMonth)")
-                }
-                var stringDay = String(day)
-                if stringDay.characters.count < 2 {
-                    stringDay = String("0\(stringDay)")
-                }
-                var stringHour = String(hour)
-                if stringHour.characters.count < 2 {
-                    stringHour = String("0\(stringHour)")
-                }
-                var stringMinute = String(minute)
-                if stringMinute.characters.count < 2 {
-                    stringMinute = String("0\(stringMinute)")
-                }
-                let filename = "\(year)\(stringMonth)\(stringDay)_\(stringHour)\(stringMinute)_\(second)\(nanosecond)_LAT\(lat)_LON\(lon)"
-                
-                // print("Recording file name: " + filename)
-                // let outputFileName = NSUUID().uuidString
-                
-                let outputFileName = filename
-                let outputFilePath = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last! as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
-                
-                // print("outputFilePath - " + outputFilePath)
-                
-                movieFileOutput.startRecording(toOutputFileURL: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
+                metadrdingDelegate: self)
                 
                 if self.defaults.array(forKey: self.savedVideosArrayKey) != nil {
                     self.videosArray = self.defaults.array(forKey: self.savedVideosArrayKey) as! [String]
@@ -978,47 +903,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             // Only enable the ability to change camera if the device has more than one camera.
             
-            self.cameraButton.isEnabled = self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1
-            self.cameraButton.isHidden = false
-            //self.cameraButton.isHidden = !(self.videoDeviceDiscoverySession.uniqueDevicePositionsCount() > 1)
-            self.tabBarController?.tabBar.isHidden = false
-            self.recordButton.imageView?.image = UIImage(named: "RecordCameraButton")
-            //self.recordButton.setTitle(NSLocalizedString("Record", comment: "Recording button record title"), for: [])
-            
-            // Only enable the ability to record after 1 second
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.recordButton.isEnabled = true
-            }
-        }
-    }
-    
-    // MARK: KVO and Notifications
-    
-    private var sessionRunningObserveContext = 0
-    
-    private func addObservers() {
-        session.addObserver(self, forKeyPath: "running", options: .new, context: &sessionRunningObserveContext)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(subjectAreaDidChange), name: Notification.Name("AVCaptureDeviceSubjectAreaDidChangeNotification"), object: videoDeviceInput.device)
-        NotificationCenter.default.addObserver(self, selector: #selector(sessionRuntimeError), name: Notification.Name("AVCaptureSessionRuntimeErrorNotification"), object: session)
-        
-        /*
-         A session can only run when the app is full screen. It will be interrupted
-         in a multi-app layout, introduced in iOS 9, see also the documentation of
-         AVCaptureSessionInterruptionReason. Add observers to handle these session
-         interruptions and show a preview is paused message. See the documentation
-         of AVCaptureSessionWasInterruptedNotification for other interruption reasons.
-         */
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(sessionWasInterrupted), name: Notification.Name("AVCaptureSessionWasInterruptedNotification"), object: session)
-        NotificationCenter.default.addObserver(self, selector: #selector(sessionInterruptionEnded), name: Notification.Name("AVCaptureSessionInterruptionEndedNotification"), object: session)
-    }
-    
-    private func removeObservers() {
-        NotificationCenter.default.removeObserver(self)
-        
-        session.removeObserver(self, forKeyPath: "running", context: &sessionRunningObserveContext)
+            self.cameraButton.isEnabnRunningObserveContext)
     }
     
     
@@ -1215,48 +1100,4 @@ func sessionInterruptionEnded(notification: NSNotification) {
                     try FileManager.default.removeItem(atPath: path)
                 }
                 catch {
-                    print("Could not remove file at url: \(outputFileURL)")
-                }
-            }
-            if let currentBackgroundRecordingID = backgroundRecordingID {
-                backgroundRecordingID = UIBackgroundTaskInvalid
-                if currentBackgroundRecordingID != UIBackgroundTaskInvalid {
-                    UIApplication.shared.endBackgroundTask(currentBackgroundRecordingID)
-                }
-            }
-        }
-}
 
-
-extension AVCaptureDeviceDiscoverySession {
-    
-    func uniqueDevicePositionsCount() -> Int {
-        var uniqueDevicePositions = [AVCaptureDevicePosition]()
-        
-        for device in devices {
-            if !uniqueDevicePositions.contains(device.position) {
-                uniqueDevicePositions.append(device.position)
-            }
-        }
-        
-        return uniqueDevicePositions.count
-    }
-    
-}
-
-extension SFSpeechRecognitionTaskDelegate {
-    
-    func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishSuccessfully successfully: Bool) {
-        if successfully {
-            print("+++++++++TRUE+++++++++")
-        } else {
-            print("---------FALSE---------")
-        }
-    }
-    
-    func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishRecognition recognitionResult: SFSpeechRecognitionResult) {
-        //        console.text = console.text + "\n" + recognitionResult.bestTranscription.formattedString
-        print("!!!SpeechRecognitionTask: \(recognitionResult.bestTranscription.formattedString)")
-    }
-    
-}
