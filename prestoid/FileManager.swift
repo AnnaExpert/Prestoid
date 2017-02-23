@@ -224,35 +224,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-        if available {
-            print("Speech recognizer is enabled")
-        } else {
-            print("Speech recognizer is disabled")
-        }
-    }
-        sessionQueue.async {
-            switch self.setupResult {
-            case .success:
-                
-                // Only setup observers and start the session running if setup succeeded.
-                
-                self.addObservers()
-                self.session.startRunning()
-                self.isSessionRunning = self.session.isRunning
-                
-            case .notAuthorized:
-                DispatchQueue.main.async { [unowned self] in
-                    let message = NSLocalizedString("AVCam doesn't have permission to use the camera, please change privacy settings", comment: "Alert message when the user has denied access to the camera")
-                    let alertController = UIAlertController(title: "AVCam", message: message, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"), style: .cancel, handler: nil))
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: "Alert button to open Settings"), style: .`default`, handler: { action in
-                        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
-                    }))
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                }
-                
-            case .configurationFailed:
+        if availabled:
                 DispatchQueue.main.async { [unowned self] in
                     let message = NSLocalizedString("Unable to capture media", comment: "Alert message when something goes wrong during capture session configuration")
                     let alertController = UIAlertController(title: "AVCam", message: message, preferredStyle: .alert)
@@ -298,21 +270,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
-    }
-    
-    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return .portrait
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        if let videoPreviewLayerConnection = previewView.videoPreviewLayer.connection {
-            let deviceOrientation = UIDevice.current.orientation
-            guard let newVideoOrientation = deviceOrientation.videoOrientation, deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
-                return
-            }
-            
             videoPreviewLayerConnection.videoOrientation = newVideoOrientation
         }
     }
@@ -365,18 +322,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         self.speechArray.append(self.recognizedText)
         self.defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
     }
-    
-    func startRecording() {
-        self.continueSpeechRecognition = true
-        self.count += 1
-        print("COUNT: \(self.count)")
-        if self.count > 0 {
-            self.recognizedTextArray.append("")
-        }
-        print("Recognized text array:\n\(self.recognizedTextArray)")
-        
-        if recognitionTask != nil {
-            recognitionTask?.cancel()
+
             recognitionTask = nil
         }
         
@@ -443,27 +389,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
-            self.recognitionRequest?.append(buffer)
-        }
-        
-        audioEngine.prepare()
-        
-        do {
-            try audioEngine.start()
-        } catch {
-            print("audioEngine couldn't start because of an error.")
-        }
-    }
-    
-    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-        if available {
-            print("Speech recognizer is enabled")
-        } else {
-            print("Speech recognizer is disabled")
-        }
-    }
-    
-    // Mark: Timer
+            self.recognitionRequest?.app
     
     @IBOutlet weak var timerLabel: UILabel!
     
@@ -700,27 +626,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         }
     }
     
-    // MARK: Device Configuration
-    
-    @IBOutlet private weak var cameraButton: UIButton!
-    
-    @IBOutlet private weak var cameraUnavailableLabel: UILabel!
-    
-    private let videoDeviceDiscoverySession = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDuoCamera], mediaType: AVMediaTypeVideo, position: .unspecified)!
-    
-    @IBAction private func changeCamera(_ cameraButton: UIButton) {
-        cameraButton.isEnabled = false
-        recordButton.isEnabled = false
-        
-        sessionQueue.async { [unowned self] in
-            let currentVideoDevice = self.videoDeviceInput.device
-            let currentPosition = currentVideoDevice!.position
-            
-            let preferredPosition: AVCaptureDevicePosition
-            let preferredDeviceType: AVCaptureDeviceType
-            
-            switch currentPosition {
-            case .unspecified, .front:
                 preferredPosition = .back
                 preferredDeviceType = .builtInDuoCamera
                 
