@@ -45,7 +45,9 @@ class MasterViewController: UITableViewController {
         
         for i in 0...index {
             print(i)
+            sortedFileNamesAndText[videosArray[i]] = speechArray[i]
         }
+        print(sortedFileNamesAndText)
         
         /*
         let defaults = UserDefaults.standard
