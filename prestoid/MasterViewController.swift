@@ -31,6 +31,13 @@ class MasterViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        let defaults = UserDefaults.standard
+        if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
+            videosArray = arrayValue as! [String]
+        }
+        if let arrayValue = defaults.array(forKey: savedSpeechArrayKey) {
+            speechArray = arrayValue as! [String]
+        }
         
         /*
         let defaults = UserDefaults.standard
