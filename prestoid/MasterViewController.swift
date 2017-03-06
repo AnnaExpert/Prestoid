@@ -47,7 +47,10 @@ class MasterViewController: UITableViewController {
             print(i)
             sortedFileNamesAndText[videosArray[i]] = speechArray[i]
         }
+        
         print(sortedFileNamesAndText)
+        
+        videosArray = videosArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
         
         /*
         let defaults = UserDefaults.standard
@@ -113,7 +116,12 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)as! CellMasterView
         var thumbnail = UIImage()
         let fileName = videosArray[indexPath.row]
-        let recognizedText = speechArray[indexPath.row]
+        
+        
+        let recognizedText = sortedFileNamesAndText[fileName]
+//        let recognizedText = speechArray[indexPath.row]
+        
+        
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
         let moviePath = docsPath + "/" + fileName + ".mov"
         
