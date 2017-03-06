@@ -869,6 +869,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 
                 movieFileOutput.startRecording(toOutputFileURL: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
                 
+                // MARK: !!! Saving video file name to array
+                
                 if self.defaults.array(forKey: self.savedVideosArrayKey) != nil {
                     self.videosArray = self.defaults.array(forKey: self.savedVideosArrayKey) as! [String]
                     
