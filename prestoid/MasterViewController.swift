@@ -41,9 +41,10 @@ class MasterViewController: UITableViewController {
             speechArray = arrayValue as! [String]
         }
         
-        for index in videosArray {
-            print(index)
-//            sortedFileNamesAndText[videosArray] = speechArray[item]
+        let index = videosArray.count - 1
+        
+        for i in 0...index {
+            print(i)
         }
         
         /*
