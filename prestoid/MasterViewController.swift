@@ -20,6 +20,8 @@ class MasterViewController: UITableViewController {
     var speechArray: [String] = Array()
     let savedSpeechArrayKey = "savedSpeechArray"
     
+    var sortedFileNamesAndText = [String: String]()
+    
     var cellInformationContent = [Int: Bool]()
     var cellTextContent = [Int: Bool]()
     
@@ -37,6 +39,11 @@ class MasterViewController: UITableViewController {
         }
         if let arrayValue = defaults.array(forKey: savedSpeechArrayKey) {
             speechArray = arrayValue as! [String]
+        }
+        
+        for index in videosArray {
+            print(index)
+//            sortedFileNamesAndText[videosArray] = speechArray[item]
         }
         
         /*
