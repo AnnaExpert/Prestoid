@@ -11,15 +11,15 @@
 2. [Copyright](#copyright)
 3. [Contact](#contact)
 
-##<a name="description">Description:</a>
+## <a name="description">Description:</a>
 
 ```Prestoid``` - iPhone application that records video and recognizes all the speech in background.  
  All data is saved both on device and in the Dropbox cloud, so can be easily synced on different devices.
 
-##<a name="copyright">Copyright:</a>
+## <a name="copyright">Copyright:</a>
 
 Copyright © 2016 by Scott Leatham & <a href="https://iashchuk.com">Alexander Iashchuk</a>.
 
-##<a name="contact">Contact:</a>
+## <a name="contact">Contact:</a>
 
 You can read, follow or drop me a line on my personal Twitter account - [@iAlexander13](https://twitter.com/iAlexander13).
