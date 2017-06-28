@@ -22,7 +22,7 @@
 			<key>Title</key>
 			<string>Build</string>
 			<key>DefaultValue</key>
-			<string>33</string>
+			<string>34</string>
 			<key>Key</key>
 			<string>2</string>
 		</dict>
@@ -34,7 +34,7 @@
 			<key>Key</key>
 			<string>3</string>
 			<key>DefaultValue</key>
-			<string>2017.03.06</string>
+			<string>2017.06.28</string>
 		</dict>
 		<dict>
 			<key>Type</key>
