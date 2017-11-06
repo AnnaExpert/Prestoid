@@ -1,7 +1,7 @@
-[![Language](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](#)
+[![Language](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat)](#)
 [![Platform](https://img.shields.io/badge/iOS-10.0-lightgray.svg?style=flat)](#)
 [![Devices](https://img.shields.io/badge/Devices-iPhone-green.svg?style=flat)](#)
-[![Version](https://img.shields.io/badge/App_Version-1.3-blue.svg?style=flat)](#)
+[![Version](https://img.shields.io/badge/App_Version-2.0-blue.svg?style=flat)](#)
 
 [![Prestoid - Dropbox sync video camera app with speech to text recognition](https://raw.githubusercontent.com/iAlexander/Prestoid/master/Header.jpg)](https://ialexander.me/2gCl2op)
 
@@ -21,4 +21,8 @@ Copyright © 2016-2017 by Scott Leatham & <a href="https://iashchuk.com">Alexand
 
 ## <a name="contact">Contact:</a>
 
-You can read, follow or drop me a line on my personal Twitter account - [@iAlexander13](https://twitter.com/iAlexander13).
+You can read, follow or drop me a line on my personal Twitter account - [@iAlexander13](https://twitter.com/iAlexander13).  
+If you find any issues on the project, you can open a ticket.  
+Pull requests are also welcome!
+
+[![iAlexander - Нотатки громадянина України](https://raw.githubusercontent.com/iAlexander/Prestoid/master/Footer.jpg)](https://twitter.com/iAlexander13)
