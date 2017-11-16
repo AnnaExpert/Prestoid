@@ -17,7 +17,7 @@
 
 ## <a name="copyright">Copyright:</a>
 
-Copyright © 2016-2017 by Scott Leatham & <a href="https://iashchuk.com">Alexander Iashchuk</a>.
+Copyright © 2016-2017 by Scott Leatham & <a href="http://iashchuk.com">Alexander Iashchuk</a>.
 
 ## <a name="contact">Contact:</a>
 
