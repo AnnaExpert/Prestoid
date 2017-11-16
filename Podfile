@@ -1,7 +1,7 @@
-# Prestoid 1.4 remote repositories list
-# Copyright © 2016 by Scott Leatham & Alexander Iashchuk, https://iashchuk.com
+# Prestoid 2.0 remote repositories list
+# Copyright © 2016-2017 by Scott Leatham & Alexander Iashchuk, http://iashchuk.com
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 target 'prestoid' do
   
   use_frameworks!
