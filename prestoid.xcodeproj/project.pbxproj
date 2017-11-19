@@ -19,12 +19,10 @@
 		2AF0F6AB1DD4B53E00E22B44 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */; };
 		2AF0F6AC1DD4B53E00E22B44 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */; };
 		2AF7F2881DDF482F008F9646 /* DropboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF7F2871DDF482F008F9646 /* DropboxViewController.swift */; };
-		BE21A2BD28D6F018A131C848 /* Pods_prestoid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B8295AF4EE584FF4515FD8 /* Pods_prestoid.framework */; };
+		5CBF1882430DFB83540165B5 /* Pods_prestoid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C76EE87422AC7931C8145877 /* Pods_prestoid.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		05B8295AF4EE584FF4515FD8 /* Pods_prestoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_prestoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1822D37801CF9731D506BE60 /* Pods-prestoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-prestoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-prestoid/Pods-prestoid.debug.xcconfig"; sourceTree = "<group>"; };
 		2A0AAE6E1DD365D300B9AC69 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -39,7 +37,9 @@
 		2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2AF7F2871DDF482F008F9646 /* DropboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxViewController.swift; sourceTree = "<group>"; };
-		A40AC5813636D4DAE5A02B6E /* Pods-prestoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-prestoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-prestoid/Pods-prestoid.release.xcconfig"; sourceTree = "<group>"; };
+		A55CA15694A52EFCC9B397E2 /* Pods-prestoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-prestoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-prestoid/Pods-prestoid.debug.xcconfig"; sourceTree = "<group>"; };
+		BE64DDD699A59005547D8778 /* Pods-prestoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-prestoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-prestoid/Pods-prestoid.release.xcconfig"; sourceTree = "<group>"; };
+		C76EE87422AC7931C8145877 /* Pods_prestoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_prestoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,21 +47,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE21A2BD28D6F018A131C848 /* Pods_prestoid.framework in Frameworks */,
+				5CBF1882430DFB83540165B5 /* Pods_prestoid.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2453B2F9B1882295C4EAE2FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C76EE87422AC7931C8145877 /* Pods_prestoid.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		28942B052A363CE05FFC5E25 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A55CA15694A52EFCC9B397E2 /* Pods-prestoid.debug.xcconfig */,
+				BE64DDD699A59005547D8778 /* Pods-prestoid.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		2A1E4ECD1DCA0A05001F4489 = {
 			isa = PBXGroup;
 			children = (
 				2A1E4ED81DCA0A05001F4489 /* prestoid */,
 				2AB61FA81DD87FB000C54CB8 /* Settings.bundle */,
 				2A1E4ED71DCA0A05001F4489 /* Products */,
-				C4122C89F04C6AE3D2E92E2E /* Pods */,
-				937DC84E5154A4DE2185B914 /* Frameworks */,
+				28942B052A363CE05FFC5E25 /* Pods */,
+				2453B2F9B1882295C4EAE2FF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,23 +109,6 @@
 			path = prestoid;
 			sourceTree = "<group>";
 		};
-		937DC84E5154A4DE2185B914 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				05B8295AF4EE584FF4515FD8 /* Pods_prestoid.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C4122C89F04C6AE3D2E92E2E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1822D37801CF9731D506BE60 /* Pods-prestoid.debug.xcconfig */,
-				A40AC5813636D4DAE5A02B6E /* Pods-prestoid.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -116,12 +116,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A1E4EFE1DCA0A06001F4489 /* Build configuration list for PBXNativeTarget "prestoid" */;
 			buildPhases = (
-				432214E43E6EDA1350BE52D2 /* [CP] Check Pods Manifest.lock */,
+				6173E97540E1D18B2B3BB4DD /* [CP] Check Pods Manifest.lock */,
 				2A1E4ED21DCA0A05001F4489 /* Sources */,
 				2A1E4ED31DCA0A05001F4489 /* Frameworks */,
 				2A1E4ED41DCA0A05001F4489 /* Resources */,
-				97D5A8D553846F1B3BB49F52 /* [CP] Embed Pods Frameworks */,
-				EDCF49E674FEEA1BD4CD7F4F /* [CP] Copy Pods Resources */,
+				69230900810586BCFA110CBF /* [CP] Embed Pods Frameworks */,
+				3A3BEE70ECB8E22F5D3C23F9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,7 +190,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		432214E43E6EDA1350BE52D2 /* [CP] Check Pods Manifest.lock */ = {
+		3A3BEE70ECB8E22F5D3C23F9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-prestoid/Pods-prestoid-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6173E97540E1D18B2B3BB4DD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,7 +223,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		97D5A8D553846F1B3BB49F52 /* [CP] Embed Pods Frameworks */ = {
+		69230900810586BCFA110CBF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -236,21 +251,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-prestoid/Pods-prestoid-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EDCF49E674FEEA1BD4CD7F4F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-prestoid/Pods-prestoid-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -382,9 +382,8 @@
 		};
 		2A1E4EFF1DCA0A06001F4489 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1822D37801CF9731D506BE60 /* Pods-prestoid.debug.xcconfig */;
+			baseConfigurationReference = A55CA15694A52EFCC9B397E2 /* Pods-prestoid.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3NL9BUS2QV;
 				INFOPLIST_FILE = prestoid/Info.plist;
@@ -398,9 +397,8 @@
 		};
 		2A1E4F001DCA0A06001F4489 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A40AC5813636D4DAE5A02B6E /* Pods-prestoid.release.xcconfig */;
+			baseConfigurationReference = BE64DDD699A59005547D8778 /* Pods-prestoid.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3NL9BUS2QV;
 				INFOPLIST_FILE = prestoid/Info.plist;

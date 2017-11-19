@@ -25,12 +25,12 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>db-&lt;&lt;&lt;API-KEY-HERE&gt;&gt;&gt;</string>
+				<string>db-fcknlb5qwqct21g</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>dbapi-8-emm</string>
