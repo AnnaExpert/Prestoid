@@ -7,13 +7,11 @@ target 'prestoid' do
   use_frameworks!
 
   # Pods for prestoid
-  
-  pod 'Fabric'
-  pod 'Digits'
-  pod 'Crashlytics'
+
   pod 'SwiftyDropbox'
   pod 'Firebase/Core'
   pod 'Firebase/Crash'
   pod 'Firebase/Database'
+  pod 'Firebase/Performance'
 
 end
