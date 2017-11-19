@@ -169,7 +169,8 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                                                         } else {
                                                             UIApplication.shared.openURL(url)
                                                         }
-        }, browserAuth: true)
+        })
+//        }, browserAuth: true)
     }
     
     // MARK: Download all new files (video and text)
@@ -313,11 +314,11 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
     public func deleteFile(name: String) {
         let videoFilePath = "/PrestoidMedia/Video/" + name + ".mov"
         if let client = DropboxClientsManager.authorizedClient {
-            client.files.delete(path: videoFilePath)
+            client.files.deleteV2(path: videoFilePath)
         }
         let textFilePath = "/PrestoidMedia/Text/" + name + ".txt"
         if let client = DropboxClientsManager.authorizedClient {
-            client.files.delete(path: textFilePath)
+            client.files.deleteV2(path: textFilePath)
         }
     }
     
