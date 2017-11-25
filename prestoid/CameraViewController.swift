@@ -9,10 +9,10 @@
 //
 
 
-//import UIKit
-//import AVFoundation
-//import Photos
-//import Speech
+import UIKit
+import AVFoundation
+import Photos
+import Speech
 
 class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationManagerDelegate, SFSpeechRecognizerDelegate {
     
