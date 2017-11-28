@@ -12,7 +12,7 @@
 
 ## <a name="description">Description:</a>
 
-```Prestoid``` - iPhone application that records video and recognizes all the speech in background.  
+```Prestoid``` - iPhone application that records video and recognizes all the speech in background (saves it as a text in real time).  
  All data is saved both on device and in the Dropbox cloud, so can be easily synced on different devices.
 
 ## <a name="copyright">Copyright:</a>
