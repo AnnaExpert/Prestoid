@@ -3,7 +3,7 @@
 [![Devices](https://img.shields.io/badge/Devices-iPhone-green.svg?style=flat)](#)
 [![Version](https://img.shields.io/badge/App_Version-2.0-blue.svg?style=flat)](#)
 
-[![Prestoid - Dropbox sync video camera app with speech to text recognition](https://raw.githubusercontent.com/iAlexander/Prestoid/master/Header.jpg)](https://ialexander.me/2gCl2op)
+[![Prestoid - Dropbox sync video camera app with speech to text recognition](https://raw.githubusercontent.com/iAlexander/Prestoid/master/Header.jpg)](http://kyivapp.com)
 
 ## Prestoid - Dropbox sync video camera app with speech to text recognition
 1. [Description](#description)
