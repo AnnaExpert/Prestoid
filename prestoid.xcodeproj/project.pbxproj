@@ -148,6 +148,7 @@
 					2A1E4ED51DCA0A05001F4489 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 3NL9BUS2QV;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
