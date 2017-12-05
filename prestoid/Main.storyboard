@@ -165,10 +165,10 @@
             </objects>
             <point key="canvasLocation" x="3442.4000000000001" y="635.53223388305855"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="MQd-as-IUn">
             <objects>
-                <viewController id="9O9-z1-NNv" sceneMemberID="viewController">
+                <viewController id="9O9-z1-NNv" customClass="SettingsViewController" customModule="prestoid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uDS-zu-Inf"/>
                         <viewControllerLayoutGuide type="bottom" id="f2H-Ui-DlW"/>

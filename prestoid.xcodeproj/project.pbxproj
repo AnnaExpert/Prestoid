@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2A0AAE701DD365D400B9AC69 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AAE6E1DD365D300B9AC69 /* MasterViewController.swift */; };
+		2A1B9A471FD75B7F00F25335 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B9A461FD75B7F00F25335 /* SettingsViewController.swift */; };
 		2A1C5D601DD2107700555DE2 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */; };
 		2A1C5D621DD2107B00555DE2 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */; };
 		2A1C5D661DD2108600555DE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1C5D651DD2108600555DE2 /* Main.storyboard */; };
 		2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */; };
 		2A1E4EE41DCA0A05001F4489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */; };
-		2A74705A1FD6FDE50057316F /* SettingssssViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7470591FD6FDE50057316F /* SettingssssViewController.swift */; };
 		2AB61FA91DD87FB000C54CB8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2AB61FA81DD87FB000C54CB8 /* Settings.bundle */; };
 		2AB84CC01DCB551F00A31061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB84CBF1DCB551F00A31061 /* Assets.xcassets */; };
 		2AC9F1911DD8FBF900A49535 /* CellMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */; };
@@ -25,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		2A0AAE6E1DD365D300B9AC69 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		2A1B9A461FD75B7F00F25335 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2A1C5D5F1DD2107700555DE2 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		2A1C5D611DD2107B00555DE2 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2A1C5D651DD2108600555DE2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -32,7 +33,6 @@
 		2A1E4ED91DCA0A05001F4489 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A1E4EE31DCA0A05001F4489 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1E4EE51DCA0A05001F4489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A7470591FD6FDE50057316F /* SettingssssViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingssssViewController.swift; sourceTree = "<group>"; };
 		2AB61FA81DD87FB000C54CB8 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2AB84CBF1DCB551F00A31061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AC9F1901DD8FBF900A49535 /* CellMasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellMasterView.swift; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 				2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */,
 				2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */,
 				2AF7F2871DDF482F008F9646 /* DropboxViewController.swift */,
-				2A7470591FD6FDE50057316F /* SettingssssViewController.swift */,
+				2A1B9A461FD75B7F00F25335 /* SettingsViewController.swift */,
 				2A1C5D651DD2108600555DE2 /* Main.storyboard */,
 				2AB84CBF1DCB551F00A31061 /* Assets.xcassets */,
 				2A1E4EE21DCA0A05001F4489 /* LaunchScreen.storyboard */,
@@ -267,12 +267,12 @@
 				2A0AAE701DD365D400B9AC69 /* MasterViewController.swift in Sources */,
 				2A1E4EDA1DCA0A05001F4489 /* AppDelegate.swift in Sources */,
 				2A1C5D601DD2107700555DE2 /* PreviewView.swift in Sources */,
+				2A1B9A471FD75B7F00F25335 /* SettingsViewController.swift in Sources */,
 				2AF7F2881DDF482F008F9646 /* DropboxViewController.swift in Sources */,
 				2AC9F1911DD8FBF900A49535 /* CellMasterView.swift in Sources */,
 				2AF0F6AC1DD4B53E00E22B44 /* PlayerView.swift in Sources */,
 				2A1C5D621DD2107B00555DE2 /* CameraViewController.swift in Sources */,
 				2AF0F6AB1DD4B53E00E22B44 /* PlayerViewController.swift in Sources */,
-				2A74705A1FD6FDE50057316F /* SettingssssViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
