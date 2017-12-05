@@ -1,7 +1,7 @@
 # Prestoid 2.0 remote repositories list
 # Copyright © 2016-2017 by Scott Leatham & Alexander Iashchuk, http://iashchuk.com
 
-platform :ios, '9.3'
+platform :ios, '9.0'
 
 target 'prestoid' do
   
@@ -9,7 +9,7 @@ target 'prestoid' do
 
   # Pods for prestoid
 
-  pod 'Eureka', '~> 3.0.0'
+  pod 'Eureka'
   pod 'SwiftyDropbox'
   pod 'Firebase/Core'
   pod 'Firebase/Crash'
