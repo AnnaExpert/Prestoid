@@ -69,6 +69,17 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
         downloadAllFiles()
     }
     
+    @IBAction func settingsButton(_ sender: Any) {
+        goToSettings()
+    }
+    
+    @IBAction func unwindToMainView(segue: UIStoryboardSegue) {
+    }
+    
+    func goToSettings() {
+        performSegue(withIdentifier: "settingsSegue", sender: nil)
+    }
+    
     // MARK: Link Dropbox account via iOS application
     
     @IBAction func connectDropboxAccount(_ sender: Any) {
