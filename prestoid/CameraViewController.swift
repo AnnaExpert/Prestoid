@@ -51,7 +51,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     // Change the speech recognition language here
     
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: languageStringResult))
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: self.languageStringResult))
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
