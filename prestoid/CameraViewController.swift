@@ -342,7 +342,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
             
             if error != nil || isFinal {
-                print("Recognition ERROR: \(error)")
+                print("Recognition ERROR: \(String(describing: error))")
                 print("Recognition ISFINAL: \(isFinal)")
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
