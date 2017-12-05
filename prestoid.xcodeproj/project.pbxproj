@@ -20,6 +20,7 @@
 		2AF0F6AB1DD4B53E00E22B44 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */; };
 		2AF0F6AC1DD4B53E00E22B44 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */; };
 		2AF7F2881DDF482F008F9646 /* DropboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF7F2871DDF482F008F9646 /* DropboxViewController.swift */; };
+		C766789AA5A31217AD6701C2 /* Pods_prestoid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C954B3F9C4396D5904CAC3E /* Pods_prestoid.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,9 @@
 		2AF0F6A91DD4B53E00E22B44 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2AF0F6AA1DD4B53E00E22B44 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2AF7F2871DDF482F008F9646 /* DropboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxViewController.swift; sourceTree = "<group>"; };
+		67DE2A7FB49BA3FBCDD4504A /* Pods-prestoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-prestoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-prestoid/Pods-prestoid.release.xcconfig"; sourceTree = "<group>"; };
+		9C954B3F9C4396D5904CAC3E /* Pods_prestoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_prestoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8A0A2A6571729FBDB2D6595 /* Pods-prestoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-prestoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-prestoid/Pods-prestoid.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C766789AA5A31217AD6701C2 /* Pods_prestoid.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +62,8 @@
 				2A1E4ED81DCA0A05001F4489 /* prestoid */,
 				2AB61FA81DD87FB000C54CB8 /* Settings.bundle */,
 				2A1E4ED71DCA0A05001F4489 /* Products */,
+				EA161E78FB6D197CD17AF1A0 /* Pods */,
+				35C5B4E9E9D76FA63BCCCA9B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +95,23 @@
 			path = prestoid;
 			sourceTree = "<group>";
 		};
+		35C5B4E9E9D76FA63BCCCA9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C954B3F9C4396D5904CAC3E /* Pods_prestoid.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA161E78FB6D197CD17AF1A0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8A0A2A6571729FBDB2D6595 /* Pods-prestoid.debug.xcconfig */,
+				67DE2A7FB49BA3FBCDD4504A /* Pods-prestoid.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,9 +119,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A1E4EFE1DCA0A06001F4489 /* Build configuration list for PBXNativeTarget "prestoid" */;
 			buildPhases = (
+				3231F239F666520B894C33E1 /* [CP] Check Pods Manifest.lock */,
 				2A1E4ED21DCA0A05001F4489 /* Sources */,
 				2A1E4ED31DCA0A05001F4489 /* Frameworks */,
 				2A1E4ED41DCA0A05001F4489 /* Resources */,
+				81F51DF8D3C412BA97302758 /* [CP] Embed Pods Frameworks */,
+				7B8F7A9D0D0569B403EF5AAE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,6 +191,72 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3231F239F666520B894C33E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-prestoid-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B8F7A9D0D0569B403EF5AAE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-prestoid/Pods-prestoid-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81F51DF8D3C412BA97302758 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-prestoid/Pods-prestoid-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyDropbox/SwiftyDropbox.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyDropbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-prestoid/Pods-prestoid-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A1E4ED21DCA0A05001F4489 /* Sources */ = {
@@ -244,7 +337,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -297,7 +390,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -309,29 +402,31 @@
 		};
 		2A1E4EFF1DCA0A06001F4489 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8A0A2A6571729FBDB2D6595 /* Pods-prestoid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3NL9BUS2QV;
 				INFOPLIST_FILE = prestoid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iashchuk.prestoid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		2A1E4F001DCA0A06001F4489 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67DE2A7FB49BA3FBCDD4504A /* Pods-prestoid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3NL9BUS2QV;
 				INFOPLIST_FILE = prestoid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iashchuk.prestoid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
