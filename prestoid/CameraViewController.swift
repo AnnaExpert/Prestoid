@@ -23,6 +23,23 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     let savedVideosArrayKey = "savedVideosArray"
     let locationManager = CLLocationManager()
     
+   
+    lazy var languageStringResult: String = { [unowned self] in
+        let defaults = UserDefaults.standard
+        var result = String()
+        if let stringValue = defaults.string(forKey: "savedLanguage") {
+            result = stringValue
+        }
+        if result.isEmpty {
+            print("Language is empty and is set to English")
+            result = "en"
+        }
+        return result
+    }()
+    var videoString: String = String()
+    let savedLangSettingsStringKey = "savedLanguage"
+    let savedVideoSettingsStringKey = "savedVideoQuality"
+    
     // MARK: Speech recognition settings
     
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -34,11 +51,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     // Change the speech recognition language here
     
-    if let stringValue = defaults.string(forKey: savedLangSettingsStringKey) {
-        languageString = stringValue
-    }
-    print(languageString)
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en"))
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: languageStringResult))
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
