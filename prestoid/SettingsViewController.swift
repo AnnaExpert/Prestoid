@@ -11,6 +11,12 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    let defaults = UserDefaults.standard
+    var languageString: String = String()
+    var videoString: String = String()
+    let savedLangSettingsStringKey = "savedLanguage"
+    let savedVideoSettingsStringKey = "savedVideoQuality"
 
     @IBOutlet weak var languageSegmentedControl: UISegmentedControl!
     
@@ -21,14 +27,24 @@ class SettingsViewController: UIViewController {
         {
         case 0:
             print("First language selected");
+            languageString = "en"
+            defaults.set(languageString, forKey: savedLangSettingsStringKey)
         case 1:
             print("Second language selected");
+            languageString = "fr"
+            defaults.set(languageString, forKey: savedLangSettingsStringKey)
         case 2:
             print("Third language selected");
+            languageString = "it"
+            defaults.set(languageString, forKey: savedLangSettingsStringKey)
         case 3:
             print("Fourth language selected");
+            languageString = "de"
+            defaults.set(languageString, forKey: savedLangSettingsStringKey)
         case 4:
             print("Fifth language selected");
+            languageString = "es"
+            defaults.set(languageString, forKey: savedLangSettingsStringKey)
         default:
             break;
         }
@@ -46,6 +62,15 @@ class SettingsViewController: UIViewController {
         default:
             break;
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let stringValue = defaults.string(forKey: savedLangSettingsStringKey) {
+            languageString = stringValue
+        }
+        print(languageString)
+        
     }
     
     override func viewDidLoad() {
