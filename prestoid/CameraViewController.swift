@@ -842,19 +842,19 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 
                 // Normalizing the month, day, hour and minute strings
                 var stringMonth = String(month)
-                if stringMonth.characters.count < 2 {
+                if stringMonth.count < 2 {
                     stringMonth = String("0\(stringMonth)")
                 }
                 var stringDay = String(day)
-                if stringDay.characters.count < 2 {
+                if stringDay.count < 2 {
                     stringDay = String("0\(stringDay)")
                 }
                 var stringHour = String(hour)
-                if stringHour.characters.count < 2 {
+                if stringHour.count < 2 {
                     stringHour = String("0\(stringHour)")
                 }
                 var stringMinute = String(minute)
-                if stringMinute.characters.count < 2 {
+                if stringMinute.count < 2 {
                     stringMinute = String("0\(stringMinute)")
                 }
                 let filename = "\(year)\(stringMonth)\(stringDay)_\(stringHour)\(stringMinute)_\(second)\(nanosecond)_LAT\(lat)_LON\(lon)"
