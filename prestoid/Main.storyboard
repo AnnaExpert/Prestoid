@@ -203,6 +203,9 @@
                                     <segment title="German"/>
                                     <segment title="Spanish"/>
                                 </segments>
+                                <connections>
+                                    <action selector="languageChanged:" destination="9O9-z1-NNv" eventType="valueChanged" id="Yuk-FH-0uS"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose the video recording resolution" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6q-ov-4u4">
                                 <rect key="frame" x="16" y="254" width="343" height="21"/>
@@ -219,6 +222,9 @@
                                     <segment title="Good (1280x720)"/>
                                     <segment title="Low (640x480)"/>
                                 </segments>
+                                <connections>
+                                    <action selector="videoChanged:" destination="9O9-z1-NNv" eventType="valueChanged" id="kX9-qf-F9a"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set language and video quality:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zk-8O-0fE">
                                 <rect key="frame" x="16" y="28" width="343" height="29"/>
@@ -230,6 +236,10 @@
                         </subviews>
                         <color key="backgroundColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
                     </view>
+                    <connections>
+                        <outlet property="languageSegmentedControl" destination="Bre-su-Wpr" id="1b9-jI-Lgm"/>
+                        <outlet property="videoSegmentedControl" destination="ZmQ-rW-b6z" id="uQa-nq-gGt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QVi-Wr-vEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vgh-fs-Sec" userLabel="Exit" sceneMemberID="exit"/>

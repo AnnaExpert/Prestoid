@@ -12,6 +12,42 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var languageSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var videoSegmentedControl: UISegmentedControl!
+    
+    @IBAction func languageChanged(_ sender: Any) {
+        switch languageSegmentedControl.selectedSegmentIndex
+        {
+        case 0:
+            print("First language selected");
+        case 1:
+            print("Second language selected");
+        case 2:
+            print("Third language selected");
+        case 3:
+            print("Fourth language selected");
+        case 4:
+            print("Fifth language selected");
+        default:
+            break;
+        }
+    }
+    
+    @IBAction func videoChanged(_ sender: Any) {
+        switch videoSegmentedControl.selectedSegmentIndex
+        {
+        case 0:
+            print("First Video selected");
+        case 1:
+            print("Second Video selected");
+        case 2:
+            print("Third Video selected");
+        default:
+            break;
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
