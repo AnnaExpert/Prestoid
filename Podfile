@@ -1,4 +1,4 @@
-# Prestoid 2.0 remote repositories list
+# Prestoid 2.0 test version remote repositories list
 # Copyright © 2016-2017 by Scott Leatham & Alexander Iashchuk, http://iashchuk.com
 
 platform :ios, '10.0'
