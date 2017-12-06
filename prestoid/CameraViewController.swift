@@ -23,22 +23,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     let savedVideosArrayKey = "savedVideosArray"
     let locationManager = CLLocationManager()
     
-   
-//    lazy var languageStringResult: String = { [unowned self] in
-//        let defaults = UserDefaults.standard
-//        var localeString = String()
-//        if let stringValue = defaults.string(forKey: "savedLanguage") {
-//            localeString = stringValue
-//        }
-//        if localeString.isEmpty {
-//            print("Language is empty and is set to English")
-//            localeString = "en"
-//        }
-//        return localeString
-//    }()
-    var videoString: String = String()
-    let savedLangSettingsStringKey = "savedLanguage"
-    let savedVideoSettingsStringKey = "savedVideoQuality"
     
     // MARK: Speech recognition settings
     
@@ -502,23 +486,31 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         // MARK: Set the recording quality
         
-        /*
-        Here we can modify the quality of recorded video.
- 
-        This setting will decrease twice the size of video file
-        */
+        let defaults = UserDefaults.standard
+        var qualityString = String()
+        if let stringValue = defaults.string(forKey: "savedVideoQuality") {
+            qualityString = stringValue
+        }
+        if qualityString.isEmpty {
+            print("Quality is empty and is set to top")
+            qualityString = "top"
+        }
         
+        switch qualityString
+        {
+        case "top":
+            session.sessionPreset = AVCaptureSessionPresetInputPriority
+        case "mid":
+            session.sessionPreset = AVCaptureSessionPreset1280x720
+        case "low":
+            session.sessionPreset = AVCaptureSessionPreset640x480
+        default:
+            break;
+        }
+        
+        /*
         session.sessionPreset = AVCaptureSessionPreset1280x720
-        
-        /*
-        This setting will decrease ten times the size of video file
- 
         session.sessionPreset = AVCaptureSessionPreset640x480
-        */
-        
-        /*
-        This setting will set the biggest possible size of video file
- 
         session.sessionPreset = AVCaptureSessionPresetInputPriority
         */
         

@@ -30,23 +30,23 @@ class SettingsViewController: UIViewController {
         switch languageSegmentedControl.selectedSegmentIndex
         {
         case 0:
-            print("First language selected");
+            print("First language selected")
             languageString = "en"
             defaults.set(languageString, forKey: savedLangSettingsStringKey)
         case 1:
-            print("Second language selected");
+            print("Second language selected")
             languageString = "fr"
             defaults.set(languageString, forKey: savedLangSettingsStringKey)
         case 2:
-            print("Third language selected");
+            print("Third language selected")
             languageString = "it"
             defaults.set(languageString, forKey: savedLangSettingsStringKey)
         case 3:
-            print("Fourth language selected");
+            print("Fourth language selected")
             languageString = "de"
             defaults.set(languageString, forKey: savedLangSettingsStringKey)
         case 4:
-            print("Fifth language selected");
+            print("Fifth language selected")
             languageString = "es"
             defaults.set(languageString, forKey: savedLangSettingsStringKey)
         default:
@@ -58,11 +58,17 @@ class SettingsViewController: UIViewController {
         switch videoSegmentedControl.selectedSegmentIndex
         {
         case 0:
-            print("First Video selected");
+            print("First Video selected")
+            videoString = "top"
+            defaults.set(videoString, forKey: savedVideoSettingsStringKey)
         case 1:
-            print("Second Video selected");
+            print("Second Video selected")
+            videoString = "mid"
+            defaults.set(videoString, forKey: savedVideoSettingsStringKey)
         case 2:
-            print("Third Video selected");
+            print("Third Video selected")
+            videoString = "low"
+            defaults.set(videoString, forKey: savedVideoSettingsStringKey)
         default:
             break;
         }
@@ -70,8 +76,8 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if let stringValue = defaults.string(forKey: savedLangSettingsStringKey) {
-            languageString = stringValue
+        if let stringValue1 = defaults.string(forKey: savedLangSettingsStringKey) {
+            languageString = stringValue1
         }
         print(languageString)
         switch languageString
@@ -86,6 +92,21 @@ class SettingsViewController: UIViewController {
             languageSegmentedControl.selectedSegmentIndex = 3
         case "es":
             languageSegmentedControl.selectedSegmentIndex = 4
+        default:
+            break;
+        }
+        if let stringValue2 = defaults.string(forKey: savedVideoSettingsStringKey) {
+            videoString = stringValue2
+        }
+        print(videoString)
+        switch videoString
+        {
+        case "top":
+            videoSegmentedControl.selectedSegmentIndex = 0
+        case "mid":
+            videoSegmentedControl.selectedSegmentIndex = 1
+        case "low":
+            videoSegmentedControl.selectedSegmentIndex = 2
         default:
             break;
         }
