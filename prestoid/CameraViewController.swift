@@ -1,7 +1,7 @@
 //
 //  CameraViewController.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 2.0, build 13, 2017.12.06
+//  Application version 2.0, build 69, 2017.12.06
 //
 //  Created by Alexander Iashchuk on 11/18/17.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -349,7 +349,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             var isFinal = false
             
             if result != nil {
-                self.recognizedTextArray[self.count] = "[Time: \(self.timerLabel.text! as String)]\(result?.bestTranscription.formattedString)!"
+                self.recognizedTextArray[self.count] = "[Recognized before: \(self.timerLabel.text! as String)] \((result?.bestTranscription.formattedString)!)"
                 print("Recognized part of text -> \(self.recognizedTextArray[self.count])")
                 self.recognizedTextLabel.text = self.recognizedTextArray[self.count]
                 isFinal = (result?.isFinal)!
