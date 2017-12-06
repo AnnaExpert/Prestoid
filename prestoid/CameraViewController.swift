@@ -298,7 +298,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             for item in self.recognizedTextArray {
                 if self.recognizedText != item {
                     if item != "" {
-                        self.recognizedText = "00:00 timer: " + self.recognizedText + "\n\(self.timerLabel.text! as String) timer: " + item
+                        self.recognizedText = self.recognizedText + "\n[\(self.timerLabel.text! as String) timer] " + item
                     }
                 }
             }
