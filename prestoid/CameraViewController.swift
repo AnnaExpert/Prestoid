@@ -314,7 +314,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 self.speechArray = self.defaults.array(forKey: self.savedSpeechArrayKey) as! [String]
             }
             
-            self.speechArray.append("[Time: \(self.timerLabel.text! as String)] " + self.recognizedText)
+            self.speechArray.append(self.recognizedText)
             self.defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
     }
     
@@ -349,7 +349,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             var isFinal = false
             
             if result != nil {
-                self.recognizedTextArray[self.count] = (result?.bestTranscription.formattedString)!
+                self.recognizedTextArray[self.count] = "[Time: \(self.timerLabel.text! as String)]\(result?.bestTranscription.formattedString)!"
                 print("Recognized part of text -> \(self.recognizedTextArray[self.count])")
                 self.recognizedTextLabel.text = self.recognizedTextArray[self.count]
                 isFinal = (result?.isFinal)!
