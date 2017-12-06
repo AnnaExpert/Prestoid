@@ -481,7 +481,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         }
         if qualityString.isEmpty {
             print("Quality is empty and is set to top")
-            qualityString = "top"
+            qualityString = "mid"
         }
         
         switch qualityString
@@ -493,6 +493,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         case "low":
             session.sessionPreset = AVCaptureSessionPreset640x480
         default:
+            session.sessionPreset = AVCaptureSessionPreset1280x720
             break;
         }
         

@@ -93,6 +93,7 @@ class SettingsViewController: UIViewController {
         case "es":
             languageSegmentedControl.selectedSegmentIndex = 4
         default:
+            languageSegmentedControl.selectedSegmentIndex = 0
             break;
         }
         if let stringValue2 = defaults.string(forKey: savedVideoSettingsStringKey) {
@@ -108,6 +109,7 @@ class SettingsViewController: UIViewController {
         case "low":
             videoSegmentedControl.selectedSegmentIndex = 2
         default:
+            videoSegmentedControl.selectedSegmentIndex = 1
             break;
         }
         
