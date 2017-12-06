@@ -22,6 +22,10 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var videoSegmentedControl: UISegmentedControl!
     
+    @IBAction func restartAppButton(_ sender: Any) {
+        
+    }
+    
     @IBAction func languageChanged(_ sender: Any) {
         switch languageSegmentedControl.selectedSegmentIndex
         {
@@ -70,6 +74,21 @@ class SettingsViewController: UIViewController {
             languageString = stringValue
         }
         print(languageString)
+        switch languageString
+        {
+        case "en":
+            languageSegmentedControl.selectedSegmentIndex = 0
+        case "fr":
+            languageSegmentedControl.selectedSegmentIndex = 1
+        case "it":
+            languageSegmentedControl.selectedSegmentIndex = 2
+        case "de":
+            languageSegmentedControl.selectedSegmentIndex = 3
+        case "es":
+            languageSegmentedControl.selectedSegmentIndex = 4
+        default:
+            break;
+        }
         
     }
     

@@ -24,18 +24,18 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     let locationManager = CLLocationManager()
     
    
-    lazy var languageStringResult: String = { [unowned self] in
-        let defaults = UserDefaults.standard
-        var result = String()
-        if let stringValue = defaults.string(forKey: "savedLanguage") {
-            result = stringValue
-        }
-        if result.isEmpty {
-            print("Language is empty and is set to English")
-            result = "en"
-        }
-        return result
-    }()
+//    lazy var languageStringResult: String = { [unowned self] in
+//        let defaults = UserDefaults.standard
+//        var localeString = String()
+//        if let stringValue = defaults.string(forKey: "savedLanguage") {
+//            localeString = stringValue
+//        }
+//        if localeString.isEmpty {
+//            print("Language is empty and is set to English")
+//            localeString = "en"
+//        }
+//        return localeString
+//    }()
     var videoString: String = String()
     let savedLangSettingsStringKey = "savedLanguage"
     let savedVideoSettingsStringKey = "savedVideoQuality"
@@ -51,7 +51,18 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     // Change the speech recognition language here
     
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: self.languageStringResult))
+    private let speechRecognizer: SFSpeechRecognizer! = {
+        let defaults = UserDefaults.standard
+        var localeString = String()
+        if let stringValue = defaults.string(forKey: "savedLanguage") {
+            localeString = stringValue
+        }
+        if localeString.isEmpty {
+            print("Language is empty and is set to English")
+            localeString = "en"
+        }
+        return SFSpeechRecognizer(locale: Locale.init(identifier: localeString))
+    }()
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         

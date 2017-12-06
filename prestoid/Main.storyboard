@@ -183,6 +183,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="Finish setup"/>
                                 <connections>
+                                    <action selector="restartAppButton:" destination="9O9-z1-NNv" eventType="touchUpInside" id="GSA-5B-Uiz"/>
                                     <segue destination="vgh-fs-Sec" kind="unwind" unwindAction="unwindToMainViewWithSegue:" id="HQf-0R-iap"/>
                                 </connections>
                             </button>
@@ -249,7 +250,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Xsd-Uu-TCx">
             <objects>
-                <tabBarController id="M9n-kM-yav" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Root_View" useStoryboardIdentifierAsRestorationIdentifier="YES" id="M9n-kM-yav" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="N0A-pl-S4Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
