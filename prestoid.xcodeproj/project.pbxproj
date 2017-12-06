@@ -147,7 +147,6 @@
 				TargetAttributes = {
 					2A1E4ED51DCA0A05001F4489 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 3NL9BUS2QV;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -402,11 +401,11 @@
 			baseConfigurationReference = 9F35D82F30BBB2A2240CB92A /* Pods-prestoid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3NL9BUS2QV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = prestoid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iashchuk.prestoid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.scottleathamapp.prestoid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -417,11 +416,11 @@
 			baseConfigurationReference = 9A11FD1928FA5C79FD67FFDC /* Pods-prestoid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3NL9BUS2QV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = prestoid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iashchuk.prestoid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.scottleathamapp.prestoid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
