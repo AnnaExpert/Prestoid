@@ -303,10 +303,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 }
             }
         } else {
-            self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language or your really poor internet connection..."
+            self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of poor internet connection..."
         }
         if self.recognizedText == "" {
-            self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of not using English language or your really poor internet connection..."
+            self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of poor internet connection..."
         }
             print("Recognized text:\n\(self.recognizedText)")
             
@@ -331,15 +331,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             recognitionTask?.cancel()
             recognitionTask = nil
         }
-        
-//        let audioSession = AVAudioSession.sharedInstance()
-//        do {
-//            try audioSession.setCategory(AVAudioSessionCategoryRecord)
-//            try audioSession.setMode(AVAudioSessionModeMeasurement)
-//            try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
-//        } catch {
-//            print("audioSession properties weren't set because of an error.")
-//        }
         
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         
