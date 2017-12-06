@@ -35,18 +35,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     // Change the speech recognition language here
     
-    private let speechRecognizer: SFSpeechRecognizer! = {
-        let defaults = UserDefaults.standard
-        var localeString = String()
-        if let stringValue = defaults.string(forKey: "savedLanguage") {
-            localeString = stringValue
-        }
-        if localeString.isEmpty {
-            print("Language is empty and is set to English")
-            localeString = "en"
-        }
-        return SFSpeechRecognizer(locale: Locale.init(identifier: localeString))
-    }()
+    private var speechRecognizer: SFSpeechRecognizer! = SFSpeechRecognizer(locale: Locale.init(identifier: "en"))
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -61,6 +50,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         locationManager.delegate = self
         locationManager.requestLocation()
         locationManager.requestWhenInUseAuthorization()
@@ -166,6 +156,17 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let defaults = UserDefaults.standard
+        var localeString = String()
+        if let stringValue = defaults.string(forKey: "savedLanguage") {
+            localeString = stringValue
+        }
+        if localeString.isEmpty {
+            print("Language is empty and is set to English")
+            localeString = "en"
+        }
+        speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: localeString))
         
         let cameraViewSize = CGRect(x: 0, y: 0, width: 375, height: 667)
         previewView.frame = cameraViewSize
