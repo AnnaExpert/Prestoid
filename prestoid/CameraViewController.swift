@@ -282,7 +282,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         self.recognizedTextLabel.text = "…text recognized from speech is displayed here…"
         self.recognizedTextLabel.isHidden = false
         self.count = -1
-        self.recognizedTextArray = ["[Time: \(timerLabel.text! as String)] "]
+        self.recognizedTextArray = [""]
         startRecording()
         print("Started speech recognition")
     }
@@ -314,7 +314,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 self.speechArray = self.defaults.array(forKey: self.savedSpeechArrayKey) as! [String]
             }
             
-            self.speechArray.append(self.recognizedText)
+            self.speechArray.append("[Time: \(self.timerLabel.text! as String)] " + self.recognizedText)
             self.defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
     }
     
