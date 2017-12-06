@@ -71,12 +71,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         previewView.session = session
         
-        /*
-         Check video authorization status. Video access is required and audio
-         access is optional. If audio access is denied, audio is not recorded
-         during movie recording.
-         */
-        
         // MARK: Request video recording authorization
         
         switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
@@ -110,16 +104,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             setupResult = .notAuthorized
         }
         
-        /*
-         Setup the capture session.
-         In general it is not safe to mutate an AVCaptureSession or any of its
-         inputs, outputs, or connections from multiple threads at the same time.
-         
-         Why not do all of this on the main queue?
-         Because AVCaptureSession.startRunning() is a blocking call which can
-         take a long time. We dispatch session setup to the sessionQueue so
-         that the main queue isn't blocked, which keeps the UI responsive.
-         */
+        //MARK: Setup the capture session.
         
         sessionQueue.async { [unowned self] in
             self.configureSession()
@@ -204,6 +189,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 }
             }
         }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -219,6 +205,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 self.locationManager.stopUpdatingLocation()
             }
         }
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
