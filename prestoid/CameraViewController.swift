@@ -157,6 +157,29 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         previewView.frame = cameraViewSize
         previewView.updateConstraintsIfNeeded()
         
+        //MARK: Reconfigure video quality
+        var qualityString = String()
+        if let stringValue = defaults.string(forKey: "savedVideoQuality") {
+            qualityString = stringValue
+        }
+        if qualityString.isEmpty {
+            print("Quality is empty and is set to top")
+            qualityString = "mid"
+        }
+        
+        switch qualityString
+        {
+        case "top":
+            session.sessionPreset = AVCaptureSessionPresetInputPriority
+        case "mid":
+            session.sessionPreset = AVCaptureSessionPreset1280x720
+        case "low":
+            session.sessionPreset = AVCaptureSessionPreset640x480
+        default:
+            session.sessionPreset = AVCaptureSessionPreset1280x720
+            break;
+        }
+        
         sessionQueue.async {
             switch self.setupResult {
             case .success:
