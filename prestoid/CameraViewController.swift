@@ -494,7 +494,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             qualityString = stringValue
         }
         if qualityString.isEmpty {
-            print("Quality is empty and is set to top")
+            print("Quality is empty and is set to good (mid)")
             qualityString = "mid"
         }
         
