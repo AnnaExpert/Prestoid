@@ -1,7 +1,7 @@
 //
 //  AppDelegate.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 2.0, build 69, 2017.12.06
+//  Application version 2.0, build 69, 2017.12.09
 //
 //  Created by Alexander Iashchuk on 11/2/16.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -14,15 +14,14 @@ import Firebase
 import SwiftyDropbox
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        // MARK:!WARNING!: Do not forget to insert the Dropbox application API key here, and in the Info.plist file
-        
         DropboxClientsManager.setupWithAppKey("fcknlb5qwqct21g")
+        FirebaseApp.configure()
         return true
     }
     

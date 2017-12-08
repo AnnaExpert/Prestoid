@@ -1,7 +1,7 @@
 //
 //  CellMasterView.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 2.0, build 69, 2017.12.06
+//  Application version 2.0, build 69, 2017.12.09
 //
 //  Created by Alexander Iashchuk on 11/15/17.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -25,7 +25,7 @@ class CellMasterView: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

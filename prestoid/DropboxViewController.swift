@@ -1,7 +1,7 @@
 //
 //  DropboxViewController.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 2.0, build 69, 2017.12.06
+//  Application version 2.0, build 69, 2017.12.09
 //
 //  Created by Alexander Iashchuk on 11/18/17.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -181,7 +181,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                                                             UIApplication.shared.openURL(url)
                                                         }
         })
-//        }, browserAuth: true)
+        //        }, browserAuth: true)
     }
     
     // MARK: Download all new files (video and text)
@@ -198,12 +198,12 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         for item in response {
                             let dropboxName = item.name
                             let dropboxPath = item.pathDisplay!
-//                            var localName = ""
-//                            print(localName)
+                            //                            var localName = ""
+                            //                            print(localName)
                             var match = false
                             for name in self.videosArray {
                                 let filename = "\(name).mov"
-//                                localName = name
+                                //                                localName = name
                                 if (filename == dropboxName) {
                                     print("Already have this file")
                                     match = true
@@ -236,7 +236,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         //let responseMetadata = response.0
                         
                         _ = response.0
-//                        print("Response Metadata: \(responseMetadata)")
+                        //                        print("Response Metadata: \(responseMetadata)")
                         let fileContents = response.1
                         result = fileContents as NSData
                         self.saveFile(fileContents: result, localName: fileName)
@@ -244,7 +244,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         self.refreshButton.isEnabled = true
                     } else if let error = error {
                         print(error)
-//                        self.downloadAllFiles()
+                        //                        self.downloadAllFiles()
                         self.downloadFile(fromPath: fromPath, localName: localName)
                         print("Retry please the video file download")
                         self.refreshProgressView.isHidden = true
@@ -287,7 +287,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         //let responseMetadata = response.0
                         
                         _ = response.0
-//                        print("Response Metadata: \(responseMetadata)")
+                        //                        print("Response Metadata: \(responseMetadata)")
                         let fileContents = response.1
                         
                         // MARK: Save text file inside the application
@@ -305,7 +305,7 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                         }
                     } else if let error = error {
                         print(error)
-//                        self.downloadAllFiles()
+                        //                        self.downloadAllFiles()
                         self.downloadTextFile(fromPath: fromPath)
                         print("Retry please the text file download")
                         self.refreshProgressView.isHidden = true
@@ -363,12 +363,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                     .progress { progressData in
                         print(progressData)
                 }
-                
-                // in case you want to cancel the request
-                //        if someConditionIsSatisfied {
-                //            request.cancel()
-                //        }
-                
             } catch {
                 print("Can't load data file from iPhone memory")
             }
@@ -386,12 +380,6 @@ public class DropboxViewController: UIViewController, UIViewControllerTransition
                 .progress { progressData in
                     print(progressData)
             }
-            
-            // Use this in case you want to cancel the request
-            //        if someConditionIsSatisfied {
-            //            request.cancel()
-            //        }
-            
         }
     }
     

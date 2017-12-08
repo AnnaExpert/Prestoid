@@ -1,7 +1,7 @@
 //
 //  CameraViewController.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 2.0, build 69, 2017.12.06
+//  Application version 2.0, build 69, 2017.12.09
 //
 //  Created by Alexander Iashchuk on 11/18/17.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -117,24 +117,24 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             switch authStatus {
             case .authorized:
                 print("User granted access to speech recognition")
-//                isButtonEnabled = true
+                //                isButtonEnabled = true
                 
             case .denied:
-//                isButtonEnabled = false
+                //                isButtonEnabled = false
                 print("User denied access to speech recognition")
                 
             case .restricted:
-//                isButtonEnabled = false
+                //                isButtonEnabled = false
                 print("Speech recognition restricted on this device")
                 
             case .notDetermined:
-//                isButtonEnabled = false
+                //                isButtonEnabled = false
                 print("Speech recognition not yet authorized")
             }
             
-//            OperationQueue.main.addOperation() {
-//                self.microphoneButton.isEnabled = isButtonEnabled
-//            }
+            //            OperationQueue.main.addOperation() {
+            //                self.microphoneButton.isEnabled = isButtonEnabled
+            //            }
             
         }
     }
@@ -148,7 +148,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             localeString = stringValue
         }
         if localeString.isEmpty {
-            print("Language is empty and is set to English")
+            print("Language iCloud default value is empty and is set to English")
             localeString = "en"
         }
         speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: localeString))
@@ -163,7 +163,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             qualityString = stringValue
         }
         if qualityString.isEmpty {
-            print("Quality is empty and is set to top")
+            print("Quality iCloud default value is empty and is set to good (mid)")
             qualityString = "mid"
         }
         
@@ -308,14 +308,14 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         if self.recognizedText == "" {
             self.recognizedText = "Ooops... We are sorry, but Siri could not recognize the speech. It can happen because of poor internet connection..."
         }
-            print("Recognized text:\n\(self.recognizedText)")
-            
-            if self.defaults.array(forKey: self.savedSpeechArrayKey) != nil {
-                self.speechArray = self.defaults.array(forKey: self.savedSpeechArrayKey) as! [String]
-            }
-            
-            self.speechArray.append(self.recognizedText)
-            self.defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
+        print("Recognized text:\n\(self.recognizedText)")
+        
+        if self.defaults.array(forKey: self.savedSpeechArrayKey) != nil {
+            self.speechArray = self.defaults.array(forKey: self.savedSpeechArrayKey) as! [String]
+        }
+        
+        self.speechArray.append(self.recognizedText)
+        self.defaults.set(self.speechArray, forKey: self.savedSpeechArrayKey)
     }
     
     func startRecording() {
@@ -494,7 +494,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             qualityString = stringValue
         }
         if qualityString.isEmpty {
-            print("Quality is empty and is set to good (mid)")
+            print("Quality iCloud default value is empty and is set to good (mid)")
             qualityString = "mid"
         }
         
@@ -512,10 +512,10 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         }
         
         /*
-        session.sessionPreset = AVCaptureSessionPreset1280x720
-        session.sessionPreset = AVCaptureSessionPreset640x480
-        session.sessionPreset = AVCaptureSessionPresetInputPriority
-        */
+         session.sessionPreset = AVCaptureSessionPreset1280x720
+         session.sessionPreset = AVCaptureSessionPreset640x480
+         session.sessionPreset = AVCaptureSessionPresetInputPriority
+         */
         
         //MARK: Add video input.
         
@@ -905,7 +905,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
             else {
                 movieFileOutput.stopRecording()
-//                AudioServicesPlaySystemSound(1118)
+                //                AudioServicesPlaySystemSound(1118)
             }
         }
     }
@@ -914,7 +914,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         // MARK: Start speech recognition
         
-            self.startRecordingSpeech()
+        self.startRecordingSpeech()
         
         // Enable the Record button to let the user stop the recording.
         
@@ -923,7 +923,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             self.cameraButton.isHidden = true
             self.recordButton.imageView?.image = UIImage(named: "StopCameraButton")
             //self.recordButton.setTitle(NSLocalizedString("Stop", comment: "Recording button stop title"), for: [])
-        
+            
         }
     }
     
@@ -1246,7 +1246,7 @@ extension SFSpeechRecognitionTaskDelegate {
     }
     
     func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishRecognition recognitionResult: SFSpeechRecognitionResult) {
-//        console.text = console.text + "\n" + recognitionResult.bestTranscription.formattedString
+        //        console.text = console.text + "\n" + recognitionResult.bestTranscription.formattedString
         print("!!!SpeechRecognitionTask: \(recognitionResult.bestTranscription.formattedString)")
     }
     

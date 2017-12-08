@@ -1,7 +1,7 @@
 //
 //  MasterViewController.swift
 //  Prestoid - Dropbox sync video camera app with speech to text recognition
-//  Application version 2.0, build 69, 2017.12.06
+//  Application version 2.0, build 69, 2017.12.09
 //
 //  Created by Alexander Iashchuk on 11/9/16.
 //  Copyright © 2016 Alexander Iashchuk (iAlexander), http://iashchuk.com
@@ -43,13 +43,13 @@ class MasterViewController: UITableViewController {
         
         if videosArray.count > 0 {
             
-        let index = videosArray.count - 1
-        print(index)
-        
-        for i in 0...index {
-            print(i)
-            sortedFileNamesAndText[videosArray[i]] = speechArray[i]
-        }
+            let index = videosArray.count - 1
+            print(index)
+            
+            for i in 0...index {
+                print(i)
+                sortedFileNamesAndText[videosArray[i]] = speechArray[i]
+            }
         }
         
         print(sortedFileNamesAndText)
@@ -57,30 +57,30 @@ class MasterViewController: UITableViewController {
         videosArray = videosArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
         
         /*
-        let defaults = UserDefaults.standard
-        if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
-            videosArray = arrayValue as! [String]
-            
-            // Sorting the videos arrayy in decending order
-            
-            videosArray = videosArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
-            
-            // Saving the sorted videos array
-            
-            defaults.set(videosArray, forKey: self.savedVideosArrayKey)
-        }
-        if let arrayValue = defaults.array(forKey: savedSpeechArrayKey) {
-            speechArray = arrayValue as! [String]
-            
-            // Sorting the speech arrayy in decending order
-            
-            speechArray = speechArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
-            
-            // Saving the sorted speech array
-            
-            defaults.set(speechArray, forKey: self.savedSpeechArrayKey)
-        }
-        */
+         let defaults = UserDefaults.standard
+         if let arrayValue = defaults.array(forKey: savedVideosArrayKey) {
+         videosArray = arrayValue as! [String]
+         
+         // Sorting the videos arrayy in decending order
+         
+         videosArray = videosArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
+         
+         // Saving the sorted videos array
+         
+         defaults.set(videosArray, forKey: self.savedVideosArrayKey)
+         }
+         if let arrayValue = defaults.array(forKey: savedSpeechArrayKey) {
+         speechArray = arrayValue as! [String]
+         
+         // Sorting the speech arrayy in decending order
+         
+         speechArray = speechArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedDescending }
+         
+         // Saving the sorted speech array
+         
+         defaults.set(speechArray, forKey: self.savedSpeechArrayKey)
+         }
+         */
         
         
         self.tableView.reloadData()
@@ -123,7 +123,7 @@ class MasterViewController: UITableViewController {
         
         
         let recognizedText = sortedFileNamesAndText[fileName]
-//        let recognizedText = speechArray[indexPath.row]
+        //        let recognizedText = speechArray[indexPath.row]
         
         
         let docsPath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
